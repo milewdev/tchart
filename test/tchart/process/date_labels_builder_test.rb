@@ -1,6 +1,6 @@
 require_relative '../../test_helper'
 
-module Resume  
+module TChart  
   describe DateLabelsBuilder, "build" do
     before do
       x_length = 100

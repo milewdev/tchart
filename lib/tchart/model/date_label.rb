@@ -1,4 +1,4 @@
-module Resume
+module TChart
   class DateLabel
     attr_reader :date
     attr_reader :x_coordinate

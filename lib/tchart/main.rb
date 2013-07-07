@@ -2,7 +2,7 @@
 me = File.absolute_path(__FILE__)
 Dir.glob(File.dirname(me) + '/**/*.rb') {|fn| require fn if fn != me }
 
-module Resume
+module TChart
   module Main
     def self.run(argv)
       args = CommandLineParser.parse(argv)

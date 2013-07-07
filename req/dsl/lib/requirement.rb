@@ -1,4 +1,4 @@
-module Resume
+module TChart
   module Requirements
     module DSL
       class Requirement

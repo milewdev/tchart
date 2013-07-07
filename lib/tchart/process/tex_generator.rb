@@ -1,4 +1,4 @@
-module Resume
+module TChart
   
   #
   # Generates the TeX code representation of a chart.  The  

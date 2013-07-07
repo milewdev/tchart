@@ -1,6 +1,6 @@
 require 'date'
 
-module Resume
+module TChart
   module DataReader
     def self.read(filename) # => settings, chart_items
       File.open(filename) do |f| 

@@ -1,6 +1,6 @@
 require_relative '../../test_helper'
 
-module Resume
+module TChart
   describe CommandLineParser, "parse" do
     it "throws an exception if there are fewer than two arguments" do
       proc { CommandLineParser.parse( [ 'arg1' ] ) }.must_raise ApplicationError

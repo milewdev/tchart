@@ -1,4 +1,4 @@
-module Resume
+module TChart
   class ChartItem
     attr_reader :name
     attr_reader :style

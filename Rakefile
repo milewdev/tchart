@@ -13,7 +13,7 @@ desc 'Run requirements tests'
 task :req do
   test_files = FileList['req/**/*_req.rb'].map { |fn| "\"#{fn}\"" }.join(", ")
   Rake::FileUtilsExt.verbose(false) do
-    ruby "-r ./req/dsl/lib/runner.rb -e 'Resume::Requirements::DSL::Runner.run([#{test_files}])'"
+    ruby "-r ./req/dsl/lib/runner.rb -e 'TChart::Requirements::DSL::Runner.run([#{test_files}])'"
   end
 end
 
@@ -25,5 +25,5 @@ end
 desc 'Install gem locally (does an uninstall first)'
 task :install do
   system "gem uninstall -x tchart-rubu"
-  system "gem install tchart-ruby-#{Resume::Version}.gem"
+  system "gem install tchart-ruby-#{TChart::Version}.gem"
 end

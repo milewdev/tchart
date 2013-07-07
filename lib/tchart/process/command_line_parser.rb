@@ -1,4 +1,4 @@
-module Resume
+module TChart
   module CommandLineParser
     def self.parse(argv) # => CommandLineArgs
       data_filename, tex_filename = argv
@@ -14,7 +14,7 @@ module Resume
     end
     
     def self.raise_usage
-      raise ApplicationError, "Usage: resume data_file tex_file"
+      raise ApplicationError, "Usage: tchart-ruby data_file tex_file"
     end
     
     def self.raise_not_found(data_filename)

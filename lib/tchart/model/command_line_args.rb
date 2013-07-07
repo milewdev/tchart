@@ -1,4 +1,4 @@
-module Resume
+module TChart
   class CommandLineArgs
     attr_reader :data_filename
     attr_reader :tex_filename

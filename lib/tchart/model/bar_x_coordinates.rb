@@ -1,4 +1,4 @@
-module Resume
+module TChart
   class BarXCoordinates
     attr_reader :mid_point
     attr_reader :width

@@ -1,6 +1,6 @@
 require_relative '../../test_helper'
 
-module Resume
+module TChart
   describe DataParser do
     it "reads all lines from the data source" do
       data = StringIO.new("1\n2\n3\n")

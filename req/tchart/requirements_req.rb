@@ -1,4 +1,4 @@
-module Resume
+module TChart
 
   requirement "Write an error message to stderr when the input file is missing." do
     the_expected_errors_are 'Error: input data file /.*/ not found.'

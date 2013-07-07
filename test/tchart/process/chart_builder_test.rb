@@ -1,6 +1,6 @@
 require_relative '../../test_helper'
 
-module Resume
+module TChart
   describe ChartBuilder, "build" do
     
     before do

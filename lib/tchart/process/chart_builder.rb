@@ -1,4 +1,4 @@
-module Resume
+module TChart
   class ChartBuilder
     def self.build(settings, chart_items)
       ChartBuilder.new(settings, chart_items).build

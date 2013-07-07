@@ -1,4 +1,4 @@
-module Resume
+module TChart
   module DateLabelsBuilder
     def self.build(chart_items, x_length) # => [ DateLabel, ... ]
       chart_items_date_range = find_chart_items_date_range(chart_items)

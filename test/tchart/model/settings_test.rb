@@ -1,6 +1,6 @@
 require_relative '../../test_helper'
 
-module Resume
+module TChart
   describe Settings, "initialize" do
     it "sets its settings to default values" do
       settings = Settings.new

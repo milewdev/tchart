@@ -1,7 +1,7 @@
 require_relative '../../test_helper'
 require 'stringio'
 
-module Resume
+module TChart
   describe DataReader, "read" do
     before do
       @filename = "_test_.txt"

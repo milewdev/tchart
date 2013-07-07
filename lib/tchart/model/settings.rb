@@ -1,4 +1,4 @@
-module Resume
+module TChart
   class Settings
     attr_accessor :chart_width
     attr_accessor :line_height

@@ -1,6 +1,6 @@
 require_relative '../../test_helper'
 
-module Resume
+module TChart
   describe TeXGenerator, "generate" do
     before do
       @settings = stub( :x_label_y_coordinate => -10, :x_label_width => 10, :y_label_width => 20, :line_height => 10 )

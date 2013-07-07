@@ -1,4 +1,4 @@
-require './lib/resume/version'
+require './lib/tchart/version'
 
 Gem::Specification.new do |s|
   s.name                  = "tchart-ruby"
@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description           = File.read(File.join(File.dirname(__FILE__), 'README'))
   s.license               = 'MIT'
   s.requirements          = [ 'none' ]
-  s.version               = "#{Resume::Version}"
+  s.version               = "#{TChart::Version}"
   s.author                = "Michael Lewandowski"
   s.email                 = "milewgit@gmail.com"
   #s.homepage              = "http://ml.somewhere.com"

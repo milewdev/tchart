@@ -8,11 +8,11 @@ Dir.glob(File.dirname(me) + '/**/*.rb') {|fn| require fn if fn != me }
 
 module Kernel
   def requirement(description, &block)
-    Resume::Requirements::DSL::Runner.run_requirement(description, &block)
+    TChart::Requirements::DSL::Runner.run_requirement(description, &block)
   end
 end
 
-module Resume
+module TChart
   module Requirements
     module DSL
       class Runner
@@ -34,7 +34,7 @@ module Resume
           requirement = create_requirement(&block)
           return unless requirement_valid?(requirement)
           delete_test_files
-          actual_tex, actual_errors = run_resume_run(requirement)
+          actual_tex, actual_errors = run_tchart_run(requirement)
           Checker.check_output('TeX', requirement.expected_tex, actual_tex)
           Checker.check_output('errors', requirement.expected_errors, actual_errors)
         rescue => e
@@ -67,9 +67,9 @@ module Resume
           end
         end
         
-        def self.run_resume_run(requirement) # => actual_tex, actual_errors
+        def self.run_tchart_run(requirement) # => actual_tex, actual_errors
           prep_input_file(requirement)
-          actual_errors = capture_stderr_from { Resume::Main.run([Data_filename, Tex_filename]) }
+          actual_errors = capture_stderr_from { TChart::Main.run([Data_filename, Tex_filename]) }
           actual_tex = retrieve_generated_tex
           [ actual_tex, actual_errors ]
         end

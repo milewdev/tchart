@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-module Resume
+module TChart
   module Requirements
     module DSL
       describe Checker, "unexpected_output" do

@@ -1,4 +1,4 @@
-module Resume
+module TChart
   class DataParser
     def self.parse(source_name, source_data) # => settings, chart_items, errors
       DataParser.new.parse(source_name, source_data)

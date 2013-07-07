@@ -1,6 +1,6 @@
 require_relative '../../test_helper'
 
-module Resume
+module TChart
   describe TeXWriter, "write" do
     before do
       @filename = "_test_.tex"

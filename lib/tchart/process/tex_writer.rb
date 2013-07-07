@@ -1,4 +1,4 @@
-module Resume
+module TChart
   
   #
   # Writes TeX code to a file.

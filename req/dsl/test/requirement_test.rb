@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-module Resume  
+module TChart  
   module Requirements
     module DSL
       describe Requirement, "given_the_input" do

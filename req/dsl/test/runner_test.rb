@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-module Resume
+module TChart
   module Requirements
     module DSL
       describe Runner, "run" do
@@ -23,7 +23,7 @@ module Resume
           [ "_test_.txt", "_test_.tex" ].each { |filename| File.delete(filename) if File.exists?(filename) }
         end
         it "passes two file name arguments to Resume::Main.run" do
-          Resume::Main.expects(:run).with(["_test_.txt", "_test_.tex"])
+          TChart::Main.expects(:run).with(["_test_.txt", "_test_.tex"])
           Runner.run_requirement "description" do
             the_expected_errors_are "some errors"
           end
@@ -67,13 +67,13 @@ module Resume
           $stdout.string.must_match "description"
         end
         it "invokes Resume.run when a block is supplied" do
-          Resume::Main.expects(:run)
+          TChart::Main.expects(:run)
           Runner.run_requirement "description" do
             the_expected_errors_are "some errors"
           end
         end
         it "does not invoke Resume.run when no block is supplied" do
-          Resume.expects(:run).never
+          TChart.expects(:run).never
           Runner.run_requirement "description"
         end
         it "prints 'skip' when no block is supplied" do
@@ -188,7 +188,7 @@ module Resume
           $stderr.string.must_match "Error: either 'the_expected_tex_is' or 'the_expected_errors_are' must be given, but neither was found."
         end
         it "does not invoke Resume.run if neither the_expected_tex_is or the_expected_errors_are are given" do
-          Resume.expects(:run).never
+          TChart.expects(:run).never
           Runner.run_requirement "description" do
             # empty
           end
@@ -201,7 +201,7 @@ module Resume
           $stderr.string.must_match "Error: only one of 'the_expected_tex_is' or 'the_expected_errors_are' must be given, but both were found."
         end
         it "does not invoke Resume.run if both the_expected_tex_is and the_expected_errors_are are given" do
-          Resume.expects(:run).never
+          TChart.expects(:run).never
           Runner.run_requirement "description" do
             the_expected_tex_is "some TeX"
             the_expected_errors_are "some errors"
