@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'resume/main'
+
+Resume::Main.run(ARGV)
