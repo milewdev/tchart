@@ -24,6 +24,6 @@ end
 
 desc 'Install gem locally (does an uninstall first)'
 task :install do
-  system "gem uninstall -x resume"
-  system "gem install resume-#{Resume::Version}.gem"
+  system "gem uninstall -x tchart-rubu"
+  system "gem install tchart-ruby-#{Resume::Version}.gem"
 end
