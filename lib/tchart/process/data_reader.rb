@@ -12,7 +12,7 @@ module TChart
     
     def self.print_errors_and_fail(errors)
       errors.each { |error| $stderr.puts(error) }
-      raise ApplicationError, "Errors found; aborting."
+      raise TChartError, "Errors found; aborting."
     end
   end
 end

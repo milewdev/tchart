@@ -19,7 +19,7 @@ module TChart
     end
     it "throws an exception if errors are found in the input data" do
       File.open(@filename, 'w') { |f| f.puts("C\tlang\t2001.1-2001.11\nchart_width=24mm\n") }
-      proc { DataReader.read(@filename) }.must_raise ApplicationError
+      proc { DataReader.read(@filename) }.must_raise TChartError
     end
     it "dumps input data errors to stderr" do
       File.open(@filename, 'w') { |f| f.puts("C\tlang\t2001.1-2001.11\nchart_width=24mm\n") }

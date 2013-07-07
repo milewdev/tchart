@@ -14,19 +14,19 @@ module TChart
     end
     
     def self.raise_usage
-      raise ApplicationError, "Usage: tchart-ruby data_file tex_file"
+      raise TChartError, "Usage: tchart-ruby data_file tex_file"
     end
     
     def self.raise_not_found(data_filename)
-      raise ApplicationError, "Error: input data file \"#{data_filename}\" not found."
+      raise TChartError, "Error: input data file \"#{data_filename}\" not found."
     end
     
     def self.raise_not_a_file(data_filename)
-      raise ApplicationError, "Error: input data file \"#{data_filename}\" is not a file."
+      raise TChartError, "Error: input data file \"#{data_filename}\" is not a file."
     end
     
     def self.raise_same_file(data_filename, tex_filename)
-      raise ApplicationError, "Error: input \"#{data_filename}\" and output \"#{tex_filename}\" refer to the same file."
+      raise TChartError, "Error: input \"#{data_filename}\" and output \"#{tex_filename}\" refer to the same file."
     end
   end
 end

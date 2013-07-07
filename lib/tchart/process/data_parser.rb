@@ -42,7 +42,7 @@ module TChart
       when parse_setting(line)
       when parse_chart_item(line)
       end
-    rescue ApplicationError => e
+    rescue TChartError => e
       save_error e.message
     end
     
@@ -84,11 +84,11 @@ module TChart
     end
     
     def raise_unknown_setting(name)
-      raise ApplicationError, "unknown setting \"#{name}\"; expecting one of: #{@settings.setting_names.join(', ')}"
+      raise TChartError, "unknown setting \"#{name}\"; expecting one of: #{@settings.setting_names.join(', ')}"
     end
     
     def raise_not_a_float(value)
-      raise ApplicationError, "\"#{value}\" is not a number; expecting e.g. 123 or 123.45"
+      raise TChartError, "\"#{value}\" is not a number; expecting e.g. 123 or 123.45"
     end
     
     
@@ -167,19 +167,19 @@ module TChart
     end
     
     def raise_invalid_date(year, month, day, message)
-      raise ApplicationError, "#{year}.#{month}.#{day}: #{message}"
+      raise TChartError, "#{year}.#{month}.#{day}: #{message}"
     end
     
     def raise_invalid_date_range(date_range_as_string)
-      raise ApplicationError, "bad date range \"#{date_range_as_string}\"; expecting 2000.4.17-2001.7.21, or 2000.4-2001, etc."
+      raise TChartError, "bad date range \"#{date_range_as_string}\"; expecting 2000.4.17-2001.7.21, or 2000.4-2001, etc."
     end
     
     def raise_date_range_reversed(date_begin, date_end)
-      raise ApplicationError, "date range end #{d2s(date_end)} before start #{d2s(date_begin)}"
+      raise TChartError, "date range end #{d2s(date_end)} before start #{d2s(date_begin)}"
     end
     
     def raise_date_ranges_overlap(range1, range2)
-      raise ApplicationError, "date range #{dr2s(range1)} overlaps #{dr2s(range2)}"
+      raise TChartError, "date range #{dr2s(range1)} overlaps #{dr2s(range2)}"
     end
   end
 end

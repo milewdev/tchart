@@ -10,7 +10,7 @@ module TChart
       chart = ChartBuilder.build(settings, chart_items)
       tex = TeXGenerator.generate(settings, chart)
       TeXWriter.write(args.tex_filename, tex)
-    rescue ApplicationError => e
+    rescue TChartError => e
       $stderr.puts e.message
     rescue Exception => e
       $stderr.puts e.message
