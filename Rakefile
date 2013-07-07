@@ -19,7 +19,7 @@ end
 
 desc 'Build gem'
 task :build do
-  system "gem build resume.gemspec"
+  system "gem build tchart-ruby.gemspec"
 end
 
 desc 'Install gem locally (does an uninstall first)'
