@@ -16,7 +16,7 @@ module Resume
       bad_argument = Date.new
       Resume::Main.run(bad_argument)
       $stderr.string.must_match %r{undefined method `length'}
-      $stderr.string.must_match %r{lib/resume/process/command_line_parser\.rb:\d+:in `parse'}
+      $stderr.string.must_match %r{lib/tchart/process/command_line_parser\.rb:\d+:in `parse'}
     end
   end
 end

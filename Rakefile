@@ -1,5 +1,5 @@
 require 'rake/testtask'
-require_relative 'lib/resume/version'
+require_relative 'lib/tchart/version'
 
 task :default => [ :test, :req ]
 task :all => [ :test, :req, :build, :install ]

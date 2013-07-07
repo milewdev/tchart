@@ -1,6 +1,6 @@
 require 'stringio'
 
-require_relative '../../../lib/resume/main'
+require_relative '../../../lib/tchart/main'
 
 # 'require' all project files except ourselves.
 me = File.absolute_path(__FILE__)
