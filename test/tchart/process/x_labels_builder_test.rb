@@ -6,7 +6,8 @@ module TChart
       settings = stub( x_label_y_coordinate: -3 )
       chart_items = [ stub(:date_ranges => [ Date.new(2000,3,17)..Date.new(2003,10,4) ]) ]
       x_length = 100
-      @x_labels = XLabelsBuilder.build(settings, chart_items, x_length)
+      y_length = 50
+      @x_labels = XLabelsBuilder.build(settings, chart_items, x_length, y_length)
     end
     it "builds the correct number of labels" do
       @x_labels.length.must_equal 5
@@ -26,11 +27,18 @@ module TChart
       @x_labels[4].x_coordinate.must_equal 100
     end
     it "builds labels with the correct y-coordinate" do
-      @x_labels[0].y_coordinate.must_equal -3
-      @x_labels[1].y_coordinate.must_equal -3
-      @x_labels[2].y_coordinate.must_equal -3
-      @x_labels[3].y_coordinate.must_equal -3
-      @x_labels[4].y_coordinate.must_equal -3
+      @x_labels[0].y_coordinate.must_equal (-3)
+      @x_labels[1].y_coordinate.must_equal (-3)
+      @x_labels[2].y_coordinate.must_equal (-3)
+      @x_labels[3].y_coordinate.must_equal (-3)
+      @x_labels[4].y_coordinate.must_equal (-3)
+    end
+    it "builds labels with the correct y_length" do
+      @x_labels[0].y_length.must_equal 50
+      @x_labels[1].y_length.must_equal 50
+      @x_labels[2].y_length.must_equal 50
+      @x_labels[3].y_length.must_equal 50
+      @x_labels[4].y_length.must_equal 50
     end
   end
 

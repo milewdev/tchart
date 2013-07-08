@@ -12,7 +12,7 @@ module TChart
     def build
       @x_length = calc_x_length     # TODO: rename to x_axis_length, y_axis_length
       @y_length = calc_y_length
-      @x_labels = XLabelsBuilder.build(@settings, @chart_items, @x_length)    # TODO: rename to x_axis_labels?
+      @x_labels = XLabelsBuilder.build(@settings, @chart_items, @x_length, @y_length)    # TODO: rename to x_axis_labels?
       @y_coordinates = calc_chart_item_y_coordinates
       assign_chart_item_y_coordinates
       calc_chart_items_x_coordinate_ranges
