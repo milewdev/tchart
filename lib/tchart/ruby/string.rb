@@ -1,12 +1,14 @@
 class String
   
   #
-  # Insert 'amount' spaces at the beginning of all non-empty lines.  An
-  # empty line consists only of zero or more space and/or tab characters.
+  # Insert 'amount' spaces at the beginning of all non-empty lines.  
+  #
+  # Note: an line is considered empty if it consists only of zero
+  # or more space and/or tab characters.
   #
   def indent(amount)
     indent = " " * amount
-    each_line
+    self.each_line
       .map { |line| line.strip.length > 0 ? "#{indent}#{line}" : line }
       .join
   end
@@ -24,8 +26,8 @@ class String
     raise Exception, "String#unindent does not support tabs in the leading whitespace" if match( /^ *\t/ )
     shortest_indent = each_line
       .select { |line| line.strip.length > 0 }
-      .inject(length) { |min, line| [ min, /^( *)/.match(line)[1].length ].min }
-    each_line
+      .inject(self.length) { |min, line| [ min, /^( *)/.match(line)[1].length ].min }
+    self.each_line
       .map { |line| line.strip.length > 0 ? line[shortest_indent..-1] : line }
       .join
   end
