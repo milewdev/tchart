@@ -3,9 +3,9 @@ require_relative '../../test_helper'
 module TChart
   describe TeXGenerator, "generate" do
     before do
-      @settings = stub( :x_label_y_coordinate => -10, :x_label_width => 10, :y_label_width => 20, :line_height => 10 )
-      label1 = stub( :date => Date.new(2000,1,1), :x_coordinate => 0 )
-      label2 = stub( :date => Date.new(2001,1,1), :x_coordinate => 100 )
+      @settings = stub( :x_label_width => 10, :y_label_width => 20, :line_height => 10 )
+      label1 = stub( :date => Date.new(2000,1,1), :x_coordinate => 0, y_coordinate: -10 )
+      label2 = stub( :date => Date.new(2001,1,1), :x_coordinate => 100, y_coordinate: -10 )
       labels = [ label1, label2 ]
       item1 = stub( :name => 'item1', :style => 'style1', :bar_x_coordinates => [ BarXCoordinates.new(25, 50) ], :y_coordinate => 20 )
       item2 = stub( :name => 'item2', :style => 'style2', :bar_x_coordinates => [ BarXCoordinates.new( 75, 50 ) ], :y_coordinate => 10 )
