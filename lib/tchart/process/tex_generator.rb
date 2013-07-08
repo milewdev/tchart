@@ -84,7 +84,9 @@ module TChart
     end
     
     def generate_item_bars(item)
-      item.bar_x_coordinates.map { |bar_x_coordinates| generate_item_bar(item, bar_x_coordinates) }.join
+      item.bar_x_coordinates
+        .map { |bar_x_coordinates| generate_item_bar(item, bar_x_coordinates) }
+        .join
     end
     
     def generate_item_bar(item, bar_x_coordinates)
