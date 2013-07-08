@@ -18,7 +18,7 @@ module TChart
     end
     
     def generate
-      "\\tikzpicture\n\n" + (generate_frame + "\n" + generate_x_axis_labels + "\n" + generate_items).indent(4) + "\n\\endtikzpicture\n"
+      "\\tikzpicture\n\n" + generate_frame + "\n" + generate_x_axis_labels + "\n" + generate_items + "\n\\endtikzpicture\n"
     end
     
     
@@ -27,13 +27,7 @@ module TChart
     #
     
     def generate_frame
-      <<-EOS.unindent
-        % horizontal bottom frame
-        \\draw [draw = black!5] (#{f 0}mm, #{f 0}mm) -- (#{f @chart.x_length}mm, #{f 0}mm);
-
-        % horizontal top frame
-        \\draw [draw = black!5] (#{f 0}mm, #{f @chart.y_length}mm) -- (#{f @chart.x_length}mm, #{f @chart.y_length}mm);
-      EOS
+      FrameRenderer.new.render(@chart)
     end
     
     
@@ -42,17 +36,10 @@ module TChart
     #
     
     def generate_x_axis_labels
+      renderer = XLabelRenderer.new(@settings, @chart)
       @chart.x_labels
-        .map { |label| generate_x_axis_label(label) }
+        .map { |label| renderer.render(label) }
         .join("\n")
-    end
-    
-    def generate_x_axis_label(label)
-      <<-EOS.unindent
-        % #{label.date.year}
-        \\draw (#{f label.x_coordinate}mm, #{f @settings.x_label_y_coordinate}mm) node [xlabel] {#{label.date.year}};
-        \\draw [draw = black!5] (#{f label.x_coordinate}mm, #{f 0}mm) -- (#{f label.x_coordinate}mm, #{f @chart.y_length}mm);
-      EOS
     end
     
     
@@ -68,29 +55,10 @@ module TChart
     
     def generate_item(item)
       if item.name.start_with?('---')
-        generate_separator(item)
+        generate_separator(item).indent(4)
       else
-        generate_item_comment(item) + generate_item_y_label(item) + generate_item_bars(item)
+        ItemRenderer.new(@settings).render(item)
       end
-    end
-
-    def generate_item_comment(item)
-      "% #{escape_tex_special_chars item.name}\n"
-    end
-    
-    def generate_item_y_label(item)
-      mid_point, width = @settings.y_label_width / -2.0, @settings.y_label_width
-      "\\node [ylabel, text width = #{f width}mm] at (#{f mid_point}mm, #{f item.y_coordinate}mm) {#{escape_tex_special_chars item.name}};\n"
-    end
-    
-    def generate_item_bars(item)
-      item.bar_x_coordinates
-        .map { |bar_x_coordinates| generate_item_bar(item, bar_x_coordinates) }
-        .join
-    end
-    
-    def generate_item_bar(item, bar_x_coordinates)
-      "\\node [#{item.style}] at (#{f bar_x_coordinates.mid_point}mm, #{f item.y_coordinate}mm) [minimum width = #{f bar_x_coordinates.width}mm] {};\n"
     end
     
     def generate_separator(item)
