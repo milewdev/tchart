@@ -1,5 +1,5 @@
 module TChart
-  class DateLabel
+  class XLabel
     attr_reader :date
     attr_reader :x_coordinate
     
