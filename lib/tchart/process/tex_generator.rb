@@ -56,7 +56,7 @@ module TChart
       if item.name.start_with?('---')
         generate_separator(item).indent(4)
       else
-        ItemRenderer.new.render(@chart, item)
+        ChartItemRenderer.new.render(@chart, item)
       end
     end
     

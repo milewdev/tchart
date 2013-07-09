@@ -10,12 +10,12 @@ module TChart
     end
   end
   
-  describe RendererFactory, "item_renderer" do
-    it "returns an instance of ItemRenderer" do
-      RendererFactory.item_renderer.must_be_instance_of ItemRenderer
+  describe RendererFactory, "chart_item_renderer" do
+    it "returns an instance of ChartItemRenderer" do
+      RendererFactory.chart_item_renderer.must_be_instance_of ChartItemRenderer
     end
-    it "returns the same instance of XLabelRenderer each time it is invoked" do
-      RendererFactory.item_renderer.must_be_same_as RendererFactory.item_renderer
+    it "returns the same instance of ChartItemRenderer each time it is invoked" do
+      RendererFactory.chart_item_renderer.must_be_same_as RendererFactory.chart_item_renderer
     end
   end
 end

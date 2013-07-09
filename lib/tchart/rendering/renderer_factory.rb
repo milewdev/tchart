@@ -12,8 +12,8 @@ module TChart
       @x_label_renderer ||= XLabelRenderer.new
     end
     
-    def self.item_renderer
-      @item_renderer ||= ItemRenderer.new
+    def self.chart_item_renderer
+      @chart_item_renderer ||= ChartItemRenderer.new
     end
   end
   
