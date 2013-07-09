@@ -15,6 +15,10 @@ module TChart
     def self.chart_item_renderer
       @chart_item_renderer ||= ChartItemRenderer.new
     end
+    
+    def self.separator_item_renderer
+      @separator_item_renderer ||= SeparatorItemRenderer.new
+    end
   end
   
 end
