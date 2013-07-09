@@ -1,13 +1,13 @@
 module TChart
   module XLabelsBuilder
-    def self.build(settings, chart_items, x_length, y_length) # => [ XLabel, ... ]
+    def self.build(chart_items, x_length) # => [ XLabel, ... ]
       chart_items_date_range = find_chart_items_date_range(chart_items)
       date_range, date_interval_yr = calc_date_range_and_date_interval(chart_items_date_range)
       number_of_labels = calc_number_of_labels(date_range, date_interval_yr)
       x_interval = calc_x_coordinate_interval(x_length, number_of_labels)
       dates = create_date_range_enumerator(date_range, date_interval_yr)
       x_coordinates = (0..x_length).step(x_interval)
-      dates.zip(x_coordinates).map { |date, x_coordinate| XLabel.new(date, x_coordinate, settings.x_label_y_coordinate, y_length) }
+      dates.zip(x_coordinates).map { |date, x_coordinate| XLabel.new(date, x_coordinate) }
     end
     
     def self.create_date_range_enumerator(date_range, date_interval_yr) # => Enumerator
