@@ -1,20 +1,16 @@
 module TChart
   class ItemRenderer
-    def initialize(settings)
-      @settings = settings
-    end
-    
-    def render(item)
+    def render(chart, item)
       # TODO: indentation should be done where?
-      (generate_item_comment(item) + generate_item_y_label(item) + generate_item_bars(item)).indent(4)
+      (generate_item_comment(item) + generate_item_y_label(chart, item) + generate_item_bars(item)).indent(4)
     end
     
     def generate_item_comment(item)
       "% #{escape_tex_special_chars item.name}\n"
     end
     
-    def generate_item_y_label(item)
-      mid_point, width = @settings.y_label_width / -2.0, @settings.y_label_width
+    def generate_item_y_label(chart, item)
+      mid_point, width = chart.settings.y_label_width / -2.0, chart.settings.y_label_width
       "\\node [ylabel, text width = #{f width}mm] at (#{f mid_point}mm, #{f item.y_coordinate}mm) {#{escape_tex_special_chars item.name}};\n"
     end
     
