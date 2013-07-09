@@ -11,6 +11,10 @@ module TChart
     def self.x_label_renderer
       @x_label_renderer ||= XLabelRenderer.new
     end
+    
+    def self.item_renderer
+      @item_renderer ||= ItemRenderer.new
+    end
   end
   
 end
