@@ -40,7 +40,7 @@ module TChart
     def parse_line(line)
       case
       when parse_setting(line)
-      when parse_chart_item(line)
+      when parse_item(line)
       end
     rescue TChartError => e
       save_error e.message
@@ -93,14 +93,27 @@ module TChart
     
     
     #
-    # Chart items
+    # Chart and separator items
     #
     
-    def parse_chart_item(line) # => success or failed
+    def parse_item(line)
       name, style, *date_range_strings = extract_non_blank_fields(line)
+      if name.start_with?("---")
+        parse_separator_item
+      else
+        parse_chart_item(name, style, date_range_strings)
+      end
+    end
+    
+    def parse_chart_item(name, style, date_range_strings)
       date_ranges = parse_date_ranges(date_range_strings)
       check_for_overlaps(date_ranges)
       save_chart_item ChartItem.new(name, style, date_ranges)
+      true
+    end
+    
+    def parse_separator_item
+      save_chart_item SeparatorItem.new
       true
     end
     

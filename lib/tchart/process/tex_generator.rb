@@ -48,23 +48,8 @@ module TChart
     
     def generate_items
       @chart.chart_items
-        .map { |item| generate_item(item) }
+        .map { |item| item.render(@chart) }
         .join("\n")
-    end
-    
-    def generate_item(item)
-      if item.name.start_with?('---')
-        generate_separator(item).indent(4)
-      else
-        item.render(@chart)
-      end
-    end
-    
-    def generate_separator(item)
-      <<-EOS.unindent
-        % horizontal separator line
-        \\draw [draw = black!5] (#{f 0}mm, #{f item.y_coordinate}mm) -- (#{f @chart.x_length}mm, #{f item.y_coordinate}mm);
-      EOS
     end
     
     

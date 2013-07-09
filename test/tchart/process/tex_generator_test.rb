@@ -56,9 +56,8 @@ module TChart
       EOS
     end
     it "treats items whose name starts with three dashes (---) as a horizontal line separator" do
-      item1 = ChartItem.new("--- anything", "style1", [])
+      item1 = SeparatorItem.new
       item1.y_coordinate = 20
-      item1.bar_x_coordinates = [ BarXCoordinates.new(25, 50) ]
       @chart.chart_items[0] = item1
       TeXGenerator.generate(@settings, @chart).index(<<-EOS.unindent.indent(4)).wont_be_nil
         % horizontal separator line
