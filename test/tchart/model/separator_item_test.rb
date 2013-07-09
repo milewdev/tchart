@@ -3,7 +3,7 @@ require_relative '../../test_helper'
 module TChart
   describe SeparatorItem, "render" do
     before do
-      @separator_item = SeparatorItem.new(42)
+      @separator_item = SeparatorItem.new
       @chart = stub
       @renderer = stub
     end
