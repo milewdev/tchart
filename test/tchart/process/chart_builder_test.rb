@@ -28,6 +28,7 @@ module TChart
       @chart.x_length.wont_be_nil
       @chart.y_length.wont_be_nil
       @chart.x_labels.wont_be_nil
+      @chart.settings.wont_be_nil
     end
     it "calculates the correct x axis length" do
       @chart.x_length.must_equal @settings.chart_width - @settings.y_label_width - @settings.x_label_width

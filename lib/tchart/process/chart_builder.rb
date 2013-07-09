@@ -16,7 +16,7 @@ module TChart
       @y_coordinates = calc_chart_item_y_coordinates
       assign_chart_item_y_coordinates
       calc_chart_items_x_coordinate_ranges
-      Chart.new(@chart_items, @x_length, @y_length, @x_labels)
+      Chart.new(@chart_items, @x_length, @y_length, @x_labels, @settings)
     end
 
     def calc_x_length
