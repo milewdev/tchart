@@ -7,8 +7,12 @@ module TChart
       label1 = XLabel.new(Date.new(2000,1,1), 0)
       label2 = XLabel.new(Date.new(2001,1,1), 100)
       labels = [ label1, label2 ]
-      item1 = stub( :name => 'item1', :style => 'style1', :bar_x_coordinates => [ BarXCoordinates.new(25, 50) ], :y_coordinate => 20 )
-      item2 = stub( :name => 'item2', :style => 'style2', :bar_x_coordinates => [ BarXCoordinates.new( 75, 50 ) ], :y_coordinate => 10 )
+      item1 = ChartItem.new("item1", "style1", [])
+      item1.y_coordinate = 20
+      item1.bar_x_coordinates = [ BarXCoordinates.new(25, 50) ]
+      item2 = ChartItem.new("item2", "style2", [])
+      item2.y_coordinate = 10
+      item2.bar_x_coordinates = [ BarXCoordinates.new( 75, 50 ) ]
       items = [ item1, item2 ]
       @chart = stub( :settings => @settings, :x_length => 100, :y_length => 30, :x_labels => labels, :chart_items => items )
     end
@@ -42,14 +46,20 @@ module TChart
       EOS
     end
     it "escapes TeX special characters in the item name" do
-      @chart.chart_items[0] = stub( :name => 'item1#&', :style => 'style1', :bar_x_coordinates => [ BarXCoordinates.new(25, 50) ], :y_coordinate => 20 )
+      item1 = ChartItem.new("item1#&", "style1", [])
+      item1.y_coordinate = 20
+      item1.bar_x_coordinates = [ BarXCoordinates.new(25, 50) ]
+      @chart.chart_items[0] = item1
       TeXGenerator.generate(@settings, @chart).index(<<-EOS.unindent.indent(4)).wont_be_nil
         % item1\\#\\&
         \\node [ylabel, text width = 20.00mm] at (-10.00mm, 20.00mm) {item1\\#\\&};
       EOS
     end
     it "treats items whose name starts with three dashes (---) as a horizontal line separator" do
-      @chart.chart_items[0] = stub( :name => '--- anything', :style => 'style1', :bar_x_coordinates => [ BarXCoordinates.new(25, 50) ], :y_coordinate => 20 )
+      item1 = ChartItem.new("--- anything", "style1", [])
+      item1.y_coordinate = 20
+      item1.bar_x_coordinates = [ BarXCoordinates.new(25, 50) ]
+      @chart.chart_items[0] = item1
       TeXGenerator.generate(@settings, @chart).index(<<-EOS.unindent.indent(4)).wont_be_nil
         % horizontal separator line
         \\draw [draw = black!5] (0.00mm, 20.00mm) -- (100.00mm, 20.00mm);
