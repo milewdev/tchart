@@ -8,7 +8,7 @@ module TChart
       args = CommandLineParser.parse(argv)
       settings, chart_items = DataReader.read(args.data_filename)
       chart = ChartBuilder.build(settings, chart_items)
-      tex = TeXGenerator.generate(settings, chart)
+      tex = TeXGenerator.generate(chart)
       TeXWriter.write(args.tex_filename, tex)
     rescue TChartError => e
       $stderr.puts e.message
