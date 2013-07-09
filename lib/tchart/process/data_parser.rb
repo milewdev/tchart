@@ -1,6 +1,6 @@
 module TChart
   class DataParser
-    def self.parse(source_name, source_data) # => settings, chart_items, errors
+    def self.parse(source_name, source_data) # => settings, items, errors
       DataParser.new.parse(source_name, source_data)
     end
   
@@ -8,15 +8,15 @@ module TChart
       @source_name = nil
       @line_number = nil
       @settings = Settings.new
-      @chart_items = []
+      @items = []
       @errors = []
     end
     
-    def parse(source_name, source_data) # => settings, chart_items, errors
+    def parse(source_name, source_data) # => settings, items, errors
       @source_name = source_name
       lines_of_interest_in(source_data).each { |line| parse_line(line) }
-      check_for_chart_items
-      [ @settings, @chart_items, @errors ]
+      check_for_items
+      [ @settings, @items, @errors ]
     end
     
     def lines_of_interest_in(source_data) # => Enumerator
@@ -46,8 +46,8 @@ module TChart
       save_error e.message
     end
     
-    def check_for_chart_items
-      save_error "no chart items found" if @errors.length == 0 && @chart_items.length == 0
+    def check_for_items
+      save_error "no items found" if @errors.length == 0 && @items.length == 0
     end
     
     def save_error(message)
@@ -108,12 +108,12 @@ module TChart
     def parse_chart_item(name, style, date_range_strings)
       date_ranges = parse_date_ranges(date_range_strings)
       check_for_overlaps(date_ranges)
-      save_chart_item ChartItem.new(name, style, date_ranges)
+      save_item ChartItem.new(name, style, date_ranges)
       true
     end
     
     def parse_separator_item
-      save_chart_item SeparatorItem.new
+      save_item SeparatorItem.new
       true
     end
     
@@ -165,8 +165,8 @@ module TChart
       range1.include?(range2.first) or range2.include?(range1.first)
     end
     
-    def save_chart_item(chart_item)
-      @chart_items << chart_item
+    def save_item(item)
+      @items << item
     end
     
     # date to string

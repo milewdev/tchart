@@ -120,7 +120,7 @@ module TChart
           Runner.run_requirement "description" do
             given_the_input ""
             the_expected_errors_are <<-EOS
-              _test_.txt, 1: no chart items found
+              _test_.txt, 1: no items found
               Errors found; aborting.
             EOS
           end
@@ -129,7 +129,7 @@ module TChart
         it "allows errors to be expressed as regexes" do
           Runner.run_requirement "description" do
             given_the_input ""
-            the_expected_errors_are %r{_test_.txt, 1: no chart items found}
+            the_expected_errors_are %r{_test_.txt, 1: no items found}
           end
           $stderr.string.must_equal ""
         end
@@ -142,7 +142,7 @@ module TChart
             Error: errors output does not match.  Expected:
               abc
             Actual:
-              _test_.txt, 1: no chart items found
+              _test_.txt, 1: no items found
               Errors found; aborting.
           EOS
         end
@@ -153,7 +153,7 @@ module TChart
           end
           $stderr.string.must_match <<-'EOS'.gsub(/^ {10}/, '')
             Error: unexpected errors generated:
-              _test_.txt, 1: no chart items found
+              _test_.txt, 1: no items found
               Errors found; aborting.
           EOS
         end

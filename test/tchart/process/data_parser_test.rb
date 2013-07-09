@@ -138,7 +138,7 @@ module TChart
     it "returns a 'no chart items found' error if no chart items were found in the data and no other errors were found" do
       data = StringIO.new("# no chart items\n")
       _, _, errors = DataParser.parse('filename.txt', data)
-      errors.must_equal [ "filename.txt, 1: no chart items found" ]
+      errors.must_equal [ "filename.txt, 1: no items found" ]
     end
     it "does not return a 'no chart items found' error if no chart items were found in the data but other errors were found" do
       data = StringIO.new("unknown_setting = 123\n")
