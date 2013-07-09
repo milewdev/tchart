@@ -34,6 +34,10 @@ module TChart
        @style = style
        @date_ranges = date_ranges
     end
+    
+    def render(chart)
+      RendererFactory.chart_item_renderer.render(chart, self)
+    end
   end
   
 end
