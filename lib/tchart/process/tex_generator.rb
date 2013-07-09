@@ -36,9 +36,8 @@ module TChart
     #
     
     def generate_x_axis_labels
-      renderer = XLabelRenderer.new
       @chart.x_labels
-        .map { |label| renderer.render(@chart, label) }
+        .map { |label| label.render(@chart) }
         .join("\n")
     end
     

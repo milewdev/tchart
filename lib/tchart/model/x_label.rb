@@ -7,5 +7,9 @@ module TChart
       @date = date
       @x_coordinate = x_coordinate
     end
+    
+    def render(chart)
+      RendererFactory.x_label_renderer.render(chart, self)
+    end
   end
 end
