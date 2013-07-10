@@ -10,6 +10,11 @@ module TChart
       @settings.chart_width - @settings.y_label_width - @settings.x_label_width
     end
     
+    def y_axis_length
+      # +1 for top and bottom margins
+      (@items.length + 1) * @settings.line_height
+    end
+    
     def calc_layout
       @items
         .zip(item_y_coordinates)

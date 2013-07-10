@@ -10,6 +10,15 @@ module TChart
     end
   end
   
+  describe Chart, "y_axis_length" do
+    it "returns the correct length" do
+      settings = stub( line_height: 10 )
+      items = [ stub, stub ]
+      chart = Chart2.new(settings, items)
+      chart.y_axis_length.must_equal settings.line_height * (items.length + 1)
+    end
+  end
+  
   describe Chart, "calc_layout" do
     it "invokes 'calc_layout' on each item" do
       settings = stub( line_height: 10 )
