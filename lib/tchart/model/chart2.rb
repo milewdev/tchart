@@ -1,6 +1,9 @@
 module TChart
   class Chart2
     
+    attr_reader :settings
+    attr_reader :items
+
     def initialize(settings, items)
       @settings = settings
       @items = items
@@ -24,6 +27,12 @@ module TChart
         .zip(item_y_coordinates)
         .each { |item, y_coordinate| item.calc_layout(self, y_coordinate) }
     end
+    
+    # temporary
+    alias :x_length :x_axis_length
+    alias :y_length :y_axis_length
+    alias :x_labels :x_axis_labels
+    alias :chart_items :items
     
   private
     

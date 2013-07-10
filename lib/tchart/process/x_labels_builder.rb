@@ -1,5 +1,8 @@
 module TChart
   module XLabelsBuilder
+    def self.build2(chart)
+      build(chart.items, chart.x_length)
+    end
     def self.build(chart_items, x_length) # => [ XLabel, ... ]
       chart_items_date_range = find_chart_items_date_range(chart_items)
       date_range, date_interval_yr = calc_date_range_and_date_interval(chart_items_date_range)
