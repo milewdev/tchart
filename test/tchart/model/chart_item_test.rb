@@ -2,6 +2,13 @@ require_relative '../../test_helper'
 
 module TChart
   describe ChartItem, "calc_layout" do
+    
+    class BarXCoordinates
+      def ==(other)
+        [ mid_point, width ] == [ other.mid_point, other.width ]
+      end
+    end
+    
     it "calculates the x coordinate ranges of each date range" do
       label1 = stub( date: Date.new(2001,1,1) )
       label2 = stub( date: Date.new(2003,1,1) )

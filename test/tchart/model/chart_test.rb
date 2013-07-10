@@ -1,7 +1,7 @@
 require_relative '../../test_helper'
 
 module TChart
-  describe Chart, "x_axis_length" do
+  describe Chart2, "x_axis_length" do
     it "returns the correct length" do
       settings = stub( chart_width: 100, x_label_width: 10, y_label_width: 20 )
       items = stub
@@ -10,7 +10,7 @@ module TChart
     end
   end
   
-  describe Chart, "y_axis_length" do
+  describe Chart2, "y_axis_length" do
     it "returns the correct length" do
       settings = stub( line_height: 10 )
       items = [ stub, stub ]
@@ -19,7 +19,7 @@ module TChart
     end
   end
   
-  describe Chart, "x_axis_labels" do
+  describe Chart2, "x_axis_labels" do
     it "calls XLabelsBuilder#build" do
       settings = stub
       items = stub
@@ -37,7 +37,7 @@ module TChart
     end
   end
   
-  describe Chart, "calc_layout" do
+  describe Chart2, "calc_layout" do
     it "invokes 'calc_layout' on each item" do
       settings = stub( line_height: 10 )
       items = [ stub, stub ]
