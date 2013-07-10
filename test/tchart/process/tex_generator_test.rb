@@ -50,7 +50,6 @@ module TChart
   describe TeXGenerator, "escape_tex_special_chars" do
     it "escapes TeX special characters" do
       skip
-      settings = stub()
       chart = stub()
       TeXGenerator.new(chart).escape_tex_special_chars("#&").must_equal '\#\&'
     end
