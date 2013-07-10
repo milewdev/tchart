@@ -15,6 +15,10 @@ module TChart
       (@items.length + 1) * @settings.line_height
     end
     
+    def x_axis_labels
+      @x_axis_labels ||= XLabelsBuilder.build2(self)
+    end
+    
     def calc_layout
       @items
         .zip(item_y_coordinates)

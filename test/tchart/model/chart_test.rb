@@ -19,6 +19,24 @@ module TChart
     end
   end
   
+  describe Chart, "x_axis_labels" do
+    it "calls XLabelsBuilder#build" do
+      settings = stub
+      items = stub
+      chart = Chart2.new(settings, items)
+      XLabelsBuilder.expects(:build2).with(chart)
+      chart.x_axis_labels
+    end
+    it "caches the result" do
+      settings = stub
+      items = stub
+      chart = Chart2.new(settings, items)
+      XLabelsBuilder.expects(:build2).once.with(chart).returns(stub)
+      chart.x_axis_labels
+      chart.x_axis_labels
+    end
+  end
+  
   describe Chart, "calc_layout" do
     it "invokes 'calc_layout' on each item" do
       settings = stub( line_height: 10 )
