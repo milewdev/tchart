@@ -9,6 +9,10 @@ module TChart
       @date_ranges = []
     end
     
+    def calc_layout(chart, y_coordinate)
+      @y_coordinate = y_coordinate
+    end
+    
     def render(chart)
       RendererFactory.separator_item_renderer.render(chart, self)
     end
