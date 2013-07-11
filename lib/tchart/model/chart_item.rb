@@ -60,8 +60,8 @@ module TChart
     def date_to_x_coordinate(chart, date)
       # TODO: use lazy evaluation?  Perhaps too complex.
       # TODO: calculating the date range is not our responsibility
-      date_range_length = chart.x_labels.last.date.jd - chart.x_labels.first.date.jd   
-      ( chart.x_axis_length * ( date.jd - chart.x_labels.first.date.jd ) * 1.0 ) / date_range_length 
+      date_range_length = chart.x_axis_labels.last.date.jd - chart.x_axis_labels.first.date.jd   
+      ( chart.x_axis_length * ( date.jd - chart.x_axis_labels.first.date.jd ) * 1.0 ) / date_range_length 
     end
     
   end

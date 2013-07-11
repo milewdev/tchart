@@ -17,7 +17,7 @@ module TChart
     end
     
     def self.generate_x_axis_labels(chart)
-      chart.x_labels
+      chart.x_axis_labels
         .map { |label| label.render(chart) }
         .join("\n")
     end

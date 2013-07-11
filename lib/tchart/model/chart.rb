@@ -28,9 +28,6 @@ module TChart
         .each { |item, y_coordinate| item.calc_layout(self, y_coordinate) }
     end
     
-    # temporary
-    alias :x_labels :x_axis_labels
-    
   private
     
     def item_y_coordinates

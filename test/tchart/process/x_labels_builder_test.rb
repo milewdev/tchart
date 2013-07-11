@@ -5,24 +5,24 @@ module TChart
     before do
       x_axis_length = 100
       items = [ stub(:date_ranges => [ Date.new(2000,3,17)..Date.new(2003,10,4) ]) ]
-      @x_labels = XLabelsBuilder.build(items, x_axis_length)
+      @x_axis_labels = XLabelsBuilder.build(items, x_axis_length)
     end
     it "builds the correct number of labels" do
-      @x_labels.length.must_equal 5
+      @x_axis_labels.length.must_equal 5
     end
     it "builds labels with the correct text" do
-      @x_labels[0].date.must_equal Date.new(2000,1,1)
-      @x_labels[1].date.must_equal Date.new(2001,1,1)
-      @x_labels[2].date.must_equal Date.new(2002,1,1)
-      @x_labels[3].date.must_equal Date.new(2003,1,1)
-      @x_labels[4].date.must_equal Date.new(2004,1,1)
+      @x_axis_labels[0].date.must_equal Date.new(2000,1,1)
+      @x_axis_labels[1].date.must_equal Date.new(2001,1,1)
+      @x_axis_labels[2].date.must_equal Date.new(2002,1,1)
+      @x_axis_labels[3].date.must_equal Date.new(2003,1,1)
+      @x_axis_labels[4].date.must_equal Date.new(2004,1,1)
     end
     it "builds labels with the correct x-coordinate" do
-      @x_labels[0].x_coordinate.must_equal 0
-      @x_labels[1].x_coordinate.must_equal 25
-      @x_labels[2].x_coordinate.must_equal 50
-      @x_labels[3].x_coordinate.must_equal 75
-      @x_labels[4].x_coordinate.must_equal 100
+      @x_axis_labels[0].x_coordinate.must_equal 0
+      @x_axis_labels[1].x_coordinate.must_equal 25
+      @x_axis_labels[2].x_coordinate.must_equal 50
+      @x_axis_labels[3].x_coordinate.must_equal 75
+      @x_axis_labels[4].x_coordinate.must_equal 100
     end
   end
 
