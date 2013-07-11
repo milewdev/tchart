@@ -9,10 +9,10 @@ module TChart
       labels = [ label1, label2 ]
       item1 = ChartItem.new("item1", "style1", [])
       item1.y_coordinate = 20
-      item1.bar_x_coordinates = [ BarXCoordinates.new(25, 50) ]
+      item1.bar_x_coordinates = [ BarXCoordinates.new(0, 50) ]
       item2 = ChartItem.new("item2", "style2", [])
       item2.y_coordinate = 10
-      item2.bar_x_coordinates = [ BarXCoordinates.new( 75, 50 ) ]
+      item2.bar_x_coordinates = [ BarXCoordinates.new(50, 100) ]
       items = [ item1, item2 ]
       @chart = stub( :settings => settings, :x_axis_length => 100, :y_axis_length => 30, :x_axis_labels => labels, :items => items )
     end

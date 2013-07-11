@@ -46,14 +46,10 @@ module TChart
     
   private
     
-    # Bar coordinates for tikz are expressed as the x coordinate of the mid-point of the bar
-    # and the width of the bar, rather than the start and end x coordinates of the bar.
     def date_range_to_x_coordinates(chart, date_range)
       x_begin = date_to_x_coordinate(chart, date_range.begin)
       x_end = date_to_x_coordinate(chart, date_range.end + 1)     # +1 bumps the time to midnight
-      x_width = x_end - x_begin
-      x_mid_point = x_begin + ( x_width / 2.0 )
-      BarXCoordinates.new( x_mid_point, x_width )
+      BarXCoordinates.new(x_begin, x_end)
     end
     
     # x_coordinate / x_axis_length = ( date - date_range.begin ) / date_range_length

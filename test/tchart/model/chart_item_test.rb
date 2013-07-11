@@ -16,7 +16,7 @@ module TChart
       item = ChartItem.new( "name", "style", [ Date.new(2001,1,1)..Date.new(2001,12,31) ] )
       y_coordinate = 10
       item.calc_layout(chart, y_coordinate)
-      item.bar_x_coordinates.must_equal [ BarXCoordinates.new(25, 50) ]
+      item.bar_x_coordinates.must_equal [ BarXCoordinates.new(0, 50) ]
     end
   end
   

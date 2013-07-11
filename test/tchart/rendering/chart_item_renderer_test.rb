@@ -7,7 +7,7 @@ module TChart
       @chart = stub(settings: settings)
     end
     it "generates TeX code to render an item" do
-      item = stub( name: "item", style: "style", y_coordinate: 30, bar_x_coordinates: [ BarXCoordinates.new(25, 50) ] )
+      item = stub( name: "item", style: "style", y_coordinate: 30, bar_x_coordinates: [ BarXCoordinates.new(0, 50) ] )
       ChartItemRenderer.new.render(@chart, item).must_equal <<-EOS.unindent.indent(4)
         % item
         \\node [ylabel, text width = 20.00mm] at (-10.00mm, 30.00mm) {item};
@@ -15,7 +15,7 @@ module TChart
       EOS
     end
     it "escapes TeX special characters in the item name" do
-      item = stub( name: "item", style: "style1", y_coordinate: 30, bar_x_coordinates: [ BarXCoordinates.new(25, 50) ] )
+      item = stub( name: "item", style: "style1", y_coordinate: 30, bar_x_coordinates: [ BarXCoordinates.new(0, 50) ] )
       renderer = ChartItemRenderer.new
       renderer.expects(:escape_tex_special_chars).with("item").twice.returns("item")
       renderer.render(@chart, item)
