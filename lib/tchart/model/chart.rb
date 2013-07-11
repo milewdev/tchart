@@ -1,5 +1,5 @@
 module TChart
-  class Chart2
+  class Chart
     
     attr_reader :settings
     attr_reader :items
