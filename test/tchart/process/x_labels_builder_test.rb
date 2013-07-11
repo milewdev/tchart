@@ -4,8 +4,8 @@ module TChart
   describe XLabelsBuilder, "build" do
     before do
       x_length = 100
-      chart_items = [ stub(:date_ranges => [ Date.new(2000,3,17)..Date.new(2003,10,4) ]) ]
-      @x_labels = XLabelsBuilder.build(chart_items, x_length)
+      items = [ stub(:date_ranges => [ Date.new(2000,3,17)..Date.new(2003,10,4) ]) ]
+      @x_labels = XLabelsBuilder.build(items, x_length)
     end
     it "builds the correct number of labels" do
       @x_labels.length.must_equal 5
@@ -26,67 +26,67 @@ module TChart
     end
   end
 
-  describe XLabelsBuilder, "find_chart_items_date_range" do
+  describe XLabelsBuilder, "find_items_date_range" do
     it "returns a range from the earliest chart item start date to the latest chart item end date" do
       chart_item1 = stub( :date_ranges => [Date.new(2000, 11, 1)..Date.new(2005, 3, 21)] )
       chart_item2 = stub( :date_ranges => [Date.new(2002, 4, 17)..Date.new(2008, 3, 30)] )
-      chart_items_date_range = XLabelsBuilder.find_chart_items_date_range( [chart_item1, chart_item2] )
-      chart_items_date_range.must_equal Date.new(2000, 11, 1)..Date.new(2008, 3, 30)
+      items_date_range = XLabelsBuilder.find_items_date_range( [chart_item1, chart_item2] )
+      items_date_range.must_equal Date.new(2000, 11, 1)..Date.new(2008, 3, 30)
     end
     it "returns 1st January to 31st December when chart items is empty" do
-      chart_items_date_range = XLabelsBuilder.find_chart_items_date_range( [] )
+      items_date_range = XLabelsBuilder.find_items_date_range( [] )
       this_year = Date.today.year
-      chart_items_date_range.must_equal Date.new(this_year,1,1)..Date.new(this_year,12,31)
+      items_date_range.must_equal Date.new(this_year,1,1)..Date.new(this_year,12,31)
     end
     it "returns 1st January to 31st December when none of the chart items have date ranges" do
       chart_item1 = stub( :date_ranges => [] )
       chart_item2 = stub( :date_ranges => [] )
-      chart_items_date_range = XLabelsBuilder.find_chart_items_date_range( [chart_item1, chart_item2] )
+      items_date_range = XLabelsBuilder.find_items_date_range( [chart_item1, chart_item2] )
       this_year = Date.today.year
-      chart_items_date_range.must_equal Date.new(this_year,1,1)..Date.new(this_year,12,31)
+      items_date_range.must_equal Date.new(this_year,1,1)..Date.new(this_year,12,31)
     end
   end
 
   describe XLabelsBuilder, "calc_date_range_and_date_interval" do
     it "calculates the correct range and interval when the chart items date range is less than 10 years" do
-      chart_items_date_range = Date.new(2000,3,17)..Date.new(2004,10,4)
-      date_range, date_interval = XLabelsBuilder.calc_date_range_and_date_interval(chart_items_date_range)
+      items_date_range = Date.new(2000,3,17)..Date.new(2004,10,4)
+      date_range, date_interval = XLabelsBuilder.calc_date_range_and_date_interval(items_date_range)
       date_range.must_equal Date.new(2000,1,1)..Date.new(2005,1,1)
       date_interval.must_equal 1
     end
     it "calculates the correct range and interval when the chart items date range is 10 years" do
-      chart_items_date_range = Date.new(2000,3,17)..Date.new(2009,10,4)
-      date_range, date_interval = XLabelsBuilder.calc_date_range_and_date_interval(chart_items_date_range)
+      items_date_range = Date.new(2000,3,17)..Date.new(2009,10,4)
+      date_range, date_interval = XLabelsBuilder.calc_date_range_and_date_interval(items_date_range)
       date_range.must_equal Date.new(2000,1,1)..Date.new(2010,1,1)
       date_interval.must_equal 1
     end
     it "calculates the correct range and interval when the chart items date range is 11 years" do
-      chart_items_date_range = Date.new(2000,3,17)..Date.new(2010,10,4)
-      date_range, date_interval = XLabelsBuilder.calc_date_range_and_date_interval(chart_items_date_range)
+      items_date_range = Date.new(2000,3,17)..Date.new(2010,10,4)
+      date_range, date_interval = XLabelsBuilder.calc_date_range_and_date_interval(items_date_range)
       date_range.must_equal Date.new(2000,1,1)..Date.new(2015,1,1)
       date_interval.must_equal 5
     end
     it "calculates the correct range and interval when the chart items date range is less than 50 years" do
-      chart_items_date_range = Date.new(2000,3,17)..Date.new(2044,10,4)
-      date_range, date_interval = XLabelsBuilder.calc_date_range_and_date_interval(chart_items_date_range)
+      items_date_range = Date.new(2000,3,17)..Date.new(2044,10,4)
+      date_range, date_interval = XLabelsBuilder.calc_date_range_and_date_interval(items_date_range)
       date_range.must_equal Date.new(2000,1,1)..Date.new(2045,1,1)
       date_interval.must_equal 5
     end
     it "calculates the correct range and interval when the chart items date range is 50 years" do
-      chart_items_date_range = Date.new(2000,3,17)..Date.new(2049,10,4)
-      date_range, date_interval = XLabelsBuilder.calc_date_range_and_date_interval(chart_items_date_range)
+      items_date_range = Date.new(2000,3,17)..Date.new(2049,10,4)
+      date_range, date_interval = XLabelsBuilder.calc_date_range_and_date_interval(items_date_range)
       date_range.must_equal Date.new(2000,1,1)..Date.new(2050,1,1)
       date_interval.must_equal 5
     end
     it "calculates the correct range and interval when the chart items date range is less than 60 years" do
-      chart_items_date_range = Date.new(2000,3,17)..Date.new(2054,10,4)
-      date_range, date_interval = XLabelsBuilder.calc_date_range_and_date_interval(chart_items_date_range)
+      items_date_range = Date.new(2000,3,17)..Date.new(2054,10,4)
+      date_range, date_interval = XLabelsBuilder.calc_date_range_and_date_interval(items_date_range)
       date_range.must_equal Date.new(2000,1,1)..Date.new(2060,1,1)
       date_interval.must_equal 10
     end
     it "calculates the correct range and interval when the chart items date range is 60 years" do
-      chart_items_date_range = Date.new(2000,3,17)..Date.new(2059,10,4)
-      date_range, date_interval = XLabelsBuilder.calc_date_range_and_date_interval(chart_items_date_range)
+      items_date_range = Date.new(2000,3,17)..Date.new(2059,10,4)
+      date_range, date_interval = XLabelsBuilder.calc_date_range_and_date_interval(items_date_range)
       date_range.must_equal Date.new(2000,1,1)..Date.new(2060,1,1)
       date_interval.must_equal 10
     end

@@ -14,7 +14,7 @@ module TChart
       item2.y_coordinate = 10
       item2.bar_x_coordinates = [ BarXCoordinates.new( 75, 50 ) ]
       items = [ item1, item2 ]
-      @chart = stub( :settings => settings, :x_length => 100, :y_length => 30, :x_labels => labels, :chart_items => items )
+      @chart = stub( :settings => settings, :x_length => 100, :y_length => 30, :x_labels => labels, :items => items )
     end
     it "generates a TeX chart" do
       TeXGenerator.generate(@chart).must_equal <<-EOS.unindent

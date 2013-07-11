@@ -23,7 +23,7 @@ module TChart
     end
     
     def self.generate_items(chart)
-      chart.chart_items
+      chart.items
         .map { |item| item.render(chart) }
         .join("\n")
     end

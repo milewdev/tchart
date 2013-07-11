@@ -8,28 +8,28 @@ module TChart
     end
     it "ignores blank lines" do
       data = StringIO.new("1\n \n3\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items.map { |chart_item| chart_item.name }.must_equal(['1', '3'])
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items.map { |chart_item| chart_item.name }.must_equal(['1', '3'])
     end
     it "ignores empty lines" do
       data = StringIO.new("1\n\n3\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items.map { |chart_item| chart_item.name }.must_equal(['1', '3'])
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items.map { |chart_item| chart_item.name }.must_equal(['1', '3'])
     end
     it "ignores comment lines" do
       data = StringIO.new("1\n# comment\n3\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items.map { |chart_item| chart_item.name }.must_equal(['1', '3'])
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items.map { |chart_item| chart_item.name }.must_equal(['1', '3'])
     end
     it "ignores trailing comments" do
       data = StringIO.new("1\n2 # comment\n3\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items.map { |chart_item| chart_item.name }.must_equal(['1', '2', '3'])
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items.map { |chart_item| chart_item.name }.must_equal(['1', '2', '3'])
     end
     it "does not treat escaped hashes (#) as comments" do
       data = StringIO.new("C\\#\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].name.must_equal 'C#'
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].name.must_equal 'C#'
     end
     it "include the data source name and line number in error messages" do
       data = StringIO.new("unknown_setting_name = 42\n")
@@ -120,20 +120,20 @@ module TChart
     end
   end
   
-  describe DataParser, "chart_items" do
+  describe DataParser, "items" do
     it "parses chart items" do
       data = StringIO.new("Name\tStyle\t2000.4.14-2001.2.22\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].name.must_equal 'Name'
-      chart_items[0].style.must_equal 'Style'
-      chart_items[0].date_ranges.must_equal [ Date.new(2000,4,14)..Date.new(2001,2,22) ]
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].name.must_equal 'Name'
+      items[0].style.must_equal 'Style'
+      items[0].date_ranges.must_equal [ Date.new(2000,4,14)..Date.new(2001,2,22) ]
     end
     it "does not treat multiple tab characters are missing fields" do
       data = StringIO.new("\t\tName\t\tStyle\t\t2000.4.14-2001.2.22\t\t\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].name.must_equal 'Name'
-      chart_items[0].style.must_equal 'Style'
-      chart_items[0].date_ranges.must_equal [ Date.new(2000,4,14)..Date.new(2001,2,22) ]
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].name.must_equal 'Name'
+      items[0].style.must_equal 'Style'
+      items[0].date_ranges.must_equal [ Date.new(2000,4,14)..Date.new(2001,2,22) ]
     end
     it "returns a 'no chart items found' error if no chart items were found in the data and no other errors were found" do
       data = StringIO.new("# no chart items\n")
@@ -147,67 +147,67 @@ module TChart
     end
     it "allows separator lines" do
       data = StringIO.new("---\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].must_be_instance_of SeparatorItem
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].must_be_instance_of SeparatorItem
     end
     it "allows chart items with no date ranges" do
       data = StringIO.new("Name\tStyle\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].name.must_equal 'Name'
-      chart_items[0].style.must_equal 'Style'
-      chart_items[0].date_ranges.must_equal []
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].name.must_equal 'Name'
+      items[0].style.must_equal 'Style'
+      items[0].date_ranges.must_equal []
     end
     it "allows chart items with no style and no date ranges" do
       data = StringIO.new("Name\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].name.must_equal 'Name'
-      chart_items[0].style.must_equal nil
-      chart_items[0].date_ranges.must_equal []
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].name.must_equal 'Name'
+      items[0].style.must_equal nil
+      items[0].date_ranges.must_equal []
     end
     it "strips leading and trailing spaces from the name" do
       data = StringIO.new(" Name \tStyle\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].name.must_equal 'Name'
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].name.must_equal 'Name'
     end
     it "strips leading and trailing spaces from the style" do
       data = StringIO.new(" Name\t Style \t2000\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].style.must_equal 'Style'
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].style.must_equal 'Style'
     end
     it "allows many date ranges" do
       data = StringIO.new("Name\tStyle\t2000\t2001\t2002\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].date_ranges.length.must_equal 3
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].date_ranges.length.must_equal 3
     end
     it "converts a range consisting of just a year to 1st January thru 31st December of that year" do
       data = StringIO.new("Name\tStyle\t2000\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].date_ranges.must_equal [ Date.new(2000,1,1)..Date.new(2000,12,31) ]
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].date_ranges.must_equal [ Date.new(2000,1,1)..Date.new(2000,12,31) ]
     end
     it "converts a range start consisting of just a year to 1st January of the year" do
       data = StringIO.new("Name\tStyle\t2000-2001.2.22\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].date_ranges.must_equal [ Date.new(2000,1,1)..Date.new(2001,2,22) ]
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].date_ranges.must_equal [ Date.new(2000,1,1)..Date.new(2001,2,22) ]
     end
     it "converts a range start consisting of a year and a month to the 1st of the month" do
       data = StringIO.new("Name\tStyle\t2000.4-2001.2.22\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].date_ranges.must_equal [ Date.new(2000,4,1)..Date.new(2001,2,22) ]
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].date_ranges.must_equal [ Date.new(2000,4,1)..Date.new(2001,2,22) ]
     end
     it "converts a range end consisting of just a year to 31st December of the year" do
       data = StringIO.new("Name\tStyle\t2000.4.14-2001\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].date_ranges.must_equal [ Date.new(2000,4,14)..Date.new(2001,12,31) ]
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].date_ranges.must_equal [ Date.new(2000,4,14)..Date.new(2001,12,31) ]
     end
     it "converts a range end consisting of a year and a month to the last day of the month" do
       data = StringIO.new("Name\tStyle\t2000.4.14-2001.2\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].date_ranges.must_equal [ Date.new(2000,4,14)..Date.new(2001,2,28) ]
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].date_ranges.must_equal [ Date.new(2000,4,14)..Date.new(2001,2,28) ]
     end
     it "allows spaces around the dash (-) in a date range" do
       data = StringIO.new("Name\tStyle\t2000.4.14 - 2001.2.22\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].date_ranges.must_equal [ Date.new(2000,4,14)..Date.new(2001,2,22) ]
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].date_ranges.must_equal [ Date.new(2000,4,14)..Date.new(2001,2,22) ]
     end
     it "returns an error if a date cannot be parsed" do
       data = StringIO.new("Name\tStyle\t2000.-2001\n")
@@ -226,13 +226,13 @@ module TChart
     end
     it "allows ranges to be out of order" do
       data = StringIO.new("Name\tStyle\t2001\t2000\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].date_ranges.must_equal [ Date.new(2001,1,1)..Date.new(2001,12,31), Date.new(2000,1,1)..Date.new(2000,12,31) ]
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].date_ranges.must_equal [ Date.new(2001,1,1)..Date.new(2001,12,31), Date.new(2000,1,1)..Date.new(2000,12,31) ]
     end
     it "allows ranges to be back-to-back" do
       data = StringIO.new("Name\tStyle\t2000\t2001\n")
-      _, chart_items, _ = DataParser.parse('filename.txt', data)
-      chart_items[0].date_ranges.must_equal [ Date.new(2000,1,1)..Date.new(2000,12,31), Date.new(2001,1,1)..Date.new(2001,12,31) ]
+      _, items, _ = DataParser.parse('filename.txt', data)
+      items[0].date_ranges.must_equal [ Date.new(2000,1,1)..Date.new(2000,12,31), Date.new(2001,1,1)..Date.new(2001,12,31) ]
     end
     it "returns an error if ranges overlap" do
       data = StringIO.new("Name\tStyle\t2000-2001\t2002-2004\t2003-2005\t2006-2007\n")

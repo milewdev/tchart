@@ -3,9 +3,9 @@ module TChart
     def self.build2(chart)
       build(chart.items, chart.x_length)
     end
-    def self.build(chart_items, x_length) # => [ XLabel, ... ]
-      chart_items_date_range = find_chart_items_date_range(chart_items)
-      date_range, date_interval_yr = calc_date_range_and_date_interval(chart_items_date_range)
+    def self.build(items, x_length) # => [ XLabel, ... ]
+      items_date_range = find_items_date_range(items)
+      date_range, date_interval_yr = calc_date_range_and_date_interval(items_date_range)
       number_of_labels = calc_number_of_labels(date_range, date_interval_yr)
       x_interval = calc_x_coordinate_interval(x_length, number_of_labels)
       dates = create_date_range_enumerator(date_range, date_interval_yr)
@@ -23,10 +23,10 @@ module TChart
       end
     end
     
-    def self.find_chart_items_date_range(chart_items) # => Date..Date
+    def self.find_items_date_range(items) # => Date..Date
       begin_date = nil
       end_date = nil
-      chart_items.each do |chart_item|
+      items.each do |chart_item|
         chart_item.date_ranges.each do |chart_item_date_range|
           begin_date = chart_item_date_range.begin if begin_date.nil? or chart_item_date_range.begin < begin_date
           end_date = chart_item_date_range.end if end_date.nil? or end_date < chart_item_date_range.end
@@ -39,10 +39,10 @@ module TChart
       begin_date..end_date
     end
     
-    def self.calc_date_range_and_date_interval(chart_items_date_range) # => Date..Date, interval_in_years
-      # try a label for each year in the chart_items date range
-      from_year = chart_items_date_range.begin.year        # round down to Jan 1st of year
-      to_year = chart_items_date_range.end.year + 1        # +1 to round up to Jan 1st of the following year
+    def self.calc_date_range_and_date_interval(items_date_range) # => Date..Date, interval_in_years
+      # try a label for each year in the items date range
+      from_year = items_date_range.begin.year        # round down to Jan 1st of year
+      to_year = items_date_range.end.year + 1        # +1 to round up to Jan 1st of the following year
       return Date.new(from_year, 1, 1)..Date.new(to_year, 1, 1), 1 if to_year - from_year <= 10
 
       # try a label every five years

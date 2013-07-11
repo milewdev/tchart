@@ -32,7 +32,6 @@ module TChart
     alias :x_length :x_axis_length
     alias :y_length :y_axis_length
     alias :x_labels :x_axis_labels
-    alias :chart_items :items
     
   private
     

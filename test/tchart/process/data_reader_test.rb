@@ -13,9 +13,9 @@ module TChart
     end
     it "returns chart items and settings" do
       File.open(@filename, 'w') { |f| f.puts("C\tlang\t2001.1-2001.11\nchart_width=24\n") }
-      settings, chart_items = DataReader.read(@filename)
+      settings, items = DataReader.read(@filename)
       settings.wont_be_nil
-      chart_items.wont_be_nil
+      items.wont_be_nil
     end
     it "throws an exception if errors are found in the input data" do
       File.open(@filename, 'w') { |f| f.puts("C\tlang\t2001.1-2001.11\nchart_width=24mm\n") }
