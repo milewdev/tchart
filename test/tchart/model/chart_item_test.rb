@@ -10,9 +10,8 @@ module TChart
     end
     
     it "calculates the x coordinate ranges of each date range" do
-      label1 = stub( date: Date.new(2001,1,1) )
-      label2 = stub( date: Date.new(2003,1,1) )
-      chart = stub( x_axis_length: 100, x_axis_labels: [ label1, label2 ] )
+      chart = stub( x_axis_length: 100 )
+      chart.stubs(:x_axis_date_range).returns( Date.new(2001,1,1)..Date.new(2003,1,1) )
       item = ChartItem.new( "name", "style", [ Date.new(2001,1,1)..Date.new(2001,12,31) ] )
       y_coordinate = 10
       item.calc_layout(chart, y_coordinate)

@@ -14,15 +14,8 @@ module TChart
   # in the TeX document in which the generated chart is
   # embedded.
   #
-  # Items whose name starts with three dashes, ---, appear on
-  # the chart as horizontal separator lines, used to create
-  # vertical sections on the chart.  One could create another
-  # object to represent such items and the use something like
-  # double dispatch in the TeXGenerator module to correctly
-  # render the items, but that would be overkill for the size
-  # of this application.
-  #
   class ChartItem
+    
     attr_reader :name
     attr_reader :style
     attr_reader :date_ranges
@@ -48,18 +41,16 @@ module TChart
     
     def date_range_to_x_coordinates(chart, date_range)
       x_begin = date_to_x_coordinate(chart, date_range.begin)
-      x_end = date_to_x_coordinate(chart, date_range.end + 1)     # +1 bumps the time to midnight
+      x_end = date_to_x_coordinate(chart, date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
       BarXCoordinates.new(x_begin, x_end)
     end
     
-    # x_coordinate / x_axis_length = ( date - date_range.begin ) / date_range_length
+    # ratio is: x_coordinate / x_axis_length = ( date - date_range.begin ) / date_range_length
     def date_to_x_coordinate(chart, date)
-      # TODO: use lazy evaluation?  Perhaps too complex.
-      # TODO: calculating the date range is not our responsibility
-      date_range_length = chart.x_axis_labels.last.date.jd - chart.x_axis_labels.first.date.jd   
-      ( chart.x_axis_length * ( date.jd - chart.x_axis_labels.first.date.jd ) * 1.0 ) / date_range_length 
+      date_range = chart.x_axis_date_range
+      date_range_length = date_range.end.jd - date_range.begin.jd      
+      ( chart.x_axis_length * ( date.jd - date_range.begin.jd ) * 1.0 ) / date_range_length 
     end
     
   end
-  
 end

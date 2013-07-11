@@ -4,8 +4,7 @@ module TChart
   describe Chart, "x_axis_length" do
     it "returns the correct length" do
       settings = stub( chart_width: 100, x_label_width: 10, y_label_width: 20 )
-      items = stub
-      chart = Chart.new(settings, items)
+      chart = Chart.new(settings, stub)
       chart.x_axis_length.must_equal settings.chart_width - settings.y_label_width - settings.x_label_width
     end
   end
@@ -21,19 +20,24 @@ module TChart
   
   describe Chart, "x_axis_labels" do
     it "calls XLabelsBuilder#build" do
-      settings = stub
-      items = stub
-      chart = Chart.new(settings, items)
+      chart = Chart.new(stub, stub)
       XLabelsBuilder.expects(:build).with(chart)
       chart.x_axis_labels
     end
     it "caches the result" do
-      settings = stub
-      items = stub
-      chart = Chart.new(settings, items)
+      chart = Chart.new(stub, stub)
       XLabelsBuilder.expects(:build).once.with(chart).returns(stub)
       chart.x_axis_labels
       chart.x_axis_labels
+    end
+  end
+  
+  describe Chart, "x_axis_date_range" do
+    it "returns the date range of the x axis" do
+      x_axis_labels = [ stub( date: Date.new(2000,1,1) ), stub( date: Date.new(2001,1,1) ) ]
+      XLabelsBuilder.stubs(:build).returns(x_axis_labels)
+      chart = Chart.new(stub, stub)
+      chart.x_axis_date_range.must_equal Date.new(2000,1,1)..Date.new(2001,1,1)
     end
   end
   

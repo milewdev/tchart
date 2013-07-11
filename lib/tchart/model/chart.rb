@@ -22,6 +22,10 @@ module TChart
       @x_axis_labels ||= XLabelsBuilder.build(self)
     end
     
+    def x_axis_date_range
+      x_axis_labels.first.date..x_axis_labels.last.date
+    end
+    
     def calc_layout
       @items
         .zip(item_y_coordinates)
