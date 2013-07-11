@@ -1,16 +1,12 @@
 module TChart
   module XLabelsBuilder
-    # TODO: remove build2
-    def self.build2(chart)
-      build(chart.items, chart.x_axis_length)
-    end
-    def self.build(items, x_axis_length)
-      items_date_range = find_items_date_range(items)
+    def self.build(chart)
+      items_date_range = find_items_date_range(chart.items)
       date_range, date_interval_yr = calc_date_range_and_date_interval(items_date_range)
       number_of_labels = calc_number_of_labels(date_range, date_interval_yr)
-      x_interval = calc_x_coordinate_interval(x_axis_length, number_of_labels)
+      x_interval = calc_x_coordinate_interval(chart.x_axis_length, number_of_labels)
       dates = create_date_range_enumerator(date_range, date_interval_yr)
-      x_coordinates = (0..x_axis_length).step(x_interval)
+      x_coordinates = (0..chart.x_axis_length).step(x_interval)
       dates.zip(x_coordinates).map { |date, x_coordinate| XLabel.new(date, x_coordinate) }
     end
     

@@ -5,7 +5,8 @@ module TChart
     before do
       x_axis_length = 100
       items = [ stub(:date_ranges => [ Date.new(2000,3,17)..Date.new(2003,10,4) ]) ]
-      @x_axis_labels = XLabelsBuilder.build(items, x_axis_length)
+      chart = stub( x_axis_length: 100, items: items )
+      @x_axis_labels = XLabelsBuilder.build(chart)
     end
     it "builds the correct number of labels" do
       @x_axis_labels.length.must_equal 5

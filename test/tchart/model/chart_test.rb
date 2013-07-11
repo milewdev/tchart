@@ -24,14 +24,14 @@ module TChart
       settings = stub
       items = stub
       chart = Chart.new(settings, items)
-      XLabelsBuilder.expects(:build2).with(chart)
+      XLabelsBuilder.expects(:build).with(chart)
       chart.x_axis_labels
     end
     it "caches the result" do
       settings = stub
       items = stub
       chart = Chart.new(settings, items)
-      XLabelsBuilder.expects(:build2).once.with(chart).returns(stub)
+      XLabelsBuilder.expects(:build).once.with(chart).returns(stub)
       chart.x_axis_labels
       chart.x_axis_labels
     end

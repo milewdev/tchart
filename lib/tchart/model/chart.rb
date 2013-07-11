@@ -19,7 +19,7 @@ module TChart
     end
     
     def x_axis_labels
-      @x_axis_labels ||= XLabelsBuilder.build2(self)
+      @x_axis_labels ||= XLabelsBuilder.build(self)
     end
     
     def calc_layout
