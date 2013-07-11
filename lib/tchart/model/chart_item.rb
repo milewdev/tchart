@@ -56,12 +56,12 @@ module TChart
       BarXCoordinates.new( x_mid_point, x_width )
     end
     
-    # x_coordinate / x_length = ( date - date_range.begin ) / date_range_length
+    # x_coordinate / x_axis_length = ( date - date_range.begin ) / date_range_length
     def date_to_x_coordinate(chart, date)
       # TODO: use lazy evaluation?  Perhaps too complex.
       # TODO: calculating the date range is not our responsibility
       date_range_length = chart.x_labels.last.date.jd - chart.x_labels.first.date.jd   
-      ( chart.x_length * ( date.jd - chart.x_labels.first.date.jd ) * 1.0 ) / date_range_length 
+      ( chart.x_axis_length * ( date.jd - chart.x_labels.first.date.jd ) * 1.0 ) / date_range_length 
     end
     
   end

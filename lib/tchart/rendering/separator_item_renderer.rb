@@ -4,7 +4,7 @@ module TChart
       # TODO: the responsibility of indentation belongs somewhere else?
       <<-EOS.unindent.indent(4)
         % horizontal separator line
-        \\draw [draw = black!5] (#{f 0}mm, #{f separator_item.y_coordinate}mm) -- (#{f chart.x_length}mm, #{f separator_item.y_coordinate}mm);
+        \\draw [draw = black!5] (#{f 0}mm, #{f separator_item.y_coordinate}mm) -- (#{f chart.x_axis_length}mm, #{f separator_item.y_coordinate}mm);
       EOS
     end
 

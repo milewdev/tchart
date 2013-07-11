@@ -3,9 +3,9 @@ require_relative '../../test_helper'
 module TChart  
   describe XLabelsBuilder, "build" do
     before do
-      x_length = 100
+      x_axis_length = 100
       items = [ stub(:date_ranges => [ Date.new(2000,3,17)..Date.new(2003,10,4) ]) ]
-      @x_labels = XLabelsBuilder.build(items, x_length)
+      @x_labels = XLabelsBuilder.build(items, x_axis_length)
     end
     it "builds the correct number of labels" do
       @x_labels.length.must_equal 5
@@ -103,9 +103,9 @@ module TChart
   
   describe XLabelsBuilder, "calc_x_coordinate_interval" do
     it "calculates the correct x-coordinate interval between labels" do
-      x_length = 100
+      x_axis_length = 100
       number_of_labels = 11
-      x_coordinate_interval = XLabelsBuilder.calc_x_coordinate_interval(x_length, number_of_labels)
+      x_coordinate_interval = XLabelsBuilder.calc_x_coordinate_interval(x_axis_length, number_of_labels)
       x_coordinate_interval.must_equal 10
     end
   end
