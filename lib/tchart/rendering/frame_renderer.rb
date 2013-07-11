@@ -6,7 +6,7 @@ module TChart
         \\draw [draw = black!5] (#{f 0}mm, #{f 0}mm) -- (#{f chart.x_axis_length}mm, #{f 0}mm);
 
         % horizontal top frame
-        \\draw [draw = black!5] (#{f 0}mm, #{f chart.y_length}mm) -- (#{f chart.x_axis_length}mm, #{f chart.y_length}mm);
+        \\draw [draw = black!5] (#{f 0}mm, #{f chart.y_axis_length}mm) -- (#{f chart.x_axis_length}mm, #{f chart.y_axis_length}mm);
       EOS
     end
 

@@ -4,7 +4,7 @@ module TChart
   describe XLabelRenderer, "render" do
     it "generates TeX code to render an x-axis label" do
       settings = stub( x_label_y_coordinate: -3 )
-      chart = stub( settings: settings, y_length: 100 )
+      chart = stub( settings: settings, y_axis_length: 100 )
       x_label = stub( date: Date.new(1985,1,1), x_coordinate: 20 )
       XLabelRenderer.new.render(chart, x_label).must_equal <<-EOS.unindent.indent(4)
         % 1985

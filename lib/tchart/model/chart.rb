@@ -29,7 +29,6 @@ module TChart
     end
     
     # temporary
-    alias :y_length :y_axis_length
     alias :x_labels :x_axis_labels
     
   private

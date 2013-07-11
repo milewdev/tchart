@@ -3,7 +3,7 @@ require_relative '../../test_helper'
 module TChart
   describe FrameRenderer, "render" do
     it "generates TeX code to render a chart frame" do
-      chart = stub( x_axis_length: 100, y_length: 50 )
+      chart = stub( x_axis_length: 100, y_axis_length: 50 )
       renderer = FrameRenderer.new
       renderer.render(chart).must_equal <<-EOS.unindent.indent(4)
         % horizontal bottom frame
