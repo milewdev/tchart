@@ -1,7 +1,7 @@
 module TChart
   class FrameRenderer
     def render(chart)
-      <<-EOS.unindent.indent(4)
+      <<-EOS.unindent
         % horizontal bottom frame
         \\draw [draw = black!5] (#{f 0}mm, #{f 0}mm) -- (#{f chart.x_axis_length}mm, #{f 0}mm);
 

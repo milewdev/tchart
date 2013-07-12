@@ -20,27 +20,27 @@ module TChart
       TeXGenerator.generate(@chart).must_equal <<-EOS.unindent
         \\tikzpicture
 
-            % horizontal bottom frame
-            \\draw [draw = black!5] (0.00mm, 0.00mm) -- (100.00mm, 0.00mm);
+        % horizontal bottom frame
+        \\draw [draw = black!5] (0.00mm, 0.00mm) -- (100.00mm, 0.00mm);
 
-            % horizontal top frame
-            \\draw [draw = black!5] (0.00mm, 30.00mm) -- (100.00mm, 30.00mm);
+        % horizontal top frame
+        \\draw [draw = black!5] (0.00mm, 30.00mm) -- (100.00mm, 30.00mm);
 
-            % 2000
-            \\draw (0.00mm, -10.00mm) node [xlabel] {2000};
-            \\draw [draw = black!5] (0.00mm, 0.00mm) -- (0.00mm, 30.00mm);
+        % 2000
+        \\draw (0.00mm, -10.00mm) node [xlabel] {2000};
+        \\draw [draw = black!5] (0.00mm, 0.00mm) -- (0.00mm, 30.00mm);
 
-            % 2001
-            \\draw (100.00mm, -10.00mm) node [xlabel] {2001};
-            \\draw [draw = black!5] (100.00mm, 0.00mm) -- (100.00mm, 30.00mm);
+        % 2001
+        \\draw (100.00mm, -10.00mm) node [xlabel] {2001};
+        \\draw [draw = black!5] (100.00mm, 0.00mm) -- (100.00mm, 30.00mm);
 
-            % item1
-            \\node [ylabel, text width = 20.00mm] at (-10.00mm, 20.00mm) {item1};
-            \\node [style1] at (25.00mm, 20.00mm) [minimum width = 50.00mm] {};
+        % item1
+        \\node [ylabel, text width = 20.00mm] at (-10.00mm, 20.00mm) {item1};
+        \\node [style1] at (25.00mm, 20.00mm) [minimum width = 50.00mm] {};
 
-            % item2
-            \\node [ylabel, text width = 20.00mm] at (-10.00mm, 10.00mm) {item2};
-            \\node [style2] at (75.00mm, 10.00mm) [minimum width = 50.00mm] {};
+        % item2
+        \\node [ylabel, text width = 20.00mm] at (-10.00mm, 10.00mm) {item2};
+        \\node [style2] at (75.00mm, 10.00mm) [minimum width = 50.00mm] {};
 
         \\endtikzpicture
       EOS

@@ -1,8 +1,7 @@
 module TChart
   class ChartItemRenderer
     def render(chart, item)
-      # TODO: indentation should be done where?
-      (generate_item_comment(item) + generate_item_y_label(chart, item) + generate_item_bars(item)).indent(4)
+      generate_item_comment(item) + generate_item_y_label(chart, item) + generate_item_bars(item)
     end
     
     def generate_item_comment(item)

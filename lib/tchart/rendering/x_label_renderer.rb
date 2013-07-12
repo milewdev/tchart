@@ -1,7 +1,7 @@
 module TChart
   class XLabelRenderer
     def render(chart, x_label)
-      <<-EOS.unindent.indent(4)
+      <<-EOS.unindent
         % #{x_label.date.year}
         \\draw (#{f x_label.x_coordinate}mm, #{f chart.settings.x_label_y_coordinate}mm) node [xlabel] {#{x_label.date.year}};
         \\draw [draw = black!5] (#{f x_label.x_coordinate}mm, #{f 0}mm) -- (#{f x_label.x_coordinate}mm, #{f chart.y_axis_length}mm);
