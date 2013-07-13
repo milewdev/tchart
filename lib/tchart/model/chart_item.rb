@@ -34,7 +34,15 @@ module TChart
     end
     
     def render(chart)
-      RendererFactory.chart_item_renderer.render(chart, self)
+      output = StringIO.new
+      tex = Tex.new(output)
+      tex.comment @name
+      mid_point, width = chart.settings.y_label_width / -2.0, chart.settings.y_label_width
+      tex.label mid_point, @y_coordinate, width, 'ylabel', @name
+      @bar_x_coordinates
+        .map { |bar_x_coordinates| tex.bar(bar_x_coordinates.from, bar_x_coordinates.to, @y_coordinate, @style) }
+        .join
+      output.string
     end
     
   private

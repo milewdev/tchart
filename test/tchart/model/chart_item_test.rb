@@ -20,20 +20,17 @@ module TChart
   end
   
   describe ChartItem, "render" do
-    before do
-      @chart_item = ChartItem.new("name", "style", [ Date.new(2000,1,1)..Date.new(2000,12,31) ])
-      @chart = stub
-      @renderer = stub
-    end
-    it "invokes RendererFactory#chart_item_renderer" do
-      @renderer.stubs(:render).with(@chart, @chart_item)
-      RendererFactory.expects(:chart_item_renderer).returns(@renderer)
-      @chart_item.render(@chart)
-    end
-    it "invokes ChartItemRenderer#render" do
-      @renderer.expects(:render).with(@chart, @chart_item)
-      RendererFactory.stubs(:chart_item_renderer).returns(@renderer)
-      @chart_item.render(@chart)
+    it "generates TeX code to render an item" do
+      settings = stub( y_label_width: 20 )
+      chart = stub(settings: settings, x_axis_length: 100)
+      chart.stubs(:x_axis_date_range).returns(Date.new(2001,1,1)..Date.new(2003,1,1))
+      item = ChartItem.new("item", "style", [ Date.new(2001,1,1)..Date.new(2001,12,31) ])
+      item.calc_layout(chart, 30)   # TODO: stub bar_x_coordinates instread of calling calc_layout
+      item.render(chart).must_equal <<-EOS.unindent
+        % item
+        \\node [ylabel, text width = 20.00mm] at (-10.00mm, 30.00mm) {item};
+        \\node [style] at (25.00mm, 30.00mm) [minimum width = 50.00mm] {};
+      EOS
     end
   end
 end
