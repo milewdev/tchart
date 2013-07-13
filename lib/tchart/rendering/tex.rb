@@ -16,7 +16,7 @@ module TChart
     end
     
     def comment(text)
-      @output << "% #{escape_tex_special_chars text}\n"
+      @output << "% #{escape_tex_special_chars text.to_s}\n"
     end
     
     def line(x1, y1, x2, y2)
@@ -24,7 +24,7 @@ module TChart
     end
     
     def label(x_mid, y, width, style, text)
-      @output << "\\node [#{style}, text width = #{f width}mm] at (#{f x_mid}mm, #{f y}mm) {#{escape_tex_special_chars text}};\n"
+      @output << "\\node [#{style}, text width = #{f width}mm] at (#{f x_mid}mm, #{f y}mm) {#{escape_tex_special_chars text.to_s}};\n"
     end
     
     def bar(x1, x2, y, style)

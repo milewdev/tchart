@@ -16,6 +16,13 @@ module TChart
       end
       output.string.must_equal "% this is a comment with TeX special characters: \\# \\&\n"
     end
+    it "handles non-string arguments" do
+      output = StringIO.new
+      tex output do
+        comment 123
+      end
+      output.string.must_equal "% 123\n"
+    end
   end
   
   describe Tex, "line" do
@@ -42,6 +49,13 @@ module TChart
         label 10, 20, 15, 'some_style', 'TeX special characters: # &'  # x_mid, y, width, style, text
       end
       output.string.must_equal "\\node [some_style, text width = 15.00mm] at (10.00mm, 20.00mm) {TeX special characters: \\# \\&};\n"
+    end
+    it "handles non-string label text" do
+      output = StringIO.new
+      tex output do
+        label 10, 20, 15, 'some_style', 123  # x_mid, y, width, style, text
+      end
+      output.string.must_equal "\\node [some_style, text width = 15.00mm] at (10.00mm, 20.00mm) {123};\n"
     end
   end
   
