@@ -1,15 +1,5 @@
-module Kernel
-  def tex(output, &block)
-    TChart::Tex.tex(output, &block)
-  end
-end
-
 module TChart
   class Tex
-    
-    def self.tex(output, &block)
-      Tex.new(output).instance_eval(&block)
-    end
     
     def initialize(output)
       @output = output
