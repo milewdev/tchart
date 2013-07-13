@@ -34,7 +34,6 @@ module TChart
       tex output do
         label 10, 20, 15, 'some_style', 'the label text'  # x_mid, y, width, style, text
       end
-      #output.string.must_equal "\\draw (10.00mm, 30.00mm) node [some_style] {the label text};\n"
       output.string.must_equal "\\node [some_style, text width = 15.00mm] at (10.00mm, 20.00mm) {the label text};\n"
     end
     it "escapes TeX special characters in the label text" do

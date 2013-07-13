@@ -11,11 +11,11 @@ module TChart
       \draw /.*/
       
       % 20/\d{2}/
-      \draw /.*/
+      \node /.*/
       \draw /.*/
       
       % 20/\d{2}/
-      \draw /.*/
+      \node /.*/
       \draw /.*/
       
       % item

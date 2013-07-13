@@ -1,3 +1,5 @@
+require 'stringio'
+
 # 'require' all files except ourselves.
 me = File.absolute_path(__FILE__)
 Dir.glob(File.dirname(me) + '/**/*.rb') {|fn| require fn if fn != me }

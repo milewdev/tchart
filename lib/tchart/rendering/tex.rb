@@ -24,7 +24,6 @@ module TChart
     end
     
     def label(x_mid, y, width, style, text)
-      #@output << "\\draw (#{f x}mm, #{f y}mm) node [#{style}] {#{text}};\n"
       @output << "\\node [#{style}, text width = #{f width}mm] at (#{f x_mid}mm, #{f y}mm) {#{escape_tex_special_chars text}};\n"
     end
     

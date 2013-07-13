@@ -1,17 +1,14 @@
 module TChart
   class XLabelRenderer
     def render(chart, x_label)
-      <<-EOS.unindent
-        % #{x_label.date.year}
-        \\draw (#{f x_label.x_coordinate}mm, #{f chart.settings.x_label_y_coordinate}mm) node [xlabel] {#{x_label.date.year}};
-        \\draw [draw = black!5] (#{f x_label.x_coordinate}mm, #{f 0}mm) -- (#{f x_label.x_coordinate}mm, #{f chart.y_axis_length}mm);
-      EOS
-    end
-
-    # f(1.2345) => 1.23
-    # TODO: to be moved into base class or utilities module
-    def f(number) # => String
-      '%.02f' % number
+      output = StringIO.new
+      tex output do
+        # TODO: remove .to_s
+        comment x_label.date.year.to_s
+        label   x_label.x_coordinate, chart.settings.x_label_y_coordinate, chart.settings.x_label_width, 'xlabel', x_label.date.year.to_s
+        line    x_label.x_coordinate, 0, x_label.x_coordinate, chart.y_axis_length
+      end
+      output.string
     end
   end
 end
