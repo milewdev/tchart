@@ -6,22 +6,16 @@ module TChart
       SeparatorItem.new.must_respond_to :calc_layout
     end
   end
-  
+
   describe SeparatorItem, "render" do
-    before do
-      @separator_item = SeparatorItem.new
-      @chart = stub
-      @renderer = stub
-    end
-    it "invokes RendererFactory#separator_item_renderer" do
-      @renderer.stubs(:render).with(@chart, @separator_item)
-      RendererFactory.expects(:separator_item_renderer).returns(@renderer)
-      @separator_item.render(@chart)
-    end
-    it "invokes SeparatorItemRenderer#render" do
-      @renderer.expects(:render).with(@chart, @separator_item)
-      RendererFactory.stubs(:separator_item_renderer).returns(@renderer)
-      @separator_item.render(@chart)
+    it "generates TeX code to render a separator" do
+      chart = stub( x_axis_length: 20 )
+      separator = SeparatorItem.new
+      separator.calc_layout(chart, 10)
+      separator.render(chart).must_equal <<-EOS.unindent
+        % horizontal separator line
+        \\draw [draw = black!5] (0.00mm, 10.00mm) -- (20.00mm, 10.00mm);
+      EOS
     end
   end
 end

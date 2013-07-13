@@ -13,7 +13,11 @@ module TChart
     end
     
     def render(chart)
-      RendererFactory.separator_item_renderer.render(chart, self)
+      output = StringIO.new
+      tex = Tex.new(output)
+      tex.comment "horizontal separator line"
+      tex.line 0, y_coordinate, chart.x_axis_length, y_coordinate
+      output.string
     end
     
   end
