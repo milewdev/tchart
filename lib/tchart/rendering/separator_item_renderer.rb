@@ -1,16 +1,11 @@
 module TChart
   class SeparatorItemRenderer
     def render(chart, separator_item)
-      <<-EOS.unindent
-        % horizontal separator line
-        \\draw [draw = black!5] (#{f 0}mm, #{f separator_item.y_coordinate}mm) -- (#{f chart.x_axis_length}mm, #{f separator_item.y_coordinate}mm);
-      EOS
-    end
-
-    # f(1.2345) => 1.23
-    # TODO: to be moved into base class or utilities module
-    def f(number) # => String
-      '%.02f' % number
+      output = StringIO.new
+      tex = Tex.new(output)
+      tex.comment "horizontal separator line"
+      tex.line 0, separator_item.y_coordinate, chart.x_axis_length, separator_item.y_coordinate
+      output.string
     end
   end
 end
