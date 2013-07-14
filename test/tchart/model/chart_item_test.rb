@@ -5,7 +5,7 @@ module TChart
     
     class BarXCoordinates
       def ==(other)
-        [ mid_point, width ] == [ other.mid_point, other.width ]
+        [ from, to ] == [ other.from, other.to ]
       end
     end
     
