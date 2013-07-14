@@ -17,15 +17,17 @@ module TChart
     end
     
     def self.generate_x_axis_labels(chart)
-      chart.x_axis_labels
-        .map { |label| label.render(chart) }
-        .join("\n")
+      output = StringIO.new
+      tex = Tex.new(output)
+      chart.x_axis_labels.each { |label| label.render(tex, chart) }
+      output.string
     end
     
     def self.generate_items(chart)
-      chart.items
-        .map { |item| item.render(chart) }
-        .join("\n")
+      output = StringIO.new
+      tex = Tex.new(output)
+      chart.items.each { |item| item.render(tex, chart) }
+      output.string
     end
 
   end

@@ -33,16 +33,11 @@ module TChart
       @bar_x_coordinates = date_ranges.map { |date_range| date_range_to_x_coordinates(chart, date_range) }
     end
     
-    def render(chart)
-      output = StringIO.new
-      tex = Tex.new(output)
+    def render(tex, chart)
       tex.comment @name
       mid_point, width = chart.settings.y_label_width / -2.0, chart.settings.y_label_width
       tex.label mid_point, @y_coordinate, width, 'ylabel', @name
-      @bar_x_coordinates
-        .map { |bar_x_coordinates| tex.bar(bar_x_coordinates.from, bar_x_coordinates.to, @y_coordinate, @style) }
-        .join
-      output.string
+      @bar_x_coordinates.each { |bar_x_coordinates| tex.bar(bar_x_coordinates.from, bar_x_coordinates.to, @y_coordinate, @style) }
     end
     
   private

@@ -12,7 +12,10 @@ module TChart
       chart = stub( x_axis_length: 20 )
       separator = SeparatorItem.new
       separator.calc_layout(chart, 10)
-      separator.render(chart).must_equal <<-EOS.unindent
+      output = StringIO.new
+      tex = Tex.new(output)
+      separator.render(tex, chart)
+      output.string.must_equal <<-EOS.unindent
         % horizontal separator line
         \\draw [draw = black!5] (0.00mm, 10.00mm) -- (20.00mm, 10.00mm);
       EOS
