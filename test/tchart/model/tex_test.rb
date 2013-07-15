@@ -2,70 +2,89 @@ require_relative '../../test_helper'
 
 module TChart
   describe Tex, "comment" do
+    before do
+      @tex = Tex.new
+    end
     it "generates a TeX comment" do
-      output = StringIO.new
-      Tex.new(output).comment "this is a comment"
-      output.string.must_equal "% this is a comment\n"
+      @tex.comment "this is a comment"
+      @tex.to_s.must_equal "% this is a comment\n"
     end
     it "escapes TeX special characters in comments" do
-      output = StringIO.new
-      Tex.new(output).comment "this is a comment with TeX special characters: # &"
-      output.string.must_equal "% this is a comment with TeX special characters: \\# \\&\n"
+      @tex.comment "this is a comment with TeX special characters: # &"
+      @tex.to_s.must_equal "% this is a comment with TeX special characters: \\# \\&\n"
     end
     it "handles non-string arguments" do
-      output = StringIO.new
-      Tex.new(output).comment 123
-      output.string.must_equal "% 123\n"
+      @tex.comment 123
+      @tex.to_s.must_equal "% 123\n"
     end
   end
   
   describe Tex, "line" do
+    before do
+      @tex = Tex.new
+    end
     it "generates a TikZ code for a line" do
-      output = StringIO.new
-      Tex.new(output).line 10, 20, 30, 40   # x1, y1, x2, y2
-      output.string.must_equal "\\draw [draw = black!5] (10.00mm, 20.00mm) -- (30.00mm, 40.00mm);\n"
+      @tex.line 10, 20, 30, 40   # x1, y1, x2, y2
+      @tex.to_s.must_equal "\\draw [draw = black!5] (10.00mm, 20.00mm) -- (30.00mm, 40.00mm);\n"
     end
   end
   
   describe Tex, "label" do
+    before do
+      @tex = Tex.new
+    end
     it "generates TikZ code for a chart label" do
-      output = StringIO.new
-      Tex.new(output).label 10, 20, 15, 'some_style', 'the label text'  # x_mid, y, width, style, text
-      output.string.must_equal "\\node [some_style, text width = 15.00mm] at (10.00mm, 20.00mm) {the label text};\n"
+      @tex.label 10, 20, 15, 'some_style', 'the label text'  # x_mid, y, width, style, text
+      @tex.to_s.must_equal "\\node [some_style, text width = 15.00mm] at (10.00mm, 20.00mm) {the label text};\n"
     end
     it "escapes TeX special characters in the label text" do
-      output = StringIO.new
-      Tex.new(output).label 10, 20, 15, 'some_style', 'TeX special characters: # &'  # x_mid, y, width, style, text
-      output.string.must_equal "\\node [some_style, text width = 15.00mm] at (10.00mm, 20.00mm) {TeX special characters: \\# \\&};\n"
+      @tex.label 10, 20, 15, 'some_style', 'TeX special characters: # &'  # x_mid, y, width, style, text
+      @tex.to_s.must_equal "\\node [some_style, text width = 15.00mm] at (10.00mm, 20.00mm) {TeX special characters: \\# \\&};\n"
     end
     it "handles non-string label text" do
-      output = StringIO.new
-      Tex.new(output).label 10, 20, 15, 'some_style', 123  # x_mid, y, width, style, text
-      output.string.must_equal "\\node [some_style, text width = 15.00mm] at (10.00mm, 20.00mm) {123};\n"
+      @tex.label 10, 20, 15, 'some_style', 123  # x_mid, y, width, style, text
+      @tex.to_s.must_equal "\\node [some_style, text width = 15.00mm] at (10.00mm, 20.00mm) {123};\n"
     end
   end
   
   describe Tex, "bar" do
+    before do
+      @tex = Tex.new
+    end
     it "generates TikZ code for a horizontal bar on the chart" do
-      output = StringIO.new
-      Tex.new(output).bar 10, 40, 50, 'some_style'  # x1, x2, y, style
-      output.string.must_equal "\\node [some_style] at (25.00mm, 50.00mm) [minimum width = 30.00mm] {};\n"
+      @tex.bar 10, 40, 50, 'some_style'  # x1, x2, y, style
+      @tex.to_s.must_equal "\\node [some_style] at (25.00mm, 50.00mm) [minimum width = 30.00mm] {};\n"
     end
   end
   
   describe Tex, "newline" do
+    before do
+      @tex = Tex.new
+    end
     it "generates a blank line" do
-      output = StringIO.new
-      Tex.new(output).newline
-      output.string.must_equal "\n"
+      @tex.newline
+      @tex.to_s.must_equal "\n"
     end
   end
   
   describe Tex, "echo" do
+    before do
+      @tex = Tex.new
+    end
     it "returns the passed argument" do
-      output = StringIO.new
-      Tex.new(output).echo "some text"
-      output.string.must_equal "some text"
+      @tex.echo "some text"
+      @tex.to_s.must_equal "some text"
+    end
+  end
+  
+  describe Tex, "to_s" do
+    before do
+      @tex = Tex.new
+    end
+    it "returns the generated TeX code" do
+      @tex.comment "a comment"
+      @tex.echo "some text\n"
+      @tex.to_s.must_equal "% a comment\nsome text\n"
     end
   end
 end

@@ -1,8 +1,10 @@
+require 'stringio'
+
 module TChart
   class Tex
     
-    def initialize(output)
-      @output = output
+    def initialize
+      @output = StringIO.new
     end
     
     def echo(text)
@@ -28,6 +30,10 @@ module TChart
     
     def newline
       @output << "\n"
+    end
+    
+    def to_s
+      @output.string
     end
     
   private

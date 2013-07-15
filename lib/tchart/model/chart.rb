@@ -1,5 +1,3 @@
-require 'stringio'
-
 module TChart
   class Chart
     
@@ -37,14 +35,13 @@ module TChart
     end
     
     def render
-      output = StringIO.new
-      tex = Tex.new(output)
+      tex = Tex.new
       tex.echo "\\tikzpicture\n\n"
       @frame.render(tex, self)
       x_axis_labels.each { |label| label.render(tex, self) }
       @items.each { |item| item.render(tex, self) }
       tex.echo "\n\\endtikzpicture\n"
-      output.string
+      tex.to_s
     end
     
   private
