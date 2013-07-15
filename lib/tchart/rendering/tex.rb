@@ -5,6 +5,10 @@ module TChart
       @output = output
     end
     
+    def echo(text)
+      @output << text
+    end
+    
     def comment(text)
       @output << "% #{escape_tex_special_chars text.to_s}\n"
     end
@@ -24,10 +28,6 @@ module TChart
     
     def newline
       @output << "\n"
-    end
-    
-    def echo(text)
-      @output << text
     end
     
   private
