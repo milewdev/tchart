@@ -13,7 +13,10 @@ module TChart
     end
     
     def self.generate_frame(chart)
-      FrameRenderer.new.render(chart)
+      output = StringIO.new
+      tex = Tex.new(output)
+      Frame.new.render(tex, chart)
+      output.string
     end
     
     def self.generate_x_axis_labels(chart)
