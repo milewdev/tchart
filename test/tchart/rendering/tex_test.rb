@@ -52,4 +52,12 @@ module TChart
       output.string.must_equal "\\node [some_style] at (25.00mm, 50.00mm) [minimum width = 30.00mm] {};\n"
     end
   end
+  
+  describe Tex, "newline" do
+    it "generates a blank line" do
+      output = StringIO.new
+      Tex.new(output).newline
+      output.string.must_equal "\n"
+    end
+  end
 end

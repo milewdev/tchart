@@ -22,6 +22,10 @@ module TChart
       @output << "\\node [#{style}] at (#{f x_mid}mm, #{f y}mm) [minimum width = #{f width}mm] {};\n"
     end
     
+    def newline
+      @output << "\n"
+    end
+    
   private
   
     # f(1.2345) => 1.23
