@@ -26,6 +26,10 @@ module TChart
       @output << "\n"
     end
     
+    def echo(text)
+      @output << text
+    end
+    
   private
   
     # f(1.2345) => 1.23

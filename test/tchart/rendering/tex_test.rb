@@ -60,4 +60,12 @@ module TChart
       output.string.must_equal "\n"
     end
   end
+  
+  describe Tex, "echo" do
+    it "returns the passed argument" do
+      output = StringIO.new
+      Tex.new(output).echo "some text"
+      output.string.must_equal "some text"
+    end
+  end
 end
