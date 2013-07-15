@@ -34,13 +34,12 @@ module TChart
         .each { |item, y_coordinate| item.calc_layout(self, y_coordinate) }
     end
     
-    def render
-      output = StringIO.new
-      tex = Tex.new(output)
+    def render(tex)
+      tex.echo "\\tikzpicture\n\n"
       frame.render(tex, self)
       x_axis_labels.each { |label| label.render(tex, self) }
       items.each { |item| item.render(tex, self) }
-      "\\tikzpicture\n\n" + output.string + "\n\\endtikzpicture\n"
+      tex.echo "\n\\endtikzpicture\n"
     end
     
   private
