@@ -3,10 +3,12 @@ module TChart
     
     attr_reader :settings
     attr_reader :items
+    attr_reader :frame
 
     def initialize(settings, items)
       @settings = settings
       @items = items
+      @frame = Frame.new
     end
     
     def x_axis_length

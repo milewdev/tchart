@@ -15,7 +15,7 @@ module TChart
     def self.generate_frame(chart)
       output = StringIO.new
       tex = Tex.new(output)
-      Frame.new.render(tex, chart)
+      chart.frame.render(tex, chart)
       output.string
     end
     
