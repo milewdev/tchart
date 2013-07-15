@@ -40,9 +40,9 @@ module TChart
       output = StringIO.new
       tex = Tex.new(output)
       tex.echo "\\tikzpicture\n\n"
-      frame.render(tex, self)
+      @frame.render(tex, self)
       x_axis_labels.each { |label| label.render(tex, self) }
-      items.each { |item| item.render(tex, self) }
+      @items.each { |item| item.render(tex, self) }
       tex.echo "\n\\endtikzpicture\n"
       output.string
     end
