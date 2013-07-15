@@ -13,8 +13,7 @@ module TChart
       chart = Chart.new(settings, items)
       chart.calc_layout
       output = StringIO.new
-      tex = Tex.new(output)
-      chart.render(tex)
+      chart.render(output)
       TeXWriter.write(args.tex_filename, output.string)
     rescue TChartError => e
       $stderr.puts e.message

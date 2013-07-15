@@ -34,7 +34,8 @@ module TChart
         .each { |item, y_coordinate| item.calc_layout(self, y_coordinate) }
     end
     
-    def render(tex)
+    def render(output)
+      tex = Tex.new(output)
       tex.echo "\\tikzpicture\n\n"
       frame.render(tex, self)
       x_axis_labels.each { |label| label.render(tex, self) }
