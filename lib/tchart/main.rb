@@ -12,7 +12,7 @@ module TChart
       settings, items = DataReader.read(args.data_filename)
       chart = Chart.new(settings, items)
       chart.calc_layout
-      tex = TeXGenerator.generate(chart)
+      tex = chart.render
       TeXWriter.write(args.tex_filename, tex)
     rescue TChartError => e
       $stderr.puts e.message
