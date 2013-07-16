@@ -23,9 +23,9 @@ module TChart
   
   describe ChartItem, "render" do
     it "generates TeX code to render an item" do
-      settings = stub( y_label_width: 20 )
-      chart = stub(settings: settings, x_axis_length: 100)
+      chart = stub(x_axis_length: 100, y_label_width: 20)
       chart.stubs(:x_axis_date_range).returns(Date.new(2001,1,1)..Date.new(2003,1,1))
+      chart.stubs(:y_axis_label_x_coordinate).returns(-10)
       item = ChartItem.new("item", "style", [ Date.new(2001,1,1)..Date.new(2001,12,31) ])
       item.stubs(:y_coordinate).returns(30)
       item.stubs(:bar_x_coordinates).returns([ BarXCoordinates.new(0,50) ])

@@ -32,6 +32,14 @@ module TChart
     end
   end
   
+  describe Chart, "y_axis_label_x_coordinate" do
+    it "returns the correct value" do
+      settings = stub( y_label_width: 10 )
+      chart = Chart.new(settings, stub)
+      chart.y_axis_label_x_coordinate.must_equal (-10 / 2)
+    end
+  end
+  
   describe Chart, "calc_layout" do
     it "invokes 'calc_layout' on each item" do
       settings = stub( line_height: 10 )

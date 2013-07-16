@@ -6,8 +6,14 @@
 # SMELL: the standalone #calc_layout; who is responsible for calling it?  What was wrong
 #        with #build again?
 #
+
+require 'forwardable'
+
 module TChart
   class Chart
+    
+    extend Forwardable
+    def_delegators :@settings, :y_label_width
     
     attr_reader :settings
     attr_reader :items
@@ -26,6 +32,10 @@ module TChart
     def y_axis_length
       # +1 for top and bottom margins
       (@items.length + 1) * @settings.line_height
+    end
+    
+    def y_axis_label_x_coordinate
+      -y_label_width / 2.0
     end
     
     def x_axis_labels

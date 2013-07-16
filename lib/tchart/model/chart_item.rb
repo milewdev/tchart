@@ -16,7 +16,6 @@ module TChart
   #
   # SMELL: too many comments above.
   # SMELL: 'ChartItem' sounds too generic ('item' in particular); Plotted?
-  # SMELL: need to get rid of mid_point, width calculations in #render.
   #
   class ChartItem
     
@@ -38,10 +37,9 @@ module TChart
     end
     
     def render(tex, chart)
-      tex.comment @name
-      mid_point, width = chart.settings.y_label_width / -2.0, chart.settings.y_label_width
-      tex.label mid_point, y_coordinate, width, 'ylabel', @name
-      bar_x_coordinates.each { |bar_x_coordinates| tex.bar(bar_x_coordinates.from, bar_x_coordinates.to, y_coordinate, @style) }
+      tex.comment name
+      tex.label chart.y_axis_label_x_coordinate, y_coordinate, chart.y_label_width, 'ylabel', name
+      bar_x_coordinates.each { |bar_x_coordinates| tex.bar(bar_x_coordinates.from, bar_x_coordinates.to, y_coordinate, style) }
     end
     
   private
