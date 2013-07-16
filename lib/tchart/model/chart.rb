@@ -42,6 +42,13 @@ module TChart
         .each { |item, y_coordinate| item.calc_layout(self, y_coordinate) }
     end
     
+    # ratio is: x_coordinate / x_axis_length = ( date - date_range.begin ) / date_range_length
+    def date_to_x_coordinate(date)
+      date_range = x_axis_date_range
+      date_range_length = date_range.end.jd - date_range.begin.jd      
+      ( x_axis_length * ( date.jd - date_range.begin.jd ) * 1.0 ) / date_range_length 
+    end
+    
     def render
       tex = Tex.new
       tex.echo "\\tikzpicture\n\n"

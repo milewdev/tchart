@@ -51,4 +51,15 @@ module TChart
       chart.calc_layout
     end
   end
+  
+  describe Chart, "date_to_x_coordinate" do
+    it "converts a date to its equivalent x-coordinate on the chart" do
+      chart = Chart.new(stub, stub)
+      chart.stubs(:x_axis_length).returns(100)
+      chart.stubs(:x_axis_date_range).returns(Date.new(2001,1,1)..Date.new(2002,1,1))
+      chart.date_to_x_coordinate(Date.new(2001,1,1)).must_equal 0
+      chart.date_to_x_coordinate(Date.new(2001,6,30)).must_be_close_to 50, 1
+      chart.date_to_x_coordinate(Date.new(2002,1,1)).must_equal 100
+    end
+  end
 end
