@@ -1,8 +1,8 @@
 module TChart
   
   #
-  # An error raised within the application.  Only the message 
-  # of such errors is of interest, not the stack trace.
+  # Used to distinguish errors raised within the application code
+  # from errors raised by the Ruby or a third-party library.
   #
   class TChartError < StandardError ; end
   
