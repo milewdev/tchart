@@ -1,3 +1,7 @@
+#
+# SMELL: rename to TexBuilder
+#
+
 require 'stringio'
 
 module TChart

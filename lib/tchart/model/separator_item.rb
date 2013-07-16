@@ -1,8 +1,12 @@
+#
+# SMELL: the attribute 'date_ranges'.  Use a message instead, such as #min_and_max_date.
+# SMELL: #calc_layout and #render seem to split the responsibility of retrieving dimension information.
+#
 module TChart
   class SeparatorItem
     
     attr_reader :y_coordinate
-    attr_reader :date_ranges        # TODO: smell
+    attr_reader :date_ranges
     
     def initialize
       @date_ranges = []

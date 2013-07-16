@@ -3,8 +3,8 @@ class String
   #
   # Insert 'amount' spaces at the beginning of all non-empty lines.  
   #
-  # Note: an line is considered empty if it consists only of zero
-  # or more space and/or tab characters.
+  # A line is considered empty if it consists only of zero or more 
+  # space and/or tab characters.
   #
   def indent(amount)
     indent = " " * amount

@@ -14,6 +14,11 @@ module TChart
   # in the TeX document in which the generated chart is
   # embedded.
   #
+  # SMELL: too many comments above.
+  # SMELL: 'ChartItem' sounds too generic ('item' in particular); Plotted?
+  # SMELL: need to get rid of mid_point, width calculations in #render.
+  # SMELL: the responsibility of converting a date to an x-coordinate belongs in Chart.
+  #
   class ChartItem
     
     attr_reader :name

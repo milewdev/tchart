@@ -1,3 +1,11 @@
+#
+# SMELL: #render is ugly; still not happy about Tex and, specifically, Tex#to_s.
+# SMELL: the use of '@attribute' rather than 'attribute' seemed to highlight that attribute 
+#        is an attribute of self.  But, look at '@frame' vs. 'x_axis_labels' in #render; 
+#        this is inconsistent access.
+# SMELL: the standalone #calc_layout; who is responsible for calling it?  What was wrong
+#        with #build again?
+#
 module TChart
   class Chart
     

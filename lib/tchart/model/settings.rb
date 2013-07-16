@@ -15,7 +15,7 @@ module TChart
       @y_label_width            = 24
     end
     
-    def setting_names # => [ 'chart_width', 'line_height', ... ]
+    def setting_names
         methods
           .grep(/\w=$/)
           .map {|name| name.to_s.chomp('=')}

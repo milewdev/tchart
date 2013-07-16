@@ -1,6 +1,6 @@
 module TChart
   module CommandLineParser
-    def self.parse(argv) # => CommandLineArgs
+    def self.parse(argv)
       data_filename, tex_filename = argv
       raise_usage if argv.length != 2
       raise_not_found(data_filename) if not File.exists?(data_filename)
