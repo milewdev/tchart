@@ -13,7 +13,7 @@ module TChart
   class Chart
     
     extend Forwardable
-    def_delegators :@settings, :y_label_width
+    def_delegators :@settings, :y_label_width, :chart_width, :x_label_width, :y_label_width, :line_height
     
     attr_reader :settings
     attr_reader :items
@@ -26,12 +26,12 @@ module TChart
     end
     
     def x_axis_length
-      settings.chart_width - settings.y_label_width - settings.x_label_width
+      chart_width - y_label_width - x_label_width
     end
     
     def y_axis_length
       # +1 for top and bottom margins
-      (items.length + 1) * settings.line_height
+      (items.length + 1) * line_height
     end
     
     def y_axis_label_x_coordinate
@@ -68,8 +68,7 @@ module TChart
   private
     
     def item_y_coordinates
-      line_height, num_items = settings.line_height, items.length
-      (line_height * num_items).step(line_height, -line_height)
+      (line_height * items.length).step(line_height, -line_height)
     end
     
   end
