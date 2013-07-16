@@ -12,6 +12,8 @@ module TChart
     it "calculates the x coordinate ranges of each date range" do
       chart = stub( x_axis_length: 100 )
       chart.stubs(:x_axis_date_range).returns( Date.new(2001,1,1)..Date.new(2003,1,1) )
+      chart.stubs(:date_to_x_coordinate).with(Date.new(2001,1,1)).returns(0)
+      chart.stubs(:date_to_x_coordinate).with(Date.new(2002,1,1)).returns(50)
       item = ChartItem.new( "name", "style", [ Date.new(2001,1,1)..Date.new(2001,12,31) ] )
       y_coordinate = 10
       item.calc_layout(chart, y_coordinate)
@@ -25,7 +27,8 @@ module TChart
       chart = stub(settings: settings, x_axis_length: 100)
       chart.stubs(:x_axis_date_range).returns(Date.new(2001,1,1)..Date.new(2003,1,1))
       item = ChartItem.new("item", "style", [ Date.new(2001,1,1)..Date.new(2001,12,31) ])
-      item.calc_layout(chart, 30)   # TODO: stub bar_x_coordinates instread of calling calc_layout
+      item.stubs(:y_coordinate).returns(30)
+      item.stubs(:bar_x_coordinates).returns([ BarXCoordinates.new(0,50) ])
       tex = Tex.new
       item.render(tex, chart)
       tex.to_s.must_equal <<-EOS.unindent

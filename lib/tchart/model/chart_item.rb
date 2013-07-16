@@ -17,15 +17,14 @@ module TChart
   # SMELL: too many comments above.
   # SMELL: 'ChartItem' sounds too generic ('item' in particular); Plotted?
   # SMELL: need to get rid of mid_point, width calculations in #render.
-  # SMELL: the responsibility of converting a date to an x-coordinate belongs in Chart.
   #
   class ChartItem
     
     attr_reader :name
     attr_reader :style
     attr_reader :date_ranges
-    attr_accessor :y_coordinate
-    attr_accessor :bar_x_coordinates
+    attr_reader :y_coordinate
+    attr_reader :bar_x_coordinates
 
     def initialize(name, style, date_ranges)
        @name = name
@@ -41,23 +40,16 @@ module TChart
     def render(tex, chart)
       tex.comment @name
       mid_point, width = chart.settings.y_label_width / -2.0, chart.settings.y_label_width
-      tex.label mid_point, @y_coordinate, width, 'ylabel', @name
-      @bar_x_coordinates.each { |bar_x_coordinates| tex.bar(bar_x_coordinates.from, bar_x_coordinates.to, @y_coordinate, @style) }
+      tex.label mid_point, y_coordinate, width, 'ylabel', @name
+      bar_x_coordinates.each { |bar_x_coordinates| tex.bar(bar_x_coordinates.from, bar_x_coordinates.to, y_coordinate, @style) }
     end
     
   private
     
     def date_range_to_x_coordinates(chart, date_range)
-      x_begin = date_to_x_coordinate(chart, date_range.begin)
-      x_end = date_to_x_coordinate(chart, date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
+      x_begin = chart.date_to_x_coordinate(date_range.begin)
+      x_end = chart.date_to_x_coordinate(date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
       BarXCoordinates.new(x_begin, x_end)
-    end
-    
-    # ratio is: x_coordinate / x_axis_length = ( date - date_range.begin ) / date_range_length
-    def date_to_x_coordinate(chart, date)
-      date_range = chart.x_axis_date_range
-      date_range_length = date_range.end.jd - date_range.begin.jd      
-      ( chart.x_axis_length * ( date.jd - date_range.begin.jd ) * 1.0 ) / date_range_length 
     end
     
   end
