@@ -32,15 +32,6 @@ module TChart
     end
   end
   
-  describe Chart, "x_axis_date_range" do
-    it "returns the date range of the x axis" do
-      x_axis_labels = [ stub( date: Date.new(2000,1,1) ), stub( date: Date.new(2001,1,1) ) ]
-      XLabelsBuilder.stubs(:build).returns(x_axis_labels)
-      chart = Chart.new(stub, stub)
-      chart.x_axis_date_range.must_equal Date.new(2000,1,1)..Date.new(2001,1,1)
-    end
-  end
-  
   describe Chart, "calc_layout" do
     it "invokes 'calc_layout' on each item" do
       settings = stub( line_height: 10 )
@@ -56,7 +47,7 @@ module TChart
     it "converts a date to its equivalent x-coordinate on the chart" do
       chart = Chart.new(stub, stub)
       chart.stubs(:x_axis_length).returns(100)
-      chart.stubs(:x_axis_date_range).returns(Date.new(2001,1,1)..Date.new(2002,1,1))
+      chart.stubs(:x_axis_labels).returns([ stub(date: Date.new(2001,1,1)), stub(date: Date.new(2002,1,1)) ])
       chart.date_to_x_coordinate(Date.new(2001,1,1)).must_equal 0
       chart.date_to_x_coordinate(Date.new(2001,6,30)).must_be_close_to 50, 1
       chart.date_to_x_coordinate(Date.new(2002,1,1)).must_equal 100

@@ -32,10 +32,6 @@ module TChart
       @x_axis_labels ||= XLabelsBuilder.build(self)
     end
     
-    def x_axis_date_range
-      x_axis_labels.first.date..x_axis_labels.last.date
-    end
-    
     def calc_layout
       @items
         .zip(item_y_coordinates)
@@ -44,9 +40,9 @@ module TChart
     
     # ratio is: x_coordinate / x_axis_length = ( date - date_range.begin ) / date_range_length
     def date_to_x_coordinate(date)
-      date_range = x_axis_date_range
-      date_range_length = date_range.end.jd - date_range.begin.jd      
-      ( x_axis_length * ( date.jd - date_range.begin.jd ) * 1.0 ) / date_range_length 
+      date_from, date_to = x_axis_labels.first.date, x_axis_labels.last.date
+      date_range_length = date_to.jd - date_from.jd      
+      ( x_axis_length * ( date.jd - date_from.jd ) * 1.0 ) / date_range_length 
     end
     
     def render
