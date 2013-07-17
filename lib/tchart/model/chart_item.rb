@@ -39,7 +39,7 @@ module TChart
     def render(tex, chart)
       tex.comment name
       tex.label chart.y_axis_label_x_coordinate, y_coordinate, chart.y_label_width, 'ylabel', name
-      bars.each { |bar| tex.bar(bar.x_from, bar.x_to, bar.y, bar.style) }
+      bars.each { |bar| bar.render(tex, chart) }
     end
     
   private
