@@ -13,7 +13,7 @@ module TChart
   class Chart
     
     extend Forwardable
-    def_delegators :@settings, :y_label_width, :chart_width, :x_label_width, :y_label_width, :line_height
+    def_delegators :@settings, :chart_width, :x_label_width, :x_label_y_coordinate, :line_height, :y_label_width
     
     attr_reader :settings
     attr_reader :items
