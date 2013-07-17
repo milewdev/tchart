@@ -23,7 +23,7 @@ module TChart
     attr_reader :style
     attr_reader :date_ranges
     attr_reader :y_coordinate
-    attr_reader :bar_x_coordinates
+    attr_reader :bars
 
     def initialize(name, style, date_ranges)
        @name = name
@@ -33,21 +33,23 @@ module TChart
     
     def calc_layout(chart, y_coordinate)
       @y_coordinate = y_coordinate
-      @bar_x_coordinates = date_ranges.map { |date_range| date_range_to_x_coordinates(chart, date_range) }
+      @bars = build_bars(chart, y_coordinate)
     end
     
     def render(tex, chart)
       tex.comment name
       tex.label chart.y_axis_label_x_coordinate, y_coordinate, chart.y_label_width, 'ylabel', name
-      bar_x_coordinates.each { |bar_x_coordinates| tex.bar(bar_x_coordinates.from, bar_x_coordinates.to, y_coordinate, style) }
+      bars.each { |bar| tex.bar(bar.x_from, bar.x_to, bar.y, bar.style) }
     end
     
   private
     
-    def date_range_to_x_coordinates(chart, date_range)
-      x_begin = chart.date_to_x_coordinate(date_range.begin)
-      x_end = chart.date_to_x_coordinate(date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
-      BarXCoordinates.new(x_begin, x_end)
+    def build_bars(chart, y_mid)
+      date_ranges.map do |date_range|
+        x_from = chart.date_to_x_coordinate(date_range.begin)
+        x_to = chart.date_to_x_coordinate(date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
+        Bar.new(x_from, x_to, y_mid, style)
+      end
     end
     
   end
