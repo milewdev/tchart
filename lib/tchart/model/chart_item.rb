@@ -20,9 +20,9 @@ module TChart
   class ChartItem
     
     attr_reader :name
-    attr_reader :style
+    attr_reader :style          # TODO: rename to bar_style
     attr_reader :date_ranges
-    attr_reader :y_coordinate
+    attr_reader :y_axis_label
     attr_reader :bars
 
     def initialize(name, style, date_ranges)
@@ -31,24 +31,29 @@ module TChart
        @date_ranges = date_ranges
     end
     
-    def calc_layout(chart, y_coordinate)
-      @y_coordinate = y_coordinate
-      @bars = build_bars(chart, y_coordinate)
+    def calc_layout(chart, y)
+      @y_axis_label = build_label(chart, y)
+      @bars = build_bars(chart, y)
     end
     
     def render(tex, chart)
       tex.comment name
-      tex.label chart.y_axis_label_x_coordinate, y_coordinate, chart.y_label_width, 'ylabel', name
+      y_axis_label.render(tex, chart)
       bars.each { |bar| bar.render(tex, chart) }
     end
     
   private
+  
+    def build_label(chart, y)
+      # TODO: "ylabel" should be read from somewhere?
+      Label.new(chart.y_axis_label_x_coordinate, y, chart.y_label_width, "ylabel", name)
+    end
     
-    def build_bars(chart, y_mid)
+    def build_bars(chart, y)
       date_ranges.map do |date_range|
         x_from = chart.date_to_x_coordinate(date_range.begin)
         x_to = chart.date_to_x_coordinate(date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
-        Bar.new(x_from, x_to, y_mid, style)
+        Bar.new(x_from, x_to, y, style)
       end
     end
     
