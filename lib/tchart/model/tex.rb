@@ -19,8 +19,8 @@ module TChart
       @output << "% #{escape_tex_special_chars text.to_s}\n"
     end
     
-    def line(x1, y1, x2, y2)
-      @output << "\\draw [draw = black!5] (#{f x1}mm, #{f y1}mm) -- (#{f x2}mm, #{f y2}mm);\n"
+    def line(x1, y1, x2, y2, style = "draw = black!5")    # TODO: get rid of style default value
+      @output << "\\draw [#{style}] (#{f x1}mm, #{f y1}mm) -- (#{f x2}mm, #{f y2}mm);\n"
     end
     
     def label(x_mid, y, width, style, text)
