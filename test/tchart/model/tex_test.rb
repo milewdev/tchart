@@ -27,6 +27,10 @@ module TChart
       @tex.line 10, 20, 30, 40, "line_style"   # x1, y1, x2, y2, style
       @tex.to_s.must_equal "\\draw [line_style] (10.00mm, 20.00mm) -- (30.00mm, 40.00mm);\n"
     end
+    it "generates TikZ code for a line" do
+      Tex.line(Coordinate.new(10,20),Coordinate.new(30,40),"line_style")
+        .must_equal "\\draw [line_style] (10.00mm, 20.00mm) -- (30.00mm, 40.00mm);\n"
+    end
   end
   
   describe Tex, "label" do
