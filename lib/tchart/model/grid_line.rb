@@ -11,9 +11,7 @@ module TChart
     end
     
     def render
-      tex = Tex.new
-      tex.line from.x, from.y, to.x, to.y
-      tex.to_s
+      Tex.line(from, to, style)
     end
   end
 end
