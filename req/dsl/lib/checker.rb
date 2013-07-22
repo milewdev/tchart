@@ -36,7 +36,8 @@ module TChart
           cleaned_actual = actual || ""
           cleaned_expected = escape_regex_special_chars(cleaned_expected.gsub(/^[ \t]+/, '').gsub(/[ \t]+$/, '').gsub(/[ \t]+/, ' ').gsub(/\n+/, "\n"))
           cleaned_actual = cleaned_actual.gsub(/^[ \t]+/, '').gsub(/[ \t]+$/, '').gsub(/[ \t]+/, ' ').gsub(/\n+/, "\n")
-          print_output_doesnt_match(output_description, expected, actual) if ! cleaned_actual.match(cleaned_expected)
+          cleaned_expected_regex = Regexp.new(cleaned_expected, Regexp::MULTILINE)
+          print_output_doesnt_match(output_description, expected, actual) if ! cleaned_actual.match(cleaned_expected_regex)
           true
         end
         

@@ -24,11 +24,11 @@ module TChart
       
       describe Checker, "missing_output" do
         it "returns false when there is output and output was expected" do
-          Checker.missing_output('description', 'EXPECTED', 'ACTUAL').must_equal false
+          Checker.missing_output('DESCRIPTION', 'EXPECTED', 'ACTUAL').must_equal false
         end
         it "returns true when there is no output but output was expected" do
           ignore_stderr do
-            Checker.missing_output('description', 'EXPECTED', nil).must_equal true
+            Checker.missing_output('DESCRIPTION', 'EXPECTED', nil).must_equal true
           end
         end
         it "writes output to $stderr when there is no output but output was expected" do
@@ -43,12 +43,10 @@ module TChart
       
       describe Checker, "match_output" do
         it "returns false when the expected output argument is not a regexp" do
-          Checker.match_output('description', 'EXPECTED', 'ACTUAL').must_equal false
+          Checker.match_output('DESCRIPTION', 'EXPECTED', 'ACTUAL').must_equal false
         end
         it "returns true when the expected output argument is a regexp" do
-          ignore_stderr do
-            Checker.match_output('description', /[0-9]/, 'ACTUAL').must_equal true
-          end
+          Checker.match_output('DESCRIPTION', /[0-9]/, '9').must_equal true
         end
         it "writes nothing to $stderr when the actual output matches the regexp" do
           capture_stderr do
@@ -65,7 +63,7 @@ module TChart
       describe Checker, "compare_output" do
         it "always returns true" do
           ignore_stderr do
-            Checker.compare_output('description', 'EXPECTED', 'ACTUAL').must_equal true
+            Checker.compare_output('DESCRIPTION', 'EXPECTED', 'ACTUAL').must_equal true
           end
         end
         it "writes nothing to $stderr when the expected and actual outputs match" do
@@ -77,6 +75,11 @@ module TChart
           capture_stderr do
             Checker.compare_output('DESCRIPTION', 'EXPECTED', 'ACTUAL')
           end.must_match %r{Error}
+        end
+        it "allows . to match newline" do
+          capture_stderr do
+            Checker.compare_output('DESCRIPTION', '/a.b/', "a\nb")
+          end.must_equal ""
         end
         it "ignores leading spaces/tabs on each line when doing the comparison" do
           capture_stderr do
