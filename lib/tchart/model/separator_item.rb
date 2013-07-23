@@ -20,7 +20,7 @@ module TChart
     
     def render(tex)
       tex.comment "horizontal separator line"
-      tex.line from, to
+      tex.line from, to, "gridline" # TODO: "gridline" needs to be read from somewhere
     end
     
   end
