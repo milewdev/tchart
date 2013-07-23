@@ -18,7 +18,7 @@ module TChart
       @style = style
     end
     
-    def render(tex, chart)
+    def render(tex)
       tex.bar x_from, x_to, y, style
     end
     

@@ -14,7 +14,7 @@ module TChart
       @text = text
     end
     
-    def render(tex, chart)
+    def render(tex)
       tex.label x, y, width, style, text
     end
   end

@@ -37,7 +37,7 @@ module TChart
       item.stubs(:y_axis_label).returns(Label.new(-10,30,20,"ylabel","name"))
       item.stubs(:bars).returns([Bar.new(0,50,30,"bar_style")])
       tex = Tex.new
-      item.render(tex, chart)
+      item.render(tex)
       tex.to_s.must_equal <<-EOS.unindent
         % name
         \\node [ylabel, text width = 20.00mm] at (-10.00mm, 30.00mm) {name};

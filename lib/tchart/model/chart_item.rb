@@ -36,10 +36,10 @@ module TChart
       @bars = build_bars(chart, y)
     end
     
-    def render(tex, chart)
+    def render(tex)
       tex.comment name
-      y_axis_label.render(tex, chart)
-      bars.each { |bar| bar.render(tex, chart) }
+      y_axis_label.render(tex)
+      bars.each { |bar| bar.render(tex) }
     end
     
   private

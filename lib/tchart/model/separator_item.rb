@@ -6,6 +6,7 @@ module TChart
   class SeparatorItem
     
     attr_reader :y_coordinate
+    attr_reader :length
     attr_reader :date_ranges
     
     def initialize
@@ -14,11 +15,12 @@ module TChart
     
     def calc_layout(chart, y_coordinate)
       @y_coordinate = y_coordinate
+      @length = chart.x_axis_length
     end
     
-    def render(tex, chart)
+    def render(tex)
       tex.comment "horizontal separator line"
-      tex.line 0, y_coordinate, chart.x_axis_length, y_coordinate
+      tex.line 0, y_coordinate, length, y_coordinate
     end
     
   end
