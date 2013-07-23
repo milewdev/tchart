@@ -17,12 +17,10 @@ module TChart
     
     attr_reader :settings
     attr_reader :items
-    attr_reader :frame
 
     def initialize(settings, items)
       @settings = settings
       @items = items
-      @frame = Frame.new(self)
     end
     
     def x_axis_length
@@ -40,6 +38,10 @@ module TChart
     
     def x_axis_labels
       @x_axis_labels ||= XLabelsBuilder.build(self)
+    end
+    
+    def frame
+      @frame ||= Frame.new(self)
     end
     
     def calc_layout
