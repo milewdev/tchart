@@ -46,7 +46,7 @@ module TChart
   
     def build_label(chart, y)
       # TODO: "ylabel" should be read from somewhere?
-      Label.new(chart.y_axis_label_x_coordinate, y, chart.y_label_width, "ylabel", name)
+      Label.new(Coordinate.new(chart.y_axis_label_x_coordinate, y), chart.y_label_width, "ylabel", name)
     end
     
     def build_bars(chart, y)
