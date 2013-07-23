@@ -56,7 +56,7 @@ module TChart
       @tex = Tex.new
     end
     it "generates TikZ code for a horizontal bar on the chart" do
-      @tex.bar 10, 40, 50, 'some_style'  # x1, x2, y, style
+      @tex.bar Coordinate.new(10, 50), Coordinate.new(40, 50), 'some_style'  # from, to, style
       @tex.to_s.must_equal "\\node [some_style] at (25.00mm, 50.00mm) [minimum width = 30.00mm] {};\n"
     end
   end

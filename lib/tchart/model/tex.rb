@@ -31,9 +31,9 @@ module TChart
       @output << "\\node [#{style}, text width = #{f width}mm] at (#{f x_mid}mm, #{f y}mm) {#{escape_tex_special_chars text.to_s}};\n"
     end
     
-    def bar(x1, x2, y, style)
-      x_mid, width = to_tikz_coords(x1, x2)
-      @output << "\\node [#{style}] at (#{f x_mid}mm, #{f y}mm) [minimum width = #{f width}mm] {};\n"
+    def bar(from, to, style)
+      x_mid, width = to_tikz_coords(from.x, to.x)
+      @output << "\\node [#{style}] at (#{f x_mid}mm, #{f from.y}mm) [minimum width = #{f width}mm] {};\n"
     end
     
     def newline
@@ -60,10 +60,10 @@ module TChart
       text.gsub(/([#&])/, '\\\\\\1')
     end
     
-    # to_tikx_coords(x1, x2) => x_mid, width
-    def to_tikz_coords(x1, x2)
-      width = x2 - x1
-      x_mid = x1 + (width / 2.0)
+    # to_tikx_coords(x_from, x_to) => x_mid, width
+    def to_tikz_coords(x_from, x_to)
+      width = x_to - x_from
+      x_mid = x_from + (width / 2.0)
       [x_mid, width]
     end
   
