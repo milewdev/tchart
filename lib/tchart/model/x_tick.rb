@@ -1,5 +1,6 @@
 module TChart
   class XTick
+    
     attr_reader :label
     attr_reader :grid_line
     
@@ -11,5 +12,6 @@ module TChart
     def render
       label.render + grid_line.render
     end
+    
   end
 end

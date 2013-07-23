@@ -7,7 +7,7 @@ module TChart
       tick1 = stub ; tick1.expects(:render)
       tick2 = stub ; tick2.expects(:render)
       ticks = [ tick1, tick2 ]
-      Axis.new(ticks).render
+      Axis.new(10, ticks).render
     end
     
   end

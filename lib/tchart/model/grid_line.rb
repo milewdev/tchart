@@ -1,5 +1,6 @@
 module TChart
   class GridLine
+    
     attr_reader :from
     attr_reader :to
     attr_reader :style
@@ -13,5 +14,6 @@ module TChart
     def render
       Tex.line(from, to, style)
     end
+    
   end
 end
