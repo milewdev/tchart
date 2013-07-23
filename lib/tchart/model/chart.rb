@@ -22,7 +22,7 @@ module TChart
     def initialize(settings, items)
       @settings = settings
       @items = items
-      @frame = Frame.new
+      @frame = Frame.new(self)
     end
     
     def x_axis_length
@@ -58,7 +58,7 @@ module TChart
     def render
       tex = Tex.new
       tex.echo "\\tikzpicture\n\n"
-      frame.render(tex, self)
+      frame.render(tex)
       x_axis_labels.each { |label| label.render(tex, self) }
       items.each { |item| item.render(tex) }
       tex.echo "\n\\endtikzpicture\n"

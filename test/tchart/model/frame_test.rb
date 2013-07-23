@@ -5,7 +5,7 @@ module TChart
     it "generates TeX code to render the frame of a chart" do
       chart = stub( x_axis_length: 100, y_axis_length: 50 )
       tex = Tex.new
-      Frame.new.render(tex, chart)
+      Frame.new(chart).render(tex)
       tex.to_s.must_equal <<-EOS.unindent
         % horizontal bottom frame
         \\draw [draw = black!5] (0.00mm, 0.00mm) -- (100.00mm, 0.00mm);
