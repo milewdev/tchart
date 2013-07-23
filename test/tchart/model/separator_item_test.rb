@@ -8,16 +8,14 @@ module TChart
   end
 
   describe SeparatorItem, "render" do
+    before do
+      @tex = Tex.new
+      @separator = SeparatorItem.new
+    end
+    
     it "generates TeX code to render a separator" do
-      chart = stub( x_axis_length: 20 )
-      separator = SeparatorItem.new
-      separator.calc_layout(chart, 10)
-      tex = Tex.new
-      separator.render(tex)
-      tex.to_s.must_equal <<-EOS.unindent
-        % horizontal separator line
-        \\draw [draw = black!5] (0.00mm, 10.00mm) -- (20.00mm, 10.00mm);
-      EOS
+      @tex.expects(:line).once
+      @separator.render(@tex)
     end
   end
 end

@@ -19,7 +19,7 @@ module TChart
       @output << "% #{escape_tex_special_chars text.to_s}\n"
     end
     
-    def line(from, to, style = "draw = black!5")    # TODO: get rid of style default value
+    def line(from, to, style = "gridline")    # TODO: get rid of style default value
       @output << "\\draw [#{style}] (#{f from.x}mm, #{f from.y}mm) -- (#{f to.x}mm, #{f to.y}mm);\n"
     end
     
