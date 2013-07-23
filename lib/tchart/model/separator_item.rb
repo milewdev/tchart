@@ -20,7 +20,7 @@ module TChart
     
     def render(tex)
       tex.comment "horizontal separator line"
-      tex.line 0, y_coordinate, length, y_coordinate
+      tex.line Coordinate.new(0, y_coordinate), Coordinate.new(length, y_coordinate)
     end
     
   end

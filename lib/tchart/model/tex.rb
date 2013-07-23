@@ -19,8 +19,8 @@ module TChart
       @output << "% #{escape_tex_special_chars text.to_s}\n"
     end
     
-    def line(x1, y1, x2, y2, style = "draw = black!5")    # TODO: get rid of style default value
-      @output << "\\draw [#{style}] (#{f x1}mm, #{f y1}mm) -- (#{f x2}mm, #{f y2}mm);\n"
+    def line(from, to, style = "draw = black!5")    # TODO: get rid of style default value
+      @output << "\\draw [#{style}] (#{f from.x}mm, #{f from.y}mm) -- (#{f to.x}mm, #{f to.y}mm);\n"
     end
     
     def self.line(from, to, style)

@@ -11,10 +11,10 @@ module TChart
     
     def render(tex)
       tex.comment "horizontal bottom frame"
-      tex.line 0, 0, x_axis_length, 0
+      tex.line Coordinate.new(0, 0), Coordinate.new(x_axis_length, 0)
       tex.newline
       tex.comment "horizontal top frame"
-      tex.line 0, y_axis_length, x_axis_length, y_axis_length
+      tex.line Coordinate.new(0, y_axis_length), Coordinate.new(x_axis_length, y_axis_length)
     end
     
   end

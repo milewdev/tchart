@@ -18,7 +18,7 @@ module TChart
     def render(tex)
       tex.comment date.year
       tex.label x_coordinate, y_coordinate, width, 'xlabel', date.year
-      tex.line x_coordinate, 0, x_coordinate, grid_line_length
+      tex.line Coordinate.new(x_coordinate, 0), Coordinate.new(x_coordinate, grid_line_length)
     end
     
   end
