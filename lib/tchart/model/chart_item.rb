@@ -53,7 +53,7 @@ module TChart
       date_ranges.map do |date_range|
         x_from = chart.date_to_x_coordinate(date_range.begin)
         x_to = chart.date_to_x_coordinate(date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
-        Bar.new(x_from, x_to, y, style)
+        Bar.new(Coordinate.new(x_from, y), Coordinate.new(x_to, y), style)
       end
     end
     
