@@ -8,6 +8,7 @@ Dir.glob(File.dirname(me) + '/**/*.rb') {|fn| require fn if fn != me }
 
 module TChart
   module Main
+    
     def self.run(argv)
       args = CommandLineParser.parse(argv)
       settings, items = DataReader.read(args.data_filename)
@@ -21,5 +22,6 @@ module TChart
       $stderr.puts e.message
       $stderr.puts e.backtrace.join("\n    ")
     end
+    
   end
 end

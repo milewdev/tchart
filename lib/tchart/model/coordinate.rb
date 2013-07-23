@@ -1,5 +1,6 @@
 module TChart
   class Coordinate
+    
     attr_reader :x
     attr_reader :y
     
@@ -7,5 +8,6 @@ module TChart
       @x = x
       @y = y
     end
+    
   end
 end

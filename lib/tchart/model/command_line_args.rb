@@ -1,5 +1,6 @@
 module TChart
   class CommandLineArgs
+    
     attr_reader :data_filename
     attr_reader :tex_filename
     
@@ -7,5 +8,6 @@ module TChart
       @data_filename = data_filename
       @tex_filename = tex_filename
     end
+    
   end
 end

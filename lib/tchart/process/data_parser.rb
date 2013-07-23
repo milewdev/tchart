@@ -1,5 +1,6 @@
 module TChart
   class DataParser
+    
     def self.parse(source_name, source_data) # => settings, items, errors
       DataParser.new.parse(source_name, source_data)
     end
@@ -194,5 +195,6 @@ module TChart
     def raise_date_ranges_overlap(range1, range2)
       raise TChartError, "date range #{dr2s(range1)} overlaps #{dr2s(range2)}"
     end
+    
   end
 end

@@ -1,5 +1,6 @@
 module TChart
   module CommandLineParser
+    
     def self.parse(argv)
       data_filename, tex_filename = argv
       raise_usage if argv.length != 2
@@ -28,5 +29,6 @@ module TChart
     def self.raise_same_file(data_filename, tex_filename)
       raise TChartError, "Error: input \"#{data_filename}\" and output \"#{tex_filename}\" refer to the same file."
     end
+    
   end
 end

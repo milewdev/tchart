@@ -2,6 +2,7 @@ require 'date'
 
 module TChart
   module DataReader
+    
     def self.read(filename)
       File.open(filename) do |f| 
         settings, items, errors = DataParser.parse(filename, f) 
@@ -14,5 +15,6 @@ module TChart
       errors.each { |error| $stderr.puts(error) }
       raise TChartError, "Errors found; aborting."
     end
+    
   end
 end

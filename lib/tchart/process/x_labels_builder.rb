@@ -1,5 +1,6 @@
 module TChart
   module XLabelsBuilder
+    
     def self.build(chart)
       items_date_range = find_items_date_range(chart.items)
       date_range, date_interval_yr = calc_date_range_and_date_interval(items_date_range)
@@ -60,5 +61,6 @@ module TChart
     def self.calc_x_coordinate_interval(x_axis_length, number_of_labels) # => number in same units as x_axis_length
       x_axis_length / ((number_of_labels - 1) * 1.0)       # -1 as we are counting fence segments
     end
+    
   end
 end

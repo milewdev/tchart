@@ -1,5 +1,6 @@
 module TChart
   class XLabel
+    
     attr_reader :date
     attr_reader :x_coordinate
     attr_reader :y_coordinate
@@ -19,5 +20,6 @@ module TChart
       tex.label x_coordinate, y_coordinate, width, 'xlabel', date.year
       tex.line x_coordinate, 0, x_coordinate, grid_line_length
     end
+    
   end
 end

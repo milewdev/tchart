@@ -1,5 +1,6 @@
 module TChart
   class Settings
+    
     attr_accessor :chart_width
     attr_accessor :line_height
     attr_accessor :x_label_width
@@ -24,5 +25,6 @@ module TChart
     def has_setting?(setting_name)
       setting_names.include?(setting_name)
     end
+    
   end
 end

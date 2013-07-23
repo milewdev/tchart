@@ -1,5 +1,6 @@
 module TChart
   class Label
+    
     attr_reader :x
     attr_reader :y
     attr_reader :width
@@ -17,5 +18,6 @@ module TChart
     def render(tex)
       tex.label x, y, width, style, text
     end
+    
   end
 end
