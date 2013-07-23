@@ -7,7 +7,7 @@ module TChart
       x_interval = calc_x_coordinate_interval(chart.x_axis_length, number_of_labels)
       dates = create_date_range_enumerator(date_range, date_interval_yr)
       x_coordinates = (0..chart.x_axis_length).step(x_interval)
-      dates.zip(x_coordinates).map { |date, x_coordinate| XLabel.new(date, x_coordinate) }
+      dates.zip(x_coordinates).map { |date, x_coordinate| XLabel.new(chart, date, x_coordinate) }
     end
     
     def self.create_date_range_enumerator(date_range, date_interval_yr) # => Enumerator

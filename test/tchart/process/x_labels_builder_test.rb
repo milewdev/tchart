@@ -4,7 +4,7 @@ module TChart
   describe XLabelsBuilder, "build" do
     before do
       items = [ stub('item', date_ranges: [ Date.new(2000,3,17)..Date.new(2003,10,4) ]), stub('separator', date_ranges: [] ) ]
-      chart = stub( x_axis_length: 100, items: items )
+      chart = stub( x_label_y_coordinate: -3, x_label_width: 10, x_axis_length: 100, y_axis_length: 30, items: items )
       @x_axis_labels = XLabelsBuilder.build(chart)
     end
     it "builds the correct number of labels" do

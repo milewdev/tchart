@@ -61,7 +61,7 @@ module TChart
       tex = Tex.new
       tex.echo "\\tikzpicture\n\n"
       frame.render(tex)
-      x_axis_labels.each { |label| label.render(tex, self) }
+      x_axis_labels.each { |label| label.render(tex) }
       items.each { |item| item.render(tex) }
       tex.echo "\n\\endtikzpicture\n"
       tex.to_s
