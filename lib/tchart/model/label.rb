@@ -14,7 +14,7 @@ module TChart
     end
     
     def render(tex)
-      tex.label coord.x, coord.y, width, style, text
+      tex.label coord, width, style, text
     end
     
   end

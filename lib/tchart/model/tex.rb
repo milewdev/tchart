@@ -27,8 +27,8 @@ module TChart
       "\\draw [#{style}] (#{f from.x}mm, #{f from.y}mm) -- (#{f to.x}mm, #{f to.y}mm);\n"
     end
     
-    def label(x_mid, y, width, style, text)
-      @output << "\\node [#{style}, text width = #{f width}mm] at (#{f x_mid}mm, #{f y}mm) {#{escape_tex_special_chars text.to_s}};\n"
+    def label(coord, width, style, text)
+      @output << "\\node [#{style}, text width = #{f width}mm] at (#{f coord.x}mm, #{f coord.y}mm) {#{escape_tex_special_chars text.to_s}};\n"
     end
     
     def bar(from, to, style)

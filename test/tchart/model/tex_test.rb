@@ -38,15 +38,15 @@ module TChart
       @tex = Tex.new
     end
     it "generates TikZ code for a chart label" do
-      @tex.label 10, 20, 15, 'some_style', 'the label text'  # x_mid, y, width, style, text
+      @tex.label Coordinate.new(10, 20), 15, 'some_style', 'the label text'  # x_mid, y, width, style, text
       @tex.to_s.must_equal "\\node [some_style, text width = 15.00mm] at (10.00mm, 20.00mm) {the label text};\n"
     end
     it "escapes TeX special characters in the label text" do
-      @tex.label 10, 20, 15, 'some_style', 'TeX special characters: # &'  # x_mid, y, width, style, text
+      @tex.label Coordinate.new(10, 20), 15, 'some_style', 'TeX special characters: # &'  # x_mid, y, width, style, text
       @tex.to_s.must_equal "\\node [some_style, text width = 15.00mm] at (10.00mm, 20.00mm) {TeX special characters: \\# \\&};\n"
     end
     it "handles non-string label text" do
-      @tex.label 10, 20, 15, 'some_style', 123  # x_mid, y, width, style, text
+      @tex.label Coordinate.new(10, 20), 15, 'some_style', 123  # x_mid, y, width, style, text
       @tex.to_s.must_equal "\\node [some_style, text width = 15.00mm] at (10.00mm, 20.00mm) {123};\n"
     end
   end
