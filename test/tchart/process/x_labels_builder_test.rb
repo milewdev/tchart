@@ -18,11 +18,11 @@ module TChart
       @x_axis_labels[4].date.must_equal Date.new(2004,1,1)
     end
     it "builds labels with the correct x-coordinate" do
-      @x_axis_labels[0].x_coordinate.must_equal 0
-      @x_axis_labels[1].x_coordinate.must_equal 25
-      @x_axis_labels[2].x_coordinate.must_equal 50
-      @x_axis_labels[3].x_coordinate.must_equal 75
-      @x_axis_labels[4].x_coordinate.must_equal 100
+      @x_axis_labels[0].coord.x.must_equal 0
+      @x_axis_labels[1].coord.x.must_equal 25
+      @x_axis_labels[2].coord.x.must_equal 50
+      @x_axis_labels[3].coord.x.must_equal 75
+      @x_axis_labels[4].coord.x.must_equal 100
     end
   end
 
