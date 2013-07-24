@@ -64,4 +64,35 @@ module TChart
       chart.date_to_x_coordinate(Date.new(2002,1,1)).must_equal 100
     end
   end
+  
+  describe Chart, "x_axis_dates" do
+    it "returns the correct dates when the chart items date range is less than 10 years" do
+      items_date_range = Date.new(2000,3,17)..Date.new(2004,10,4)
+      Chart.x_axis_dates(items_date_range).inspect.must_equal (2000..2005).step(1).inspect
+    end
+    it "calculates the correct range and interval when the chart items date range is 10 years" do
+      items_date_range = Date.new(2000,3,17)..Date.new(2009,10,4)
+      Chart.x_axis_dates(items_date_range).inspect.must_equal (2000..2010).step(1).inspect
+    end
+    it "calculates the correct range and interval when the chart items date range is 11 years" do
+      items_date_range = Date.new(2000,3,17)..Date.new(2010,10,4)
+      Chart.x_axis_dates(items_date_range).inspect.must_equal (2000..2015).step(5).inspect
+    end
+    it "calculates the correct range and interval when the chart items date range is less than 50 years" do
+      items_date_range = Date.new(2000,3,17)..Date.new(2044,10,4)
+      Chart.x_axis_dates(items_date_range).inspect.must_equal (2000..2045).step(5).inspect
+    end
+    it "calculates the correct range and interval when the chart items date range is 50 years" do
+      items_date_range = Date.new(2000,3,17)..Date.new(2049,10,4)
+      Chart.x_axis_dates(items_date_range).inspect.must_equal (2000..2050).step(5).inspect
+    end
+    it "calculates the correct range and interval when the chart items date range is less than 60 years" do
+      items_date_range = Date.new(2000,3,17)..Date.new(2054,10,4)
+      Chart.x_axis_dates(items_date_range).inspect.must_equal (2000..2060).step(10).inspect
+    end
+    it "calculates the correct range and interval when the chart items date range is 60 years" do
+      items_date_range = Date.new(2000,3,17)..Date.new(2059,10,4)
+      Chart.x_axis_dates(items_date_range).inspect.must_equal (2000..2060).step(10).inspect
+    end
+  end
 end

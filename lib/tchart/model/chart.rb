@@ -67,6 +67,23 @@ module TChart
       tex.to_s
     end
     
+    def self.x_axis_dates(date_range)
+      # try a date for each year in the items date range
+      from_year = date_range.begin.year        # round down to Jan 1st of year
+      to_year = date_range.end.year + 1        # +1 to round up to Jan 1st of the following year
+      return (from_year..to_year).step(1) if to_year - from_year <= 10
+
+      # try a date every five years
+      from_year = (from_year / 5.0).floor * 5         # round down to nearest 1/2 decade
+      to_year = (to_year / 5.0).ceil * 5              # round up to nearest 1/2 decade
+      return (from_year..to_year).step(5) if to_year - from_year <= 50
+
+      # use a date every 10 years
+      from_year = (from_year / 10.0).floor * 10       # round down to nearest decade
+      to_year = (to_year / 10.0).ceil * 10            # round up to nearest decade
+      return (from_year..to_year).step(10)
+    end
+    
   private
     
     def item_y_coordinates
