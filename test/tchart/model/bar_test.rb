@@ -4,7 +4,7 @@ module TChart
   describe Bar, "render" do
     before do
       @tex = Tex.new
-      @bar = Bar.new(Coordinate.new(0,30), Coordinate.new(50, 30), "bar_style")
+      @bar = Bar.new(xy(0,30), xy(50, 30), "bar_style")
     end
     
     it "generates TeX code to render itself" do

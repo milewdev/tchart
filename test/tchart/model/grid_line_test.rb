@@ -4,7 +4,7 @@ module TChart
   describe GridLine, "render" do
     before do
       @tex = Tex.new
-      @grid_line = GridLine.new(Coordinate.new(0,0), Coordinate.new(10,0), "style")
+      @grid_line = GridLine.new(xy(0,0), xy(10,0), "style")
     end
     
     it "generates TeX code to render the grid line" do

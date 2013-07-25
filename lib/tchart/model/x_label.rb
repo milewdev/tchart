@@ -8,9 +8,9 @@ module TChart
     
     def initialize(chart, date, x)
       @date = date
-      @coord = Coordinate.new(x, chart.x_label_y_coordinate)
+      @coord = xy(x, chart.x_label_y_coordinate)
       @width = chart.x_label_width
-      @vertical_grid_line = GridLine.new(Coordinate.new(x, 0), Coordinate.new(x, chart.y_axis_length), "gridline") # TODO: "gridline" needs to be read from
+      @vertical_grid_line = GridLine.new(xy(x, 0), xy(x, chart.y_axis_length), "gridline") # TODO: "gridline" needs to be read from
     end
     
     def render(tex)

@@ -14,8 +14,8 @@ module TChart
     end
     
     def calc_layout(chart, y)
-      @from = Coordinate.new(0, y)
-      @to = Coordinate.new(chart.x_axis_length, y)
+      @from = xy(0, y)
+      @to = xy(chart.x_axis_length, y)
     end
     
     def render(tex)
