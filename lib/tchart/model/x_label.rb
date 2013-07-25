@@ -16,7 +16,7 @@ module TChart
     def render(tex)
       tex.comment date.year
       tex.label coord, width, 'xlabel', date.year
-      tex.line Coordinate.new(coord.x, 0), Coordinate.new(coord.x, grid_line_length), "gridline" # TODO: "gridline" needs to be read from somewhere
+      #tex.line Coordinate.new(coord.x, 0), Coordinate.new(coord.x, grid_line_length), "gridline" # TODO: "gridline" needs to be read from somewhere
     end
     
   end

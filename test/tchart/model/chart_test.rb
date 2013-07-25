@@ -107,7 +107,7 @@ module TChart
     
     it "returns an array of x coordinates" do
       @chart.stubs(:x_axis_length).returns 100
-      @chart.stubs(:items_date_range).returns (2000..2005).step(1)
+      @chart.stubs(:x_axis_dates).returns (2000..2005).step(1)
       @chart.x_axis_label_x_coordinates.inspect.must_equal (0..100).step(20.0).inspect
     end
   end

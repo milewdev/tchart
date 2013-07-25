@@ -77,6 +77,7 @@ module TChart
       tex = Tex.new
       tex.echo "\\tikzpicture\n\n"
       frame.render(tex)
+      vertical_grid_lines.each { |grid_line| grid_line.render(tex) }
       x_axis_labels.each { |label| label.render(tex) }
       items.each { |item| item.render(tex) }
       tex.echo "\n\\endtikzpicture\n"
@@ -124,7 +125,7 @@ module TChart
     end
     
     def derive_x_axis_label_x_coordinates
-      num_coords = items_date_range.size
+      num_coords = x_axis_dates.size
       x_interval = x_axis_length / (num_coords - 1.0)
       (0..x_axis_length).step(x_interval)
     end
