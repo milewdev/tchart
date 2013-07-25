@@ -132,23 +132,4 @@ module TChart
       chart.items_date_range.must_equal Date.new(this_year,1,1)..Date.new(this_year,12,31)
     end
   end
-  
-  describe Chart, "vertical_grid_lines" do
-    before do
-      @chart = Chart.new(stub, stub)
-    end
-    
-    class GridLine
-      def ==(other)
-        [ from, to, style ] == [ other.from, other.to, other.style ]
-      end
-    end
-    
-    it "returns one grid line per x-axis date" do
-      @chart.stubs(:y_axis_length).returns 30
-      @chart.stubs(:x_axis_label_x_coordinates).returns (0..100).step(100)
-      @chart.vertical_grid_lines.must_equal [ GridLine.new(Coordinate.new(0,0), Coordinate.new(0,30), "gridline"),
-        GridLine.new(Coordinate.new(100,0), Coordinate.new(100,30), "gridline") ]
-    end
-  end
 end

@@ -4,19 +4,19 @@ module TChart
     attr_reader :date
     attr_reader :coord
     attr_reader :width
-    attr_reader :grid_line_length
+    attr_reader :vertical_grid_line
     
-    def initialize(chart, date, x_coordinate)
+    def initialize(chart, date, x)
       @date = date
-      @coord = Coordinate.new(x_coordinate, chart.x_label_y_coordinate)
+      @coord = Coordinate.new(x, chart.x_label_y_coordinate)
       @width = chart.x_label_width
-      @grid_line_length = chart.y_axis_length
+      @vertical_grid_line = GridLine.new(Coordinate.new(x, 0), Coordinate.new(x, chart.y_axis_length), "gridline") # TODO: "gridline" needs to be read from
     end
     
     def render(tex)
       tex.comment date.year
       tex.label coord, width, 'xlabel', date.year
-      #tex.line Coordinate.new(coord.x, 0), Coordinate.new(coord.x, grid_line_length), "gridline" # TODO: "gridline" needs to be read from somewhere
+      vertical_grid_line.render(tex)
     end
     
   end

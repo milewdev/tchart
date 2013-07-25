@@ -52,10 +52,6 @@ module TChart
       @frame ||= Frame.new(self)
     end
     
-    def vertical_grid_lines
-      @vertical_grid_lines ||= build_vertical_grid_lines
-    end
-    
     def items_date_range
       @items_date_range ||= derive_items_date_range
     end
@@ -77,7 +73,6 @@ module TChart
       tex = Tex.new
       tex.echo "\\tikzpicture\n\n"
       frame.render(tex)
-      vertical_grid_lines.each { |grid_line| grid_line.render(tex) }
       x_axis_labels.each { |label| label.render(tex) }
       items.each { |item| item.render(tex) }
       tex.echo "\n\\endtikzpicture\n"
@@ -128,14 +123,6 @@ module TChart
       num_coords = x_axis_dates.size
       x_interval = x_axis_length / (num_coords - 1.0)
       (0..x_axis_length).step(x_interval)
-    end
-    
-    def build_vertical_grid_lines
-      x_axis_label_x_coordinates.map do |x|
-        from = Coordinate.new(x, 0)
-        to = Coordinate.new(x, y_axis_length)
-        GridLine.new(from, to, "gridline")    # TODO: "gridline" should be read from somewhere
-      end
     end
     
   end

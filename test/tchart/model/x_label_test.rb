@@ -10,7 +10,7 @@ module TChart
     
     it "generates TeX code to render an x-axis label" do
       @tex.expects(:label).once
-      #@tex.expects(:line).once
+      @x_label.vertical_grid_line.expects(:render).once
       @x_label.render(@tex)
     end
   end
