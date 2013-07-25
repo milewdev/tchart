@@ -40,8 +40,24 @@ module TChart
       @x_axis_labels ||= XLabelsBuilder.build(self)
     end
     
+    def x_axis_dates
+      @x_axis_dates ||= derive_x_axis_dates
+    end
+    
+    def x_axis_label_x_coordinates
+      @x_axis_label_x_coordinates ||= derive_x_axis_label_x_coordinates
+    end
+    
     def frame
       @frame ||= Frame.new(self)
+    end
+    
+    def vertical_grid_lines
+      @vertical_grid_lines ||= build_vertical_grid_lines
+    end
+    
+    def items_date_range
+      @items_date_range ||= derive_items_date_range
     end
     
     def calc_layout
@@ -67,10 +83,16 @@ module TChart
       tex.to_s
     end
     
-    def self.x_axis_dates(date_range)
+  private
+  
+    def item_y_coordinates
+      (line_height * items.length).step(line_height, -line_height)
+    end
+    
+    def derive_x_axis_dates
       # try a date for each year in the items date range
-      from_year = date_range.begin.year        # round down to Jan 1st of year
-      to_year = date_range.end.year + 1        # +1 to round up to Jan 1st of the following year
+      from_year = items_date_range.begin.year         # round down to Jan 1st of year
+      to_year = items_date_range.end.year + 1         # +1 to round up to Jan 1st of the following year
       return (from_year..to_year).step(1) if to_year - from_year <= 10
 
       # try a date every five years
@@ -83,11 +105,36 @@ module TChart
       to_year = (to_year / 10.0).ceil * 10            # round up to nearest decade
       return (from_year..to_year).step(10)
     end
+  
+    def derive_items_date_range
+      from = nil
+      to = nil
+      items.each do |chart_item|
+        # TODO: this belongs in ChartItem
+        chart_item.date_ranges.each do |date_range|
+          from = date_range.begin if from.nil? or date_range.begin < from
+          to = date_range.end if to.nil? or to < date_range.end
+        end
+      end
+      # TODO: refactor: put this somewhere else
+      current_year = Date.today.year
+      from ||= Date.new(current_year, 1, 1)
+      to ||= Date.new(current_year, 12, 31)
+      from..to
+    end
     
-  private
+    def derive_x_axis_label_x_coordinates
+      num_coords = items_date_range.size
+      x_interval = x_axis_length / (num_coords - 1.0)
+      (0..x_axis_length).step(x_interval)
+    end
     
-    def item_y_coordinates
-      (line_height * items.length).step(line_height, -line_height)
+    def build_vertical_grid_lines
+      x_axis_label_x_coordinates.map do |x|
+        from = Coordinate.new(x, 0)
+        to = Coordinate.new(x, y_axis_length)
+        GridLine.new(from, to, "gridline")    # TODO: "gridline" should be read from somewhere
+      end
     end
     
   end
