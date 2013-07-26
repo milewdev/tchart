@@ -64,7 +64,7 @@ module TChart
     
     # ratio is: x_coordinate / x_axis_length = ( date - date_range.begin ) / date_range_length
     def date_to_x_coordinate(date)
-      date_from, date_to = x_axis_labels.first.date, x_axis_labels.last.date
+      date_from, date_to = Date.new(x_axis_dates.first,1,1), Date.new(x_axis_dates.last,1,1)
       date_range_length = date_to.jd - date_from.jd      
       ( x_axis_length * ( date.jd - date_from.jd ) * 1.0 ) / date_range_length 
     end
@@ -89,17 +89,17 @@ module TChart
       # try a date for each year in the items date range
       from_year = items_date_range.begin.year         # round down to Jan 1st of year
       to_year = items_date_range.end.year + 1         # +1 to round up to Jan 1st of the following year
-      return (from_year..to_year).step(1) if to_year - from_year <= 10
+      return (from_year..to_year).step(1).to_a if to_year - from_year <= 10
 
       # try a date every five years
       from_year = (from_year / 5.0).floor * 5         # round down to nearest 1/2 decade
       to_year = (to_year / 5.0).ceil * 5              # round up to nearest 1/2 decade
-      return (from_year..to_year).step(5) if to_year - from_year <= 50
+      return (from_year..to_year).step(5).to_a if to_year - from_year <= 50
 
       # use a date every 10 years
       from_year = (from_year / 10.0).floor * 10       # round down to nearest decade
       to_year = (to_year / 10.0).ceil * 10            # round up to nearest decade
-      return (from_year..to_year).step(10)
+      return (from_year..to_year).step(10).to_a
     end
   
     def derive_items_date_range
