@@ -18,22 +18,6 @@ module TChart
     end
   end
   
-  describe Chart, "x_axis_labels" do
-    it "calls XLabelsBuilder#build" do
-      settings = stub( chart_width: 130, x_label_width: 10, y_label_width: 20, line_height: 10 )
-      chart = Chart.new(settings, [stub, stub, stub])
-      XLabelsBuilder.expects(:build).with(chart)
-      chart.x_axis_labels
-    end
-    it "caches the result" do
-      settings = stub( chart_width: 130, x_label_width: 10, y_label_width: 20, line_height: 10 )
-      chart = Chart.new(settings, [stub, stub, stub])
-      XLabelsBuilder.expects(:build).once.with(chart).returns(stub)
-      chart.x_axis_labels
-      chart.x_axis_labels
-    end
-  end
-  
   describe Chart, "y_axis_label_x_coordinate" do
     it "returns the correct value" do
       settings = stub( chart_width: 130, x_label_width: 10, y_label_width: 20, line_height: 10 )
@@ -130,6 +114,34 @@ module TChart
       chart = Chart.new(stub, [item1, item2])
       this_year = Date.today.year
       chart.items_date_range.must_equal Date.new(this_year,1,1)..Date.new(this_year,12,31)
+    end
+  end
+  
+  describe Chart, "x_axis_labels" do
+    before do
+      @chart = Chart.new(stub, [stub, stub])
+      @chart.stubs(:x_label_y_coordinate).returns -3
+      @chart.stubs(:x_label_width).returns 10
+      @chart.stubs(:line_height).returns 4
+      @chart.stubs(:x_axis_dates).returns [2000, 2001, 2002, 2003, 2004]
+      @chart.stubs(:x_axis_label_x_coordinates).returns [0, 25, 50, 75, 100]
+    end
+    it "builds the correct number of labels" do
+      @chart.x_axis_labels.length.must_equal 5
+    end
+    it "builds labels with the correct text" do
+      @chart.x_axis_labels[0].date.must_equal Date.new(2000,1,1)
+      @chart.x_axis_labels[1].date.must_equal Date.new(2001,1,1)
+      @chart.x_axis_labels[2].date.must_equal Date.new(2002,1,1)
+      @chart.x_axis_labels[3].date.must_equal Date.new(2003,1,1)
+      @chart.x_axis_labels[4].date.must_equal Date.new(2004,1,1)
+    end
+    it "builds labels with the correct x-coordinate" do
+      @chart.x_axis_labels[0].label.coord.x.must_equal 0
+      @chart.x_axis_labels[1].label.coord.x.must_equal 25
+      @chart.x_axis_labels[2].label.coord.x.must_equal 50
+      @chart.x_axis_labels[3].label.coord.x.must_equal 75
+      @chart.x_axis_labels[4].label.coord.x.must_equal 100
     end
   end
 end

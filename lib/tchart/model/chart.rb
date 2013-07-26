@@ -36,16 +36,16 @@ module TChart
       -y_label_width / 2.0
     end
     
-    def x_axis_labels
-      @x_axis_labels ||= XLabelsBuilder.build(self)
-    end
-    
-    def x_axis_dates
+    def x_axis_dates # TODO: rename to x_axis_years?  Or return instances of Date?
       @x_axis_dates ||= derive_x_axis_dates
     end
     
     def x_axis_label_x_coordinates
       @x_axis_label_x_coordinates ||= derive_x_axis_label_x_coordinates
+    end
+    
+    def x_axis_labels
+      @x_axis_labels ||= build_x_axis_labels
     end
     
     def frame
@@ -123,6 +123,10 @@ module TChart
       num_coords = x_axis_dates.size
       x_interval = x_axis_length / (num_coords - 1.0)
       (0..x_axis_length).step(x_interval)
+    end
+    
+    def build_x_axis_labels
+      x_axis_dates.zip(x_axis_label_x_coordinates).map { |year, x| XLabel.new(self, Date.new(year,1,1), x) }
     end
     
   end
