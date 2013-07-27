@@ -5,6 +5,14 @@ module TChart
     attr_reader :to
     attr_reader :style
     
+    def self.build_hgridline(from, to)
+      GridLine.new(from, to, "hgridline")
+    end
+    
+    def self.build_vgridline(from, to)
+      GridLine.new(from, to, "vgridline")
+    end
+    
     def initialize(from, to, style)
       @from = from
       @to = to

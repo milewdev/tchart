@@ -5,8 +5,7 @@
 module TChart
   class SeparatorItem
     
-    attr_reader :from
-    attr_reader :to
+    attr_reader :horizontal_grid_line
     attr_reader :date_ranges
     
     def initialize
@@ -14,13 +13,14 @@ module TChart
     end
     
     def calc_layout(chart, y)
-      @from = xy(0, y)
-      @to = xy(chart.x_axis_length, y)
+      from = xy(0, y)
+      to = xy(chart.x_axis_length, y)
+      @horizontal_grid_line = GridLine.build_hgridline(from, to)
     end
     
     def render(tex)
       tex.comment "horizontal separator line"
-      tex.line from, to, "gridline" # TODO: "gridline" needs to be read from somewhere
+      horizontal_grid_line.render(tex)
     end
     
   end

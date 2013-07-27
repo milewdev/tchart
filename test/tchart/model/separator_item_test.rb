@@ -14,7 +14,8 @@ module TChart
     end
     
     it "generates TeX code to render a separator" do
-      @tex.expects(:line).once
+      horizontal_grid_line = stub ; horizontal_grid_line.expects(:render).once
+      @separator.stubs(:horizontal_grid_line).returns horizontal_grid_line
       @separator.render(@tex)
     end
   end

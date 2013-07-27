@@ -6,7 +6,7 @@ module TChart
     
     def initialize(chart, date, x)
       @label = Label.new(xy(x, chart.x_label_y_coordinate), chart.x_label_width, "xlabel", date.year.to_s) # TODO: "xlabel" needs to be read
-      @vertical_grid_line = GridLine.new(xy(x, 0), xy(x, chart.y_axis_length), "gridline") # TODO: "gridline" needs to be read
+      @vertical_grid_line = GridLine.build_vgridline(xy(x, 0), xy(x, chart.y_axis_length))
     end
     
     def render(tex)
