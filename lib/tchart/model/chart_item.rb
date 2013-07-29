@@ -10,24 +10,21 @@ module TChart
   # also stores the calculated y-coordinate of the item, and the
   # calculated x coordinates of each of its date ranges.
   #
-  # Style is the name of a TikZ style that should be defined
+  # bar_style is the name of a TikZ style that should be defined
   # in the TeX document in which the generated chart is
   # embedded.
-  #
-  # SMELL: too many comments above.
-  # SMELL: 'ChartItem' sounds too generic ('item' in particular); Plotted?x
   #
   class ChartItem
     
     attr_reader :name
-    attr_reader :style          # TODO: rename to bar_style
+    attr_reader :bar_style
     attr_reader :date_ranges
     attr_reader :y_axis_label
     attr_reader :bars
 
-    def initialize(name, style, date_ranges)
+    def initialize(name, bar_style, date_ranges)
        @name = name
-       @style = style
+       @bar_style = bar_style
        @date_ranges = date_ranges
     end
     
@@ -53,7 +50,7 @@ module TChart
       date_ranges.map do |date_range|
         x_from = chart.date_to_x_coordinate(date_range.begin)
         x_to = chart.date_to_x_coordinate(date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
-        Bar.new(xy(x_from, y), xy(x_to, y), style)
+        Bar.new(xy(x_from, y), xy(x_to, y), bar_style)
       end
     end
     

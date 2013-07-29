@@ -125,14 +125,14 @@ module TChart
       data = StringIO.new("Name\tStyle\t2000.4.14-2001.2.22\n")
       _, items, _ = DataParser.parse('filename.txt', data)
       items[0].name.must_equal 'Name'
-      items[0].style.must_equal 'Style'
+      items[0].bar_style.must_equal 'Style'
       items[0].date_ranges.must_equal [ Date.new(2000,4,14)..Date.new(2001,2,22) ]
     end
     it "does not treat multiple tab characters are missing fields" do
       data = StringIO.new("\t\tName\t\tStyle\t\t2000.4.14-2001.2.22\t\t\n")
       _, items, _ = DataParser.parse('filename.txt', data)
       items[0].name.must_equal 'Name'
-      items[0].style.must_equal 'Style'
+      items[0].bar_style.must_equal 'Style'
       items[0].date_ranges.must_equal [ Date.new(2000,4,14)..Date.new(2001,2,22) ]
     end
     it "returns a 'no chart items found' error if no chart items were found in the data and no other errors were found" do
@@ -154,14 +154,14 @@ module TChart
       data = StringIO.new("Name\tStyle\n")
       _, items, _ = DataParser.parse('filename.txt', data)
       items[0].name.must_equal 'Name'
-      items[0].style.must_equal 'Style'
+      items[0].bar_style.must_equal 'Style'
       items[0].date_ranges.must_equal []
     end
     it "allows chart items with no style and no date ranges" do
       data = StringIO.new("Name\n")
       _, items, _ = DataParser.parse('filename.txt', data)
       items[0].name.must_equal 'Name'
-      items[0].style.must_equal nil
+      items[0].bar_style.must_equal nil
       items[0].date_ranges.must_equal []
     end
     it "strips leading and trailing spaces from the name" do
@@ -172,7 +172,7 @@ module TChart
     it "strips leading and trailing spaces from the style" do
       data = StringIO.new(" Name\t Style \t2000\n")
       _, items, _ = DataParser.parse('filename.txt', data)
-      items[0].style.must_equal 'Style'
+      items[0].bar_style.must_equal 'Style'
     end
     it "allows many date ranges" do
       data = StringIO.new("Name\tStyle\t2000\t2001\t2002\n")
