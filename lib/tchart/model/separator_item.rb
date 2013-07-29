@@ -1,6 +1,5 @@
 #
 # SMELL: the attribute 'date_ranges'.  Use a message instead, such as #min_and_max_date.
-# SMELL: #calc_layout and #render seem to split the responsibility of retrieving dimension information.
 #
 module TChart
   class SeparatorItem
@@ -21,6 +20,7 @@ module TChart
     def render(tex)
       tex.comment "horizontal separator line"
       horizontal_gridline.render(tex)
+      tex.newline
     end
     
   end

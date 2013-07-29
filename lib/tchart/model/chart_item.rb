@@ -15,7 +15,7 @@ module TChart
   # embedded.
   #
   # SMELL: too many comments above.
-  # SMELL: 'ChartItem' sounds too generic ('item' in particular); Plotted?
+  # SMELL: 'ChartItem' sounds too generic ('item' in particular); Plotted?x
   #
   class ChartItem
     
@@ -40,6 +40,7 @@ module TChart
       tex.comment name
       y_axis_label.render(tex)
       bars.each { |bar| bar.render(tex) }
+      tex.newline
     end
     
   private

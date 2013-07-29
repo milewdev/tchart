@@ -15,6 +15,7 @@ module TChart
       tex.newline
       tex.comment "horizontal top frame"
       bottom_gridline.render(tex)
+      tex.newline
     end
     
   end

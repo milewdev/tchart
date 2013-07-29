@@ -13,6 +13,7 @@ module TChart
       tex.comment label.text
       label.render(tex)
       vertical_gridline.render(tex)
+      tex.newline
     end
     
   end
