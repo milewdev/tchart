@@ -17,9 +17,9 @@ module TChart
     end
     
     def setting_names
-        methods
-          .grep(/\w=$/)
-          .map {|name| name.to_s.chomp('=')}
+      methods
+        .grep(/\w=$/)
+        .map {|name| name.to_s.chomp('=')}
     end
     
     def has_setting?(setting_name)
