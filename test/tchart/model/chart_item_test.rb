@@ -31,7 +31,7 @@ module TChart
     
     it "creates a label and a list of bars" do
       @item.calc_layout(@chart, 10)
-      @item.y_axis_label.must_equal Label.new(xy(-10,10), 20, "ylabel", "name")
+      @item.y_axis_label.must_equal Label.build_ylabel(xy(-10,10), 20, "name")
       @item.bars.must_equal [ Bar.new(xy(0,10), xy(50,10), "bar_style") ]
     end
   end
