@@ -1,8 +1,8 @@
 module TChart
   
   #
-  # A horizontal bar drawn on a chart and that represents
-  # a date range.
+  # A horizontal bar drawn on a chart.  The bar represents whatever
+  # is being charted, such as a date range.
   #
   class Bar
     
