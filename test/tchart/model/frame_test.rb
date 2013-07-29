@@ -9,8 +9,8 @@ module TChart
     end
     
     it "generates TeX code to render the frame of a chart" do
-      @frame.top_grid_line.expects(:render).once
-      @frame.bottom_grid_line.expects(:render).once
+      @frame.top_gridline.expects(:render).once
+      @frame.bottom_gridline.expects(:render).once
       @frame.render(@tex)
     end
   end
