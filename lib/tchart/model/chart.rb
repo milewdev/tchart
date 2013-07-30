@@ -56,6 +56,10 @@ module TChart
       @items_date_range ||= derive_items_date_range
     end
     
+    def x_axis
+      @x_axis ||= build_x_axis
+    end
+    
     def calc_layout
       items
         .zip(item_y_coordinates)
@@ -73,7 +77,7 @@ module TChart
       tex = Tex.new
       tex.echo "\\tikzpicture\n\n"
       frame.render(tex)
-      x_axis_labels.each { |label| label.render(tex) }
+      x_axis.render(tex)
       items.each { |item| item.render(tex) }
       tex.echo "\n\\endtikzpicture\n"
       tex.to_s
@@ -127,6 +131,12 @@ module TChart
     
     def build_x_axis_labels
       x_axis_dates.zip(x_axis_label_x_coordinates).map { |year, x| XLabel.new(self, Date.new(year,1,1), x) }
+    end
+    
+    def build_x_axis
+      labels = x_axis_dates.zip(x_axis_label_x_coordinates).map { |year, x| Label.build_xlabel(xy(x, x_label_y_coordinate), x_label_width, year.to_s) }
+      gridlines = x_axis_label_x_coordinates.map { |x| GridLine.build_vgridline(xy(x, 0), xy(x, y_axis_length)) }
+      XAxis.new(labels, gridlines)
     end
     
   end

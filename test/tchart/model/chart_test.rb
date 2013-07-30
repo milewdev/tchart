@@ -120,7 +120,7 @@ module TChart
   describe Chart, "x_axis_labels" do
     before do
       @chart = Chart.new(stub, [stub, stub])
-      @chart.stubs(:x_label_y_coordinate).returns -3
+      @chart.stubs(:x_label_y_coordinate).returns (-3)
       @chart.stubs(:x_label_width).returns 10
       @chart.stubs(:line_height).returns 4
       @chart.stubs(:x_axis_dates).returns [2000, 2001, 2002, 2003, 2004]
@@ -142,6 +142,21 @@ module TChart
       @chart.x_axis_labels[2].label.coord.x.must_equal 50
       @chart.x_axis_labels[3].label.coord.x.must_equal 75
       @chart.x_axis_labels[4].label.coord.x.must_equal 100
+    end
+  end
+  
+  describe Chart, "x_axis" do
+    before do
+      @chart = Chart.new(stub, [stub, stub])
+      @chart.stubs(:x_label_y_coordinate).returns (-3)
+      @chart.stubs(:x_label_width).returns 10
+      @chart.stubs(:line_height).returns 4
+      @chart.stubs(:x_axis_dates).returns [2000, 2001, 2002, 2003, 2004]
+      @chart.stubs(:x_axis_label_x_coordinates).returns [0, 25, 50, 75, 100]
+    end
+    it "builds an x axis with the correct number of labels and gridlines" do
+      @chart.x_axis.labels.length.must_equal 5
+      @chart.x_axis.gridlines.length.must_equal 5
     end
   end
 end
