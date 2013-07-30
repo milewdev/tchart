@@ -129,10 +129,6 @@ module TChart
       (0..x_axis_length).step(x_interval)
     end
     
-    def build_x_axis_labels
-      x_axis_dates.zip(x_axis_label_x_coordinates).map { |year, x| XLabel.new(self, Date.new(year,1,1), x) }
-    end
-    
     def build_x_axis
       labels = x_axis_dates.zip(x_axis_label_x_coordinates).map { |year, x| Label.build_xlabel(xy(x, x_label_y_coordinate), x_label_width, year.to_s) }
       gridlines = x_axis_label_x_coordinates.map { |x| GridLine.build_vgridline(xy(x, 0), xy(x, y_axis_length)) }
