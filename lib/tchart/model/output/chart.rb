@@ -44,20 +44,12 @@ module TChart
       @x_axis_label_x_coordinates ||= derive_x_axis_label_x_coordinates
     end
     
-    def x_axis_labels
-      @x_axis_labels ||= build_x_axis_labels
-    end
-    
     def frame
       @frame ||= Frame.new(self)
     end
     
     def items_date_range
       @items_date_range ||= derive_items_date_range
-    end
-    
-    def x_axis
-      @x_axis ||= build_x_axis
     end
     
     def calc_layout
@@ -77,7 +69,8 @@ module TChart
       tex = Tex.new
       tex.echo "\\tikzpicture\n\n"
       frame.render(tex)
-      x_axis.render(tex)
+      render_x_axis_labels(tex)
+      render_vertical_gridlines(tex)
       items.each { |item| item.render(tex) }
       tex.echo "\n\\endtikzpicture\n"
       tex.to_s
@@ -129,10 +122,24 @@ module TChart
       (0..x_axis_length).step(x_interval)
     end
     
-    def build_x_axis
-      labels = x_axis_dates.zip(x_axis_label_x_coordinates).map { |year, x| Label.build_xlabel(xy(x, x_label_y_coordinate), x_label_width, year.to_s) }
-      gridlines = x_axis_label_x_coordinates.map { |x| GridLine.build_vgridline(xy(x, 0), xy(x, y_axis_length)) }
-      XAxis.new(labels, gridlines)
+    def x_axis_labels
+      @x_axis_labels ||= x_axis_dates.zip(x_axis_label_x_coordinates).map { |year, x| Label.build_xlabel(xy(x, x_label_y_coordinate), x_label_width, year.to_s) }
+    end
+    
+    def vertical_gridlines
+      @vertical_gridlines ||= x_axis_label_x_coordinates.map { |x| GridLine.build_vgridline(xy(x, 0), xy(x, y_axis_length)) }
+    end
+    
+    def render_x_axis_labels(tex)
+      tex.comment "x-axis labels"
+      x_axis_labels.each { |label| label.render(tex) }
+      tex.newline
+    end
+    
+    def render_vertical_gridlines(tex)
+      tex.comment "vertical grid lines"
+      vertical_gridlines.each { |gridline| gridline.render(tex) }
+      tex.newline
     end
     
   end

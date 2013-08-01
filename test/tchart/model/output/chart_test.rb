@@ -116,33 +116,4 @@ module TChart
       chart.items_date_range.must_equal Date.new(this_year,1,1)..Date.new(this_year,12,31)
     end
   end
-  
-  describe Chart, "x_axis" do
-    before do
-      @chart = Chart.new(stub, [stub, stub])
-      @chart.stubs(:x_label_y_coordinate).returns (-3)
-      @chart.stubs(:x_label_width).returns 10
-      @chart.stubs(:line_height).returns 4
-      @chart.stubs(:x_axis_dates).returns [2000, 2001, 2002, 2003, 2004]
-      @chart.stubs(:x_axis_label_x_coordinates).returns [0, 25, 50, 75, 100]
-    end
-    it "builds an x axis with the correct number of labels and gridlines" do
-      @chart.x_axis.labels.length.must_equal 5
-      @chart.x_axis.gridlines.length.must_equal 5
-    end
-    it "builds labels with the correct text" do
-      @chart.x_axis.labels[0].text.must_equal "2000"
-      @chart.x_axis.labels[1].text.must_equal "2001"
-      @chart.x_axis.labels[2].text.must_equal "2002"
-      @chart.x_axis.labels[3].text.must_equal "2003"
-      @chart.x_axis.labels[4].text.must_equal "2004"
-    end
-    it "builds labels with the correct x-coordinate" do
-      @chart.x_axis.labels[0].coord.x.must_equal 0
-      @chart.x_axis.labels[1].coord.x.must_equal 25
-      @chart.x_axis.labels[2].coord.x.must_equal 50
-      @chart.x_axis.labels[3].coord.x.must_equal 75
-      @chart.x_axis.labels[4].coord.x.must_equal 100
-    end
-  end
 end
