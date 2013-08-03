@@ -31,6 +31,7 @@ module TChart
     def build(layout, y)
       @y_axis_label = build_label(layout, y)
       @bars = build_bars(layout, y)
+      [ @y_axis_label ] + @bars
     end
     
     def render(tex)

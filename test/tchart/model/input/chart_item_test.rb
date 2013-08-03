@@ -35,6 +35,11 @@ module TChart
       @item.y_axis_label.must_equal Label.build_ylabel(xy(-10,10), 20, "name")
       @item.bars.must_equal [ Bar.new(xy(0,10), xy(50,10), "bar_style") ]
     end
+    it "returns an array containing a label and bars" do
+      elements = @item.build(@layout, 10)
+      elements.length.must_equal 2
+      elements
+    end
   end
     
   describe ChartItem, "render" do

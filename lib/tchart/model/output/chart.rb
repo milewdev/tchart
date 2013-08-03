@@ -23,9 +23,12 @@ module TChart
     end
     
     def build
+      # TODO: see if there is a way of collecting the arrays without using 'elements'
+      elements = []
       items
         .zip(layout.item_y_coordinates)
-        .each { |item, y_coordinate| item.build(layout, y_coordinate) }
+        .each { |item, y_coordinate| elements += item.build(layout, y_coordinate) }
+      elements
     end
     
     def render

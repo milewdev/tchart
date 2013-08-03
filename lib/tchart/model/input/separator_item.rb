@@ -15,6 +15,7 @@ module TChart
       from = xy(0, y)
       to = xy(layout.x_axis_length, y)
       @horizontal_gridline = GridLine.build_hgridline(from, to)
+      [ @horizontal_gridline ]
     end
     
     def render(tex)
