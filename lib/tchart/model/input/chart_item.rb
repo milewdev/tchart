@@ -28,7 +28,7 @@ module TChart
        @date_ranges = date_ranges
     end
     
-    def calc_layout(chart, y)
+    def build(chart, y)
       @y_axis_label = build_label(chart, y)
       @bars = build_bars(chart, y)
     end

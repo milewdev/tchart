@@ -1,9 +1,9 @@
 require_relative '../../../test_helper'
 
 module TChart
-  describe SeparatorItem, "calc_layout" do
+  describe SeparatorItem, "build" do
     it "is defined" do
-      SeparatorItem.new.must_respond_to :calc_layout
+      SeparatorItem.new.must_respond_to :build
     end
   end
 

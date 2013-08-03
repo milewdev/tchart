@@ -22,10 +22,10 @@ module TChart
       @frame ||= Frame.new(@layout)
     end
     
-    def calc_layout
+    def build
       items
         .zip(layout.item_y_coordinates)
-        .each { |item, y_coordinate| item.calc_layout(self, y_coordinate) }
+        .each { |item, y_coordinate| item.build(self, y_coordinate) }
     end
     
     # ratio is: x_coordinate / x_axis_length = ( date - date_range.begin ) / date_range_length
