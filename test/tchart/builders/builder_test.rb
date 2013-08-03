@@ -6,7 +6,7 @@ module TChart
       @layout = stub()
       @layout.stubs(:x_axis_dates).returns [ 2001, 2002, 2003, 2004, 2005 ]
       @layout.stubs(:x_axis_label_x_coordinates).returns [ 0, 25, 50, 75, 100 ]
-      @layout.stubs(:x_label_y_coordinate).returns -3
+      @layout.stubs(:x_label_y_coordinate).returns (-3)
       @layout.stubs(:x_label_width).returns 10
     end
 

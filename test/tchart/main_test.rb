@@ -3,10 +3,17 @@ require_relative '../test_helper'
 module TChart
   describe Main do
     before do
+      @argv = ["smoke_test.txt", "smoke_test.tex"]
+      File.open(@argv[0], 'w') {|f| f.puts("skill \t style \t 2001-2005\n---")}
       @old_stderr, $stderr = $stderr, StringIO.new
     end
     after do
       $stderr = @old_stderr
+      @argv.each { |filename| File.delete(filename) if File.exist?(filename) }
+    end
+    it "works" do
+      TChart::Main.run(@argv)
+      $stderr.string.must_equal ""
     end
     it "writes only the message (not the stack trace) to $stderr of TChartErrors" do
       TChart::Main.run([])

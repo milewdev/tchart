@@ -4,9 +4,9 @@ module TChart
     attr_reader :top_gridline
     attr_reader :bottom_gridline
     
-    def initialize(chart)
-      @top_gridline = GridLine.build_hgridline(xy(0, chart.y_axis_length), xy(chart.x_axis_length, chart.y_axis_length))
-      @bottom_gridline = GridLine.build_hgridline(xy(0, 0), xy(chart.x_axis_length, 0))
+    def initialize(layout)
+      @top_gridline = GridLine.build_hgridline(xy(0, layout.y_axis_length), xy(layout.x_axis_length, layout.y_axis_length))
+      @bottom_gridline = GridLine.build_hgridline(xy(0, 0), xy(layout.x_axis_length, 0))
     end
     
     def render(tex)

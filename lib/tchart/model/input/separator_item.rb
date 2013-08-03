@@ -13,7 +13,7 @@ module TChart
     
     def calc_layout(chart, y)
       from = xy(0, y)
-      to = xy(chart.x_axis_length, y)
+      to = xy(chart.layout.x_axis_length, y)
       @horizontal_gridline = GridLine.build_hgridline(from, to)
     end
     

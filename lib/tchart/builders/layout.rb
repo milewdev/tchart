@@ -41,6 +41,18 @@ module TChart
       @item_y_coordinates ||= calc_item_y_coordinates
     end
     
+    def x_label_y_coordinate
+      settings.x_label_y_coordinate
+    end
+    
+    def x_label_width
+      settings.x_label_width
+    end
+    
+    def y_label_width
+      settings.y_label_width
+    end
+    
   private
       
     def calc_items_date_range

@@ -43,7 +43,7 @@ module TChart
   private
   
     def build_label(chart, y)
-      Label.build_ylabel(xy(chart.y_axis_label_x_coordinate, y), chart.y_label_width, name)
+      Label.build_ylabel(xy(chart.layout.y_axis_label_x_coordinate, y), chart.layout.y_label_width, name)
     end
     
     def build_bars(chart, y)
