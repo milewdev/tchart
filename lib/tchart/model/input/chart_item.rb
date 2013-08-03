@@ -28,9 +28,9 @@ module TChart
        @date_ranges = date_ranges
     end
     
-    def build(chart, y)
-      @y_axis_label = build_label(chart, y)
-      @bars = build_bars(chart, y)
+    def build(layout, y)
+      @y_axis_label = build_label(layout, y)
+      @bars = build_bars(layout, y)
     end
     
     def render(tex)
@@ -42,14 +42,14 @@ module TChart
     
   private
   
-    def build_label(chart, y)
-      Label.build_ylabel(xy(chart.layout.y_axis_label_x_coordinate, y), chart.layout.y_label_width, name)
+    def build_label(layout, y)
+      Label.build_ylabel(xy(layout.y_axis_label_x_coordinate, y), layout.y_label_width, name)
     end
     
-    def build_bars(chart, y)
+    def build_bars(layout, y)
       date_ranges.map do |date_range|
-        x_from = chart.layout.date_to_x_coordinate(date_range.begin)
-        x_to = chart.layout.date_to_x_coordinate(date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
+        x_from = layout.date_to_x_coordinate(date_range.begin)
+        x_to = layout.date_to_x_coordinate(date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
         Bar.new(xy(x_from, y), xy(x_to, y), bar_style)
       end
     end

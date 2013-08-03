@@ -11,9 +11,9 @@ module TChart
       @date_ranges = []
     end
     
-    def build(chart, y)
+    def build(layout, y)
       from = xy(0, y)
-      to = xy(chart.layout.x_axis_length, y)
+      to = xy(layout.x_axis_length, y)
       @horizontal_gridline = GridLine.build_hgridline(from, to)
     end
     

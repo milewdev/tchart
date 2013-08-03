@@ -25,7 +25,7 @@ module TChart
     def build
       items
         .zip(layout.item_y_coordinates)
-        .each { |item, y_coordinate| item.build(self, y_coordinate) }
+        .each { |item, y_coordinate| item.build(layout, y_coordinate) }
     end
     
     def render

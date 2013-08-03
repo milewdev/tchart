@@ -8,8 +8,8 @@ module TChart
       chart = Chart.new(settings, items)
       layout = stub( item_y_coordinates: [20, 10] )
       chart.stubs(:layout).returns layout
-      items[0].expects(:build).with(chart, 20)
-      items[1].expects(:build).with(chart, 10)
+      items[0].expects(:build).with(layout, 20)
+      items[1].expects(:build).with(layout, 10)
       chart.build
     end
   end
