@@ -48,8 +48,8 @@ module TChart
     
     def build_bars(chart, y)
       date_ranges.map do |date_range|
-        x_from = chart.date_to_x_coordinate(date_range.begin)
-        x_to = chart.date_to_x_coordinate(date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
+        x_from = chart.layout.date_to_x_coordinate(date_range.begin)
+        x_to = chart.layout.date_to_x_coordinate(date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
         Bar.new(xy(x_from, y), xy(x_to, y), bar_style)
       end
     end

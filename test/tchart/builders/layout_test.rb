@@ -112,4 +112,19 @@ module TChart
       @layout.item_y_coordinates.to_a.must_equal [30, 20, 10]
     end
   end
+  
+  describe Layout, "date_to_x_coordinate" do
+    before do
+      settings = stub( chart_width: 130, x_label_width: 10, y_label_width: 20, line_height: 10 )
+      items = stub
+      @layout = Layout.new(settings, items)
+      @layout.stubs(:x_axis_dates).returns (2001..2002).step(1).to_a
+      @layout.stubs(:x_axis_length).returns 100
+    end
+    it "converts a date to its equivalent x-coordinate on the chart" do
+      @layout.date_to_x_coordinate(Date.new(2001,1,1)).must_equal 0
+      @layout.date_to_x_coordinate(Date.new(2001,6,30)).must_be_close_to 50, 1
+      @layout.date_to_x_coordinate(Date.new(2002,1,1)).must_equal 100
+    end
+  end
 end

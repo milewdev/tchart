@@ -53,6 +53,13 @@ module TChart
       settings.y_label_width
     end
     
+    # ratio is: x_coordinate / x_axis_length = ( date - date_range.begin ) / date_range_length
+    def date_to_x_coordinate(date)
+      date_from, date_to = Date.new(x_axis_dates.first,1,1), Date.new(x_axis_dates.last,1,1)
+      date_range_length = date_to.jd - date_from.jd      
+      ( x_axis_length * ( date.jd - date_from.jd ) * 1.0 ) / date_range_length 
+    end
+    
   private
       
     def calc_items_date_range
