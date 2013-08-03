@@ -18,11 +18,5 @@ module TChart
       [ @horizontal_gridline ]
     end
     
-    def render(tex)
-      tex.comment "horizontal separator line"
-      horizontal_gridline.render(tex)
-      tex.newline
-    end
-    
   end
 end

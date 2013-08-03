@@ -113,7 +113,7 @@ module TChart
   requirement "When an item does not have any date ranges, list the item's name on the chart but do not generate any bars." do
     given_the_input "item"
     the_expected_tex_is <<-'EOS'
-        % item
+        \draw [vgridline] /.*/
         \node /.*/
       
         \endtikzpicture

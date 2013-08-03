@@ -41,19 +41,4 @@ module TChart
       elements
     end
   end
-    
-  describe ChartItem, "render" do
-    before do
-      @tex = Tex.new
-      @item = ChartItem.new("name", "bar_style", [ Date.new(2001,1,1)..Date.new(2001,12,31) ])
-    end
-    
-    it "generates TeX code to render an item" do
-      label = stub ; label.expects(:render).once
-      bar = stub ; bar.expects(:render).once
-      @item.stubs(:y_axis_label).returns(label)
-      @item.stubs(:bars).returns([bar])
-      @item.render(@tex)
-    end
-  end
 end

@@ -24,11 +24,11 @@ module TChart
     
     def build
       # TODO: see if there is a way of collecting the arrays without using 'elements'
-      elements = []
+      @elements = []
       items
         .zip(layout.item_y_coordinates)
-        .each { |item, y_coordinate| elements += item.build(layout, y_coordinate) }
-      elements
+        .each { |item, y_coordinate| @elements += item.build(layout, y_coordinate) }
+      @elements
     end
     
     def render
@@ -37,7 +37,7 @@ module TChart
       frame.render(tex)
       render_x_axis_labels(tex)
       render_vertical_gridlines(tex)
-      items.each { |item| item.render(tex) }
+      @elements.each { |element| element.render(tex) }
       tex.echo "\n\\endtikzpicture\n"
       tex.to_s
     end

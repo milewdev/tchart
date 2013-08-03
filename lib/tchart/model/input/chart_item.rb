@@ -34,13 +34,6 @@ module TChart
       [ @y_axis_label ] + @bars
     end
     
-    def render(tex)
-      tex.comment name
-      y_axis_label.render(tex)
-      bars.each { |bar| bar.render(tex) }
-      tex.newline
-    end
-    
   private
   
     def build_label(layout, y)

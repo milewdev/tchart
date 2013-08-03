@@ -20,17 +20,4 @@ module TChart
       elements[0].must_equal GridLine.new(xy(0,10), xy(100,10), "hgridline")
     end
   end
-
-  describe SeparatorItem, "render" do
-    before do
-      @tex = Tex.new
-      @separator = SeparatorItem.new
-    end
-    
-    it "generates TeX code to render a separator" do
-      horizontal_gridline = stub ; horizontal_gridline.expects(:render).once
-      @separator.stubs(:horizontal_gridline).returns horizontal_gridline
-      @separator.render(@tex)
-    end
-  end
 end
