@@ -4,7 +4,6 @@
 module TChart
   class SeparatorItem
     
-    attr_reader :horizontal_gridline
     attr_reader :date_ranges
     
     def initialize
@@ -14,8 +13,7 @@ module TChart
     def build(layout, y)
       from = xy(0, y)
       to = xy(layout.x_axis_length, y)
-      @horizontal_gridline = GridLine.build_hgridline(from, to)
-      [ @horizontal_gridline ]
+      [ GridLine.build_hgridline(from, to) ]
     end
     
   end

@@ -6,9 +6,7 @@ module TChart
   # as a horizontal bar on the chart.  ChartItem captures the
   # name of the item, which is used as the y-axis label, the
   # style of its bars, and zero or date ranges; all of these
-  # attributes are read from a data file, for example.  ChartItem 
-  # also stores the calculated y-coordinate of the item, and the
-  # calculated x coordinates of each of its date ranges.
+  # attributes are read from a data file, for example.
   #
   # bar_style is the name of a TikZ style that should be defined
   # in the TeX document in which the generated chart is
@@ -19,8 +17,6 @@ module TChart
     attr_reader :name
     attr_reader :bar_style
     attr_reader :date_ranges
-    attr_reader :y_axis_label
-    attr_reader :bars
 
     def initialize(name, bar_style, date_ranges)
        @name = name
@@ -29,9 +25,7 @@ module TChart
     end
     
     def build(layout, y)
-      @y_axis_label = build_label(layout, y)
-      @bars = build_bars(layout, y)
-      [ @y_axis_label ] + @bars
+      [ build_label(layout, y) ] + build_bars(layout, y)
     end
     
   private
