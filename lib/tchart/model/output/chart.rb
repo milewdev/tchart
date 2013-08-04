@@ -13,7 +13,6 @@ module TChart
     attr_reader :layout     # TODO: retire
 
     def initialize(settings, items)
-      @settings = settings  # TODO: retire
       @items = items
       @layout = Layout.new(settings, items)
     end
