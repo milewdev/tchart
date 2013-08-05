@@ -3,10 +3,10 @@ require_relative '../../../test_helper'
 module TChart
   describe Chart, "build" do
     before do
-      settings = stub( chart_width: 130, x_label_width: 10, y_label_width: 20, line_height: 10 )
+      settings = stub
       @items = [ stub, stub ]
       @chart = Chart.new(settings, @items)
-      @layout = stub( item_y_coordinates: [20, 10] )
+      @layout = stub( item_y_coordinates: [20, 10], x_axis_dates: [2000, 2001], x_axis_label_x_coordinates: [0, 100], x_label_y_coordinate: -3, x_label_width: 10 )
       @chart.stubs(:layout).returns @layout
     end
     it "invokes 'build' on each item and returns an array of the built elements" do
