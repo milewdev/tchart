@@ -12,28 +12,11 @@ module TChart
       @item = ChartItem.new("name", "bar_style", [ Date.new(2001,1,1)..Date.new(2001,12,31) ])
     end
     
-    class Coordinate
-      def ==(other)
-        [ x, y ] == [ other.x, other.y ]
-      end
-    end
-  
-    class Label
-      def ==(other)
-        [ coord, width, style, text ] == [ other.coord, other.width, other.style, other.text ]
-      end
-    end
-    
-    class Bar
-      def ==(other)
-        [ from, to, style ] == [ other.from, other.to, style ]
-      end
-    end
-    
     it "returns an array containing a label and bars" do
       elements = @item.build(@layout, 10)
       elements.length.must_equal 2
-      elements
+      elements[0].must_be_kind_of Label
+      elements[1].must_be_kind_of Bar
     end
   end
 end

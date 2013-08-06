@@ -19,11 +19,9 @@ module TChart
         skill \t style \t 2001.4-2001.5
     EOS
     the_expected_tex_is <<-'EOS'
-        % x-axis labels
-        \node /.*/ {2001};
-        \node /.*/ {2002};
-
-        % vertical grid lines
+        /.*/ {2001};
+        /.*/
+        /.*/ {2002};
     EOS
   end
   
@@ -33,11 +31,9 @@ module TChart
         skill \t style \t 2001.1.1-2001.12.31
     EOS
     the_expected_tex_is <<-'EOS'
-        % x-axis labels
-        \node /.*/ {2001};
-        \node /.*/ {2002};
-
-        % vertical grid lines
+        /.*/ {2001};
+        /.*/
+        /.*/ {2002};
     EOS
   end
   
@@ -47,14 +43,15 @@ module TChart
         skill \t style \t 2001.1.1-2004.1.1
     EOS
     the_expected_tex_is <<-'EOS'
-        % x-axis labels
-        \node /.*/ {2001};
-        \node /.*/ {2002};
-        \node /.*/ {2003};
-        \node /.*/ {2004};
-        \node /.*/ {2005};
-
-        % vertical grid lines
+        /.*/ {2001};
+        /.*/
+        /.*/ {2002};
+        /.*/
+        /.*/ {2003};
+        /.*/
+        /.*/ {2004};
+        /.*/
+        /.*/ {2005};
     EOS
   end
   
@@ -64,13 +61,13 @@ module TChart
         skill \t style \t 2001.1.1-2011.1.1
     EOS
     the_expected_tex_is <<-'EOS'
-        % x-axis labels
-        \node /.*/ {2000};
-        \node /.*/ {2005};
-        \node /.*/ {2010};
-        \node /.*/ {2015};
-
-        % vertical grid lines
+        /.*/ {2000};
+        /.*/
+        /.*/ {2005};
+        /.*/
+        /.*/ {2010};
+        /.*/
+        /.*/ {2015};
     EOS
   end
   
@@ -80,16 +77,19 @@ module TChart
         skill \t style \t 2001.1.1-2051.1.1
     EOS
     the_expected_tex_is <<-'EOS'
-        % x-axis labels
-        \node /.*/ {2000};
-        \node /.*/ {2010};
-        \node /.*/ {2020};
-        \node /.*/ {2030};
-        \node /.*/ {2040};
-        \node /.*/ {2050};
-        \node /.*/ {2060};
-
-        % vertical grid lines
+        /.*/ {2000};
+        /.*/
+        /.*/ {2010};
+        /.*/
+        /.*/ {2020};
+        /.*/
+        /.*/ {2030};
+        /.*/
+        /.*/ {2040};
+        /.*/
+        /.*/ {2050};
+        /.*/
+        /.*/ {2060};
     EOS
   end
   
@@ -102,11 +102,9 @@ module TChart
   requirement "When no items have date ranges, use 1st January to 31st December of the current year as the date range." do
     given_the_input "item"
     the_expected_tex_is <<-'EOS'
-        % x-axis labels
-        \node /.*/ {20/\d{2}/};
-        \node /.*/ {20/\d{2}/};
-      
-        % vertical grid lines
+        /.*/ {20/\d{2}/};
+        /.*/
+        /.*/ {20/\d{2}/};
     EOS
   end
   
