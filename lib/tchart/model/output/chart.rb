@@ -19,10 +19,6 @@ module TChart
       @y_items = y_items
     end
     
-    def frame
-      @frame ||= Frame.new(@layout)
-    end
-    
     def build
       # TODO: see if there is a way of collecting the arrays without using 'elements'
       @elements = []
@@ -38,7 +34,6 @@ module TChart
     def render
       tex = Tex.new
       tex.echo "\\tikzpicture\n\n"
-      frame.render(tex)
       @elements.each { |element| element.render(tex) }
       tex.echo "\n\\endtikzpicture\n"
       tex.to_s

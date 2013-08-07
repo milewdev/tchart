@@ -8,7 +8,6 @@ module TChart
         skill \t style \t 2001.1.1-2001.12.31
     EOS
     the_expected_tex_is <<-'EOS'
-        % horizontal bottom frame
         \draw /.*/ (0.00mm, 0.00mm) -- (100.00mm, 0.00mm);
     EOS
   end
