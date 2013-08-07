@@ -1,18 +1,5 @@
 module TChart
-  
-  #
-  # Represents an item that is plotted on the chart.  Items
-  # can have zero or more date ranges, each being represented
-  # as a horizontal bar on the chart.  ChartItem captures the
-  # name of the item, which is used as the y-axis label, the
-  # style of its bars, and zero or date ranges; all of these
-  # attributes are read from a data file, for example.
-  #
-  # bar_style is the name of a TikZ style that should be defined
-  # in the TeX document in which the generated chart is
-  # embedded.
-  #
-  class ChartItem
+  class YItem
     
     attr_reader :name
     attr_reader :bar_style

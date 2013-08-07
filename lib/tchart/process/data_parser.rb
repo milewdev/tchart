@@ -109,7 +109,7 @@ module TChart
     def parse_chart_item(name, style, date_range_strings)
       date_ranges = parse_date_ranges(date_range_strings)
       check_for_overlaps(date_ranges)
-      save_item ChartItem.new(name, style, date_ranges)
+      save_item YItem.new(name, style, date_ranges)
       true
     end
     
