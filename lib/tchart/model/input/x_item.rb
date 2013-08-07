@@ -15,7 +15,7 @@ module TChart
   private
     
     def build_label(layout, x)
-      Label.new(xy(x, layout.x_label_y_coordinate), layout.x_label_width, "xlabel", year.to_s)
+      Label.new(xy(x, layout.x_item_y_coordinate), layout.x_item_label_width, "xlabel", year.to_s)
     end
     
     def build_gridline(layout, x)

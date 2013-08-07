@@ -31,7 +31,7 @@ module TChart
   private
   
     def build_label(layout, y)
-      Label.build_ylabel(xy(layout.y_axis_label_x_coordinate, y), layout.y_label_width, name)
+      Label.build_ylabel(xy(layout.y_item_x_coordinate, y), layout.y_item_label_width, name)
     end
     
     def build_bars(layout, y)

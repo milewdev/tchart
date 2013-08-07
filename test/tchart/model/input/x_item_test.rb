@@ -4,8 +4,8 @@ module TChart
   describe XItem, "build" do
     before do
       @layout = stub
-      @layout.stubs(:x_label_width).returns 10
-      @layout.stubs(:x_label_y_coordinate).returns (-1)
+      @layout.stubs(:x_item_label_width).returns 10
+      @layout.stubs(:x_item_y_coordinate).returns (-1)
       @layout.stubs(:y_axis_length).returns 50
       @x_item = XItem.new(2001)
     end

@@ -6,7 +6,7 @@ module TChart
     end
     
     def self.build_x_items(layout)
-      layout.x_axis_dates.map { |year| XItem.new(year) }
+      layout.x_item_dates.map { |year| XItem.new(year) }
     end
       
   end

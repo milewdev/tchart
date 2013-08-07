@@ -23,10 +23,10 @@ module TChart
       # TODO: see if there is a way of collecting the arrays without using 'elements'
       @elements = []
       x_items
-        .zip(layout.x_axis_label_x_coordinates)
+        .zip(layout.x_item_x_coordinates)
         .each { |item, x| @elements += item.build(layout, x) }
       y_items
-        .zip(layout.item_y_coordinates)
+        .zip(layout.y_item_y_coordinates)
         .each { |item, y| @elements += item.build(layout, y) }
       @elements
     end

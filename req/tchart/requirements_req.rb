@@ -3,8 +3,8 @@ module TChart
   requirement "The length of the x-axis is the chart width minus the y label width minus the x label width." do
     given_the_input <<-EOS
         chart_width = 130
-        x_label_width = 10
-        y_label_width = 20
+        x_item_label_width = 10
+        y_item_label_width = 20
         skill \t style \t 2001.1.1-2001.12.31
     EOS
     the_expected_tex_is <<-'EOS'

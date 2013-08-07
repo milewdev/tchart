@@ -4,7 +4,7 @@ module TChart
   describe Builder, "build_x_items" do
     before do
       @layout = stub
-      @layout.stubs(:x_axis_dates).returns [ 2000, 2001 ]
+      @layout.stubs(:x_item_dates).returns [ 2000, 2001 ]
     end
 
     it "builds a list of x items" do

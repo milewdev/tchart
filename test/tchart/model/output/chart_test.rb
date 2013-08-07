@@ -5,7 +5,7 @@ module TChart
     before do
       @x_items = [ stub, stub ]
       @y_items = [ stub, stub ]
-      @layout = stub( item_y_coordinates: [20, 10], x_axis_dates: [2000, 2001], x_axis_label_x_coordinates: [0, 100], x_label_y_coordinate: -3, x_label_width: 10 )
+      @layout = stub( y_item_y_coordinates: [20, 10], x_item_dates: [2000, 2001], x_item_x_coordinates: [0, 100], x_item_y_coordinate: -3, x_item_label_width: 10 )
       @chart = Chart.new(@layout, @x_items, @y_items)
     end
     it "invokes 'build' on each item and returns an array of the built elements" do

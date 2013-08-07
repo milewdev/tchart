@@ -24,8 +24,8 @@ module TChart
   
   describe Settings, "setting_names" do
     it "returns the list of setting names" do
-      Settings.new.setting_names.must_equal ['chart_width', 'line_height', 'x_label_width', 
-        'x_label_y_coordinate', 'y_label_width']
+      Settings.new.setting_names.must_equal ['chart_width', 'line_height', 'x_item_label_width', 
+        'x_item_y_coordinate', 'y_item_label_width']
     end
   end
 end
