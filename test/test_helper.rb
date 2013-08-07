@@ -32,7 +32,7 @@ module TChart
 
   class XItem
     def ==(other)
-      [ year, x ] == [ other.year, other.x ]
+      [ year ] == [ other.year ]
     end
   end
   

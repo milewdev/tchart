@@ -2,7 +2,6 @@ module TChart
   class XItem
     
     attr_reader :year
-    attr_reader :x
     
     def initialize(year)
       @year = year
