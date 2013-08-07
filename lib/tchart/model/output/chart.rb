@@ -9,14 +9,14 @@
 module TChart
   class Chart
     
+    attr_reader :layout
     attr_reader :x_items
     attr_reader :y_items
-    attr_reader :layout     # TODO: retire
 
-    def initialize(settings, x_items, y_items)
+    def initialize(layout, x_items, y_items)
+      @layout = layout
       @x_items = x_items
       @y_items = y_items
-      @layout = Layout.new(settings, y_items)
     end
     
     def frame
