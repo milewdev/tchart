@@ -18,7 +18,6 @@ module TChart
       @tex = Tex.new
       @gridline = GridLine.new(xy(0,0), xy(10,0), "style")
     end
-    
     it "generates TeX code to render the grid line" do
       @tex.expects(:line).once
       @gridline.render(@tex)

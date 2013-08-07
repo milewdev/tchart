@@ -12,7 +12,6 @@ module TChart
       @tex = Tex.new
       @label = Label.build_ylabel(xy(-10,20), xy(30,20), "name")
     end
-    
     it "generates TeX code to render and item" do
       @tex.expects(:label)
       @label.render(@tex)

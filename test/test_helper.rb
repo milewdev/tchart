@@ -17,6 +17,12 @@ module TChart
       [ x, y ] == [ other.x, other.y ]
     end
   end
+  
+  class GridLine
+    def ==(other)
+      [ from, to, style ] == [ other.from, other.to, other.style ]
+    end
+  end
 
   class Label
     def ==(other)

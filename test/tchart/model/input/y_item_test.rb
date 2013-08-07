@@ -11,7 +11,6 @@ module TChart
       @layout.stubs(:date_to_x_coordinate).with(Date.new(2002,1,1)).returns(50)
       @item = YItem.new("name", "bar_style", [ Date.new(2001,1,1)..Date.new(2001,12,31) ])
     end
-    
     it "returns an array containing a label and bars" do
       elements = @item.build(@layout, 10)
       elements.length.must_equal 2

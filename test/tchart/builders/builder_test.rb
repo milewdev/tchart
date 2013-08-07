@@ -6,7 +6,6 @@ module TChart
       @layout = stub
       @layout.stubs(:x_item_dates).returns [ 2000, 2001 ]
     end
-
     it "builds a list of x items" do
       x_items = Builder.build_x_items(@layout)
       x_items.length.must_equal 2
@@ -19,7 +18,6 @@ module TChart
     before do
       @y_items = [ stub ]
     end
-    
     it "adds top and bottom separator items that complete the frame around the chart" do
       y_items_with_frame = Builder.add_horizontal_frame(@y_items)
       y_items_with_frame.length.must_equal @y_items.length + 2

@@ -6,7 +6,6 @@ module TChart
       @tex = Tex.new
       @bar = Bar.new(xy(0,30), xy(50, 30), "bar_style")
     end
-    
     it "generates TeX code to render itself" do
       @tex.expects(:bar).once
       @bar.render(@tex)

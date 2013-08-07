@@ -9,7 +9,6 @@ module TChart
       @layout.stubs(:y_axis_length).returns 50
       @x_item = XItem.new(2001)
     end
-    
     it "returns an array containing a label and a grid line" do
       elements = @x_item.build(@layout, 100)
       elements.length.must_equal 2
