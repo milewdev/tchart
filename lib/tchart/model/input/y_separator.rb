@@ -13,7 +13,7 @@ module TChart
     def build(layout, y)
       from = xy(0, y)
       to = xy(layout.x_axis_length, y)
-      [ GridLine.build_hgridline(from, to) ]
+      [ GridLine.new(from, to) ]
     end
     
   end

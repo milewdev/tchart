@@ -19,7 +19,7 @@ module TChart
     end
     
     def build_gridline(layout, x)
-      GridLine.build_vgridline(xy(x, 0), xy(x, layout.y_axis_length))
+      GridLine.new(xy(x, 0), xy(x, layout.y_axis_length))
     end
     
   end

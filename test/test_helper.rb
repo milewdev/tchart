@@ -20,7 +20,7 @@ module TChart
   
   class GridLine
     def ==(other)
-      [ from, to, style ] == [ other.from, other.to, other.style ]
+      [ from, to ] == [ other.from, other.to ]
     end
   end
 

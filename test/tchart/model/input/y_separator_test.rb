@@ -9,7 +9,7 @@ module TChart
     it "returns an array containing a horizontal gridline" do
       elements = YSeparator.new.build(@layout, @y)
       elements.length.must_equal 1
-      elements[0].must_equal GridLine.new(xy(0,10), xy(100,10), "hgridline")
+      elements[0].must_equal GridLine.new(xy(0,10), xy(100,10))
     end
   end
 end
