@@ -148,7 +148,7 @@ module TChart
     it "allows separator lines" do
       data = StringIO.new("---\n")
       _, items, _ = DataParser.parse('filename.txt', data)
-      items[0].must_be_instance_of SeparatorItem
+      items[0].must_be_instance_of YSeparator
     end
     it "allows chart items with no date ranges" do
       data = StringIO.new("Name\tStyle\n")

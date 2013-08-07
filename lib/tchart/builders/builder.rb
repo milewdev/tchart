@@ -2,7 +2,7 @@ module TChart
   module Builder
     
     def self.add_horizontal_frame(y_items)
-      [ SeparatorItem.new ] + y_items + [ SeparatorItem.new ]
+      [ YSeparator.new ] + y_items + [ YSeparator.new ]
     end
     
     def self.build_x_items(layout)

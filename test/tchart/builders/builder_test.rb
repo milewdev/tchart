@@ -23,8 +23,8 @@ module TChart
     it "adds top and bottom separator items that complete the frame around the chart" do
       y_items_with_frame = Builder.add_horizontal_frame(@y_items)
       y_items_with_frame.length.must_equal @y_items.length + 2
-      y_items_with_frame.first.must_be_kind_of SeparatorItem
-      y_items_with_frame.last.must_be_kind_of SeparatorItem
+      y_items_with_frame.first.must_be_kind_of YSeparator
+      y_items_with_frame.last.must_be_kind_of YSeparator
     end
   end
 end
