@@ -15,8 +15,8 @@ module TChart
       y_items = Builder.build_frame(y_items)
       layout = Layout.new(settings, y_items)
       x_items = Builder.build_x_items(layout)
-      chart = Chart.new(layout, x_items, y_items)
-      chart.build
+      elements = Builder.build(layout, x_items, y_items)
+      chart = Chart.new(elements)
       tex = chart.render
       TeXWriter.write(args.tex_filename, tex)
     rescue TChartError => e
