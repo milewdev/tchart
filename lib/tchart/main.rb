@@ -8,7 +8,7 @@ module TChart
     def self.run(argv)
       args = CommandLineParser.parse(argv)
       settings, items = DataReader.read(args.data_filename)
-      layout = Layout.new(settings, items)
+      layout = ChartLayout.new(settings, items)
       chart = ChartBuilder.build(layout, items)
       tex = chart.render
       TeXWriter.write(args.tex_filename, tex)
