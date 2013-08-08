@@ -12,7 +12,7 @@ module TChart
     def self.run(argv)
       args = CommandLineParser.parse(argv)
       settings, y_items = DataReader.read(args.data_filename)
-      y_items = Builder.add_horizontal_frame(y_items)
+      y_items = Builder.build_frame(y_items)
       layout = Layout.new(settings, y_items)
       x_items = Builder.build_x_items(layout)
       chart = Chart.new(layout, x_items, y_items)
