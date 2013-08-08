@@ -14,8 +14,7 @@ module TChart
       settings, y_items = DataReader.read(args.data_filename)
       y_items = Builder.build_frame(y_items)
       layout = Layout.new(settings, y_items)
-      x_items = Builder.build_x_items(layout)
-      elements = Builder.build(layout, x_items, y_items)
+      elements = Builder.build(layout, y_items)
       chart = Chart.new(elements)
       tex = chart.render
       TeXWriter.write(args.tex_filename, tex)

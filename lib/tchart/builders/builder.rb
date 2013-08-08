@@ -1,7 +1,9 @@
 module TChart
   module Builder
     
-    def self.build(layout, x_items, y_items)
+    def self.build(layout, y_items)
+      x_items = Builder.build_x_items(layout)
+
       # TODO: see if there is a way of collecting the arrays without using 'elements'
       elements = []
       x_items
