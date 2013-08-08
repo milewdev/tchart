@@ -8,7 +8,7 @@ class String
   #
   def indent(amount)
     indent = " " * amount
-    self.each_line
+    each_line
       .map { |line| line.strip.length > 0 ? "#{indent}#{line}" : line }
       .join
   end
