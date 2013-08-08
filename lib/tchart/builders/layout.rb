@@ -30,8 +30,8 @@ module TChart
       settings.x_item_label_width
     end
     
-    def y_items_date_range
-      @y_items_date_range ||= calc_y_items_date_range
+    def items_date_range
+      @items_date_range ||= calc_items_date_range
     end
     
     def y_axis_length
@@ -61,8 +61,8 @@ module TChart
 
     def calc_x_item_dates
       # try a date for each year in the items date range
-      from_year = y_items_date_range.first.year         # round down to Jan 1st of year
-      to_year = y_items_date_range.last.year + 1        # +1 to round up to Jan 1st of the following year
+      from_year = items_date_range.first.year         # round down to Jan 1st of year
+      to_year = items_date_range.last.year + 1        # +1 to round up to Jan 1st of the following year
       return (from_year..to_year).step(1).to_a if to_year - from_year <= 10
 
       # try a date every five years
@@ -86,7 +86,7 @@ module TChart
       settings.chart_width - settings.y_item_label_width - settings.x_item_label_width
     end
       
-    def calc_y_items_date_range
+    def calc_items_date_range
       earliest = nil
       latest = nil
       items.each do |item|

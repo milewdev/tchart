@@ -11,10 +11,10 @@ module TChart
     
     def self.run(argv)
       args = CommandLineParser.parse(argv)
-      settings, y_items = DataReader.read(args.data_filename)
-      y_items = Builder.build_frame(y_items)
-      layout = Layout.new(settings, y_items)
-      elements = Builder.build(layout, y_items)
+      settings, items = DataReader.read(args.data_filename)
+      items = Builder.build_frame(items)
+      layout = Layout.new(settings, items)
+      elements = Builder.build(layout, items)
       chart = Chart.new(elements)
       tex = chart.render
       TeXWriter.write(args.tex_filename, tex)
