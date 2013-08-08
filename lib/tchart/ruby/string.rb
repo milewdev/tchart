@@ -27,7 +27,7 @@ class String
     shortest_indent = each_line
       .select { |line| line.strip.length > 0 }
       .inject(self.length) { |min, line| [ min, /^( *)/.match(line)[1].length ].min }
-    self.each_line
+    each_line
       .map { |line| line.strip.length > 0 ? line[shortest_indent..-1] : line }
       .join
   end
