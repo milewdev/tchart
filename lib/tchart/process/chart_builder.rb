@@ -1,8 +1,8 @@
 module TChart
-  class Builder
+  class ChartBuilder
     
     def self.build(layout, items)
-      Builder.new(layout, items).build
+      ChartBuilder.new(layout, items).build
     end
     
     attr_reader :layout

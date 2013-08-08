@@ -9,7 +9,7 @@ module TChart
       args = CommandLineParser.parse(argv)
       settings, items = DataReader.read(args.data_filename)
       layout = Layout.new(settings, items)
-      chart = Builder.build(layout, items)
+      chart = ChartBuilder.build(layout, items)
       tex = chart.render
       TeXWriter.write(args.tex_filename, tex)
     rescue TChartError => e
