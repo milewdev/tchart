@@ -10,6 +10,8 @@ module TChart
       CommandLineArgs.new(data_filename, tex_filename)
     end
 
+  private
+
     def self.same_file?(filename1, filename2)
       File.expand_path(filename1) == File.expand_path(filename2)
     end
