@@ -87,7 +87,7 @@ module TChart
       @layout = Layout.new(@settings, @items)
     end
     it "returns the correct length" do
-      @layout.y_axis_length.must_equal @settings.line_height * (@items.length - 1)
+      @layout.y_axis_length.must_equal @settings.line_height * (@items.length + 1)
     end
   end
 
@@ -109,7 +109,7 @@ module TChart
       @layout = Layout.new(settings, items)
     end
     it "returns the y coordinates of all items" do
-      @layout.y_item_y_coordinates.to_a.must_equal [20, 10, 0]
+      @layout.y_item_y_coordinates.to_a.must_equal [30, 20, 10]
     end
   end
   

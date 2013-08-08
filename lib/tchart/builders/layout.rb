@@ -103,9 +103,9 @@ module TChart
       earliest..latest
     end
     
-    # -1 for top and bottom margins, each of which is half the line height
+    # +1 for top and bottom margins, each of which is half the line height
     def calc_y_axis_length
-      (items.length - 1) * settings.line_height
+      (items.length + 1) * settings.line_height
     end
     
     def calc_y_item_x_coordinate
@@ -113,7 +113,7 @@ module TChart
     end
     
     def calc_y_item_y_coordinates
-      (settings.line_height * (items.length - 1)).step(0, -settings.line_height)
+      (settings.line_height * items.length).step(settings.line_height, -settings.line_height)
     end
 
   end

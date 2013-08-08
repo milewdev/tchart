@@ -1,7 +1,3 @@
-#
-# SMELL: chart.calc_layout should not be exposed here.
-#
-
 # 'require' all files except ourselves.
 me = File.absolute_path(__FILE__)
 Dir.glob(File.dirname(me) + '/**/*.rb') {|fn| require fn if fn != me }
@@ -12,10 +8,7 @@ module TChart
     def self.run(argv)
       args = CommandLineParser.parse(argv)
       settings, items = DataReader.read(args.data_filename)
-      items = Builder.build_frame(items)
-      layout = Layout.new(settings, items)
-      elements = Builder.build(layout, items)
-      chart = Chart.new(elements)
+      chart = Builder.build_chart(settings, items)
       tex = chart.render
       TeXWriter.write(args.tex_filename, tex)
     rescue TChartError => e
