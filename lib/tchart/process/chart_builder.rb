@@ -26,14 +26,22 @@ module TChart
     
     def build_x_items
       layout.x_item_dates.zip(layout.x_item_x_coordinates).each do |year, x| 
-        @elements.push Label.build_xlabel(xy(x, layout.x_item_y_coordinate), layout.x_item_label_width, year.to_s) 
-        @elements.push GridLine.new(xy(x, 0), xy(x, layout.y_axis_length))
+        @elements.push new_x_label(year, x)
+        @elements.push new_x_gridline(x)
       end
+    end
+    
+    def new_x_label(year, x)
+      Label.build_xlabel(xy(x, layout.x_item_y_coordinate), layout.x_item_label_width, year.to_s) 
+    end
+    
+    def new_x_gridline(x)
+      GridLine.new(xy(x, 0), xy(x, layout.y_axis_length))
     end
     
     def build_y_items
       items.zip(layout.y_item_y_coordinates).each do |item, y| 
-        @elements += item.build(@layout, y)
+        @elements.concat item.build(@layout, y)
       end
     end
     

@@ -12,21 +12,27 @@ module TChart
     end
     
     def build(layout, y)
-      [ build_label(layout, y) ] + build_bars(layout, y)
+      [ new_y_label(layout, y) ].concat new_bars(layout, y)
     end
     
   private
   
-    def build_label(layout, y)
+    def new_y_label(layout, y)
       Label.build_ylabel(xy(layout.y_item_x_coordinate, y), layout.y_item_label_width, name)
     end
     
-    def build_bars(layout, y)
-      date_ranges.map do |date_range|
-        x_from = layout.date_to_x_coordinate(date_range.begin)
-        x_to = layout.date_to_x_coordinate(date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
-        Bar.new(xy(x_from, y), xy(x_to, y), bar_style)
-      end
+    def new_bars(layout, y)
+      date_ranges.map { |date_range| new_bar(*date_range_to_x_range(layout, date_range), y) }
+    end
+    
+    def date_range_to_x_range(layout, date_range)
+      x_from = layout.date_to_x_coordinate(date_range.begin)
+      x_to = layout.date_to_x_coordinate(date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
+      [ x_from, x_to ]
+    end
+    
+    def new_bar(x_from, x_to, y)
+      Bar.new(xy(x_from, y), xy(x_to, y), bar_style)
     end
     
   end
