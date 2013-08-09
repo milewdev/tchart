@@ -22,13 +22,7 @@ module TChart
     end
     
     def new_bars(layout, y)
-      date_ranges.map { |date_range| new_bar(*date_range_to_x_range(layout, date_range), y) }
-    end
-    
-    def date_range_to_x_range(layout, date_range)
-      x_from = layout.date_to_x_coordinate(date_range.begin)
-      x_to = layout.date_to_x_coordinate(date_range.end + 1)     # +1 bumps the time to end-of-day of the end date
-      [ x_from, x_to ]
+      date_ranges.map { |date_range| new_bar(*layout.date_range_to_x_coordinates(date_range), y) }
     end
     
     def new_bar(x_from, x_to, y)
