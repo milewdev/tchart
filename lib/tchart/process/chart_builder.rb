@@ -25,28 +25,28 @@ module TChart
   private
     
     def build_x_items
-      x_items = layout.x_item_dates.map { |year| XItem.new(year) }
-      x_items
-        .zip(layout.x_item_x_coordinates)
-        .each { |item, x| @elements += item.build(@layout, x) }
+      layout.x_item_dates.zip(layout.x_item_x_coordinates).each do |year, x| 
+        @elements.push Label.build_xlabel(xy(x, layout.x_item_y_coordinate), layout.x_item_label_width, year.to_s) 
+        @elements.push GridLine.new(xy(x, 0), xy(x, layout.y_axis_length))
+      end
     end
     
     def build_y_items
-      items
-        .zip(layout.y_item_y_coordinates)
-        .each { |item, y| @elements += item.build(@layout, y) }
+      items.zip(layout.y_item_y_coordinates).each do |item, y| 
+        @elements += item.build(@layout, y)
+      end
     end
     
     def build_frame
-      elements.push(build_frame_top)
-      elements.push(build_frame_bottom)
+      elements.push new_frame_top
+      elements.push new_frame_bottom
     end
     
-    def build_frame_top
+    def new_frame_top
       GridLine.new(xy(0, layout.y_axis_length), xy(layout.x_axis_length, layout.y_axis_length))
     end
     
-    def build_frame_bottom
+    def new_frame_bottom
       GridLine.new(xy(0, 0), xy(layout.x_axis_length, 0))
     end
       
