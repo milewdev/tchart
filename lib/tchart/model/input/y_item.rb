@@ -22,7 +22,10 @@ module TChart
     end
     
     def new_bars(layout, y)
-      date_ranges.map { |date_range| new_bar(*layout.date_range_to_x_coordinates(date_range), y) }
+      date_ranges.map do |date_range| 
+        x_from, x_to = layout.date_range_to_x_coordinates(date_range)
+        new_bar(x_from, x_to, y)
+      end
     end
     
     def new_bar(x_from, x_to, y)
