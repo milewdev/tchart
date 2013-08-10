@@ -11,7 +11,7 @@ module TChart
     end
     
     def render
-      tex = Tex.new
+      tex = TeXBuilder.new
       tex.echo "\\tikzpicture\n\n"
       elements.each { |element| element.render(tex) }
       tex.echo "\n\\endtikzpicture\n"

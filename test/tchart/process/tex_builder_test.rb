@@ -1,9 +1,9 @@
 require_relative '../../test_helper'
 
 module TChart
-  describe Tex, "comment" do
+  describe TeXBuilder, "comment" do
     before do
-      @tex = Tex.new
+      @tex = TeXBuilder.new
     end
     it "generates a TeX comment" do
       @tex.comment "this is a comment"
@@ -19,23 +19,23 @@ module TChart
     end
   end
   
-  describe Tex, "line" do
+  describe TeXBuilder, "line" do
     before do
-      @tex = Tex.new
+      @tex = TeXBuilder.new
     end
     it "generates a TikZ code for a line" do
       @tex.line xy(10,20), xy(30,40), "line_style"   # x1, y1, x2, y2, style
       @tex.to_s.must_equal "\\draw [line_style] (10.00mm, 20.00mm) -- (30.00mm, 40.00mm);\n"
     end
     it "generates TikZ code for a line" do
-      Tex.line(xy(10,20),xy(30,40),"line_style")
+      TeXBuilder.line(xy(10,20),xy(30,40),"line_style")
         .must_equal "\\draw [line_style] (10.00mm, 20.00mm) -- (30.00mm, 40.00mm);\n"
     end
   end
   
-  describe Tex, "label" do
+  describe TeXBuilder, "label" do
     before do
-      @tex = Tex.new
+      @tex = TeXBuilder.new
     end
     it "generates TikZ code for a chart label" do
       @tex.label xy(10,20), 15, 'some_style', 'the label text'  # x_mid, y, width, style, text
@@ -51,9 +51,9 @@ module TChart
     end
   end
   
-  describe Tex, "bar" do
+  describe TeXBuilder, "bar" do
     before do
-      @tex = Tex.new
+      @tex = TeXBuilder.new
     end
     it "generates TikZ code for a horizontal bar on the chart" do
       @tex.bar xy(10,50), xy(40,50), 'some_style'  # from, to, style
@@ -61,9 +61,9 @@ module TChart
     end
   end
   
-  describe Tex, "newline" do
+  describe TeXBuilder, "newline" do
     before do
-      @tex = Tex.new
+      @tex = TeXBuilder.new
     end
     it "generates a blank line" do
       @tex.newline
@@ -71,9 +71,9 @@ module TChart
     end
   end
   
-  describe Tex, "echo" do
+  describe TeXBuilder, "echo" do
     before do
-      @tex = Tex.new
+      @tex = TeXBuilder.new
     end
     it "returns the passed argument" do
       @tex.echo "some text"
@@ -81,9 +81,9 @@ module TChart
     end
   end
   
-  describe Tex, "to_s" do
+  describe TeXBuilder, "to_s" do
     before do
-      @tex = Tex.new
+      @tex = TeXBuilder.new
     end
     it "returns the generated TeX code" do
       @tex.comment "a comment"
