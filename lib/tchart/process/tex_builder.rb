@@ -23,11 +23,6 @@ module TChart
       @output << "\\draw [#{style}] (#{f from.x}mm, #{f from.y}mm) -- (#{f to.x}mm, #{f to.y}mm);\n"
     end
     
-    # TODO: remove this?
-    def self.line(from, to, style)
-      "\\draw [#{style}] (#{f from.x}mm, #{f from.y}mm) -- (#{f to.x}mm, #{f to.y}mm);\n"
-    end
-    
     def label(coord, width, style, text)
       @output << "\\node [#{style}, text width = #{f width}mm] at (#{f coord.x}mm, #{f coord.y}mm) {#{escape_tex_special_chars text.to_s}};\n"
     end
@@ -47,14 +42,9 @@ module TChart
     
   private
   
-    # TODO: remove this (move into f())?
     # f(1.2345) => 1.23
-    def self.f(number)
-      '%.02f' % number
-    end
-    
     def f(number)
-      TeXBuilder.f(number)
+      '%.02f' % number
     end
     
     # escape_tex_special_chars("a#b&c") => "a\#b\&c"
