@@ -15,7 +15,7 @@ module TChart
       @elements = []
     end
   
-    def build
+    def build # => Chart
       build_frame
       build_x_items
       build_y_items
@@ -31,11 +31,11 @@ module TChart
       end
     end
     
-    def new_x_label(year, x)
+    def new_x_label(year, x) # => Label
       Label.build_xlabel(xy(x, layout.x_item_y_coordinate), layout.x_item_label_width, year.to_s) 
     end
     
-    def new_x_gridline(x)
+    def new_x_gridline(x) # => GridLine
       GridLine.new(xy(x, 0), xy(x, layout.y_axis_length))
     end
     
@@ -50,11 +50,11 @@ module TChart
       elements.push new_frame_bottom
     end
     
-    def new_frame_top
+    def new_frame_top # => GridLine
       GridLine.new(xy(0, layout.y_axis_length), xy(layout.x_axis_length, layout.y_axis_length))
     end
     
-    def new_frame_bottom
+    def new_frame_bottom # => GridLine
       GridLine.new(xy(0, 0), xy(layout.x_axis_length, 0))
     end
       

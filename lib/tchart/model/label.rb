@@ -6,11 +6,11 @@ module TChart
     attr_reader :style      # TikZ style (must be defined in TeX document).
     attr_reader :text       # Content of the label.
     
-    def self.build_xlabel(coord, width, text)
+    def self.build_xlabel(coord, width, text) # => Label
       Label.new(coord, width, "xlabel", text)
     end
     
-    def self.build_ylabel(coord, width, text)
+    def self.build_ylabel(coord, width, text) # => Label
       Label.new(coord, width, "ylabel", text)
     end
     

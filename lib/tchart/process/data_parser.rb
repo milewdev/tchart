@@ -1,7 +1,7 @@
 module TChart
   class DataParser
     
-    def self.parse(source_name, source_data) # => settings, items, errors
+    def self.parse(source_name, source_data) # => [ settings, items, errors ]
       DataParser.new.parse(source_name, source_data)
     end
   
@@ -13,14 +13,14 @@ module TChart
       @errors = []
     end
     
-    def parse(source_name, source_data) # => settings, items, errors
+    def parse(source_name, source_data) # => [ settings, items, errors ]
       @source_name = source_name
       lines_of_interest_in(source_data).each { |line| parse_line(line) }
       check_for_items
       [ @settings, @items, @errors ]
     end
     
-    def lines_of_interest_in(source_data) # => Enumerator
+    def lines_of_interest_in(source_data) # => Enumerator of line
       Enumerator.new do |yielder|
         source_data.each_with_index do |line, index|
           @line_number = index + 1

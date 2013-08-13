@@ -32,23 +32,23 @@ module TChart
       @output << "\n"
     end
     
-    def to_s
+    def to_s # => String
       @output.string
     end
     
   private
   
-    # f(1.2345) => 1.23
+    # f(1.2345) => "1.23"
     def f(number)
       '%.02f' % number
     end
     
     # escape_tex_special_chars("a#b&c") => "a\#b\&c"
-    def escape_tex_special_chars(text) # => String
+    def escape_tex_special_chars(text)
       text.gsub(/([#&])/, '\\\\\\1')
     end
     
-    # to_tikx_coords(x_from, x_to) => x_mid, width
+    # to_tikx_coords(x_from, x_to) => [ x_mid, width ]
     def to_tikz_coords(x_from, x_to)
       width = x_to - x_from
       x_mid = x_from + (width / 2.0)

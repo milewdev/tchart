@@ -6,7 +6,7 @@ class String
   # A line is considered empty if it consists only of zero or more 
   # space and/or tab characters.
   #
-  def indent(amount)
+  def indent(amount) # => String
     indent = " " * amount
     each_line
       .map { |line| line.strip.length > 0 ? "#{indent}#{line}" : line }
@@ -22,7 +22,7 @@ class String
   #
   # Note: tabs in the leading whitespace are not supported.
   #
-  def unindent
+  def unindent # => String
     raise Exception, "String#unindent does not support tabs in the leading whitespace" if match( /^ *\t/ )
     shortest_indent = each_line
       .select { |line| line.strip.length > 0 }

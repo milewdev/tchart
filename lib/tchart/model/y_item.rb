@@ -11,24 +11,24 @@ module TChart
        @date_ranges = date_ranges
     end
     
-    def build(layout, y)
+    def build(layout, y) # => [ Label, Bar, Bar, ... ]
       [ new_y_label(layout, y) ].concat new_bars(layout, y)
     end
     
   private
   
-    def new_y_label(layout, y)
+    def new_y_label(layout, y) # => Label
       Label.build_ylabel(xy(layout.y_item_x_coordinate, y), layout.y_item_label_width, name)
     end
     
-    def new_bars(layout, y)
+    def new_bars(layout, y) # => [ Bar, Bar, ... ]
       date_ranges.map do |date_range| 
         x_from, x_to = layout.date_range_to_x_coordinates(date_range)
         new_bar(x_from, x_to, y)
       end
     end
     
-    def new_bar(x_from, x_to, y)
+    def new_bar(x_from, x_to, y) # => Bar
       Bar.new(xy(x_from, y), xy(x_to, y), bar_style)
     end
     

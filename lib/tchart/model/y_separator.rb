@@ -10,7 +10,7 @@ module TChart
       @date_ranges = []
     end
     
-    def build(layout, y)
+    def build(layout, y) # => [ GridLine ]
       from = xy(0, y)
       to = xy(layout.x_axis_length, y)
       [ GridLine.new(from, to) ]

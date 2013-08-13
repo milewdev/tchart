@@ -3,7 +3,7 @@ require 'date'
 module TChart
   module DataReader
     
-    def self.read(filename)
+    def self.read(filename) # => [ settings, items ]
       File.open(filename) do |f| 
         settings, items, errors = DataParser.parse(filename, f) 
         print_errors_and_fail(errors) if not errors.empty?
