@@ -19,11 +19,11 @@ end
 
 desc 'Build gem'
 task :build do
-  system "gem build tchart-ruby.gemspec"
+  system "gem build tchart.gemspec"
 end
 
 desc 'Install gem locally (does an uninstall first)'
 task :install do
   system "gem uninstall -x tchart-rubu"
-  system "gem install tchart-ruby-#{TChart::Version}.gem"
+  system "gem install tchart-#{TChart::Version}.gem"
 end
