@@ -16,9 +16,9 @@ module TChart
     end
   
     def build
+      build_frame
       build_x_items
       build_y_items
-      build_frame
       Chart.new(elements)
     end
     

@@ -1,4 +1,4 @@
-require_relative '../../../test_helper'
+require_relative '../../test_helper'
 
 module TChart
   describe ChartLayout, "items_date_range" do
