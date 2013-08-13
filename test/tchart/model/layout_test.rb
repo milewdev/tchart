@@ -4,6 +4,7 @@ module TChart
   describe Layout, "items_date_range" do
     before do
       @settings = stub
+      @this_year = Date.today.year
     end
     it "returns a range from the earliest chart item start date to the latest chart item end date" do
       item1 = stub( :date_ranges => [Date.new(2000, 11, 1)..Date.new(2005, 3, 21)] )
@@ -11,14 +12,12 @@ module TChart
       Layout.new(@settings, [item1, item2]).items_date_range.must_equal Date.new(2000, 11, 1)..Date.new(2008, 3, 30)
     end
     it "returns 1st January to 31st December when chart items is empty" do
-      this_year = Date.today.year
-      Layout.new(@settings, []).items_date_range.must_equal Date.new(this_year,1,1)..Date.new(this_year,12,31)
+      Layout.new(@settings, []).items_date_range.must_equal Date.new(@this_year,1,1)..Date.new(@this_year,12,31)
     end
     it "returns 1st January to 31st December when none of the chart items have date ranges" do
       item1 = stub( :date_ranges => [] )
       item2 = stub( :date_ranges => [] )
-      this_year = Date.today.year
-      Layout.new(@settings, [item1, item2]).items_date_range.must_equal Date.new(this_year,1,1)..Date.new(this_year,12,31)
+      Layout.new(@settings, [item1, item2]).items_date_range.must_equal Date.new(@this_year,1,1)..Date.new(@this_year,12,31)
     end
   end
 
@@ -76,7 +75,7 @@ module TChart
       @layout = Layout.new(@settings, items)
     end
     it "returns the correct length" do
-      @layout.x_axis_length.must_equal 100
+      @layout.x_axis_length.must_equal @settings.chart_width - @settings.x_item_label_width - @settings.y_item_label_width
     end
   end
 

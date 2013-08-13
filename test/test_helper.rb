@@ -29,11 +29,5 @@ module TChart
       [ coord, width, style, text ] == [ other.coord, other.width, other.style, other.text ]
     end
   end
-
-  class XItem
-    def ==(other)
-      [ year ] == [ other.year ]
-    end
-  end
   
 end
