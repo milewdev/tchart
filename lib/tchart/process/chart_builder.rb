@@ -23,6 +23,19 @@ module TChart
     end
     
   private
+  
+    def build_frame
+      elements.push new_frame_top
+      elements.push new_frame_bottom
+    end
+  
+    def new_frame_top # => GridLine
+      GridLine.new(xy(0, layout.y_axis_length), xy(layout.x_axis_length, layout.y_axis_length))
+    end
+  
+    def new_frame_bottom # => GridLine
+      GridLine.new(xy(0, 0), xy(layout.x_axis_length, 0))
+    end
     
     def build_x_items
       layout.x_item_dates.zip(layout.x_item_x_coordinates).each do |year, x| 
@@ -43,19 +56,6 @@ module TChart
       items.zip(layout.y_item_y_coordinates).each do |item, y| 
         @elements.concat item.build(@layout, y)
       end
-    end
-    
-    def build_frame
-      elements.push new_frame_top
-      elements.push new_frame_bottom
-    end
-    
-    def new_frame_top # => GridLine
-      GridLine.new(xy(0, layout.y_axis_length), xy(layout.x_axis_length, layout.y_axis_length))
-    end
-    
-    def new_frame_bottom # => GridLine
-      GridLine.new(xy(0, 0), xy(layout.x_axis_length, 0))
     end
       
   end
