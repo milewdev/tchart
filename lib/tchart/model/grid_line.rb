@@ -1,8 +1,8 @@
 module TChart
   class GridLine
     
-    attr_reader :from
-    attr_reader :to
+    attr_reader :from     # Start coordinate of the line.
+    attr_reader :to       # End coordinate of the line.
     
     def initialize(from, to)
       @from = from

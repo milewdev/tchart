@@ -1,11 +1,11 @@
 module TChart
   class Settings
     
-    attr_accessor :chart_width
-    attr_accessor :line_height
-    attr_accessor :x_item_label_width
-    attr_accessor :x_item_y_coordinate
-    attr_accessor :y_item_label_width
+    attr_accessor :chart_width              # Include y-axis labels and the plot area.
+    attr_accessor :line_height              # The height of y-axis labels and bars.
+    attr_accessor :x_item_label_width       # Used to determine left and right plot area margins.
+    attr_accessor :x_item_y_coordinate      # Vertical mid-point where x-axis labels are located.
+    attr_accessor :y_item_label_width       # Used to calculate plot area, and required by TeX to do left justification.
     
     # All values are in millimeters.
     def initialize

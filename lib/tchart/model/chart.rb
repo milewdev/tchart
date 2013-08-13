@@ -4,7 +4,7 @@
 module TChart
   class Chart
     
-    attr_reader :elements
+    attr_reader :elements     # Each must respond to #render.
 
     def initialize(elements)
       @elements = elements

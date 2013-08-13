@@ -1,8 +1,8 @@
 module TChart
   class Layout
     
-    attr_reader :settings
-    attr_reader :items
+    attr_reader :settings     # Chart settings such as chart width, label widths, etc.
+    attr_reader :items        # List of items being plotted on the chart.
     
     def initialize(settings, items)
       @settings = settings

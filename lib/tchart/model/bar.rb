@@ -1,14 +1,9 @@
 module TChart
-  
-  #
-  # A horizontal bar drawn on a chart.  The bar represents whatever
-  # is being charted, such as a date range.
-  #
   class Bar
     
-    attr_reader :from
-    attr_reader :to
-    attr_reader :style
+    attr_reader :from       # Start coordinate of the bar.
+    attr_reader :to         # End coordinate of the bar.
+    attr_reader :style      # TikZ style (must be defined in TeX document).
     
     def initialize(from, to, style)
       @from = from

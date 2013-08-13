@@ -1,9 +1,9 @@
 module TChart
   class YItem
     
-    attr_reader :name
-    attr_reader :bar_style
-    attr_reader :date_ranges
+    attr_reader :name             # Used for the content of the y-label.
+    attr_reader :bar_style        # TikZ style for the bars (must be defined in TeX document).
+    attr_reader :date_ranges      # Each item can have zero or more date ranges, which will appear as bars on the chart.
 
     def initialize(name, bar_style, date_ranges)
        @name = name

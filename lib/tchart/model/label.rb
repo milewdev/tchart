@@ -1,10 +1,10 @@
 module TChart
   class Label
     
-    attr_reader :coord
-    attr_reader :width
-    attr_reader :style
-    attr_reader :text
+    attr_reader :coord      # Hor. and ver. mid-point where label is located.
+    attr_reader :width      # Width of the label (required for text justification).
+    attr_reader :style      # TikZ style (must be defined in TeX document).
+    attr_reader :text       # Content of the label.
     
     def self.build_xlabel(coord, width, text)
       Label.new(coord, width, "xlabel", text)

@@ -5,9 +5,9 @@ module TChart
       ChartBuilder.new(layout, items).build
     end
     
-    attr_reader :layout
-    attr_reader :items
-    attr_reader :elements
+    attr_reader :layout       # Dimensions of the label areas, the plot area, etc.
+    attr_reader :items        # The items being plotted.
+    attr_reader :elements     # Generated grid lines, labels, and bars that make up the chart.
 
     def initialize(layout, items)
       @items = items
