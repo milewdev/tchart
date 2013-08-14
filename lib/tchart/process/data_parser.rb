@@ -1,6 +1,8 @@
 module TChart
   class DataParser
     
+    # TODO: privatize, and refactor?
+    
     def self.parse(source_name, source_data) # => [ settings, items, errors ]
       DataParser.new.parse(source_name, source_data)
     end
@@ -16,6 +18,7 @@ module TChart
     def parse(source_name, source_data) # => [ settings, items, errors ]
       @source_name = source_name
       lines_of_interest_in(source_data).each { |line| parse_line(line) }
+      check_settings
       check_for_items
       [ @settings, @items, @errors ]
     end
@@ -45,6 +48,16 @@ module TChart
       end
     rescue TChartError => e
       save_error e.message
+    end
+    
+    def check_settings
+      x_axis_length = calc_x_axis_length
+      save_error "plot area is too narrow (#{x_axis_length}, min is 1); is chart_width too small, or x_item_label_width or y_item_label_width too large?" if x_axis_length < 1
+    end
+    
+    def calc_x_axis_length
+      # TODO: this calculation is duplicated in Layout; fix 
+      @settings.chart_width - @settings.x_item_label_width - @settings.y_item_label_width
     end
     
     def check_for_items

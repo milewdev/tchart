@@ -118,6 +118,11 @@ module TChart
       settings, _, _ = DataParser.parse('filename.txt', data)
       settings.chart_width.must_equal 42
     end
+    it "returns an error if the plot area is not wide enough" do
+      data = StringIO.new("chart_width = 20 \n x_item_label_width = 10 \n y_item_label_width = 10 \n")
+      _, _, errors = DataParser.parse('filename.txt', data)
+      errors.find {|item| item =~ /^filename.txt, 3: plot area is too narrow/}.wont_be_nil
+    end
   end
   
   describe DataParser, "items" do

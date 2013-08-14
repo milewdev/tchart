@@ -12,7 +12,7 @@ module TChart
       $stderr = @old_stderr
     end
     it "returns chart items and settings" do
-      File.open(@filename, 'w') { |f| f.puts("C\tlang\t2001.1-2001.11\nchart_width=24\n") }
+      File.open(@filename, 'w') { |f| f.puts("C\tlang\t2001.1-2001.11\nchart_width=50\n") }
       settings, items = DataReader.read(@filename)
       settings.wont_be_nil
       items.wont_be_nil
