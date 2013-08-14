@@ -58,6 +58,7 @@ module TChart
     
   private
 
+    # TODO: why do some methods return ranges, others return arrays?
     def calc_x_item_dates # => [ year:Numeric, year:Numeric, ... ]
       # try a date for each year in the items date range
       from_year = items_date_range.first.year           # round down to Jan 1st of year
@@ -85,6 +86,7 @@ module TChart
       (0..x_axis_length).step(x_interval)
     end
       
+    # TODO: should return [ earliest, latest ], not a range
     def calc_items_date_range # earliest:Date..latest:Date
       earliest = nil
       latest = nil

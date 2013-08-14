@@ -50,6 +50,7 @@ module TChart
       save_error e.message
     end
     
+    # TODO: move to Layout
     def check_settings
       x_axis_length = calc_x_axis_length
       save_error "plot area is too narrow (#{x_axis_length}, min is 1); is chart_width too small, or x_item_label_width or y_item_label_width too large?" if x_axis_length < 1
