@@ -1,4 +1,3 @@
---- 
 ### Overview
 
 tchart is a command line utility that generates [TikZ](http://sourceforge.net/projects/pgf/) code to draw a chart of date-based data read from a file.  For example, a file containing:
@@ -23,7 +22,7 @@ will result in:
 
 
 
-## 
+
 ### Installation (OS X)
 
 *TODO: $ gem install tchart*
@@ -32,7 +31,7 @@ will result in:
 
 
 
-## 
+
 ### Tutorial
 
 1.  Using your favourite editor, create a plain text file, skills.txt, containing some date-based data:
@@ -139,7 +138,7 @@ will result in:
 
 
 
-##
+
 ### Reference
 
 *Labels*
@@ -168,7 +167,7 @@ will result in:
 
 
 
-## 
+
 ### Version History
 
 0.0.1 August 2013
@@ -177,17 +176,17 @@ will result in:
 
 
 
-## 
+
 ### History
 
 tchart was written to generate skill and employment history charts for the author's resume.
 
 
 
-##
+
 ### Copyright Notices
 
-TeX is a typesetting system invented by Donald Knuth.  More information can be found at the TeX Users Group([TUG](http://www.tug.org)).
+TeX is a typesetting system invented by Donald Knuth.  More information can be found at the ([TeX Users Group](http://www.tug.org)).
 
 PGF/TikZ is a system designed by Till Tantau for producing graphics in TeX and related documents.  More information an be found at [SourceForge](http://sourceforge.net/projects/pgf/).
 
@@ -197,4 +196,3 @@ Ruby is a programming language initially designed and developed by Yukihiro Mats
 
 All other company and/or product names may be the property of and/or trademarks of their respective owners.
 
-## 
