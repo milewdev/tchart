@@ -24,7 +24,7 @@ will result in:
 
 
 ## 
-### Installation (OSX)
+### Installation (OS X)
 
 *TODO: $ gem install tchart*
 
@@ -34,7 +34,6 @@ will result in:
 
 ## 
 ### Tutorial
-*Basic Example*
 
 1.  Using your favourite editor, create a plain text file, skills.txt, containing some date-based data:
 
@@ -55,7 +54,7 @@ will result in:
     C           \t lang \t 2001-2002
     ```
 
-2.  Run tchart to read skills.txt and write TikZ code to skills.tikz:
+2.  Run tchart to read skills.txt and write generated TikZ code to skills.tikz:
 
     ```
     $ tchart skills.txt skills.tikz
@@ -138,11 +137,18 @@ will result in:
 
     ![chart1](doc/tutorial/skills.jpg)
 
+
+
+##
+### Reference
+
 *Labels*
 
 - can contain spaces
 
 *Styles*
+
+- used to control the look of labels, grid lines, and bars
 
 *Dates*
 
@@ -152,9 +158,13 @@ will result in:
 - yyyy defaults to date.1.1 - date.12.31, yyyy.m[m] defaults to yyyy.m[m].1 - yyyy.m[m].28|29|30|31
 - many dates on a line: date date date
 
-*Spacer Lines*
+*Horizontal Grid Lines*
+
+- used to create vertical sections
 
 *Settings*
+
+- used to adjust chart dimensions
 
 
 
@@ -171,5 +181,20 @@ will result in:
 ### History
 
 tchart was written to generate skill and employment history charts for the author's resume.
+
+
+
+##
+### Copyright Notices
+
+TeX is a typesetting system invented by Donald Knuth.  More information can be found at the TeX Users Group([TUG](http://www.tug.org)).
+
+PGF/TikZ is a system designed by Till Tantau for producing graphics in TeX and related documents.  More information an be found at [SourceForge](http://sourceforge.net/projects/pgf/).
+
+Ruby is a programming language initially designed and developed by Yukihiro Matsumoto.  More information can be found at [ruby-lang.org](http://www.ruby-lang.org).
+
+[OS X](http://www.apple.com/osx/) is a trademark of [Apple Inc.](http://www.apple.com)
+
+All other company and/or product names may be the property of and/or trademarks of their respective owners.
 
 ## 
