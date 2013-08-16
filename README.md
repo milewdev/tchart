@@ -1,4 +1,4 @@
-## 
+--- 
 ### Overview
 
 tchart is a command line utility that generates [TikZ](http://sourceforge.net/projects/pgf/) code to draw a chart of date-based data read from a file.  For example, a file containing:
