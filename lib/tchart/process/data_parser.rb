@@ -166,7 +166,8 @@ module TChart
     end
     
     def fill_in_missing_date_elements(y1, m1, d1, y2, m2, d2) # => y1, m1, d1, y2, m2, d2
-      [ y1, m1 || 1, d1 || 1, y2 || y1, m2 || 12, d2 || -1 ]
+      [ y1, m1 || 1, d1 || 1, 
+        y2 || y1, m2 || 12, d2 || -1 ]
     end
     
     def check_for_overlaps(date_ranges)
@@ -199,6 +200,7 @@ module TChart
     end
     
     def raise_invalid_date_range(date_range_as_string)
+      # TODO: add 'did you include at least one tab between date ranges?'
       raise TChartError, "bad date range \"#{date_range_as_string}\"; expecting 2000.4.17-2001.7.21, or 2000.4-2001, etc."
     end
     

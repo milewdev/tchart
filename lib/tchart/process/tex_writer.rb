@@ -1,5 +1,5 @@
 module TChart
-  module TeXWriter
+  module TeXWriter # TODO: rename to TikZWriter
     
     def self.write(tex_filename, tex_content)
       File.open(tex_filename, 'w') {|f| f.puts(tex_content)}

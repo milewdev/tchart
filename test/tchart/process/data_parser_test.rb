@@ -249,5 +249,6 @@ module TChart
       _, _, errors = DataParser.parse('filename.txt', data)
       errors.must_equal [ "filename.txt, 1: date range end 2000.4.14 before start 2001.2.22" ]
     end
+    it "returns an error if two sets of dates are not separated by at least one tab character" # TODO
   end
 end

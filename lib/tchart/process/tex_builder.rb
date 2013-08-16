@@ -1,7 +1,7 @@
 require 'stringio'
 
 module TChart
-  class TeXBuilder
+  class TeXBuilder # TODO: rename to TikZBuilder
     
     def initialize
       @output = StringIO.new
