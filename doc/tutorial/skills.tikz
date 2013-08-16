@@ -1,0 +1,20 @@
+\tikzpicture
+
+\draw [gridline] (0.00mm, 18.40mm) -- (130.99mm, 18.40mm);
+\draw [gridline] (0.00mm, 0.00mm) -- (130.99mm, 0.00mm);
+\node [xlabel, text width = 10.00mm] at (0.00mm, -3.00mm) {2000};
+\draw [gridline] (0.00mm, 0.00mm) -- (0.00mm, 18.40mm);
+\node [xlabel, text width = 10.00mm] at (43.66mm, -3.00mm) {2005};
+\draw [gridline] (43.66mm, 0.00mm) -- (43.66mm, 18.40mm);
+\node [xlabel, text width = 10.00mm] at (87.33mm, -3.00mm) {2010};
+\draw [gridline] (87.33mm, 0.00mm) -- (87.33mm, 18.40mm);
+\node [xlabel, text width = 10.00mm] at (130.99mm, -3.00mm) {2015};
+\draw [gridline] (130.99mm, 0.00mm) -- (130.99mm, 18.40mm);
+\node [ylabel, text width = 24.00mm] at (-12.00mm, 13.80mm) {Objective-C};
+\node [lang] at (87.33mm, 13.80mm) [minimum width = 69.86mm] {};
+\node [ylabel, text width = 24.00mm] at (-12.00mm, 9.20mm) {C++};
+\node [lang] at (48.04mm, 9.20mm) [minimum width = 61.13mm] {};
+\node [ylabel, text width = 24.00mm] at (-12.00mm, 4.60mm) {C};
+\node [lang] at (17.48mm, 4.60mm) [minimum width = 17.45mm] {};
+
+\endtikzpicture

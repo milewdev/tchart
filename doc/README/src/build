@@ -1,0 +1,5 @@
+tchart chart1.txt chart1.tikz
+pdftex -interaction=batchmode image-template.tex
+pdfcrop --margins "30 10 30 10" image-template.pdf chart1-crop.pdf
+convert -density 300 chart1-crop.pdf -quality 80 ../chart1.jpg
+rm chart1.tikz image-template.pdf chart1-crop.pdf image-template.log image-template.pgf

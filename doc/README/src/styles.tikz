@@ -1,0 +1,60 @@
+% Style for x axis labels.
+\tikzset{ xlabel/.style = {
+  text width = 10.00mm,
+  align = center,
+  inner sep = 0
+}}
+
+% Style for y axis labels.
+\tikzset{ ylabel/.style = {
+  minimum height = 4.60mm,
+  text width = 24.00mm,
+  text depth = 0.5mm,
+  align = left,
+  inner sep = 0
+}}
+
+% Style for grid lines.
+\tikzset{ gridline/.style = {
+  draw = black!20
+}}
+
+% Style for programming language bars.
+\definecolor{lang_color}{rgb}{.10, .32, .68}
+\tikzset{ lang/.style = {
+  rounded corners = 1mm,
+  line width = 0.1pt,
+  draw = lang_color,
+  top color = lang_color,
+  bottom color = lang_color
+}}
+
+% Style for database bars.
+\definecolor{db_color}{rgb}{0.23, 0.45, 0.80}
+\tikzset{ db/.style = {
+  rounded corners = 1mm,
+  line width = 0.1pt,
+  draw = db_color,
+  top color = db_color,
+  bottom color = db_color
+}}
+
+% Style for operating systems bars.
+\definecolor{os_color}{rgb}{.35, .57, .93}
+\tikzset{ os/.style = {
+  rounded corners = 1mm,
+  line width = 0.1pt,
+  draw = os_color,
+  top color = os_color,
+  bottom color = os_color
+}}
+
+% Style for tool bars.
+\definecolor{tool_color}{rgb}{.48, .70, 1.00}
+\tikzset{ tool/.style = {
+  rounded corners = 1mm,
+  line width = 0.1pt,
+  draw = tool_color,
+  top color = tool_color,
+  bottom color = tool_color
+}}

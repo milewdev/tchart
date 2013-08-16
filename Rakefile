@@ -2,7 +2,8 @@ require 'rake/testtask'
 require_relative 'lib/tchart/version'
 
 task :default => [ :test, :req ]
-task :all => [ :test, :req, :build, :install ]
+task :doc => [ :build_tutorial, :build_readme ]
+task :all => [ :test, :req, :doc, :build, :install ]
 
 Rake::TestTask.new :test do |t|
   t.test_files = FileList['test/**/*_test.rb', 'req/**/*_test.rb']
@@ -17,6 +18,20 @@ task :req do
   end
 end
 
+desc 'Run the tutorial which generates an image used in README.md'
+task :build_tutorial do
+  Dir.chdir('doc/tutorial') do
+    system './build'
+  end
+end
+
+desc 'Generate images for README.md'
+task :build_readme do
+  Dir.chdir('doc/README/src') do
+    system './build'
+  end
+end
+
 desc 'Build gem'
 task :build do
   system "gem build tchart.gemspec"
@@ -24,6 +39,6 @@ end
 
 desc 'Install gem locally (does an uninstall first)'
 task :install do
-  system "gem uninstall -x tchart-rubu"
+  system "gem uninstall -x tchart"
   system "gem install tchart-#{TChart::Version}.gem"
 end
