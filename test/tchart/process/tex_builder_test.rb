@@ -10,8 +10,8 @@ module TChart
       @tex.to_s.must_equal "% this is a comment\n"
     end
     it "escapes TeX special characters in comments" do
-      @tex.comment "this is a comment with TeX special characters: # &"
-      @tex.to_s.must_equal "% this is a comment with TeX special characters: \\# \\&\n"
+      @tex.comment "this is a comment with TeX special characters: # & |"
+      @tex.to_s.must_equal "% this is a comment with TeX special characters: \\# \\& \\|\n"
     end
     it "handles non-string arguments" do
       @tex.comment 123

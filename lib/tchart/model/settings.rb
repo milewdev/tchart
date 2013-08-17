@@ -10,9 +10,9 @@ module TChart
     # All values are in millimeters.
     def initialize
       @chart_width          = 164.99
+      @line_height          = 4.6
       @x_item_label_width   = 10
       @x_item_y_coordinate  = -3
-      @line_height          = 4.6
       @y_item_label_width   = 24
     end
     

@@ -2,7 +2,7 @@ require 'rake/testtask'
 require_relative 'lib/tchart/version'
 
 task :default => [ :test, :req ]
-task :doc => [ :build_tutorial, :build_readme ]
+task :doc => [ :build_readme ]
 task :all => [ :test, :req, :doc, :build, :install ]
 
 Rake::TestTask.new :test do |t|
@@ -18,18 +18,10 @@ task :req do
   end
 end
 
-desc 'Run the tutorial which generates an image used in README.md'
-task :build_tutorial do
-  Dir.chdir('doc/tutorial') do
-    system './build'
-  end
-end
-
-desc 'Generate images for README.md'
+desc 'Generate README.md and its images'
 task :build_readme do
-  Dir.chdir('doc/README/src') do
-    system './build'
-  end
+  readme = File.open('doc/README/src/README.template') { |f| f.read }
+  puts readme
 end
 
 desc 'Build gem'

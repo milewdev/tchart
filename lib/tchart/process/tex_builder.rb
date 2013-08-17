@@ -43,9 +43,9 @@ module TChart
       '%.02f' % number
     end
     
-    # escape_tex_special_chars("a#b&c") => "a\#b\&c"
+    # escape_tex_special_chars("a#b&c|d") => "a\#b\&c\|d"
     def escape_tex_special_chars(text)
-      text.gsub(/([#&])/, '\\\\\\1')
+      text.gsub(/([#&|])/, '\\\\\\1')
     end
     
     # to_tikx_coords(x_from, x_to) => [ x_mid, width ]

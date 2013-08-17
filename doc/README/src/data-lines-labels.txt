@@ -1,0 +1,2 @@
+# The label below has leading, trailing, and embedded spaces.
+   MS Word   | tool | 2002 - 2005       # The label used on the chart is 'MS Word'.

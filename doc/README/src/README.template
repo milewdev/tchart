@@ -5,7 +5,8 @@ tchart is a command line utility that generates [TikZ](http://sourceforge.net/pr
 For example, a file containing:
 
 ```
-<!--- @generate doc/README/overview.jpg -->
+@include overview.txt
+@generate doc/README/overview.jpg
 Objective-C  | lang | 2006.6 - 2013.7
 C++          | lang | 2002 - 2008
 C            | lang | 2001 - 2002 | 2007 - 2009
@@ -17,7 +18,7 @@ Windows      | os   | 2001 - 2006.2
 XCode        | tool | 2006.6 - 2013.7
 Emacs        | tool | 2005 - 2008
 MS VS        | tool | 2001 - 2006.2
-<!--- @end -->
+@end
 ```
 
 will result in:
@@ -41,9 +42,7 @@ will result in:
 1.  Create a plain text file, skills.txt, containing some date-based data:
 
     ```
-    Objective-C | lang | 2006 - 2013
-    C++         | lang | 2002 - 2008
-    C           | lang | 2001 - 2002
+    @include ../skills.txt
     ```
 
 2.  Run tchart to read skills.txt and write generated TikZ code to skills.tikz:
@@ -57,36 +56,7 @@ will result in:
     styles.tikz, that defines these styles:
     
     ```
-    % Style for x axis labels.
-    \tikzset{ xlabel/.style = {
-      text width = 10.00mm,
-      align = center,
-      inner sep = 0
-    }}
-    
-    % Style for y axis labels.
-    \tikzset{ ylabel/.style = {
-      minimum height = 4.60mm,
-      text width = 24.00mm,
-      text depth = 0.5mm,
-      align = left,
-      inner sep = 0
-    }}
-    
-    % Style for grid lines.
-    \tikzset{ gridline/.style = {
-      draw = black!20
-    }}
-    
-    % Style for programming language ('lang') bars.
-    \definecolor{lang_color}{rgb}{.10, .32, .68}
-    \tikzset{ lang/.style = {
-      rounded corners = 1mm,
-      line width = 0.1pt,
-      draw = lang_color,
-      top color = lang_color,
-      bottom color = lang_color
-    }}
+    @include ../styles.tikz
     ```
     
     See [pgfmanual.pdf](http://mirrors.ctan.org/graphics/pgf/base/doc/generic/pgf/pgfmanual.pdf) for more information
@@ -96,13 +66,7 @@ will result in:
     skills.tikz file:
     
     ```
-    \def\pgfsysdriver{pgfsys-pdftex.def}
-    \input tikz.tex
-    \usetikzlibrary{positioning, shapes.misc}
-    \parindent = 0in
-    \input styles.tikz
-    \input skills.tikz
-    \end
+    @include ../skills.tex
     ```
 
 5.  Generate a PDF file from skills.tex:
@@ -173,18 +137,7 @@ Input files consist of one or more lines, where each line can be a comment, a bl
 line, a separator line, or a setting:
 
 ```
-# A comment.
-
-# Blanks lines above and below this line, and further down.
-
-# A data line.
-Objective-C  | lang | 2001-2015
-
-# A separator line.
--------------------------------
-
-# A setting.
-chart_width = 164.99
+@include data-file-format.txt
 ```
 
 ![data-file-format.jpg](doc/README/data-file-format.jpg)
@@ -197,8 +150,7 @@ Only line comments are supported.  A comment can appear either on a line by itse
 of a line.  The comment delimiter is #.
 
 ```
-# This is a comment.
-C | lang | 2001     # This is another comment.
+@include comments.txt
 ```
 
 ![comments.jpg](doc/README/comments.jpg)
@@ -211,9 +163,7 @@ Blank lines are ignored.
 
 
 ```
-C   | lang | 2001
-
-C++ | lang | 2002
+@include blank-lines.txt
 ```
 
 ![blank-lines.jpg](doc/README/blank-lines.jpg)
@@ -232,7 +182,7 @@ a style that defines how to draw the date range bars (i.e. what colour and shape
 be, etc.), and one or more date ranges.  Each of these elements is separated by a pipe character (|).
 
 ```
-C++ | lang | 2001 - 2002 | 2004 - 2006
+@include data-lines.txt
 ```
 
 ![data-lines.jpg](doc/README/data-lines.jpg)
@@ -244,8 +194,7 @@ C++ | lang | 2001 - 2002 | 2004 - 2006
 Labels can contain spaces, although leading and trailing spaces are ignored.
 
 ```
-# The label below has leading, trailing, and embedded spaces.
-   MS Word   | tool | 2002 - 2005       # The label used on the chart is 'MS Word'.
+@include data-lines-labels.txt
 ```
 
 ![data-lines-labels.jpg](doc/README/data-lines-labels.jpg)
@@ -255,9 +204,7 @@ The special characters # (starts a comment) and | (field separator) can be used 
 them with a back slash (\).  Back slash can be used by escaping it with itself.
 
 ```
-C\#         | lang | 2001 - 2007
-#Bo\|\|ean   | lang | 2003 - 2005
-#Back\\slash | lang | 2004 - 2008
+@include data-lines-escaping.txt
 ```
 
 ![data-lines-escaping.jpg](doc/README/data-lines-escaping.jpg)
@@ -270,8 +217,7 @@ The bar style is the name of a TikZ style that must be defined in the TeX docume
 the generated TikZ chart code.  For example, we might have a file, chart.txt, that contains:
 
 ```
-C++     | lang | 2001 - 2003
-OS X    | os   | 2002 - 2004
+@include data-lines-styles.txt
 ```
 
 The TeX document that includes the chart code must define the 'lang' and 'os' TikZ styles:
@@ -317,17 +263,7 @@ More information on TikZ styles can be found in [pgfmanual.pdf](http://mirrors.c
 Date ranges can be specified in various ways:
 
 ```
-2001.3.14 - 2001.11.22  | lang | 2001.3.14 - 2001.11.22   # date format is yyyy.mm.dd
-2001.3 - 2001.11.22     | lang | 2001.3 - 2001.11.22      # same as: 2001.3.1 - 2001.11.22
-2001 - 2001.11.22       | lang | 2001 - 2001.11.22        # 2001.1.1 - 2001.11.22
-2001.3.14 - 2001.11     | lang | 2001.3.14 - 2001.11      # 2001.3.14 - 2001.11.30
-2001.3.14 - 2001        | lang | 2001.3.14 - 2001         # 2001.3.14 - 2001.12.31
-2001.3.14               | lang | 2001.3.14                # 2001.3.14 - 2001.3.4
-2001.3                  | lang | 2001.3                   # 2001.3.1 - 2001.3.31
-2001                    | lang | 2001                     # 2001.1.1 - 2001.12.31
-
-# make more room for the those long y-axis labels, a setting that is described later
-y_item_label_width = 40
+@include data-lines-dates.txt
 ```
 
 ![data-lines-dates.jpg](doc/README/data-lines-dates.jpg)
@@ -337,9 +273,7 @@ If no dates are supplied, then the style can be omitted as well, although it wil
 if included.
 
 ```
-Objective-C  | lang | 2001
-C++          | lang
-C
+@include data-lines-dates-optional.txt
 ``` 
 
 ![data-lines-dates-optional.jpg](doc/README/data-lines-dates-optional.jpg)
@@ -352,15 +286,7 @@ Separator lines are used to break subjects into sections by drawing a horizontal
 line on the chart.  They are specified by using a line starting with three dashes (minus signs), ---.
 
 ```
-C++     | lang | 2003 - 2007
-C       | lang | 2005 - 2011
----                             # Three dashes produce a separator.
-OS X    | os   | 2003 - 2009
-Linux   | os   | 2008 - 2011
---- Anything after the first three dashes is ignored, so this is legal.
-Emacs   | tool | 2003 - 2005
-----------------------------    # A full line of dashes.
-Java    | lang | 2004
+@include separator-line.txt
 ```
 
 ![separator-line.jpg](doc/README/separator-line.jpg)
@@ -398,17 +324,13 @@ chart_width = 60        # This is the value that will be used.
 labels and the plot area.
 
 ```
-chart_width = 70
-
-C++ | lang | 2003.4 - 2006.8
+@include chart-width-narrow.txt
 ```
 
 ![chart-width-narrow.jpg](doc/README/chart-width-narrow.jpg)
 
 ```
-chart_width = 140
-
-C++ | lang | 2003.4 - 2006.8
+@include chart-width-wide.txt
 ```
 
 ![chart-width-wide.pjg](doc/README/chart-width-wide.jpg)

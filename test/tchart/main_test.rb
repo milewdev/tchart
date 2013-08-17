@@ -17,7 +17,7 @@ module TChart
     end
     it "writes only the message (not the stack trace) to $stderr of TChartErrors" do
       TChart::Main.run([])
-      $stderr.string.must_equal "Usage: tchart data_file tex_file\n"
+      $stderr.string.must_equal "Usage: tchart input-data-filename output-tikz-filename\n"
     end
     it "writes both the message and the stack trace to $stderr of any exception that is not a TChartError" do
       bad_argument = Date.new
