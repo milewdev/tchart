@@ -5,7 +5,7 @@ module TChart
         chart_width = 130
         x_item_label_width = 10
         y_item_label_width = 20
-        skill \t style \t 2001.1.1-2001.12.31
+        skill | style | 2001.1.1-2001.12.31
     EOS
     the_expected_tex_is <<-'EOS'
         \draw /.*/ (0.00mm, 0.00mm) -- (100.00mm, 0.00mm);
@@ -15,7 +15,7 @@ module TChart
   
   requirement "When the items span less than a year, the x-axis date range should span one year with two labels." do
     given_the_input <<-EOS
-        skill \t style \t 2001.4-2001.5
+        skill | style | 2001.4-2001.5
     EOS
     the_expected_tex_is <<-'EOS'
         /.*/ {2001};
@@ -27,7 +27,7 @@ module TChart
   
   requirement "When the items span exactly one year, the x-axis date range should span one year with two labels." do  
     given_the_input <<-EOS
-        skill \t style \t 2001.1.1-2001.12.31
+        skill | style | 2001.1.1-2001.12.31
     EOS
     the_expected_tex_is <<-'EOS'
         /.*/ {2001};
@@ -39,7 +39,7 @@ module TChart
   
   requirement "When the items span less than 10 years, the x-axis labels should be one year apart." do  
     given_the_input <<-EOS
-        skill \t style \t 2001.1.1-2004.1.1
+        skill | style | 2001.1.1-2004.1.1
     EOS
     the_expected_tex_is <<-'EOS'
         /.*/ {2001};
@@ -57,7 +57,7 @@ module TChart
   
   requirement "When the items span more than 10 years but less than 50 years, the x-axis date labels should be 5 years apart." do  
     given_the_input <<-EOS
-        skill \t style \t 2001.1.1-2011.1.1
+        skill | style | 2001.1.1-2011.1.1
     EOS
     the_expected_tex_is <<-'EOS'
         /.*/ {2000};
@@ -73,7 +73,7 @@ module TChart
   
   requirement "When the items span more than 50 years, the x-axis date labels should be one decade apart." do  
     given_the_input <<-EOS
-        skill \t style \t 2001.1.1-2051.1.1
+        skill | style | 2001.1.1-2051.1.1
     EOS
     the_expected_tex_is <<-'EOS'
         /.*/ {2000};
@@ -118,7 +118,7 @@ module TChart
   end
   
   requirement "Write an error message when a date range's end date is before its start date." do
-    given_the_input "item \t style \t 2001.1.1-2000.1.1"
+    given_the_input "item | style | 2001.1.1-2000.1.1"
     the_expected_errors_are "_test_.txt, 1: date range end 2000.1.1 before start 2001.1.1"
   end
   

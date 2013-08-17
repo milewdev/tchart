@@ -27,7 +27,7 @@ module TChart
       Enumerator.new do |yielder|
         source_data.each_with_index do |line, index|
           @line_number = index + 1
-          line = remove_escapes(remove_comments(line)).strip
+          line = remove_comments(line).strip
           yielder.yield line if line.length > 0
         end
       end
@@ -35,10 +35,6 @@ module TChart
     
     def remove_comments(line) # => line
       line.sub(/(?<!\\)#.*$/, '')
-    end
-    
-    def remove_escapes(line) # => line
-      line.sub(/\\(.)/, '\1')
     end
     
     def parse_line(line)
@@ -112,7 +108,9 @@ module TChart
     #
     
     def parse_item(line)
-      name, style, *date_range_strings = extract_non_blank_fields(line)
+      name, style, *date_range_strings = extract_fields(line)
+      raise_name_missing if name.nil?
+      raise_style_missing if style.nil? && date_range_strings.length > 0
       if name.start_with?("---")
         parse_separator_item
       else
@@ -132,11 +130,16 @@ module TChart
       true
     end
     
-    def extract_non_blank_fields(line) # => [ String, ... ]
-      line
-        .split(/\t/)
-        .map { |field| field.strip }
-        .select { |field| field.length > 0 }
+    def extract_fields(line) # => [ String, ... ]
+      line                                              # 'a|b\|c|d | | e\n'
+        .split( /(?<!\\)\|/ )                           # [ 'a', 'b\|c', 'd ', ' ', " e\n" ]
+        .map { |field| remove_escapes(field) }          # [ 'a', 'b|c', 'd', ' ', "e\n" ]
+        .map { |field| field.strip }                    # [ 'a', 'b|c', 'd', '', 'e' ]
+        .map { |field| field.empty? ? nil : field }     # [ 'a', 'b|c', 'd', nil, 'e' ]
+    end
+    
+    def remove_escapes(line) # => line
+      line.sub(/\\(.)/, '\1')
     end
     
     def parse_date_ranges(date_range_strings) # => [ Date..Date, ... ]
@@ -193,6 +196,14 @@ module TChart
     # date range to string
     def dr2s(date_range) # => String
       "#{d2s(date_range.begin)}-#{d2s(date_range.end)}"
+    end
+    
+    def raise_name_missing
+      raise TChartError, "name is missing"
+    end
+    
+    def raise_style_missing
+      raise TChartError, "style is missing"
     end
     
     def raise_invalid_date(year, month, day, message)
