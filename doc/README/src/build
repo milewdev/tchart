@@ -1,5 +1,27 @@
-tchart chart1.txt chart1.tikz
-pdftex -interaction=batchmode image-template.tex
-pdfcrop --margins "30 10 30 10" image-template.pdf chart1-crop.pdf
-convert -density 300 chart1-crop.pdf -quality 80 ../chart1.jpg
-rm chart1.tikz image-template.pdf chart1-crop.pdf image-template.log image-template.pgf
+#!/usr/bin/env bash
+
+shopt -s nullglob
+for fn in *.txt
+do
+	echo
+	echo ----- processing $fn -----
+	tchart $fn drawing.tikz
+	pdftex -interaction=batchmode drawing-template.tex
+	pdfcrop --margins "30 10 30 10" drawing-template.pdf cropped.pdf
+	convert -density 300 cropped.pdf -quality 80 ../${fn%.*}.jpg
+	rm drawing.tikz drawing-template.pdf cropped.pdf drawing-template.log drawing-template.pgf
+done
+
+echo
+echo ----- processing tutorial files -----
+pushd ..
+tchart skills.txt skills.tikz
+pdftex -interaction=batchmode skills.tex
+pdfcrop --margins "30 10 30 10" skills.pdf cropped.pdf
+convert -density 300 cropped.pdf -quality 80 skills.jpg
+rm skills.tikz *.pdf *.pgf *.log
+popd
+
+echo
+echo ----- processing README.template -----
+ruby -pe '$_.sub!( /([^@]*)@include (.*)\n/ ) { |m| `sed '"'"'s/^/#{$1}/'"'"' < #{$2}` }' < README.template > ../../../README.md

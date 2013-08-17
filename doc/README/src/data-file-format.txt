@@ -1,0 +1,12 @@
+# A comment.
+
+# There are blanks lines above and below this line.
+
+# A data line.
+Objective-C  | lang | 2001-2015
+
+# A horizontal grid line.
+-------------------------------
+
+# A setting.
+chart_width = 164.99

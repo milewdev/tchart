@@ -1,3 +1,0 @@
-Objective-C  | lang | 2006-2013
-C++          | lang | 2002-2008
-C            | lang | 2001-2002

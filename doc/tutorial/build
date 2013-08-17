@@ -1,5 +1,0 @@
-tchart skills.txt skills.tikz
-pdftex -interaction=batchmode skills.tex
-pdfcrop --margins "30 10 30 10" skills.pdf cropped.pdf
-convert -density 300 cropped.pdf -quality 80 skills.jpg
-rm skills.tikz *.pdf *.pgf *.log

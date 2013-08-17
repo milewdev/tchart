@@ -17,7 +17,7 @@ module TChart
     end
     
     def self.raise_usage
-      raise TChartError, "Usage: tchart data_file tex_file"
+      raise TChartError, "Usage: tchart input-data-filename output-tikz-filename"
     end
     
     def self.raise_not_found(data_filename)
