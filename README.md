@@ -170,7 +170,6 @@ Errors found; aborting.
 <br>
 ### Data File Format
 
-
 Input files consist of one or more lines, where each line can be a comment, a blank line, a data
 line, a separator line, or a setting:
 
