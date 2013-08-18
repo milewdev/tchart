@@ -1,4 +1,4 @@
-# Overview
+## Overview
 
 tchart is a command line utility that generates [TikZ](http://sourceforge.net/projects/pgf/) code to draw a chart of date-based data.
 
@@ -27,7 +27,7 @@ will result in:
 
 
 <br>
-# Installation (OS X)
+## Installation (OS X)
 
 *TODO: $ gem install tchart*
 
@@ -36,7 +36,7 @@ will result in:
 
 
 <br>
-# Quick Start
+## Quick Start
 
 1.  Create a text file, skills.txt, containing some date-based data:
 
@@ -134,7 +134,7 @@ will result in:
 
 
 <br>
-# Usage
+## Usage
 
 ```
 $ tchart input-data-filename output-tikz-filename
@@ -168,7 +168,7 @@ Errors found; aborting.
 
 
 <br>
-# Data File Format
+## Data File Format
 
 
 Input files consist of one or more lines, where each line can be a comment, a blank line, a data
@@ -450,7 +450,7 @@ C++ | lang | 2003.4 - 2006.8
 
 
 <br>
-# Version History
+## Version History
 
 0.0.1 August 2013
 
@@ -459,14 +459,14 @@ C++ | lang | 2003.4 - 2006.8
 
 
 <br>
-# History
+## History
 
 tchart was written to generate skill and employment history charts for the author's resume.
 
 
 
 <br>
-# Copyright Notices
+## Copyright Notices
 
 [TeX](http://www.tug.org) is a typesetting system invented by Donald Knuth.
 
