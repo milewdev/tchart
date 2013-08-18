@@ -1,24 +1,24 @@
-### Overview
+# Overview
 
 tchart is a command line utility that generates [TikZ](http://sourceforge.net/projects/pgf/) code to draw a chart of date-based data.
 
 For example, a file containing:
 
+<!-- @generate doc/README/overview.jpg -->
 ```
-<!--- @generate doc/README/overview.jpg -->
 Objective-C  | lang | 2006.6 - 2013.7
 C++          | lang | 2002 - 2008
 C            | lang | 2001 - 2002 | 2007 - 2009
 -----------------------------------------------
-OSX          | os   | 2006.6 - 2013.7
+OS X         | os   | 2006.6 - 2013.7
 Linux        | os   | 2005 - 2008
 Windows      | os   | 2001 - 2006.2
 -----------------------------------------------
 XCode        | tool | 2006.6 - 2013.7
 Emacs        | tool | 2005 - 2008
 MS VS        | tool | 2001 - 2006.2
-<!--- @end -->
 ```
+<!-- @end -->
 
 will result in:
 
@@ -27,7 +27,7 @@ will result in:
 
 
 <br>
-### Installation (OS X)
+# Installation (OS X)
 
 *TODO: $ gem install tchart*
 
@@ -36,15 +36,17 @@ will result in:
 
 
 <br>
-### Quick Start
+# Quick Start
 
-1.  Create a plain text file, skills.txt, containing some date-based data:
+1.  Create a text file, skills.txt, containing some date-based data:
 
+    <!-- @generate doc/README/skills.jpg -->    
     ```
     Objective-C | lang | 2006 - 2013
     C++         | lang | 2002 - 2008
     C           | lang | 2001 - 2002
     ```
+    <!-- @end -->
 
 2.  Run tchart to read skills.txt and write generated TikZ code to skills.tikz:
 
@@ -132,7 +134,7 @@ will result in:
 
 
 <br>
-### Usage
+# Usage
 
 ```
 $ tchart input-data-filename output-tikz-filename
@@ -166,12 +168,13 @@ Errors found; aborting.
 
 
 <br>
-### Data File Format
+# Data File Format
 
 
 Input files consist of one or more lines, where each line can be a comment, a blank line, a data
 line, a separator line, or a setting:
 
+<!-- @generate doc/README/data-file-format.jpg -->
 ```
 # A comment.
 
@@ -186,6 +189,7 @@ Objective-C  | lang | 2001-2015
 # A setting.
 chart_width = 164.99
 ```
+<!-- @end -->
 
 ![data-file-format.jpg](doc/README/data-file-format.jpg)
 
@@ -196,10 +200,12 @@ chart_width = 164.99
 Only line comments are supported.  A comment can appear either on a line by itself or at the end 
 of a line.  The comment delimiter is #.
 
+<!-- @generate doc/README/comments.jpg -->
 ```
 # This is a comment.
 C | lang | 2001     # This is another comment.
 ```
+<!-- @end -->
 
 ![comments.jpg](doc/README/comments.jpg)
 
@@ -210,11 +216,13 @@ C | lang | 2001     # This is another comment.
 Blank lines are ignored.
 
 
+<!-- @generate doc/README/blank-lines.jpg -->
 ```
 C   | lang | 2001
 
 C++ | lang | 2002
 ```
+<!-- @end -->
 
 ![blank-lines.jpg](doc/README/blank-lines.jpg)
 
@@ -231,9 +239,11 @@ A data line contains a description of the subject, which becomes the y-axis labe
 a style that defines how to draw the date range bars (i.e. what colour and shape the bars should
 be, etc.), and one or more date ranges.  Each of these elements is separated by a pipe character (|).
 
+<!-- @generate doc/README/data-lines.jpg -->
 ```
 C++ | lang | 2001 - 2002 | 2004 - 2006
 ```
+<!-- @end -->
 
 ![data-lines.jpg](doc/README/data-lines.jpg)
 
@@ -243,10 +253,12 @@ C++ | lang | 2001 - 2002 | 2004 - 2006
 
 Labels can contain spaces, although leading and trailing spaces are ignored.
 
+<!-- @generate doc/README/data-lines-labels.jpg -->
 ```
 # The label below has leading, trailing, and embedded spaces.
    MS Word   | tool | 2002 - 2005       # The label used on the chart is 'MS Word'.
 ```
+<!-- @end -->
 
 ![data-lines-labels.jpg](doc/README/data-lines-labels.jpg)
 
@@ -254,11 +266,13 @@ Labels can contain spaces, although leading and trailing spaces are ignored.
 The special characters # (starts a comment) and | (field separator) can be used in labels by escaping
 them with a back slash (\).  Back slash can be used by escaping it with itself.
 
+<!-- @generate doc/README/data-lines-escaping.jpg -->
 ```
 C\#         | lang | 2001 - 2007
 #Bo\|\|ean   | lang | 2003 - 2005
 #Back\\slash | lang | 2004 - 2008
 ```
+<!-- @end -->
 
 ![data-lines-escaping.jpg](doc/README/data-lines-escaping.jpg)
 
@@ -269,10 +283,12 @@ C\#         | lang | 2001 - 2007
 The bar style is the name of a TikZ style that must be defined in the TeX document that contains
 the generated TikZ chart code.  For example, we might have a file, chart.txt, that contains:
 
+<!-- @generate doc/README/data-lines-styles.jpg -->
 ```
 C++     | lang | 2001 - 2003
 OS X    | os   | 2002 - 2004
 ```
+<!-- @end -->
 
 The TeX document that includes the chart code must define the 'lang' and 'os' TikZ styles:
 
@@ -316,6 +332,7 @@ More information on TikZ styles can be found in [pgfmanual.pdf](http://mirrors.c
 
 Date ranges can be specified in various ways:
 
+<!-- @generate doc/README/data-lines-dates.jpg -->
 ```
 2001.3.14 - 2001.11.22  | lang | 2001.3.14 - 2001.11.22   # date format is yyyy.mm.dd
 2001.3 - 2001.11.22     | lang | 2001.3 - 2001.11.22      # same as: 2001.3.1 - 2001.11.22
@@ -329,6 +346,7 @@ Date ranges can be specified in various ways:
 # make more room for the those long y-axis labels, a setting that is described later
 y_item_label_width = 40
 ```
+<!-- @end -->
 
 ![data-lines-dates.jpg](doc/README/data-lines-dates.jpg)
 
@@ -336,11 +354,13 @@ Dates are optional, and if omitted result in just the label appearing on the cha
 If no dates are supplied, then the style can be omitted as well, although it will be ignored
 if included.
 
+<!-- @generate doc/README/data-lines-dates-optional.jpg -->
 ```
 Objective-C  | lang | 2001
 C++          | lang
 C
 ``` 
+<!-- @end -->
 
 ![data-lines-dates-optional.jpg](doc/README/data-lines-dates-optional.jpg)
 
@@ -351,6 +371,7 @@ C
 Separator lines are used to break subjects into sections by drawing a horizontal grid 
 line on the chart.  They are specified by using a line starting with three dashes (minus signs), ---.
 
+<!-- @generate doc/README/separator-line.jpg -->
 ```
 C++     | lang | 2003 - 2007
 C       | lang | 2005 - 2011
@@ -362,6 +383,7 @@ Emacs   | tool | 2003 - 2005
 ----------------------------    # A full line of dashes.
 Java    | lang | 2004
 ```
+<!-- @end -->
 
 ![separator-line.jpg](doc/README/separator-line.jpg)
 
@@ -397,19 +419,23 @@ chart_width = 60        # This is the value that will be used.
 **chart_width** (default 164.99mm) specifies the overall width of the chart.  This includes the y-axis
 labels and the plot area.
 
+<!-- @generate doc/README/chart-width-narrow.jpg -->
 ```
 chart_width = 70
 
 C++ | lang | 2003.4 - 2006.8
 ```
+<!-- @end -->
 
 ![chart-width-narrow.jpg](doc/README/chart-width-narrow.jpg)
 
+<!-- @generate doc/README/chart-width-wide.jpg -->
 ```
 chart_width = 140
 
 C++ | lang | 2003.4 - 2006.8
 ```
+<!-- @end -->
 
 ![chart-width-wide.pjg](doc/README/chart-width-wide.jpg)
 
@@ -424,7 +450,7 @@ C++ | lang | 2003.4 - 2006.8
 
 
 <br>
-### Version History
+# Version History
 
 0.0.1 August 2013
 
@@ -433,14 +459,14 @@ C++ | lang | 2003.4 - 2006.8
 
 
 <br>
-### History
+# History
 
 tchart was written to generate skill and employment history charts for the author's resume.
 
 
 
 <br>
-### Copyright Notices
+# Copyright Notices
 
 [TeX](http://www.tug.org) is a typesetting system invented by Donald Knuth.
 
@@ -451,4 +477,3 @@ tchart was written to generate skill and employment history charts for the autho
 [OS X](http://www.apple.com/osx/) is a trademark of [Apple Inc.](http://www.apple.com)
 
 All other company and/or product names may be the property of and/or trademarks of their respective owners.
-

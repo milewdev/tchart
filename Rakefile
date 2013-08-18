@@ -1,4 +1,5 @@
 require 'rake/testtask'
+require 'pathname'
 require_relative 'lib/tchart/version'
 
 task :default => [ :test, :req ]
@@ -18,10 +19,20 @@ task :req do
   end
 end
 
-desc 'Generate README.md and its images'
+desc 'Generate README.md chart images'
 task :build_readme do
-  readme = File.open('doc/README/src/README.template') { |f| f.read }
-  puts readme
+  readme = File.open('README.md') { |f| f.read }
+  readme.scan( /<!-- @generate (.*?) -->.*?```.*?\n(.*?)```.*?<!-- @end -->/m ) do |fn, spec|
+    puts fn
+    Dir.chdir('doc/README/src') do
+      File.open('drawing.txt', 'w') { |f| f.write(spec) }
+    	system "tchart drawing.txt drawing.tikz"
+    	system "pdftex -interaction=batchmode drawing-template.tex > /dev/null"
+    	system "pdfcrop --margins '30 5 30 10' drawing-template.pdf cropped.pdf > /dev/null"
+    	system "convert -density 300 cropped.pdf -quality 80 ../#{Pathname.new(fn).basename} > /dev/null"
+     	system "rm drawing.txt drawing.tikz drawing-template.pdf cropped.pdf drawing-template.log drawing-template.pgf > /dev/null"
+    end
+  end
 end
 
 desc 'Build gem'

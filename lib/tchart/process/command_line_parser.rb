@@ -1,6 +1,8 @@
 module TChart
   module CommandLineParser
     
+    # TODO: handle tchart - output, tchart input -, and tchart - -
+    #       where - means stdin and/or stdout
     def self.parse(argv) # => CommandLineArgs
       data_filename, tex_filename = argv
       raise_usage if argv.length != 2

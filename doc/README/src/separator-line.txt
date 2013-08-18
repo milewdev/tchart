@@ -1,9 +1,0 @@
-C++     | lang | 2003 - 2007
-C       | lang | 2005 - 2011
----                             # Three dashes produce a separator.
-OS X    | os   | 2003 - 2009
-Linux   | os   | 2008 - 2011
---- Anything after the first three dashes is ignored, so this is legal.
-Emacs   | tool | 2003 - 2005
-----------------------------    # A full line of dashes.
-Java    | lang | 2004
