@@ -54,8 +54,8 @@ will result in:
     $ tchart skills.txt skills.tikz
     ```
 
-3.  The generated TikZ code references a style name we specified in skills.txt ('lang'), as well as styles for the x-axis 
-    labels ('xlabel'), the y-axis labels ('ylabel'), and the chart grid lines ('gridline').  Create a TeX document,
+3.  The generated TikZ code references a style name we specified in skills.txt ('lang'), as well as styles for the x axis 
+    labels ('xlabel'), the y axis labels ('ylabel'), and the chart grid lines ('gridline').  Create a TeX document,
     styles.tikz, that defines these styles:
     
     ```
@@ -159,7 +159,7 @@ $ tchart unknown.txt skills.tikz
 Error: input data file "unknown.txt" not found.
 
 $ cat bad.txt
-Objective-C	lang	2003-garbage
+Objective-C | lang | 2003-garbage
 $ tchart bad.txt skills.tikz
 bad.txt, 1: bad date range "2003-garbage"; expecting 2000.4.17-2001.7.21, or 2000.4-2001, etc.
 Errors found; aborting.
@@ -194,7 +194,7 @@ chart_width = 164.99
 
 
 <br>
-*Comments*
+##### Comments
 
 Only line comments are supported.  A comment can appear either on a line by itself or at the end 
 of a line.  The comment delimiter is #.
@@ -210,7 +210,7 @@ C | lang | 2001     # This is another comment.
 
 
 <br>
-*Blank Lines*
+##### Blank Lines
 
 Blank lines are ignored.
 
@@ -227,14 +227,14 @@ C++ | lang | 2002
 
 
 <br>
-*Data Lines*
+##### Data Lines
 
 A data line represents something, a subject, that has a set of date ranges to be plotted on a row
 on the chart.  For example, I may have written C++ programs from 2001 to 2003, and 2004 to 2007,
 and I would like to plot this.  C++ is the subject of the row, and 2001 to 2003, and 2004 to 2007
 are two date ranges that will appear as bars on the row.
 
-A data line contains a description of the subject, which becomes the y-axis label on the chart,
+A data line contains a description of the subject, which becomes the y axis label on the chart,
 a style that defines how to draw the date range bars (i.e. what colour and shape the bars should
 be, etc.), and one or more date ranges.  Each of these elements is separated by a pipe character (|).
 
@@ -248,7 +248,7 @@ C++ | lang | 2001 - 2002 | 2004 - 2006
 
 
 <br>
-*Data Line Labels*
+##### Data Line Labels
 
 Labels can contain spaces, although leading and trailing spaces are ignored.
 
@@ -277,7 +277,7 @@ C\#         | lang | 2001 - 2007
 
 
 <br>
-*Data Line Styles*
+##### Data Line Styles
 
 The bar style is the name of a TikZ style that must be defined in the TeX document that contains
 the generated TikZ chart code.  For example, we might have a file, chart.txt, that contains:
@@ -327,13 +327,14 @@ More information on TikZ styles can be found in [pgfmanual.pdf](http://mirrors.c
 
 
 <br>
-*Data Line Dates*
+##### Data Line Dates
 
 Date ranges can be specified in various ways:
 
 <!-- @generate doc/README/data-lines-dates.jpg -->
 ```
 2001.3.14 - 2001.11.22  | lang | 2001.3.14 - 2001.11.22   # date format is yyyy.mm.dd
+2001.3.14-2001.11.22    | lang | 2001.3.14-2001.11.22     # spaces around the '-' are optional
 2001.3 - 2001.11.22     | lang | 2001.3 - 2001.11.22      # same as: 2001.3.1 - 2001.11.22
 2001 - 2001.11.22       | lang | 2001 - 2001.11.22        # 2001.1.1 - 2001.11.22
 2001.3.14 - 2001.11     | lang | 2001.3.14 - 2001.11      # 2001.3.14 - 2001.11.30
@@ -342,7 +343,7 @@ Date ranges can be specified in various ways:
 2001.3                  | lang | 2001.3                   # 2001.3.1 - 2001.3.31
 2001                    | lang | 2001                     # 2001.1.1 - 2001.12.31
 
-# make more room for the those long y-axis labels, a setting that is described later
+# make more room for the those long y axis labels, a setting that is described later
 y_item_label_width = 40
 ```
 <!-- @end -->
@@ -363,9 +364,11 @@ C
 
 ![data-lines-dates-optional.jpg](doc/README/data-lines-dates-optional.jpg)
 
+TODO: x axis date scale (years, 1/2 decades, decades)
+
 
 <br>
-*Separator Lines*
+##### Separator Lines
 
 Separator lines are used to break subjects into sections by drawing a horizontal grid 
 line on the chart.  They are specified by using a line starting with three dashes (minus signs), ---.
@@ -388,12 +391,12 @@ Java    | lang | 2004
 
 
 <br>
-*Settings*
+##### Settings
 
-tchart makes no attempt to figure out how much space text in the generated chart occupies, so it 
-uses default values for the amount of space to allocate for the overall width of the chart, the 
-length of the y-axis labels, and so on.  These default values can be overridden in the data file 
-using settings.  Settings are of the form:
+tchart makes no attempt to determine how much space text in the generated chart occupies and so
+it uses default values for the overall width of the chart, the length of the y axis labels, and
+so on.  These default values can be overridden in the data file using settings.  Settings are
+of the form:
 
 ```
 name = value
@@ -415,36 +418,50 @@ chart_width = 80
 chart_width = 60        # This is the value that will be used.
 ```
 
-**chart_width** (default 164.99mm) specifies the overall width of the chart.  This includes the y-axis
-labels and the plot area.
+<br>
 
-<!-- @generate doc/README/chart-width-narrow.jpg -->
-```
-chart_width = 70
+-   **chart_width** (default 164.99mm) specifies the overall width of the chart.  This includes the y axis
+    labels and the length of the x axis.
 
-C++ | lang | 2003.4 - 2006.8
-```
-<!-- @end -->
+    <!-- @generate doc/README/chart-width-narrow.jpg -->
+    ```
+    chart_width = 70
 
-![chart-width-narrow.jpg](doc/README/chart-width-narrow.jpg)
+    C++ | lang | 2003.4 - 2006.9
+    ```
+    <!-- @end -->
 
-<!-- @generate doc/README/chart-width-wide.jpg -->
-```
-chart_width = 140
+    ![chart-width-narrow.jpg](doc/README/chart-width-narrow.jpg)
 
-C++ | lang | 2003.4 - 2006.8
-```
-<!-- @end -->
+    <!-- @generate doc/README/chart-width-wide.jpg -->
+    ```
+    chart_width = 140
 
-![chart-width-wide.pjg](doc/README/chart-width-wide.jpg)
+    C++ | lang | 2003.4 - 2006.9
+    ```
+    <!-- @end -->
 
-**line_height** (default 4.6mm)
+    ![chart-width-wide.pjg](doc/README/chart-width-wide.jpg)
 
-**x_item_label_width** (default 10mm)
 
-**x_item_y_coordinate** (default -3mm)
+<br>
 
-**y_item_label_width** (default 24mm)
+-   **line_height** (default 4.6mm)
+
+
+<br>
+
+-   **x_item_label_width** (default 10mm)
+
+
+<br>
+
+-   **x_item_y_coordinate** (default -3mm)
+
+
+<br>
+
+-   **y_item_label_width** (default 24mm)
 
 
 

@@ -27,10 +27,10 @@ task :build_readme do
     Dir.chdir('doc/README/src') do
       File.open('drawing.txt', 'w') { |f| f.write(spec) }
     	system "tchart drawing.txt drawing.tikz"
-    	system "pdftex -interaction=batchmode drawing-template.tex > /dev/null"
-    	system "pdfcrop --margins '30 5 30 10' drawing-template.pdf cropped.pdf > /dev/null"
-    	system "convert -density 300 cropped.pdf -quality 80 ../#{Pathname.new(fn).basename} > /dev/null"
-     	system "rm drawing.txt drawing.tikz drawing-template.pdf cropped.pdf drawing-template.log drawing-template.pgf > /dev/null"
+    	system "pdftex -interaction=batchmode drawing.tex > /dev/null"
+      system "pdfcrop --margins '30 5 30 10' drawing.pdf cropped.pdf > /dev/null"
+      system "gs -q -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -r100 -sDEVICE=jpeg -dJPEGQ=100 -sOutputFile=../#{Pathname.new(fn).basename} cropped.pdf"
+      system "rm drawing.txt drawing.tikz drawing.pdf cropped.pdf drawing.log drawing.pgf"
     end
   end
 end

@@ -1,2 +1,0 @@
-# This is a comment.  It extends from # to the end of the line.
-C | lang | 2001     # Comments can also appear at the end of a line.

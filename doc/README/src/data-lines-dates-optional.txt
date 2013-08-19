@@ -1,3 +1,0 @@
-Objective-C  | lang | 2001
-C++          | lang
-C
