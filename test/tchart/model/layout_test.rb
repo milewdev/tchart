@@ -92,12 +92,12 @@ module TChart
 
   describe Layout, "y_item_x_coordinate" do
     before do
-      @settings = stub(y_item_label_width: 20)
+      @settings = stub(x_item_label_width: 10, y_item_label_width: 20)
       items = stub
       @layout = Layout.new(@settings, items)
     end
     it "returns the correct value" do
-      @layout.y_item_x_coordinate.must_equal (-@settings.y_item_label_width / 2)
+      @layout.y_item_x_coordinate.must_equal 0 - ((@settings.y_item_label_width / 2.0) + (@settings.x_item_label_width / 2.0))
     end
   end
   

@@ -110,7 +110,7 @@ module TChart
     end
     
     def calc_y_item_x_coordinate # => x:Numeric
-      -settings.y_item_label_width / 2.0
+      0 - ((settings.y_item_label_width / 2.0) + (settings.x_item_label_width / 2.0))
     end
     
     def calc_y_item_y_coordinates # => Enumerator of y:Numeric
