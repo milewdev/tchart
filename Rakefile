@@ -3,8 +3,9 @@ require 'pathname'
 require_relative 'lib/tchart/version'
 
 task :default => [ :test, :req ]
-task :doc => [ :build_readme ]
-task :all => [ :test, :req, :doc, :build, :install ]
+task :install => [ :build ]
+task :doc => [ :install, :build_readme ]
+task :all => [ :test, :req, :build, :install, :doc ]
 
 Rake::TestTask.new :test do |t|
   t.test_files = FileList['test/**/*_test.rb', 'req/**/*_test.rb']
@@ -19,9 +20,11 @@ task :req do
   end
 end
 
+# TODO: refactor;
 desc 'Generate README.md chart images'
 task :build_readme do
   readme = File.open('README.md') { |f| f.read }
+  # TODO: use @tchart instead of @generate
   readme.scan( /<!-- @generate (.*?) -->.*?```.*?\n(.*?)```.*?<!-- @end -->/m ) do |fn, spec|
     puts fn
     Dir.chdir('doc/README/src') do

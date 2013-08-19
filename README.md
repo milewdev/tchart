@@ -113,21 +113,8 @@ will result in:
     $ pdftex -interaction=batchmode skills.tex
     ```
     
-    [pdftex](http://www.tug.org/applications/pdftex/) will generate the file skills.pdf.
-    
-6.  Convert the PDF file to a JPEG file:
-
-    ```
-    $ pdfcrop --margins "30 10 30 10" skills.pdf skills-cropped.pdf
-    $ convert -density 300 skills-cropped.pdf -quality 80 skills.jpg
-    ```
-    
-    [pdfcrop](http://pdfcrop.sourceforge.net) trims the border around skills.pdf (i.e. reduces the page 
-    size from 8.5x11 inches down to one which is just large enough to contain the chart image), and 
-    [convert](http://www.imagemagick.org/script/convert.php) converts the PDF to a JPEG.  Both utilities 
-    are bundled with the [MacTeX](http://www.tug.org/mactex/) distribution.
-    
-    The final result, skills.jpg:
+    [pdftex](http://www.tug.org/applications/pdftex/) will generate the file skills.pdf, which
+    looks like this:
 
     ![skills.jpg](doc/README/skills.jpg)
 
@@ -149,20 +136,10 @@ There are no restrictions on the file names other than those imposed by the oper
 Although the examples here use .txt and .tikz as the extensions of the input and output files,
 you can use any extensions you like (or none at all).
 
-If errors are encountered, they will be written to standard error:
+Example:
 
 ```
-$ tchart
-Usage: tchart input-data-filename output-tikz-filename
-
-$ tchart unknown.txt skills.tikz
-Error: input data file "unknown.txt" not found.
-
-$ cat bad.txt
-Objective-C | lang | 2003-garbage
-$ tchart bad.txt skills.tikz
-bad.txt, 1: bad date range "2003-garbage"; expecting 2000.4.17-2001.7.21, or 2000.4-2001, etc.
-Errors found; aborting.
+$ tchart skills.txt skills.tikz
 ```
 
 
@@ -170,7 +147,7 @@ Errors found; aborting.
 <br>
 ### Data File Format
 
-Input files consist of one or more lines, where each line can be a comment, a blank line, a data
+Input files consist of one or more lines where each line can be a comment, a blank line, a data
 line, a separator line, or a setting:
 
 <!-- @generate doc/README/data-file-format.jpg -->
@@ -196,8 +173,8 @@ chart_width = 164.99
 <br>
 ##### Comments
 
-Only line comments are supported.  A comment can appear either on a line by itself or at the end 
-of a line.  The comment delimiter is #.
+Only line comments are supported (as opposed to multi-line block comments, such as C's /* ... */).  
+A comment can appear either on a line by itself or at the end of a line.  The comment delimiter is #.
 
 <!-- @generate doc/README/comments.jpg -->
 ```
@@ -289,7 +266,8 @@ OS X    | os   | 2002 - 2004
 ```
 <!-- @end -->
 
-The TeX document that includes the chart code must define the 'lang' and 'os' TikZ styles:
+The TeX document that includes the chart code must define the 'lang' and 'os' TikZ styles, perhaps 
+by incuding a separate file or inline, as shown here:
 
 ```
 ...
@@ -421,13 +399,15 @@ chart_width = 60        # This is the value that will be used.
 <br>
 
 -   **chart_width** (default 164.99mm) specifies the overall width of the chart.  This includes the y axis
-    labels and the length of the x axis.
+    labels and the length of the x axis:
 
     <!-- @generate doc/README/chart-width-narrow.jpg -->
     ```
     chart_width = 70
 
-    C++ | lang | 2003.4 - 2006.9
+    Objective-C | lang | 2005.3 - 2007.2
+    C++         | lang | 2003.4 - 2006.9
+    C           | lang | 2005 - 2008
     ```
     <!-- @end -->
 
@@ -437,7 +417,9 @@ chart_width = 60        # This is the value that will be used.
     ```
     chart_width = 140
 
-    C++ | lang | 2003.4 - 2006.9
+    Objective-C | lang | 2005.3 - 2007.2
+    C++         | lang | 2003.4 - 2006.9
+    C           | lang | 2005 - 2008
     ```
     <!-- @end -->
 
@@ -446,22 +428,123 @@ chart_width = 60        # This is the value that will be used.
 
 <br>
 
--   **line_height** (default 4.6mm)
+-   **line_height** (default 4.6mm) specifies the height of each row in the chart:
+
+    <!-- @generate doc/README/line-height-small.jpg -->
+    ```
+    line_height = 3
+    
+    Objective-C | lang | 2005.3 - 2007.2
+    C++         | lang | 2003.4 - 2006.9
+    C           | lang | 2005 - 2008
+    ```
+    <!-- @end -->
+    
+    ![line-height-small.jpg](doc/README/line-height-small.jpg)
+
+    <!-- @generate doc/README/line-height-large.jpg -->
+    ```
+    line_height = 9
+    
+    Objective-C | lang | 2005.3 - 2007.2
+    C++         | lang | 2003.4 - 2006.9
+    C           | lang | 2005 - 2008
+    ```
+    <!-- @end -->
+    
+    ![line-height-large.jpg](doc/README/line-height-large.jpg)
 
 
 <br>
 
--   **x_item_label_width** (default 10mm)
+-   **x_item_label_width** (default 10mm) specifies the width the x axis labels.
+    It is used by tchart to calculate the left and right margins around the plot
+    area only (each margin is 1/2 x_item_label_width):
+    
+    <!-- @generate doc/README/x-item-label-width-small.jpg -->
+    ```
+    x_item_label_width = 10
+        
+    Objective-C | lang | 2005.3 - 2007.2
+    C++         | lang | 2003.4 - 2006.9
+    C           | lang | 2005 - 2008
+    ```
+    <!-- @end -->
+    
+    ![x-item-label-width.jpg](doc/README/x-item-label-width-small.jpg)
+    
+    <!-- @generate doc/README/x-item-label-width-large.jpg -->
+    ```
+    x_item_label_width = 50
+        
+    Objective-C | lang | 2005.3 - 2007.2
+    C++         | lang | 2003.4 - 2006.9
+    C           | lang | 2005 - 2008
+    ```
+    <!-- @end -->
+    
+    ![x-item-label-width.jpg](doc/README/x-item-label-width-large.jpg)
+    
+    
+<br>
+
+-   **x_item_y_coordinate** (default -3mm) specifies the distance below the x axis
+    that the center of the x axis labels appear at:
+    
+    <!-- @generate doc/README/x-item-y-coordinate-above.jpg -->
+    ```
+    x_item_y_coordinate = 10
+        
+    Objective-C | lang | 2005.3 - 2007.2
+    C++         | lang | 2003.4 - 2006.9
+    C           | lang | 2005 - 2008
+    ```
+    <!-- @end -->
+    
+    ![x-item-y-coordinate-above.jpg](doc/README/x-item-y-coordinate-above.jpg)
+    
+    <!-- @generate doc/README/x-item-y-coordinate-below.jpg -->
+    ```
+    x_item_y_coordinate = -10
+        
+    Objective-C | lang | 2005.3 - 2007.2
+    C++         | lang | 2003.4 - 2006.9
+    C           | lang | 2005 - 2008
+    ```
+    <!-- @end -->
+    
+    ![x-item-y-coordinate-above.jpg](doc/README/x-item-y-coordinate-below.jpg)
 
 
 <br>
 
--   **x_item_y_coordinate** (default -3mm)
+-   **y_item_label_width** (default 24mm) specifies the width of the y axis labels
+    (the black marks after 'Objective-' and 'C++' are generated by TeX to indicate 
+    that a line is too long for the space allocated to it):
 
+    <!-- @generate doc/README/y-item-label-width-narrow.jpg -->
+    ```
+    y_item_label_width = 5
+        
+    Objective-C | lang | 2005.3 - 2007.2
+    C++         | lang | 2003.4 - 2006.9
+    C           | lang | 2005 - 2008
+    ```
+    <!-- @end -->
+    
+    ![y-item-label-width-narrow.jpg](doc/README/y-item-label-width-narrow.jpg)
 
-<br>
-
--   **y_item_label_width** (default 24mm)
+    <!-- @generate doc/README/y-item-label-width-wide.jpg -->
+    ```
+    y_item_label_width = 50    
+        
+    Objective-C | lang | 2005.3 - 2007.2
+    C++         | lang | 2003.4 - 2006.9
+    C           | lang | 2005 - 2008
+    ```
+    <!-- @end -->
+    
+    ![y-item-label-width-wide.jpg](doc/README/y-item-label-width-wide.jpg)
 
 
 
