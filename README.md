@@ -94,7 +94,7 @@ will result in:
     See [pgfmanual.pdf](http://mirrors.ctan.org/graphics/pgf/base/doc/generic/pgf/pgfmanual.pdf) for more information
     on TikZ and styles (e.g. sections 2.8, 12.4.2, and 55.4.4).
     
-4.  Create a main TeX document, skills.tex, that includes (\input) the TikZ library, the styles.tikz file, and the generated 
+4.  Create a main TeX document, skills.tex, that includes ('\input's) the TikZ library, the styles.tikz file, and the generated 
     skills.tikz file:
     
     ```
@@ -213,7 +213,7 @@ are two date ranges that will appear as bars on the row.
 
 A data line contains a description of the subject, which becomes the y axis label on the chart,
 a style that defines how to draw the date range bars (i.e. what colour and shape the bars should
-be, etc.), and one or more date ranges.  Each of these elements is separated by a pipe character (|).
+be, etc.), and one or more date ranges.  Elements are separated by a pipe character (|).
 
 <!-- @generate doc/README/data-lines.jpg -->
 ```
@@ -267,7 +267,7 @@ OS X    | os   | 2002 - 2004
 <!-- @end -->
 
 The TeX document that includes the chart code must define the 'lang' and 'os' TikZ styles, perhaps 
-by incuding a separate file or inline, as shown here:
+by incuding a separate file, or inline, as shown here:
 
 ```
 ...
@@ -399,7 +399,7 @@ chart_width = 60        # This is the value that will be used.
 <br>
 
 -   **chart_width** (default 164.99mm) specifies the overall width of the chart.  This includes the y axis
-    labels and the length of the x axis:
+    labels, the margins to the left and right of the plot area, and the length of the x axis:
 
     <!-- @generate doc/README/chart-width-narrow.jpg -->
     ```
