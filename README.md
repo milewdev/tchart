@@ -239,14 +239,14 @@ Labels can contain spaces, although leading and trailing spaces are ignored.
 ![data-lines-labels.jpg](doc/README/data-line-labels.jpg)
 
 
-The special characters # (starts a comment) and | (field separator) can be used in labels by escaping
-them with a back slash (\).  Back slash can be used by escaping it with itself.
+The tchart special characters # (hash, starts a comment) and | (pipe, field separator) can be 
+used in labels by escaping them with a \ (back slash).  \ can be used by escaping it with another \ .
 
 <!-- @tchart doc/README/data-line-escaping.jpg -->
 ```
 C\#         | lang | 2001 - 2007
-#Bo\|\|ean   | lang | 2003 - 2005
-#Back\\slash | lang | 2004 - 2008
+Bo\|\|ean   | lang | 2003 - 2005
+Back\\slash | lang | 2004 - 2008
 ```
 <!-- @end -->
 
