@@ -229,20 +229,20 @@ C++ | lang | 2001 - 2002 | 2004 - 2006
 
 Labels can contain spaces, although leading and trailing spaces are ignored.
 
-<!-- @tchart doc/README/data-lines-labels.jpg -->
+<!-- @tchart doc/README/data-line-labels.jpg -->
 ```
 # The label below has leading, trailing, and embedded spaces.
    MS Word   | tool | 2002 - 2005       # The label used on the chart is 'MS Word'.
 ```
 <!-- @end -->
 
-![data-lines-labels.jpg](doc/README/data-lines-labels.jpg)
+![data-lines-labels.jpg](doc/README/data-line-labels.jpg)
 
 
 The special characters # (starts a comment) and | (field separator) can be used in labels by escaping
 them with a back slash (\).  Back slash can be used by escaping it with itself.
 
-<!-- @tchart doc/README/data-lines-escaping.jpg -->
+<!-- @tchart doc/README/data-line-escaping.jpg -->
 ```
 C\#         | lang | 2001 - 2007
 #Bo\|\|ean   | lang | 2003 - 2005
@@ -250,7 +250,7 @@ C\#         | lang | 2001 - 2007
 ```
 <!-- @end -->
 
-![data-lines-escaping.jpg](doc/README/data-lines-escaping.jpg)
+![data-lines-escaping.jpg](doc/README/data-line-escaping.jpg)
 
 
 <br>
@@ -259,7 +259,7 @@ C\#         | lang | 2001 - 2007
 The bar style is the name of a TikZ style that must be defined in the TeX document that contains
 the generated TikZ chart code.  For example, we might have a file, chart.txt, that contains:
 
-<!-- @tchart doc/README/data-lines-styles.jpg -->
+<!-- @tchart doc/README/data-line-styles.jpg -->
 ```
 C++     | lang | 2001 - 2003
 OS X    | os   | 2002 - 2004
@@ -299,7 +299,7 @@ by incuding a separate file, or inline, as shown here:
 ...
 ```
 
-![data-lines-styles.jpg](doc/README/data-lines-styles.jpg)
+![data-lines-styles.jpg](doc/README/data-line-styles.jpg)
 
 More information on TikZ styles can be found in [pgfmanual.pdf](http://mirrors.ctan.org/graphics/pgf/base/doc/generic/pgf/pgfmanual.pdf), in particular sections 2.8, 12.4.2, and 55.4.4.
 
@@ -309,7 +309,7 @@ More information on TikZ styles can be found in [pgfmanual.pdf](http://mirrors.c
 
 Date ranges can be specified in various ways:
 
-<!-- @tchart doc/README/data-lines-dates.jpg -->
+<!-- @tchart doc/README/data-line-dates.jpg -->
 ```
 2001.3.14 - 2001.11.22  | lang | 2001.3.14 - 2001.11.22   # date format is yyyy.mm.dd
 2001.3.14-2001.11.22    | lang | 2001.3.14-2001.11.22     # spaces around the '-' are optional
@@ -326,13 +326,13 @@ y_item_label_width = 40
 ```
 <!-- @end -->
 
-![data-lines-dates.jpg](doc/README/data-lines-dates.jpg)
+![data-lines-dates.jpg](doc/README/data-line-dates.jpg)
 
-Dates are optional and if omitted result in just the label appearing on the chart, no bars.
+Dates are optional and if omitted result in the label appearing on the chart without any bars.
 If no dates are supplied, then the style can be omitted as well, although it will be ignored
 if included.
 
-<!-- @tchart doc/README/data-lines-dates-optional.jpg -->
+<!-- @tchart doc/README/data-line-dates-optional.jpg -->
 ```
 Objective-C  | lang | 2001
 C++          | lang
@@ -340,9 +340,35 @@ C
 ``` 
 <!-- @end -->
 
-![data-lines-dates-optional.jpg](doc/README/data-lines-dates-optional.jpg)
+![data-lines-dates-optional.jpg](doc/README/data-line-dates-optional.jpg)
 
-TODO: x axis date scale (years, 1/2 decades, decades)
+The labels on the x axis are determined by the range of dates found in the data:
+
+<!-- @tchart doc/README/data-line-dates-range1.jpg -->
+```
+Every Year | lang | 2000 - 2009
+```
+<!-- @end -->
+
+![data-line-dates-range1.jpg](doc/README/data-line-dates-range1.jpg)
+
+
+<!-- @tchart doc/README/data-line-dates-range5.jpg -->
+```
+Every 5 Years | lang | 2000 - 2049
+```
+<!-- @end -->
+
+![data-line-dates-range1.jpg](doc/README/data-line-dates-range5.jpg)
+
+
+<!-- @tchart doc/README/data-line-dates-range10.jpg -->
+```
+Every 10 Years | lang | 2000 - 2050
+```
+<!-- @end -->
+
+![data-line-dates-range1.jpg](doc/README/data-line-dates-range10.jpg)
 
 
 <br>
@@ -388,12 +414,13 @@ chart_width=164.99
 ```
 
 Settings can appear anywhere in the data file, although putting them at the top is likely the best
-idea.  If the same setting is specified more than once, the last value found wins:
+idea.  If the same setting is specified more than once, the last value listed is the one that is
+used:
 
 ```
 chart_width = 100
 chart_width = 80
-chart_width = 60        # This is the value that will be used.
+chart_width = 60        # This is the winning value.
 ```
 
 <br>
