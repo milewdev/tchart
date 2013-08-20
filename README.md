@@ -4,7 +4,7 @@ tchart is a command line utility that generates [TikZ](http://sourceforge.net/pr
 
 For example, a file containing:
 
-<!-- @generate doc/README/overview.jpg -->
+<!-- @tchart doc/README/overview.jpg -->
 ```
 Objective-C  | lang | 2006.6 - 2013.7
 C++          | lang | 2002 - 2008
@@ -40,7 +40,7 @@ will result in:
 
 1.  Create a text file, skills.txt, containing some date-based data:
 
-    <!-- @generate doc/README/skills.jpg -->    
+    <!-- @tchart doc/README/skills.jpg -->    
     ```
     Objective-C | lang | 2006 - 2013
     C++         | lang | 2002 - 2008
@@ -150,7 +150,7 @@ $ tchart skills.txt skills.tikz
 Input files consist of one or more lines where each line can be a comment, a blank line, a data
 line, a separator line, or a setting:
 
-<!-- @generate doc/README/data-file-format.jpg -->
+<!-- @tchart doc/README/data-file-format.jpg -->
 ```
 # A comment.
 
@@ -176,7 +176,7 @@ chart_width = 164.99
 Only line comments are supported (as opposed to multi-line block comments, such as C's /* ... */).  
 A comment can appear either on a line by itself or at the end of a line.  The comment delimiter is #.
 
-<!-- @generate doc/README/comments.jpg -->
+<!-- @tchart doc/README/comments.jpg -->
 ```
 # This is a comment.
 C | lang | 2001     # This is another comment.
@@ -192,7 +192,7 @@ C | lang | 2001     # This is another comment.
 Blank lines are ignored.
 
 
-<!-- @generate doc/README/blank-lines.jpg -->
+<!-- @tchart doc/README/blank-lines.jpg -->
 ```
 C   | lang | 2001
 
@@ -215,7 +215,7 @@ A data line contains a description of the subject, which becomes the y axis labe
 a style that defines how to draw the date range bars (i.e. what colour and shape the bars should
 be, etc.), and one or more date ranges.  Elements are separated by a pipe character (|).
 
-<!-- @generate doc/README/data-lines.jpg -->
+<!-- @tchart doc/README/data-lines.jpg -->
 ```
 C++ | lang | 2001 - 2002 | 2004 - 2006
 ```
@@ -229,7 +229,7 @@ C++ | lang | 2001 - 2002 | 2004 - 2006
 
 Labels can contain spaces, although leading and trailing spaces are ignored.
 
-<!-- @generate doc/README/data-lines-labels.jpg -->
+<!-- @tchart doc/README/data-lines-labels.jpg -->
 ```
 # The label below has leading, trailing, and embedded spaces.
    MS Word   | tool | 2002 - 2005       # The label used on the chart is 'MS Word'.
@@ -242,7 +242,7 @@ Labels can contain spaces, although leading and trailing spaces are ignored.
 The special characters # (starts a comment) and | (field separator) can be used in labels by escaping
 them with a back slash (\).  Back slash can be used by escaping it with itself.
 
-<!-- @generate doc/README/data-lines-escaping.jpg -->
+<!-- @tchart doc/README/data-lines-escaping.jpg -->
 ```
 C\#         | lang | 2001 - 2007
 #Bo\|\|ean   | lang | 2003 - 2005
@@ -259,7 +259,7 @@ C\#         | lang | 2001 - 2007
 The bar style is the name of a TikZ style that must be defined in the TeX document that contains
 the generated TikZ chart code.  For example, we might have a file, chart.txt, that contains:
 
-<!-- @generate doc/README/data-lines-styles.jpg -->
+<!-- @tchart doc/README/data-lines-styles.jpg -->
 ```
 C++     | lang | 2001 - 2003
 OS X    | os   | 2002 - 2004
@@ -309,7 +309,7 @@ More information on TikZ styles can be found in [pgfmanual.pdf](http://mirrors.c
 
 Date ranges can be specified in various ways:
 
-<!-- @generate doc/README/data-lines-dates.jpg -->
+<!-- @tchart doc/README/data-lines-dates.jpg -->
 ```
 2001.3.14 - 2001.11.22  | lang | 2001.3.14 - 2001.11.22   # date format is yyyy.mm.dd
 2001.3.14-2001.11.22    | lang | 2001.3.14-2001.11.22     # spaces around the '-' are optional
@@ -332,7 +332,7 @@ Dates are optional and if omitted result in just the label appearing on the char
 If no dates are supplied, then the style can be omitted as well, although it will be ignored
 if included.
 
-<!-- @generate doc/README/data-lines-dates-optional.jpg -->
+<!-- @tchart doc/README/data-lines-dates-optional.jpg -->
 ```
 Objective-C  | lang | 2001
 C++          | lang
@@ -351,7 +351,7 @@ TODO: x axis date scale (years, 1/2 decades, decades)
 Separator lines are used to break subjects into sections by drawing a horizontal grid 
 line on the chart.  They are specified by using a line starting with three dashes (minus signs), ---.
 
-<!-- @generate doc/README/separator-line.jpg -->
+<!-- @tchart doc/README/separator-line.jpg -->
 ```
 C++     | lang | 2003 - 2007
 C       | lang | 2005 - 2011
@@ -401,7 +401,7 @@ chart_width = 60        # This is the value that will be used.
 -   **chart_width** (default 164.99mm) specifies the overall width of the chart.  This includes the y axis
     labels, the margins to the left and right of the plot area, and the length of the x axis:
 
-    <!-- @generate doc/README/chart-width-narrow.jpg -->
+    <!-- @tchart doc/README/chart-width-narrow.jpg -->
     ```
     chart_width = 70
 
@@ -413,7 +413,7 @@ chart_width = 60        # This is the value that will be used.
 
     ![chart-width-narrow.jpg](doc/README/chart-width-narrow.jpg)
 
-    <!-- @generate doc/README/chart-width-wide.jpg -->
+    <!-- @tchart doc/README/chart-width-wide.jpg -->
     ```
     chart_width = 140
 
@@ -430,7 +430,7 @@ chart_width = 60        # This is the value that will be used.
 
 -   **line_height** (default 4.6mm) specifies the height of each row in the chart:
 
-    <!-- @generate doc/README/line-height-small.jpg -->
+    <!-- @tchart doc/README/line-height-small.jpg -->
     ```
     line_height = 3
     
@@ -442,7 +442,7 @@ chart_width = 60        # This is the value that will be used.
     
     ![line-height-small.jpg](doc/README/line-height-small.jpg)
 
-    <!-- @generate doc/README/line-height-large.jpg -->
+    <!-- @tchart doc/README/line-height-large.jpg -->
     ```
     line_height = 9
     
@@ -461,7 +461,7 @@ chart_width = 60        # This is the value that will be used.
     It is used by tchart to calculate the left and right margins around the plot
     area only (each margin is 1/2 x_item_label_width):
     
-    <!-- @generate doc/README/x-item-label-width-small.jpg -->
+    <!-- @tchart doc/README/x-item-label-width-small.jpg -->
     ```
     x_item_label_width = 10
         
@@ -473,7 +473,7 @@ chart_width = 60        # This is the value that will be used.
     
     ![x-item-label-width.jpg](doc/README/x-item-label-width-small.jpg)
     
-    <!-- @generate doc/README/x-item-label-width-large.jpg -->
+    <!-- @tchart doc/README/x-item-label-width-large.jpg -->
     ```
     x_item_label_width = 50
         
@@ -491,7 +491,7 @@ chart_width = 60        # This is the value that will be used.
 -   **x_item_y_coordinate** (default -3mm) specifies the distance from the x axis
     that the center of the x axis labels appear at:
     
-    <!-- @generate doc/README/x-item-y-coordinate-above.jpg -->
+    <!-- @tchart doc/README/x-item-y-coordinate-above.jpg -->
     ```
     x_item_y_coordinate = 10
         
@@ -503,7 +503,7 @@ chart_width = 60        # This is the value that will be used.
     
     ![x-item-y-coordinate-above.jpg](doc/README/x-item-y-coordinate-above.jpg)
     
-    <!-- @generate doc/README/x-item-y-coordinate-below.jpg -->
+    <!-- @tchart doc/README/x-item-y-coordinate-below.jpg -->
     ```
     x_item_y_coordinate = -10
         
@@ -522,7 +522,7 @@ chart_width = 60        # This is the value that will be used.
     (the black marks after 'Objective-' and 'C++' are generated by TeX to indicate 
     that text, for example, is too long for the space allocated for it):
 
-    <!-- @generate doc/README/y-item-label-width-narrow.jpg -->
+    <!-- @tchart doc/README/y-item-label-width-narrow.jpg -->
     ```
     y_item_label_width = 5
         
@@ -534,7 +534,7 @@ chart_width = 60        # This is the value that will be used.
     
     ![y-item-label-width-narrow.jpg](doc/README/y-item-label-width-narrow.jpg)
 
-    <!-- @generate doc/README/y-item-label-width-wide.jpg -->
+    <!-- @tchart doc/README/y-item-label-width-wide.jpg -->
     ```
     y_item_label_width = 50    
         
@@ -569,7 +569,7 @@ tchart was written to generate skill and employment history charts for the autho
 
 [TeX](http://www.tug.org) is a typesetting system invented by Donald Knuth.
 
-[PGF/TikZ](http://sourceforge.net/projects/pgf/) is a system designed by Till Tantau for producing graphics in TeX and related documents.
+[PGF/TikZ](http://sourceforge.net/projects/pgf/) is a system designed by Till Tantau for producing graphics in TeX and similar documents.
 
 [Ruby](http://www.ruby-lang.org) is a programming language initially designed and developed by Yukihiro Matsumoto.
 
