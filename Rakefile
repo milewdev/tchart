@@ -19,11 +19,25 @@ task :req do
   end
 end
 
-# TODO: refactor;
+desc 'Build gem'
+task :build do
+  system "gem build tchart.gemspec"
+end
+
+desc 'Install gem locally (does an uninstall first)'
+task :install do
+  system "gem uninstall -x tchart"
+  system "gem install tchart-#{TChart::Version}.gem"
+end
+
 desc 'Generate README.md chart images'
 task :readme do
-  readme = File.open('README.md') { |f| f.read }
-  readme.scan( /<!-- @tchart (.*?) -->.*?```.*?\n(.*?)```.*?<!-- @end -->/m ) do |fn, spec|
+  generate_charts('README.md')
+end
+
+def generate_charts(filename)
+  contents = File.open(filename) { |f| f.read }
+  contents.scan( /<!-- @tchart (.*?) -->.*?```.*?\n(.*?)```.*?<!-- @end -->/m ) do |fn, spec|
     puts fn
     Dir.chdir('doc/README/src') do
       File.open('drawing.txt', 'w') { |f| f.write(spec) }
@@ -34,15 +48,4 @@ task :readme do
       system "rm drawing.txt drawing.tikz drawing.pdf cropped.pdf drawing.log drawing.pgf"
     end
   end
-end
-
-desc 'Build gem'
-task :build do
-  system "gem build tchart.gemspec"
-end
-
-desc 'Install gem locally (does an uninstall first)'
-task :install do
-  system "gem uninstall -x tchart"
-  system "gem install tchart-#{TChart::Version}.gem"
 end
