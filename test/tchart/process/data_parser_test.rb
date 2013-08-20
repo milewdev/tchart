@@ -149,9 +149,9 @@ module TChart
       errors.length.must_equal 0
     end
     it "ignores escaped separator characters" do
-      data = StringIO.new("Name1\\|Name2|Style|2000\n")
+      data = StringIO.new("Name1\\|\\|Name2|Style|2000\n")
       _, items, _ = DataParser.parse('filename.txt', data)
-      items[0].name.must_equal 'Name1|Name2'
+      items[0].name.must_equal 'Name1||Name2'
       items[0].bar_style.must_equal 'Style'
       items[0].date_ranges.must_equal [ Date.new(2000,1,1)..Date.new(2000,12,31) ]
     end

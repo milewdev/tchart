@@ -10,8 +10,8 @@ module TChart
       @tex.to_s.must_equal "% this is a comment\n"
     end
     it "escapes TeX special characters in comments" do
-      @tex.comment "this is a comment with TeX special characters: # & |"
-      @tex.to_s.must_equal "% this is a comment with TeX special characters: \\# \\& \\|\n"
+      @tex.comment '# $ % & _ { } \ ~ ^ |'
+      @tex.to_s.must_include '\# \$ \% \& \_ \{ \} $\backslash$ \~{} \^{} $\vert$'
     end
     it "handles non-string arguments" do
       @tex.comment 123
@@ -38,8 +38,8 @@ module TChart
       @tex.to_s.must_equal "\\node [some_style, text width = 15.00mm] at (10.00mm, 20.00mm) {the label text};\n"
     end
     it "escapes TeX special characters in the label text" do
-      @tex.label xy(10,20), 15, 'some_style', 'TeX special characters: # &'  # x_mid, y, width, style, text
-      @tex.to_s.must_equal "\\node [some_style, text width = 15.00mm] at (10.00mm, 20.00mm) {TeX special characters: \\# \\&};\n"
+      @tex.label xy(10,20), 15, 'some_style', 'TeX special characters: # $ % & _ { } \ ~ ^ |'  # x_mid, y, width, style, text
+      @tex.to_s.must_include '{TeX special characters: \# \$ \% \& \_ \{ \} $\backslash$ \~{} \^{} $\vert$}'
     end
     it "handles non-string label text" do
       @tex.label xy(10,20), 15, 'some_style', 123  # x_mid, y, width, style, text

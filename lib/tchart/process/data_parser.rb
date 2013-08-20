@@ -139,7 +139,7 @@ module TChart
     end
     
     def remove_escapes(line) # => line
-      line.sub(/\\(.)/, '\1')
+      line.gsub(/\\(.)/, '\1')
     end
     
     def parse_date_ranges(date_range_strings) # => [ Date..Date, ... ]

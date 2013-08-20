@@ -43,9 +43,22 @@ module TChart
       '%.02f' % number
     end
     
-    # escape_tex_special_chars("a#b&c|d") => "a\#b\&c\|d"
+    # escape_tex_special_chars('# $ % & _ { } \ ~ ^ |') => '\# \$ \% \& \_ \{ \} \textbackslash{} \~{} \^{} $\vert$'
     def escape_tex_special_chars(text)
-      text.gsub(/([#&|])/, '\\\\\\1')
+      text.gsub(/([#$%&_{}~^\\|])/) do |match|
+        case match
+        when '#', '$', '%', '&', '_', '{', '}'
+          "\\#{match}"
+        when '\\'
+          '$\\backslash$'
+        when '~'
+          '\\~{}'
+        when '^'
+          '\\^{}'
+        when '|'
+          '$\\vert$'
+        end
+      end
     end
     
     # to_tikx_coords(x_from, x_to) => [ x_mid, width ]
