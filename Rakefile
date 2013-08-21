@@ -2,14 +2,20 @@ require 'rake/testtask'
 require 'pathname'
 require_relative 'lib/tchart/version'
 
+
 task :default => [ :test, :req ]
 task :install => [ :build ]
+
+
+desc 'Runs test, req, build, install, and readme tasks'
 task :all => [ :test, :req, :build, :install, :readme ]
+
 
 Rake::TestTask.new :test do |t|
   t.test_files = FileList['test/**/*_test.rb', 'req/**/*_test.rb']
   t.warning = true
 end
+
 
 desc 'Run requirements tests'
 task :req do
@@ -19,10 +25,12 @@ task :req do
   end
 end
 
+
 desc 'Build gem'
 task :build do
   system "gem build tchart.gemspec"
 end
+
 
 desc 'Install gem locally (does an uninstall first)'
 task :install do
@@ -30,10 +38,12 @@ task :install do
   system "gem install tchart-#{TChart::Version}.gem"
 end
 
+
 desc 'Generate README.md chart images'
 task :readme do
   generate_charts('README.md')
 end
+
 
 def generate_charts(filename)
   contents = File.open(filename) { |f| f.read }
