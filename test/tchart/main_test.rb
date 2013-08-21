@@ -25,7 +25,5 @@ module TChart
       $stderr.string.must_match %r{undefined method `length'}
       $stderr.string.must_match %r{lib/tchart/process/command_line_parser\.rb:\d+:in `parse'}
     end
-    it "silently overwrites an already existing output file" # TODO
-    it "writes a 'not writable' error if the output file already exists and cannot be overwritten" # TODO
   end
 end

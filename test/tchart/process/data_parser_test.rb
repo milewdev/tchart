@@ -269,6 +269,10 @@ module TChart
       _, _, errors = DataParser.parse('filename.txt', data)
       errors.must_equal [ "filename.txt, 1: date range end 2000.4.14 before start 2001.2.22" ]
     end
-    it "returns an error if two sets of dates are not separated by at least one tab character" # TODO
+    it "returns an error if two sets of dates are not separated by a pipe" do
+      data = StringIO.new("Name|Style|2001-2002 2003-2004\n")
+      _, _, errors = DataParser.parse('filename.txt', data)
+      errors.must_equal [ "filename.txt, 1: bad date range \"2001-2002 2003-2004\"; expecting 2000.4.17-2001.7.21, or 2000.4-2001, etc." ]
+    end
   end
 end
