@@ -1,11 +1,11 @@
-% Style for x axis labels.
+% Style for chart x axis labels.
 \tikzset{ xlabel/.style = {
   text width = 10.00mm,
   align = center,
   inner sep = 0
 }}
 
-% Style for y axis labels.
+% Style for chart y axis labels.
 \tikzset{ ylabel/.style = {
   minimum height = 4.60mm,
   text width = 24.00mm,
@@ -19,8 +19,8 @@
   draw = black!20
 }}
 
-% Style for programming language bars.
-\definecolor{lang_color}{rgb}{.10, .32, .68}
+% Style for programming language chart bars.
+\definecolor{lang_color}{rgb}{ 0.59, 0.59, 0.39 }
 \tikzset{ lang/.style = {
   rounded corners = 1mm,
   line width = 0.1pt,
@@ -29,8 +29,8 @@
   bottom color = lang_color
 }}
 
-% Style for database bars.
-\definecolor{db_color}{rgb}{0.23, 0.45, 0.80}
+% Style for database chart bars.
+\definecolor{db_color}{rgb}{0.73, 0.73, 0.49}
 \tikzset{ db/.style = {
   rounded corners = 1mm,
   line width = 0.1pt,
@@ -39,8 +39,8 @@
   bottom color = db_color
 }}
 
-% Style for operating systems bars.
-\definecolor{os_color}{rgb}{.35, .57, .93}
+% Style for operating systems chart bars.
+\definecolor{os_color}{rgb}{0.88, 0.88, 0.59}
 \tikzset{ os/.style = {
   rounded corners = 1mm,
   line width = 0.1pt,
@@ -49,8 +49,8 @@
   bottom color = os_color
 }}
 
-% Style for tool bars.
-\definecolor{tool_color}{rgb}{.48, .70, 1.00}
+% Style for tool chart bars.
+\definecolor{tool_color}{rgb}{0.58, 0.45, 0.39}
 \tikzset{ tool/.style = {
   rounded corners = 1mm,
   line width = 0.1pt,
@@ -58,3 +58,14 @@
   top color = tool_color,
   bottom color = tool_color
 }}
+
+% Style for employment chart bars.
+\definecolor{emp_color}{rgb}{0.10, 0.32, 0.68}
+\tikzset{ emp/.style = {
+  rounded corners = 1mm,
+  line width = 0.1pt,
+  draw = emp_color,
+  top color = emp_color,
+  bottom color = emp_color
+}}
+

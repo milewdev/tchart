@@ -8,15 +8,18 @@ For example, a file containing:
 ```
 Objective-C  | lang | 2006.6 - 2013.7
 C++          | lang | 2002 - 2008
-C            | lang | 2001 - 2002 | 2007 - 2009
+C            | lang | 2001 - 2002 | 2005 - 2007
+-----------------------------------------------
+PostgreSQL   | db   | 2004 - 2006
+SQLite       | db   | 2002 - 2007
 -----------------------------------------------
 OS X         | os   | 2006.6 - 2013.7
-Linux        | os   | 2005 - 2008
+Linux        | os   | 2005 - 2010
 Windows      | os   | 2001 - 2006.2
 -----------------------------------------------
 XCode        | tool | 2006.6 - 2013.7
 Emacs        | tool | 2005 - 2008
-MS VS        | tool | 2001 - 2006.2
+VS           | tool | 2001 - 2004
 ```
 <!-- @end -->
 
@@ -42,9 +45,9 @@ will result in:
 
     <!-- @tchart doc/README/skills.jpg -->    
     ```
-    Objective-C | lang | 2006 - 2013
-    C++         | lang | 2002 - 2008
-    C           | lang | 2001 - 2002
+    Objective-C  | lang | 2006.6 - 2013.7
+    C++          | lang | 2002 - 2008
+    C            | lang | 2001 - 2002 | 2005 - 2007
     ```
     <!-- @end -->
 
@@ -157,10 +160,10 @@ line, a separator line, or a setting:
 # Blanks lines above and below this line, and further down.
 
 # A data line.
-Objective-C  | lang | 2001-2015
+Objective-C  | lang | 2006.6 - 2013.8
 
 # A separator line.
--------------------------------
+-------------------------------------
 
 # A setting.
 chart_width = 164.99
@@ -179,7 +182,9 @@ A comment can appear either on a line by itself or at the end of a line.  The co
 <!-- @tchart doc/README/comments.jpg -->
 ```
 # This is a comment.
-C | lang | 2001     # This is another comment.
+Objective-C  | lang | 2006.6 - 2013.7               # This is another comment.
+C++          | lang | 2002 - 2008
+# C            | lang | 2001 - 2002 | 2005 - 2007   # This line is commented out.
 ```
 <!-- @end -->
 
@@ -194,9 +199,11 @@ Blank lines are ignored.
 
 <!-- @tchart doc/README/blank-lines.jpg -->
 ```
-C   | lang | 2001
+Objective-C  | lang | 2006.6 - 2013.7
 
-C++ | lang | 2002
+C++          | lang | 2002 - 2008
+
+C            | lang | 2001 - 2002 | 2005 - 2007
 ```
 <!-- @end -->
 
@@ -217,7 +224,7 @@ be, etc.), and one or more date ranges.  Elements are separated by a pipe charac
 
 <!-- @tchart doc/README/data-lines.jpg -->
 ```
-C++ | lang | 2001 - 2002 | 2004 - 2006
+C            | lang | 2001 - 2002 | 2005 - 2007
 ```
 <!-- @end -->
 
@@ -232,7 +239,7 @@ Labels can contain spaces, although leading and trailing spaces are ignored.
 <!-- @tchart doc/README/data-line-labels.jpg -->
 ```
 # The label below has leading, trailing, and embedded spaces.
-   MS Word   | tool | 2002 - 2005       # The label used on the chart is 'MS Word'.
+   C & C++   | lang | 2001 - 2008       # The label used on the chart is "C & C++"
 ```
 <!-- @end -->
 
@@ -261,8 +268,8 @@ the generated TikZ chart code.  For example, we might have a file, chart.txt, th
 
 <!-- @tchart doc/README/data-line-styles.jpg -->
 ```
-C++     | lang | 2001 - 2003
-OS X    | os   | 2002 - 2004
+C++          | lang | 2002 - 2008
+Linux        | os   | 2005 - 2010
 ```
 <!-- @end -->
 
@@ -273,7 +280,7 @@ by incuding a separate file, or inline, as shown here:
 ...
 
 % Style for programming language chart bars.
-\definecolor{lang_color}{rgb}{.10, .32, .68}
+\definecolor{lang_color}{rgb}{ 0.59, 0.59, 0.39 }
 \tikzset{ lang/.style = {
   rounded corners = 1mm,
   line width = 0.1pt,
@@ -283,7 +290,7 @@ by incuding a separate file, or inline, as shown here:
 }}
 
 % Style for operating systems chart bars.
-\definecolor{os_color}{rgb}{.35, .57, .93}
+\definecolor{os_color}{rgb}{0.88, 0.88, 0.59}
 \tikzset{ os/.style = {
   rounded corners = 1mm,
   line width = 0.1pt,
@@ -334,7 +341,7 @@ if included.
 
 <!-- @tchart doc/README/data-line-dates-optional.jpg -->
 ```
-Objective-C  | lang | 2001
+Objective-C  | lang | 2006.6 - 2013.7
 C++          | lang
 C
 ``` 
@@ -379,15 +386,13 @@ line on the chart.  They are specified by using a line starting with three dashe
 
 <!-- @tchart doc/README/separator-line.jpg -->
 ```
-C++     | lang | 2003 - 2007
-C       | lang | 2005 - 2011
----                             # Three dashes produce a separator.
-OS X    | os   | 2003 - 2009
-Linux   | os   | 2008 - 2011
+Objective-C  | lang | 2006.6 - 2013.7
+---                                     # Three dashes produce a separator.
+PostgreSQL   | db   | 2004 - 2006
 --- Anything after the first three dashes is ignored, so this is legal.
-Emacs   | tool | 2003 - 2005
-----------------------------    # A full line of dashes.
-Java    | lang | 2004
+OS X         | os   | 2006.6 - 2013.7
+-------------------------------------   # A full line of dashes.
+XCode        | tool | 2006.6 - 2013.7
 ```
 <!-- @end -->
 
@@ -432,9 +437,9 @@ chart_width = 60        # This is the winning value.
     ```
     chart_width = 70
 
-    Objective-C | lang | 2005.3 - 2007.2
-    C++         | lang | 2003.4 - 2006.9
-    C           | lang | 2005 - 2008
+    Objective-C  | lang | 2006.6 - 2013.7
+    C++          | lang | 2002 - 2008
+    C            | lang | 2001 - 2002 | 2005 - 2007
     ```
     <!-- @end -->
 
@@ -444,9 +449,9 @@ chart_width = 60        # This is the winning value.
     ```
     chart_width = 140
 
-    Objective-C | lang | 2005.3 - 2007.2
-    C++         | lang | 2003.4 - 2006.9
-    C           | lang | 2005 - 2008
+    Objective-C  | lang | 2006.6 - 2013.7
+    C++          | lang | 2002 - 2008
+    C            | lang | 2001 - 2002 | 2005 - 2007
     ```
     <!-- @end -->
 
@@ -461,9 +466,9 @@ chart_width = 60        # This is the winning value.
     ```
     line_height = 3
     
-    Objective-C | lang | 2005.3 - 2007.2
-    C++         | lang | 2003.4 - 2006.9
-    C           | lang | 2005 - 2008
+    Objective-C  | lang | 2006.6 - 2013.7
+    C++          | lang | 2002 - 2008
+    C            | lang | 2001 - 2002 | 2005 - 2007
     ```
     <!-- @end -->
     
@@ -473,9 +478,9 @@ chart_width = 60        # This is the winning value.
     ```
     line_height = 9
     
-    Objective-C | lang | 2005.3 - 2007.2
-    C++         | lang | 2003.4 - 2006.9
-    C           | lang | 2005 - 2008
+    Objective-C  | lang | 2006.6 - 2013.7
+    C++          | lang | 2002 - 2008
+    C            | lang | 2001 - 2002 | 2005 - 2007
     ```
     <!-- @end -->
     
@@ -492,9 +497,9 @@ chart_width = 60        # This is the winning value.
     ```
     x_item_label_width = 10
         
-    Objective-C | lang | 2005.3 - 2007.2
-    C++         | lang | 2003.4 - 2006.9
-    C           | lang | 2005 - 2008
+    Objective-C  | lang | 2006.6 - 2013.7
+    C++          | lang | 2002 - 2008
+    C            | lang | 2001 - 2002 | 2005 - 2007
     ```
     <!-- @end -->
     
@@ -504,9 +509,9 @@ chart_width = 60        # This is the winning value.
     ```
     x_item_label_width = 50
         
-    Objective-C | lang | 2005.3 - 2007.2
-    C++         | lang | 2003.4 - 2006.9
-    C           | lang | 2005 - 2008
+    Objective-C  | lang | 2006.6 - 2013.7
+    C++          | lang | 2002 - 2008
+    C            | lang | 2001 - 2002 | 2005 - 2007
     ```
     <!-- @end -->
     
@@ -522,9 +527,9 @@ chart_width = 60        # This is the winning value.
     ```
     x_item_y_coordinate = 10
         
-    Objective-C | lang | 2005.3 - 2007.2
-    C++         | lang | 2003.4 - 2006.9
-    C           | lang | 2005 - 2008
+    Objective-C  | lang | 2006.6 - 2013.7
+    C++          | lang | 2002 - 2008
+    C            | lang | 2001 - 2002 | 2005 - 2007
     ```
     <!-- @end -->
     
@@ -534,9 +539,9 @@ chart_width = 60        # This is the winning value.
     ```
     x_item_y_coordinate = -10
         
-    Objective-C | lang | 2005.3 - 2007.2
-    C++         | lang | 2003.4 - 2006.9
-    C           | lang | 2005 - 2008
+    Objective-C  | lang | 2006.6 - 2013.7
+    C++          | lang | 2002 - 2008
+    C            | lang | 2001 - 2002 | 2005 - 2007
     ```
     <!-- @end -->
     
@@ -553,9 +558,9 @@ chart_width = 60        # This is the winning value.
     ```
     y_item_label_width = 5
         
-    Objective-C | lang | 2005.3 - 2007.2
-    C++         | lang | 2003.4 - 2006.9
-    C           | lang | 2005 - 2008
+    Objective-C  | lang | 2006.6 - 2013.7
+    C++          | lang | 2002 - 2008
+    C            | lang | 2001 - 2002 | 2005 - 2007
     ```
     <!-- @end -->
     
@@ -565,9 +570,9 @@ chart_width = 60        # This is the winning value.
     ```
     y_item_label_width = 50    
         
-    Objective-C | lang | 2005.3 - 2007.2
-    C++         | lang | 2003.4 - 2006.9
-    C           | lang | 2005 - 2008
+    Objective-C  | lang | 2006.6 - 2013.7
+    C++          | lang | 2002 - 2008
+    C            | lang | 2001 - 2002 | 2005 - 2007
     ```
     <!-- @end -->
     
@@ -578,16 +583,9 @@ chart_width = 60        # This is the winning value.
 <br>
 ### Version History
 
-0.0.1 August 2013
+0.0.1 (August 2013)
 
 - Initial construction.
-
-
-
-<br>
-### History
-
-tchart was written to generate skill and employment history charts for the author's resume.
 
 
 
