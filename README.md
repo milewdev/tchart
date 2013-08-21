@@ -43,7 +43,7 @@ will result in:
 
 1.  Create a text file, skills.txt, containing some date-based data:
 
-    <!-- @tchart doc/README/skills.jpg -->    
+    <!-- @tchart doc/README/tutorial.jpg -->    
     ```
     Objective-C  | lang | 2006.6 - 2013.7
     C++          | lang | 2002 - 2008
@@ -119,7 +119,7 @@ will result in:
     [pdftex](http://www.tug.org/applications/pdftex/) will generate the file skills.pdf, which
     looks like this:
 
-    ![skills.jpg](doc/README/skills.jpg)
+    ![tutorial.jpg](doc/README/tutorial.jpg)
 
 
 
@@ -598,6 +598,6 @@ chart_width = 60        # This is the winning value.
 
 [Ruby](http://www.ruby-lang.org) is a programming language initially designed and developed by Yukihiro Matsumoto.
 
-[OS X](http://www.apple.com/osx/) is a trademark of [Apple Inc.](http://www.apple.com)
+[OS X](http://www.apple.com/osx/) is a trademark of Apple Inc.
 
 All other company and/or product names may be the property of and/or trademarks of their respective owners.
