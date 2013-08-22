@@ -121,7 +121,6 @@ module TChart
             given_the_input ""
             the_expected_errors_are <<-EOS
               _test_.txt, 1: no items found
-              Errors found; aborting.
             EOS
           end
           $stderr.string.must_equal ""
@@ -143,7 +142,6 @@ module TChart
               abc
             Actual:
               _test_.txt, 1: no items found
-              Errors found; aborting.
           EOS
         end
         it "prints an 'unexpected errors generated' error if unexpected errors were generated" do
@@ -154,7 +152,6 @@ module TChart
           $stderr.string.must_match <<-'EOS'.gsub(/^ {10}/, '')
             Error: unexpected errors generated:
               _test_.txt, 1: no items found
-              Errors found; aborting.
           EOS
         end
         it "prints an 'expected errors but none generated' error if errors were expected but none were generated" do
