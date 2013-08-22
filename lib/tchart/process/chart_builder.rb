@@ -45,7 +45,7 @@ module TChart
     end
     
     def new_x_label(year, x) # => Label
-      Label.build_xlabel(xy(x, layout.x_item_y_coordinate), layout.x_axis_label_width, year.to_s) 
+      Label.build_xlabel(xy(x, layout.x_axis_label_y_coordinate), layout.x_axis_label_width, year.to_s) 
     end
     
     def new_x_gridline(x) # => GridLine

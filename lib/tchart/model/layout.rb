@@ -22,8 +22,8 @@ module TChart
       @x_item_x_coordinates ||= calc_x_item_x_coordinates
     end
     
-    def x_item_y_coordinate # => y:Numeric
-      settings.x_item_y_coordinate
+    def x_axis_label_y_coordinate # => y:Numeric
+      settings.x_axis_label_y_coordinate
     end
     
     def x_axis_label_width # => width:Numeric

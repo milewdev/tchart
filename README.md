@@ -522,12 +522,12 @@ chart_width = 60        # This is the winning value.
     
 <br>
 
--   **x_item_y_coordinate** (default -3mm) specifies the distance from the x axis
+-   **x_axis_label_y_coordinate** (default -3mm) specifies the distance from the x axis
     that the center of the x axis labels appear at:
     
     <!-- @tchart doc/README/x-item-y-coordinate-above.jpg -->
     ```
-    x_item_y_coordinate = 10
+    x_axis_label_y_coordinate = 10
         
     Objective-C  | lang | 2006.6 - 2013.7
     C++          | lang | 2002 - 2008
@@ -539,7 +539,7 @@ chart_width = 60        # This is the winning value.
     
     <!-- @tchart doc/README/x-item-y-coordinate-below.jpg -->
     ```
-    x_item_y_coordinate = -10
+    x_axis_label_y_coordinate = -10
         
     Objective-C  | lang | 2006.6 - 2013.7
     C++          | lang | 2002 - 2008

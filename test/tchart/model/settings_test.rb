@@ -33,7 +33,7 @@ module TChart
     end
     it "returns the list of setting names" do
       @settings.setting_names.must_equal ['chart_width', 'line_height', 'x_axis_label_width', 
-        'x_item_y_coordinate', 'y_item_label_width']
+        'x_axis_label_y_coordinate', 'y_item_label_width']
     end
   end
 end
