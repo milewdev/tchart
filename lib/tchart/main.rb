@@ -10,7 +10,7 @@ module TChart
       settings, items = DataReader.read(args.data_filename)
       layout = Layout.new(settings, items)
       chart = ChartBuilder.build(layout, items)
-      tex = chart.render # TODO: rename to tikz; do global search-and-replace across all files.
+      tex = chart.render
       TeXWriter.write(args.tex_filename, tex)
     rescue TChartError => e
       $stderr.puts e.message
