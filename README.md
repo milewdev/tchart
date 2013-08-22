@@ -491,13 +491,13 @@ chart_width = 60        # This is the winning value.
 
 <br>
 
--   **x_item_label_width** (default 10mm) specifies the width of the x axis labels.
+-   **x_axis_label_width** (default 10mm) specifies the width of the x axis labels.
     It is used by tchart to calculate the left and right margins around the plot
-    area only (each margin is 1/2 x_item_label_width):
+    area only (each margin is 1/2 x_axis_label_width):
     
     <!-- @tchart doc/README/x-item-label-width-small.jpg -->
     ```
-    x_item_label_width = 10
+    x_axis_label_width = 10
         
     Objective-C  | lang | 2006.6 - 2013.7
     C++          | lang | 2002 - 2008
@@ -509,7 +509,7 @@ chart_width = 60        # This is the winning value.
     
     <!-- @tchart doc/README/x-item-label-width-large.jpg -->
     ```
-    x_item_label_width = 50
+    x_axis_label_width = 50
         
     Objective-C  | lang | 2006.6 - 2013.7
     C++          | lang | 2002 - 2008

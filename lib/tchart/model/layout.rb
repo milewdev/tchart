@@ -26,8 +26,8 @@ module TChart
       settings.x_item_y_coordinate
     end
     
-    def x_item_label_width # => width:Numeric
-      settings.x_item_label_width
+    def x_axis_label_width # => width:Numeric
+      settings.x_axis_label_width
     end
     
     def items_date_range # => earliest:Date..latest:Date
@@ -78,7 +78,7 @@ module TChart
     end
     
     def calc_x_axis_length # => length:Numeric
-      settings.chart_width - settings.y_item_label_width - settings.x_item_label_width
+      settings.chart_width - settings.y_item_label_width - settings.x_axis_label_width
     end
     
     def calc_x_item_x_coordinates # => Enumerator of x:Numeric
@@ -111,7 +111,7 @@ module TChart
     end
     
     def calc_y_item_x_coordinate # => x:Numeric
-      0 - ((settings.y_item_label_width / 2.0) + (settings.x_item_label_width / 2.0))
+      0 - ((settings.y_item_label_width / 2.0) + (settings.x_axis_label_width / 2.0))
     end
     
     def calc_y_item_y_coordinates # => Enumerator of y:Numeric

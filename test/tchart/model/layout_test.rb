@@ -70,12 +70,12 @@ module TChart
 
   describe Layout, "x_axis_length" do
     before do
-      @settings = stub(chart_width: 130, x_item_label_width: 10, y_item_label_width: 20)
+      @settings = stub(chart_width: 130, x_axis_label_width: 10, y_item_label_width: 20)
       items = stub
       @layout = Layout.new(@settings, items)
     end
     it "returns the correct length" do
-      @layout.x_axis_length.must_equal @settings.chart_width - @settings.x_item_label_width - @settings.y_item_label_width
+      @layout.x_axis_length.must_equal @settings.chart_width - @settings.x_axis_label_width - @settings.y_item_label_width
     end
   end
 
@@ -92,12 +92,12 @@ module TChart
 
   describe Layout, "y_item_x_coordinate" do
     before do
-      @settings = stub(x_item_label_width: 10, y_item_label_width: 20)
+      @settings = stub(x_axis_label_width: 10, y_item_label_width: 20)
       items = stub
       @layout = Layout.new(@settings, items)
     end
     it "returns the correct value" do
-      @layout.y_item_x_coordinate.must_equal 0 - ((@settings.y_item_label_width / 2.0) + (@settings.x_item_label_width / 2.0))
+      @layout.y_item_x_coordinate.must_equal 0 - ((@settings.y_item_label_width / 2.0) + (@settings.x_axis_label_width / 2.0))
     end
   end
   
@@ -114,7 +114,7 @@ module TChart
   
   describe Layout, "date_range_to_x_coordinates" do
     before do
-      settings = stub( chart_width: 130, x_item_label_width: 10, y_item_label_width: 20, line_height: 10 )
+      settings = stub( chart_width: 130, x_axis_label_width: 10, y_item_label_width: 20, line_height: 10 )
       items = stub
       @layout = Layout.new(settings, items)
       @layout.stubs(:x_item_dates).returns (2001..2002).step(1).to_a

@@ -9,7 +9,7 @@ module TChart
         x_axis_length: 100, 
         y_axis_length: 50,
         x_item_y_coordinate: -3,
-        x_item_label_width: 10,
+        x_axis_label_width: 10,
         y_item_y_coordinates: [ 25 ] )
       item = stub ; item.stubs(:build).returns [ Label.build_ylabel(xy(-10, 10), 20, "label"), Bar.new(xy(0, 25), xy(50, 25), "style") ]
       @items = [ item ]

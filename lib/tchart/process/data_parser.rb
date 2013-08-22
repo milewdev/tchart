@@ -49,12 +49,12 @@ module TChart
     # TODO: move to Layout
     def check_settings
       x_axis_length = calc_x_axis_length
-      save_error "plot area is too narrow (#{x_axis_length}, min is 1); is chart_width too small, or x_item_label_width or y_item_label_width too large?" if x_axis_length < 1
+      save_error "plot area is too narrow (#{x_axis_length}, min is 1); is chart_width too small, or x_axis_label_width or y_item_label_width too large?" if x_axis_length < 1
     end
     
     def calc_x_axis_length
       # TODO: this calculation is duplicated in Layout; fix 
-      @settings.chart_width - @settings.x_item_label_width - @settings.y_item_label_width
+      @settings.chart_width - @settings.x_axis_label_width - @settings.y_item_label_width
     end
     
     def check_for_items
