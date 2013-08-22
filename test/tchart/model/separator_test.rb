@@ -1,10 +1,10 @@
 require_relative '../../test_helper'
 
 module TChart
-  describe YSeparator, "build" do
+  describe Separator, "build" do
     before do
       @layout = stub( x_axis_length: 100 )
-      @separator = YSeparator.new
+      @separator = Separator.new
       @y = 10
     end
     it "returns an array containing a horizontal gridline" do

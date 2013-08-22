@@ -126,7 +126,7 @@ module TChart
     end
     
     def parse_separator_item
-      save_item YSeparator.new
+      save_item Separator.new
       true
     end
     

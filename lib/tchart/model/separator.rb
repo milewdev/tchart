@@ -2,7 +2,7 @@
 # SMELL: the attribute 'date_ranges'.  Use a message instead, such as #min_and_max_date.
 #
 module TChart
-  class YSeparator
+  class Separator
     
     attr_reader :date_ranges
     
