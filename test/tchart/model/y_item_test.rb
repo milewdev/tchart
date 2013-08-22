@@ -6,7 +6,7 @@ module TChart
       @layout = stub
       @layout.stubs(:x_axis_date_range).returns( Date.new(2001,1,1)..Date.new(2003,1,1) )
       @layout.stubs(:y_item_x_coordinate).returns(-10)
-      @layout.stubs(:y_item_label_width).returns(20)
+      @layout.stubs(:y_axis_label_width).returns(20)
       @layout.stubs(:date_range_to_x_coordinates).returns [0, 50]
       @item = YItem.new("name", "bar_style", [ Date.new(2001,1,1)..Date.new(2001,12,31) ])
       @y = 10

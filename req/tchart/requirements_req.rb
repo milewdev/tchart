@@ -4,7 +4,7 @@ module TChart
     given_the_input <<-EOS
         chart_width = 130
         x_axis_label_width = 10
-        y_item_label_width = 20
+        y_axis_label_width = 20
         skill | style | 2001.1.1-2001.12.31
     EOS
     the_expected_tex_is <<-'EOS'

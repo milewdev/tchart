@@ -330,7 +330,7 @@ Date ranges can be specified in various ways:
 2001                    | lang | 2001                     # 2001.1.1 - 2001.12.31
 
 # make more room for the those long y axis labels, a setting that is described later
-y_item_label_width = 40
+y_axis_label_width = 40
 ```
 <!-- @end -->
 
@@ -552,14 +552,14 @@ chart_width = 60        # This is the winning value.
 
 <br>
 
--   **y_item_label_width** (default 24mm) specifies the width of the y axis labels
+-   **y_axis_label_width** (default 24mm) specifies the width of the y axis labels
     (the black marks after 'Objective-' and 'C++' in the chart below are generated 
     by TeX to indicate that text, for example, is too long for the space allocated
     for it):
 
     <!-- @tchart doc/README/y-item-label-width-narrow.jpg -->
     ```
-    y_item_label_width = 5
+    y_axis_label_width = 5
         
     Objective-C  | lang | 2006.6 - 2013.7
     C++          | lang | 2002 - 2008
@@ -571,7 +571,7 @@ chart_width = 60        # This is the winning value.
 
     <!-- @tchart doc/README/y-item-label-width-wide.jpg -->
     ```
-    y_item_label_width = 50    
+    y_axis_label_width = 50    
         
     Objective-C  | lang | 2006.6 - 2013.7
     C++          | lang | 2002 - 2008
