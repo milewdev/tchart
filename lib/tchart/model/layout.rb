@@ -9,17 +9,17 @@ module TChart
       @items = items
     end
     
-    # TODO: rename to x_axis_years?  Or return instances of Date?
-    def x_item_dates # => [ year:Numeric, year:Numeric, ... ]
-      @x_item_dates ||= calc_x_item_dates
-    end
-    
     def x_axis_length # => length:Numeric
       @x_axis_length ||= calc_x_axis_length
     end
+    
+    # TODO: rename to x_axis_years?  Or return instances of Date?
+    def x_axis_tick_dates # => [ year:Numeric, year:Numeric, ... ]
+      @x_axis_tick_dates ||= calc_x_axis_tick_dates
+    end
 
-    def x_item_x_coordinates # => Enumerator of x:Numeric
-      @x_item_x_coordinates ||= calc_x_item_x_coordinates
+    def x_axis_tick_x_coordinates # => Enumerator of x:Numeric
+      @x_axis_tick_x_coordinates ||= calc_x_axis_tick_x_coordinates
     end
     
     def x_axis_label_y_coordinate # => y:Numeric
@@ -38,13 +38,12 @@ module TChart
       @y_axis_length ||= calc_y_axis_length
     end
     
-    # TODO: rename to y_label_x_coordinate
-    def y_item_x_coordinate # => x:Numeric
-      @y_item_x_coordinate ||= calc_y_item_x_coordinate
+    def y_axis_label_x_coordinate # => x:Numeric
+      @y_axis_label_x_coordinate ||= calc_y_axis_label_x_coordinate
     end
   
-    def y_item_y_coordinates # => Enumerator of y:Numeric
-      @y_item_y_coordinates ||= calc_y_item_y_coordinates
+    def y_axis_tick_y_coordinates # => Enumerator of y:Numeric
+      @y_axis_tick_y_coordinates ||= calc_y_axis_tick_y_coordinates
     end
     
     def y_axis_label_width # => width:Numeric
@@ -60,7 +59,7 @@ module TChart
   private
 
     # TODO: why do some methods return ranges, others return arrays?
-    def calc_x_item_dates # => [ year:Numeric, year:Numeric, ... ]
+    def calc_x_axis_tick_dates # => [ year:Numeric, year:Numeric, ... ]
       # try a date for each year in the items date range
       from_year = items_date_range.first.year           # round down to Jan 1st of year
       to_year = items_date_range.last.year + 1          # +1 to round up to Jan 1st of the following year
@@ -81,8 +80,8 @@ module TChart
       settings.chart_width - settings.y_axis_label_width - settings.x_axis_label_width
     end
     
-    def calc_x_item_x_coordinates # => Enumerator of x:Numeric
-      num_coords = x_item_dates.size
+    def calc_x_axis_tick_x_coordinates # => Enumerator of x:Numeric
+      num_coords = x_axis_tick_dates.size
       x_interval = x_axis_length / (num_coords - 1.0)
       (0..x_axis_length).step(x_interval)
     end
@@ -110,17 +109,17 @@ module TChart
       (items.length + 1) * settings.line_height
     end
     
-    def calc_y_item_x_coordinate # => x:Numeric
+    def calc_y_axis_label_x_coordinate # => x:Numeric
       0 - ((settings.y_axis_label_width / 2.0) + (settings.x_axis_label_width / 2.0))
     end
     
-    def calc_y_item_y_coordinates # => Enumerator of y:Numeric
+    def calc_y_axis_tick_y_coordinates # => Enumerator of y:Numeric
       (settings.line_height * items.length).step(settings.line_height, -settings.line_height)
     end
     
     # ratio is: x_coordinate / x_axis_length = ( date - date_range.begin ) / date_range_length
     def date_to_x_coordinate(date) # => x:Numeric
-      date_from, date_to = Date.new(x_item_dates.first,1,1), Date.new(x_item_dates.last,1,1)
+      date_from, date_to = Date.new(x_axis_tick_dates.first,1,1), Date.new(x_axis_tick_dates.last,1,1)
       date_range_length = date_to.jd - date_from.jd      
       ( x_axis_length * ( date.jd - date_from.jd ) * 1.0 ) / date_range_length 
     end

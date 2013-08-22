@@ -38,7 +38,7 @@ module TChart
     end
     
     def build_x_items
-      layout.x_item_dates.zip(layout.x_item_x_coordinates).each do |year, x| 
+      layout.x_axis_tick_dates.zip(layout.x_axis_tick_x_coordinates).each do |year, x| 
         @elements.push new_x_label(year, x)
         @elements.push new_x_gridline(x)
       end
@@ -53,7 +53,7 @@ module TChart
     end
     
     def build_y_items
-      items.zip(layout.y_item_y_coordinates).each do |item, y| 
+      items.zip(layout.y_axis_tick_y_coordinates).each do |item, y| 
         @elements.concat item.build(@layout, y)
       end
     end
