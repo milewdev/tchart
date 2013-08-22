@@ -107,7 +107,7 @@ module TChart
     EOS
   end
   
-  requirement "When an item does not have any date ranges, list the item's name on the chart but do not generate any bars." do
+  requirement "When an item does not have any date ranges, list the item's description on the chart but do not generate any bars." do
     given_the_input "item"
     the_expected_tex_is <<-'EOS'
         \draw [gridline] /.*/
@@ -124,6 +124,6 @@ module TChart
   
   requirement "Allow date ranges to be out of order."
   
-  requirement "When an item's name start with three dashes, '---', put a horizontal separator line on the chart."
+  requirement "When an item's description start with three dashes, '---', put a horizontal separator line on the chart."
 
 end

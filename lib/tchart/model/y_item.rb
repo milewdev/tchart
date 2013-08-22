@@ -1,13 +1,12 @@
 module TChart
   class YItem
     
-    # TODO: change 'name' to 'label' or 'subject'?
-    attr_reader :name             # Used for the content of the y-label.
+    attr_reader :description      # Used for the content of the y-label.
     attr_reader :bar_style        # TikZ style for the bars (must be defined in TeX document).
     attr_reader :date_ranges      # Each item can have zero or more date ranges, which will appear as bars on the chart.
 
-    def initialize(name, bar_style, date_ranges)
-       @name = name
+    def initialize(description, bar_style, date_ranges)
+       @description = description
        @bar_style = bar_style
        @date_ranges = date_ranges
     end
@@ -19,7 +18,7 @@ module TChart
   private
   
     def new_y_label(layout, y) # => Label
-      Label.build_ylabel(xy(layout.y_item_x_coordinate, y), layout.y_axis_label_width, name)
+      Label.build_ylabel(xy(layout.y_item_x_coordinate, y), layout.y_axis_label_width, description)
     end
     
     def new_bars(layout, y) # => [ Bar, Bar, ... ]

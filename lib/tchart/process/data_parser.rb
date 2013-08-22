@@ -108,20 +108,20 @@ module TChart
     #
     
     def parse_item(line)
-      name, style, *date_range_strings = extract_fields(line)
-      raise_name_missing if name.nil?
+      description, style, *date_range_strings = extract_fields(line)
+      raise_description_missing if description.nil?
       raise_style_missing if style.nil? && date_range_strings.length > 0
-      if name.start_with?("---")
+      if description.start_with?("---")
         parse_separator_item
       else
-        parse_chart_item(name, style, date_range_strings)
+        parse_chart_item(description, style, date_range_strings)
       end
     end
     
-    def parse_chart_item(name, style, date_range_strings)
+    def parse_chart_item(description, style, date_range_strings)
       date_ranges = parse_date_ranges(date_range_strings)
       check_for_overlaps(date_ranges)
-      save_item YItem.new(name, style, date_ranges)
+      save_item YItem.new(description, style, date_ranges)
       true
     end
     
@@ -198,8 +198,8 @@ module TChart
       "#{d2s(date_range.begin)}-#{d2s(date_range.end)}"
     end
     
-    def raise_name_missing
-      raise TChartError, "name is missing"
+    def raise_description_missing
+      raise TChartError, "description is missing"
     end
     
     def raise_style_missing

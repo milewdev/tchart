@@ -233,22 +233,23 @@ C            | lang | 2001 - 2002 | 2005 - 2007
 
 
 <br>
-##### Data Line Labels
+##### Data Line Descriptions
 
-Labels can contain spaces, although leading and trailing spaces are ignored.
+Descriptions can contain spaces, although leading and trailing spaces are ignored.
 
-<!-- @tchart doc/README/data-line-labels.jpg -->
+<!-- @tchart doc/README/data-line-descriptions.jpg -->
 ```
-# The label below has leading, trailing, and embedded spaces.
+# The description below has leading, trailing, and embedded spaces.
    C & C++   | lang | 2001 - 2008       # The label used on the chart is "C & C++"
 ```
 <!-- @end -->
 
-![data-lines-labels.jpg](doc/README/data-line-labels.jpg)
+![data-lines-descriptions.jpg](doc/README/data-line-descriptions.jpg)
 
 
 The tchart special characters # (hash, starts a comment) and | (pipe, field separator) can be 
-used in labels by escaping them with a \ (back slash).  \ can be used by escaping it with another \ .
+used in descriptions by escaping them with a \ (back slash).  \ can be used by escaping it 
+with another \ .
 
 <!-- @tchart doc/README/data-line-escaping.jpg -->
 ```
@@ -336,9 +337,9 @@ y_axis_label_width = 40
 
 ![data-lines-dates.jpg](doc/README/data-line-dates.jpg)
 
-Dates are optional and if omitted result in the label appearing on the chart without any bars.
-If no dates are supplied, then the style may be omitted as well, although it will be ignored
-if included.
+Dates are optional and if omitted result in the description appearing on the chart without 
+any bars.  If no dates are supplied, then the style may be omitted as well, although it 
+will be ignored if included.
 
 <!-- @tchart doc/README/data-line-dates-optional.jpg -->
 ```

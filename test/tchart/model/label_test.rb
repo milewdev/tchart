@@ -16,9 +16,9 @@ module TChart
   describe Label, "render" do
     before do
       @tex = TeXBuilder.new
-      @label = Label.build_ylabel(xy(-10,20), xy(30,20), "name")
+      @label = Label.build_ylabel(xy(-10,20), xy(30,20), "description")
     end
-    it "generates TeX code to render and item" do
+    it "generates TikZ code to render and item" do
       @tex.expects(:label)
       @label.render(@tex)
     end
