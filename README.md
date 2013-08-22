@@ -132,10 +132,9 @@ will result in the chart:
 $ tchart input-data-filename output-tikz-filename
 ```
 
-input-data-filename is the name of a file containing one or more lines of date-based data, and
-output-tikz-filename is the name of the a file where generated TikZ code should be written.  If
-output-tikz-filename already exists, it will be silently overwritten.  Both file names must be
-specified.
+input-data-filename is the name of a file containing date-based data, and output-tikz-filename
+is the name of the a file where generated TikZ code should be written.  If output-tikz-filename
+already exists, it will be silently overwritten.  Both file names must be specified.
 
 There are no restrictions on the file names other than those imposed by the operating system.
 Although the examples here use .txt and .tikz as the extensions of the input and output files,
