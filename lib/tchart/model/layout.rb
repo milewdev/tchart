@@ -38,6 +38,7 @@ module TChart
       @y_axis_length ||= calc_y_axis_length
     end
     
+    # TODO: rename to y_label_x_coordinate
     def y_item_x_coordinate # => x:Numeric
       @y_item_x_coordinate ||= calc_y_item_x_coordinate
     end

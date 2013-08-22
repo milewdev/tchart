@@ -7,7 +7,7 @@ task :default => [ :test, :req ]
 task :install => [ :build ]
 
 
-desc 'Runs test, req, build, install, and readme tasks'
+desc 'Run test, req, build, install, and readme tasks'
 task :all => [ :test, :req, :build, :install, :readme ]
 
 
@@ -51,8 +51,8 @@ def generate_charts(filename)
     puts fn
     Dir.chdir('doc/README/src') do
       File.open('drawing.txt', 'w') { |f| f.write(spec) }
-    	system "tchart drawing.txt drawing.tikz"
-    	system "pdftex -interaction=batchmode drawing.tex > /dev/null"
+      system "tchart drawing.txt drawing.tikz"
+      system "pdftex -interaction=batchmode drawing.tex > /dev/null"
       system "pdfcrop --margins '30 5 30 10' drawing.pdf cropped.pdf > /dev/null"
       system "gs -q -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -r100 -sDEVICE=jpeg -dJPEGQ=100 -sOutputFile=../#{Pathname.new(fn).basename} cropped.pdf"
       system "rm drawing.txt drawing.tikz drawing.pdf cropped.pdf drawing.log drawing.pgf"

@@ -11,6 +11,7 @@ module TChart
       end
     end
     
+    # TODO: move this responsibility to Main.run
     def self.print_errors_and_fail(errors)
       errors.each { |error| $stderr.puts(error) }
       raise TChartError, "Errors found; aborting."
