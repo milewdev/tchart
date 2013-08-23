@@ -25,5 +25,10 @@ module TChart
       $stderr.string.must_match %r{undefined method `length'}
       $stderr.string.must_match %r{lib/tchart/process/command_line_parser\.rb:\d+:in `parse'}
     end
+    it "writes errors if errors are found" do
+      DataReader.stubs(:read).returns [ stub, stub, [ 'an error' ] ]
+      TChart::Main.run(@argv)
+      $stderr.string.must_include 'an error'
+    end
   end
 end

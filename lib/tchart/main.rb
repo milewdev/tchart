@@ -7,7 +7,8 @@ module TChart
     
     def self.run(argv)
       args = CommandLineParser.parse(argv)
-      settings, items = DataReader.read(args.data_filename)
+      settings, items, errors = DataReader.read(args.data_filename)
+      check_errors(errors)
       layout = Layout.new(settings, items)
       chart = ChartBuilder.build(layout, items)
       tex = chart.render
@@ -17,6 +18,12 @@ module TChart
     rescue Exception => e
       $stderr.puts e.message
       $stderr.puts e.backtrace.join("\n    ")
+    end
+    
+  private
+    
+    def self.check_errors(errors)
+      raise TChartError, errors.join("\n") if not errors.empty?
     end
     
   end
