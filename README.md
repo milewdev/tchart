@@ -496,7 +496,7 @@ chart_width = 60        # This is the winning value.
     It is used by tchart to calculate the left and right margins around the plot
     area only (each margin is 1/2 x_axis_label_width):
     
-    <!-- @tchart doc/README/x-item-label-width-small.jpg -->
+    <!-- @tchart doc/README/x-axis-label-width-small.jpg -->
     ```
     x_axis_label_width = 10
         
@@ -506,9 +506,9 @@ chart_width = 60        # This is the winning value.
     ```
     <!-- @end -->
     
-    ![x-item-label-width.jpg](doc/README/x-item-label-width-small.jpg)
+    ![x-label-width.jpg](doc/README/x-axis-label-width-small.jpg)
     
-    <!-- @tchart doc/README/x-item-label-width-large.jpg -->
+    <!-- @tchart doc/README/x-axis-label-width-large.jpg -->
     ```
     x_axis_label_width = 50
         
@@ -518,7 +518,7 @@ chart_width = 60        # This is the winning value.
     ```
     <!-- @end -->
     
-    ![x-item-label-width.jpg](doc/README/x-item-label-width-large.jpg)
+    ![x-axis-label-width.jpg](doc/README/x-axis-label-width-large.jpg)
     
     
 <br>
@@ -526,7 +526,7 @@ chart_width = 60        # This is the winning value.
 -   **x_axis_label_y_coordinate** (default -3mm) specifies the distance from the x axis
     that the center of the x axis labels appear at:
     
-    <!-- @tchart doc/README/x-item-y-coordinate-above.jpg -->
+    <!-- @tchart doc/README/x-axis-label-y-coordinate-above.jpg -->
     ```
     x_axis_label_y_coordinate = 10
         
@@ -536,9 +536,9 @@ chart_width = 60        # This is the winning value.
     ```
     <!-- @end -->
     
-    ![x-item-y-coordinate-above.jpg](doc/README/x-item-y-coordinate-above.jpg)
+    ![x-axis-label-y-coordinate-above.jpg](doc/README/x-axis-label-y-coordinate-above.jpg)
     
-    <!-- @tchart doc/README/x-item-y-coordinate-below.jpg -->
+    <!-- @tchart doc/README/x-axis-label-y-coordinate-below.jpg -->
     ```
     x_axis_label_y_coordinate = -10
         
@@ -548,7 +548,7 @@ chart_width = 60        # This is the winning value.
     ```
     <!-- @end -->
     
-    ![x-item-y-coordinate-above.jpg](doc/README/x-item-y-coordinate-below.jpg)
+    ![x-axis-label-y-coordinate-below.jpg](doc/README/x-axis-label-y-coordinate-below.jpg)
 
 
 <br>
@@ -558,7 +558,7 @@ chart_width = 60        # This is the winning value.
     by TeX to indicate that text, for example, is too long for the space allocated
     for it):
 
-    <!-- @tchart doc/README/y-item-label-width-narrow.jpg -->
+    <!-- @tchart doc/README/y-axis-label-width-narrow.jpg -->
     ```
     y_axis_label_width = 5
         
@@ -568,9 +568,9 @@ chart_width = 60        # This is the winning value.
     ```
     <!-- @end -->
     
-    ![y-item-label-width-narrow.jpg](doc/README/y-item-label-width-narrow.jpg)
+    ![y-axis-label-width-narrow.jpg](doc/README/y-axis-label-width-narrow.jpg)
 
-    <!-- @tchart doc/README/y-item-label-width-wide.jpg -->
+    <!-- @tchart doc/README/y-axis-label-width-wide.jpg -->
     ```
     y_axis_label_width = 50    
         
@@ -580,7 +580,7 @@ chart_width = 60        # This is the winning value.
     ```
     <!-- @end -->
     
-    ![y-item-label-width-wide.jpg](doc/README/y-item-label-width-wide.jpg)
+    ![y-axis-label-width-wide.jpg](doc/README/y-axis-label-width-wide.jpg)
 
 
 
