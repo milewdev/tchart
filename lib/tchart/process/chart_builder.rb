@@ -1,7 +1,7 @@
 module TChart
   class ChartBuilder
     
-    def self.build(layout, items)
+    def self.build(layout, items) # => Chart
       ChartBuilder.new(layout, items).build
     end
     

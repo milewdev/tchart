@@ -31,7 +31,7 @@ module TChart
       $stderr.string.must_include 'an error'
     end
     it "writes errors if layout (settings) errors are found" do
-      Layout.stubs(:check_layout).returns [ 'an error' ]
+      LayoutBuilder.stubs(:check_layout).returns [ 'an error' ]
       TChart::Main.run(@argv)
       $stderr.string.must_include 'an error'
     end
