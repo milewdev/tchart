@@ -1,6 +1,31 @@
 require_relative '../../test_helper'
 
 module TChart
+  describe Layout, "build" do
+    before do
+      @settings = stub
+      @items = stub
+      @errors = stub
+    end
+    it "returns a layout and errors" do
+      Layout.stubs(:check_layout).returns @errors
+      layout, errors = Layout.build(@settings, @items)
+      layout.wont_be_nil
+      errors.must_be_same_as @errors
+    end
+  end
+  
+  describe Layout, "check_layout" do
+    before do
+      @layout = stub
+    end
+    it "returns an error if the plot area is not wide enough" do
+      @layout.stubs(:x_axis_length).returns 0
+      errors = Layout.check_layout(@layout)
+      errors.find {|item| item =~ /plot area is too narrow/}.wont_be_nil
+    end
+  end
+  
   describe Layout, "items_date_range" do
     before do
       @settings = stub

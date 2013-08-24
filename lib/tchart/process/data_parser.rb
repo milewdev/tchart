@@ -18,7 +18,7 @@ module TChart
     def parse(source_name, source_data) # => [ settings, items, errors ]
       @source_name = source_name
       lines_of_interest_in(source_data).each { |line| parse_line(line) }
-      check_settings
+      # TODO: move somewhere else, maybe Main
       check_for_items
       [ @settings, @items, @errors ]
     end
@@ -45,18 +45,8 @@ module TChart
     rescue TChartError => e
       save_error e.message
     end
-    
-    # TODO: move to Layout
-    def check_settings
-      x_axis_length = calc_x_axis_length
-      save_error "plot area is too narrow (#{x_axis_length}, min is 1); is chart_width too small, or x_axis_label_width or y_axis_label_width too large?" if x_axis_length < 1
-    end
-    
-    def calc_x_axis_length
-      # TODO: this calculation is duplicated in Layout; fix 
-      @settings.chart_width - @settings.x_axis_label_width - @settings.y_axis_label_width
-    end
-    
+
+    # TODO: move somewhere else
     def check_for_items
       save_error "no items found" if @errors.length == 0 && @items.length == 0
     end

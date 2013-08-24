@@ -8,8 +8,9 @@ module TChart
     def self.run(argv)
       args = CommandLineParser.parse(argv)
       settings, items, errors = DataReader.read(args.data_filename)
-      check_errors(errors)
-      layout = Layout.new(settings, items)
+      fail_if_errors(errors)
+      layout, errors = Layout.build(settings, items)
+      fail_if_errors(errors)
       chart = ChartBuilder.build(layout, items)
       tex = chart.render
       TeXWriter.write(args.tex_filename, tex)
@@ -22,7 +23,7 @@ module TChart
     
   private
     
-    def self.check_errors(errors)
+    def self.fail_if_errors(errors)
       raise TChartError, errors.join("\n") if not errors.empty?
     end
     

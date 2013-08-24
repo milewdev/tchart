@@ -1,6 +1,19 @@
 module TChart
   class Layout
     
+    def self.build(settings, items)
+      layout = Layout.new(settings, items)
+      errors = check_layout(layout)
+      [ layout, errors ]
+    end
+    
+    def self.check_layout(layout)
+      # TODO: write save_error?
+      errors = []
+      errors << "plot area is too narrow (#{layout.x_axis_length}, min is 1); is chart_width too small, or x_axis_label_width or y_axis_label_width too large?" if layout.x_axis_length < 1
+      errors
+    end
+    
     attr_reader :settings     # Chart settings such as chart width, label widths, etc.
     attr_reader :items        # List of items being plotted on the chart.
     
