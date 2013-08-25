@@ -51,30 +51,20 @@ module TChart
     end
   end
   
-  describe LayoutBuilder, "items_date_range" do
+  describe LayoutBuilder, "x_axis_tick_dates" do
     before do
       @settings = make_settings
       @this_year = Date.today.year
     end
-    it "sets a range from the earliest chart item start date to the latest chart item end date" do
-      items = make_items_with_ranges '2000.11.1-2005.3.21', '2002.4.17-2009.3.30'
+    it "uses 1st January to 31st December when chart items is empty" do
+      items = []
       layout, _ = LayoutBuilder.build(@settings, items)
-      layout.items_date_range.must_equal dr('2000.11.1-2009.3.30')
-    end
-    it "sets 1st January to 31st December when chart items is empty" do
-      layout, _ = LayoutBuilder.build(@settings, [])
-      layout.items_date_range.must_equal dr("#{@this_year}.1.1-#{@this_year}.12.31")
+      layout.x_axis_tick_dates.must_equal [ @this_year, @this_year + 1 ]
     end
     it "sets 1st January to 31st December when none of the chart items have date ranges" do
-      items = make_items_with_ranges '', ''
+      items = [ stub( date_ranges: [] ) ]
       layout, _ = LayoutBuilder.build(@settings, items)
-      layout.items_date_range.must_equal dr("#{@this_year}.1.1-#{@this_year}.12.31")
-    end
-  end
-
-  describe LayoutBuilder, "x_axis_tick_dates" do
-    before do
-      @settings = make_settings
+      layout.x_axis_tick_dates.must_equal [ @this_year, @this_year + 1 ]
     end
     it "sets the correct dates when the items date range is less than 10 years" do
       items = make_items_with_ranges '2000.3.17-2004.10.4'

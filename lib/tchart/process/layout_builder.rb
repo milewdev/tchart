@@ -17,8 +17,7 @@ module TChart
   
     def self.build_layout(settings, items) # => Layout
       layout = Layout.new
-      layout.items_date_range = calc_items_date_range(items)
-      layout.x_axis_tick_dates = calc_x_axis_tick_dates(layout.items_date_range)
+      layout.x_axis_tick_dates = calc_x_axis_tick_dates(calc_items_date_range(items))
       layout.x_axis_length = calc_x_axis_length(settings)
       layout.x_axis_tick_x_coordinates = calc_x_axis_tick_x_coordinates(layout.x_axis_tick_dates, layout.x_axis_length)
       layout.y_axis_length = calc_y_axis_length(settings, items)
