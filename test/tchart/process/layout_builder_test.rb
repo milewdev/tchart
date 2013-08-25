@@ -29,7 +29,7 @@ module TChart
   describe LayoutBuilder, "build" do
     before do
       @settings = make_settings
-      @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2008.3.30')
+      @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2009.3.30')
       @errors = stub
     end
     it "returns a layout and errors" do
@@ -57,9 +57,9 @@ module TChart
       @this_year = Date.today.year
     end
     it "sets a range from the earliest chart item start date to the latest chart item end date" do
-      items = make_items_with_ranges '2000.11.1-2005.3.21', '2002.4.17-2008.3.30'
+      items = make_items_with_ranges '2000.11.1-2005.3.21', '2002.4.17-2009.3.30'
       layout, _ = LayoutBuilder.build(@settings, items)
-      layout.items_date_range.must_equal dr('2000.11.1-2008.3.30')
+      layout.items_date_range.must_equal dr('2000.11.1-2009.3.30')
     end
     it "sets 1st January to 31st December when chart items is empty" do
       layout, _ = LayoutBuilder.build(@settings, [])
@@ -116,19 +116,18 @@ module TChart
   describe LayoutBuilder, "x_axis_tick_x_coordinates" do
     before do
       @settings = make_settings
-      @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2008.3.30')
+      @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2009.3.30')
     end
     it "sets an array of x coordinates" do
-      LayoutBuilder.any_instance.stubs(:calc_x_axis_tick_dates).returns (2000..2005).step(1)
       layout, _ = LayoutBuilder.build(@settings, @items)
-      layout.x_axis_tick_x_coordinates.to_a.must_equal (0..100).step(20.0).to_a
+      layout.x_axis_tick_x_coordinates.to_a.must_equal (0..100).step(10.0).to_a
     end
   end
 
   describe LayoutBuilder, "x_axis_length" do
     before do
       @settings = make_settings
-      @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2008.3.30')
+      @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2009.3.30')
     end
     it "sets the correct length" do
       layout, _ = LayoutBuilder.build(@settings, @items)
@@ -139,7 +138,7 @@ module TChart
   describe LayoutBuilder, "y_axis_length" do
     before do
       @settings = make_settings
-      @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2008.3.30')
+      @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2009.3.30')
     end
     it "sets the correct length" do
       layout, _ = LayoutBuilder.build(@settings, @items)
@@ -150,7 +149,7 @@ module TChart
   describe LayoutBuilder, "y_axis_label_x_coordinate" do
     before do
       @settings = make_settings
-      @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2008.3.30')
+      @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2009.3.30')
     end
     it "sets the correct value" do
       layout, _ = LayoutBuilder.build(@settings, @items)
@@ -161,7 +160,7 @@ module TChart
   describe Layout, "y_axis_tick_y_coordinates" do
     before do
       @settings = make_settings
-      @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2008.3.30')
+      @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2009.3.30')
     end
     it "returns the y coordinates of all items" do
       layout, _ = LayoutBuilder.build(@settings, @items)

@@ -2,20 +2,22 @@ module TChart
   class LayoutBuilder
     
     def self.build(settings, items) # => layout, errors
-      LayoutBuilder.new(settings, items).build
+      layout = build_layout(settings, items)
+      errors = check_layout(layout)
+      [ layout, errors ]
     end
-    
-    attr_reader :settings     # Chart settings such as chart width, label widths, etc.
-    attr_reader :items        # List of items being plotted on the chart.
-    
-    def initialize(settings, items)
-      @settings = settings
-      @items = items
+
+  private
+  
+    def self.check_layout(layout) # => [ String, ... ]
+      errors = []
+      errors << "plot area is too narrow (#{layout.x_axis_length}, min is 1); is chart_width too small, or x_axis_label_width or y_axis_label_width too large?" if layout.x_axis_length < 1
+      errors
     end
-    
-    def build
+  
+    def self.build_layout(settings, items) # => Layout
       layout = Layout.new
-      layout.items_date_range = calc_items_date_range
+      layout.items_date_range = calc_items_date_range(items)
       layout.x_axis_tick_dates = calc_x_axis_tick_dates(layout.items_date_range)
       layout.x_axis_length = calc_x_axis_length(settings)
       layout.x_axis_tick_x_coordinates = calc_x_axis_tick_x_coordinates(layout.x_axis_tick_dates, layout.x_axis_length)
@@ -25,22 +27,29 @@ module TChart
       layout.x_axis_label_y_coordinate = settings.x_axis_label_y_coordinate
       layout.x_axis_label_width = settings.x_axis_label_width
       layout.y_axis_label_width = settings.y_axis_label_width
-
-      errors = LayoutBuilder.check_layout(layout)
-      [ layout, errors ]
+      layout
     end
     
-    def self.check_layout(layout)
-      # TODO: write save_error?
-      errors = []
-      errors << "plot area is too narrow (#{layout.x_axis_length}, min is 1); is chart_width too small, or x_axis_label_width or y_axis_label_width too large?" if layout.x_axis_length < 1
-      errors
+    # TODO: should return [ earliest, latest ], not a range
+    def self.calc_items_date_range(items) # earliest:Date..latest:Date
+      earliest = nil
+      latest = nil
+      items.each do |item|
+        # TODO: this belongs in ChartItem
+        item.date_ranges.each do |date_range|
+          earliest = date_range.begin if earliest.nil? or date_range.begin < earliest
+          latest = date_range.end if latest.nil? or latest < date_range.end
+        end
+      end
+      # TODO: refactor: put this somewhere else
+      current_year = Date.today.year
+      earliest ||= Date.new(current_year, 1, 1)
+      latest ||= Date.new(current_year, 12, 31)
+      earliest..latest
     end
-
-  private
-    
+  
     # TODO: why do some methods return ranges, others return arrays?
-    def calc_x_axis_tick_dates(items_date_range) # => [ year:Numeric, year:Numeric, ... ]
+    def self.calc_x_axis_tick_dates(items_date_range) # => [ year:Numeric, year:Numeric, ... ]
       # try a date for each year in the items date range
       from_year = items_date_range.first.year           # round down to Jan 1st of year
       to_year = items_date_range.last.year + 1          # +1 to round up to Jan 1st of the following year
@@ -57,44 +66,26 @@ module TChart
       return (from_year..to_year).step(10).to_a
     end
   
-    # TODO: should return [ earliest, latest ], not a range
-    def calc_items_date_range # earliest:Date..latest:Date
-      earliest = nil
-      latest = nil
-      items.each do |item|
-        # TODO: this belongs in ChartItem
-        item.date_ranges.each do |date_range|
-          earliest = date_range.begin if earliest.nil? or date_range.begin < earliest
-          latest = date_range.end if latest.nil? or latest < date_range.end
-        end
-      end
-      # TODO: refactor: put this somewhere else
-      current_year = Date.today.year
-      earliest ||= Date.new(current_year, 1, 1)
-      latest ||= Date.new(current_year, 12, 31)
-      earliest..latest
-    end
-    
-    def calc_x_axis_tick_x_coordinates(x_axis_tick_dates, x_axis_length) # => Enumerator of x:Numeric
+    def self.calc_x_axis_tick_x_coordinates(x_axis_tick_dates, x_axis_length) # => Enumerator of x:Numeric
       num_coords = x_axis_tick_dates.size
       x_interval = x_axis_length / (num_coords - 1.0)
       (0..x_axis_length).step(x_interval)
     end
       
-    def calc_x_axis_length(settings) # => length:Numeric
+    def self.calc_x_axis_length(settings) # => length:Numeric
       settings.chart_width - settings.y_axis_label_width - settings.x_axis_label_width
     end
     
     # +1 for top and bottom margins, each of which is half the line height
-    def calc_y_axis_length(settings, items) # => length:Numeric
+    def self.calc_y_axis_length(settings, items) # => length:Numeric
       (items.length + 1) * settings.line_height
     end
     
-    def calc_y_axis_label_x_coordinate(settings) # => x:Numeric
+    def self.calc_y_axis_label_x_coordinate(settings) # => x:Numeric
       0 - ((settings.y_axis_label_width / 2.0) + (settings.x_axis_label_width / 2.0))
     end
     
-    def calc_y_axis_tick_y_coordinates(settings, items) # => Enumerator of y:Numeric
+    def self.calc_y_axis_tick_y_coordinates(settings, items) # => Enumerator of y:Numeric
       (settings.line_height * items.length).step(settings.line_height, -settings.line_height)
     end
     
