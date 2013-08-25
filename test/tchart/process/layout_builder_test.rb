@@ -1,5 +1,6 @@
 require_relative '../../test_helper'
 
+# TODO: move this somewhere else, or figure out how to add methods to test_helper, or?
 module Kernel
   
   # '2000.3.14..2001.8.2' => 2000.3.14..2001.8.2 (i.e. Date..Date)

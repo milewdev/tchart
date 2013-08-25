@@ -9,6 +9,7 @@ module TChart
 
   private
   
+    # TODO: this is a bit ugly.
     def self.check_layout(layout) # => [ String, ... ]
       errors = []
       errors << "plot area is too narrow (#{layout.x_axis_length}, min is 1); is chart_width too small, or x_axis_label_width or y_axis_label_width too large?" if layout.x_axis_length < 1
