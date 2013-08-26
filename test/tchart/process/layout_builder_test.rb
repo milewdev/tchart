@@ -22,6 +22,10 @@ module Kernel
       line_height: 4, 
       x_axis_label_y_coordinate: -3 )
   end
+  
+  def make_tick_dates(from_year, to_year, interval)
+    (from_year..to_year).step(interval).map { |year| Date.new(year,1,1) }
+  end
 
 end
 
@@ -60,47 +64,47 @@ module TChart
     it "uses 1st January to 31st December when chart items is empty" do
       items = []
       layout, _ = LayoutBuilder.build(@settings, items)
-      layout.x_axis_tick_dates.must_equal [ @this_year, @this_year + 1 ]
+      layout.x_axis_tick_dates.must_equal make_tick_dates(@this_year, @this_year + 1, 1)
     end
     it "sets 1st January to 31st December when none of the chart items have date ranges" do
       items = [ stub( date_ranges: [] ) ]
       layout, _ = LayoutBuilder.build(@settings, items)
-      layout.x_axis_tick_dates.must_equal [ @this_year, @this_year + 1 ]
+      layout.x_axis_tick_dates.must_equal make_tick_dates(@this_year, @this_year + 1, 1)
     end
     it "sets the correct dates when the items date range is less than 10 years" do
       items = make_items_with_ranges '2000.3.17-2004.10.4'
       layout, _ = LayoutBuilder.build(@settings, items)
-      layout.x_axis_tick_dates.must_equal (2000..2005).step(1).to_a
+      layout.x_axis_tick_dates.must_equal make_tick_dates(2000, 2005, 1)
     end
     it "sets the correct dates when the items date range is 10 years" do
       items = make_items_with_ranges '2000.3.17-2009.10.4'
       layout, _ = LayoutBuilder.build(@settings, items)
-      layout.x_axis_tick_dates.must_equal (2000..2010).step(1).to_a
+      layout.x_axis_tick_dates.must_equal make_tick_dates(2000, 2010, 1)
     end
     it "sets the correct dates when the items date range is 11 years" do
       items = make_items_with_ranges '2000.3.17-2010.10.4'
       layout, _ = LayoutBuilder.build(@settings, items)
-      layout.x_axis_tick_dates.must_equal (2000..2015).step(5).to_a
+      layout.x_axis_tick_dates.must_equal make_tick_dates(2000, 2015, 5)
     end
     it "sets the correct dates when the items date range is less than 50 years" do
       items = make_items_with_ranges '2000.3.17-2044.10.4'
       layout, _ = LayoutBuilder.build(@settings, items)
-      layout.x_axis_tick_dates.must_equal (2000..2045).step(5).to_a
+      layout.x_axis_tick_dates.must_equal make_tick_dates(2000, 2045, 5)
     end
     it "sets the correct dates when the items date range is 50 years" do
       items = make_items_with_ranges '2000.3.17-2049.10.4'
       layout, _ = LayoutBuilder.build(@settings, items)
-      layout.x_axis_tick_dates.must_equal (2000..2050).step(5).to_a
+      layout.x_axis_tick_dates.must_equal make_tick_dates(2000, 2050, 5)
     end
     it "sets the correct dates when the items date range is less than 60 years" do
       items = make_items_with_ranges '2000.3.17-2054.10.4'
       layout, _ = LayoutBuilder.build(@settings, items)
-      layout.x_axis_tick_dates.must_equal (2000..2060).step(10).to_a
+      layout.x_axis_tick_dates.must_equal make_tick_dates(2000, 2060, 10)
     end
     it "sets the correct dates when the items date range is 60 years" do
       items = make_items_with_ranges '2000.3.17-2059.10.4'
       layout, _ = LayoutBuilder.build(@settings, items)
-      layout.x_axis_tick_dates.must_equal (2000..2060).step(10).to_a
+      layout.x_axis_tick_dates.must_equal make_tick_dates(2000, 2060, 10)
     end
   end
 

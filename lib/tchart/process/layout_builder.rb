@@ -31,7 +31,7 @@ module TChart
     end
     
     # TODO: should return [ earliest, latest ], not a range
-    def self.calc_items_date_range(items) # earliest:Date..latest:Date
+    def self.calc_items_date_range(items) # Date..Date
       earliest = nil
       latest = nil
       items.each do |item|
@@ -49,43 +49,47 @@ module TChart
     end
   
     # TODO: why do some methods return ranges, others return arrays?
-    def self.calc_x_axis_tick_dates(items_date_range) # => [ year:Numeric, year:Numeric, ... ]
+    def self.calc_x_axis_tick_dates(items_date_range) # => [ Date, Date, ... ]
       # try a date for each year in the items date range
       from_year = items_date_range.first.year           # round down to Jan 1st of year
       to_year = items_date_range.last.year + 1          # +1 to round up to Jan 1st of the following year
-      return (from_year..to_year).step(1).to_a if to_year - from_year <= 10
+      return make_tick_dates(from_year, to_year, 1) if to_year - from_year <= 10
 
       # try a date every five years
       from_year = (from_year / 5.0).floor * 5           # round down to nearest 1/2 decade
       to_year = (to_year / 5.0).ceil * 5                # round up to nearest 1/2 decade
-      return (from_year..to_year).step(5).to_a if to_year - from_year <= 50
+      return make_tick_dates(from_year, to_year, 5) if to_year - from_year <= 50
 
       # use a date every 10 years
       from_year = (from_year / 10.0).floor * 10         # round down to nearest decade
       to_year = (to_year / 10.0).ceil * 10              # round up to nearest decade
-      return (from_year..to_year).step(10).to_a
+      return make_tick_dates(from_year, to_year, 10)
+    end
+    
+    def self.make_tick_dates(from_year, to_year, interval) # => [ Date, Date, ... ]
+      (from_year..to_year).step(interval).map { |year| Date.new(year,1,1) }
     end
   
-    def self.calc_x_axis_tick_x_coordinates(x_axis_tick_dates, x_axis_length) # => Enumerator of x:Numeric
+    def self.calc_x_axis_tick_x_coordinates(x_axis_tick_dates, x_axis_length) # => Enumerator of Numeric
       num_coords = x_axis_tick_dates.size
       x_interval = x_axis_length / (num_coords - 1.0)
       (0..x_axis_length).step(x_interval)
     end
       
-    def self.calc_x_axis_length(settings) # => length:Numeric
+    def self.calc_x_axis_length(settings) # => Numeric
       settings.chart_width - settings.y_axis_label_width - settings.x_axis_label_width
     end
     
     # +1 for top and bottom margins, each of which is half the line height
-    def self.calc_y_axis_length(settings, items) # => length:Numeric
+    def self.calc_y_axis_length(settings, items) # => Numeric
       (items.length + 1) * settings.line_height
     end
     
-    def self.calc_y_axis_label_x_coordinate(settings) # => x:Numeric
+    def self.calc_y_axis_label_x_coordinate(settings) # => Numeric
       0 - ((settings.y_axis_label_width / 2.0) + (settings.x_axis_label_width / 2.0))
     end
     
-    def self.calc_y_axis_tick_y_coordinates(settings, items) # => Enumerator of y:Numeric
+    def self.calc_y_axis_tick_y_coordinates(settings, items) # => Enumerator of Numeric
       (settings.line_height * items.length).step(settings.line_height, -settings.line_height)
     end
     

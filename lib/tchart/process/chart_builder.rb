@@ -38,8 +38,8 @@ module TChart
     end
     
     def build_x_items
-      layout.x_axis_tick_dates.zip(layout.x_axis_tick_x_coordinates).each do |year, x| 
-        @elements.push new_x_label(year, x)
+      layout.x_axis_tick_dates.zip(layout.x_axis_tick_x_coordinates).each do |date, x| 
+        @elements.push new_x_label(date.year, x)
         @elements.push new_x_gridline(x)
       end
     end

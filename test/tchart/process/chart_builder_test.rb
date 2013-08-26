@@ -4,7 +4,7 @@ module TChart
   describe ChartBuilder, "build" do
     before do
       @layout = stub( 'layout', 
-        x_axis_tick_dates: [2001, 2002], 
+        x_axis_tick_dates: [Date.new(2001,1,1), Date.new(2002,1,1)], 
         x_axis_tick_x_coordinates: [0, 100],  
         x_axis_length: 100, 
         y_axis_length: 50,
