@@ -31,16 +31,13 @@ module TChart
     end
     
     def self.calc_items_date_range(items) # [ Date, Date ]
-      earliest = nil
-      latest = nil
+      earliest, latest = nil, nil
       items.each do |item|
-        # TODO: this belongs in ChartItem
         item.date_ranges.each do |date_range|
           earliest = date_range.begin if earliest.nil? or date_range.begin < earliest
           latest = date_range.end if latest.nil? or latest < date_range.end
         end
       end
-      # TODO: refactor: put this somewhere else
       current_year = Date.today.year
       earliest ||= Date.new(current_year, 1, 1)
       latest ||= Date.new(current_year, 12, 31)
@@ -48,17 +45,17 @@ module TChart
     end
   
     def self.calc_x_axis_tick_dates(earliest, latest) # => [ Date, Date, ... ]
-      # try a date for each year in the items date range
+      # if ten or fewer years to cover, create a tick every year
       from_year = earliest.year                         # round down to Jan 1st of year
       to_year = latest.year + 1                         # +1 to round up to Jan 1st of the following year
       return make_tick_dates(from_year, to_year, 1) if to_year - from_year <= 10
 
-      # try a date every five years
+      # if fifty or fewer years to cover, create a tick every five years
       from_year = (from_year / 5.0).floor * 5           # round down to nearest 1/2 decade
       to_year = (to_year / 5.0).ceil * 5                # round up to nearest 1/2 decade
       return make_tick_dates(from_year, to_year, 5) if to_year - from_year <= 50
 
-      # use a date every 10 years
+      # create a tick every ten years
       from_year = (from_year / 10.0).floor * 10         # round down to nearest decade
       to_year = (to_year / 10.0).ceil * 10              # round up to nearest decade
       return make_tick_dates(from_year, to_year, 10)
