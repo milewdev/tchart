@@ -18,7 +18,7 @@ module TChart
   
     def self.build_layout(settings, items) # => Layout
       layout = Layout.new
-      layout.x_axis_tick_dates = calc_x_axis_tick_dates(calc_items_date_range(items))
+      layout.x_axis_tick_dates = calc_x_axis_tick_dates( *calc_items_date_range(items) )
       layout.x_axis_length = calc_x_axis_length(settings)
       layout.x_axis_tick_x_coordinates = calc_x_axis_tick_x_coordinates(layout.x_axis_tick_dates, layout.x_axis_length)
       layout.y_axis_length = calc_y_axis_length(settings, items)
@@ -30,8 +30,7 @@ module TChart
       layout
     end
     
-    # TODO: should return [ earliest, latest ], not a range
-    def self.calc_items_date_range(items) # Date..Date
+    def self.calc_items_date_range(items) # [ Date, Date ]
       earliest = nil
       latest = nil
       items.each do |item|
@@ -45,13 +44,13 @@ module TChart
       current_year = Date.today.year
       earliest ||= Date.new(current_year, 1, 1)
       latest ||= Date.new(current_year, 12, 31)
-      earliest..latest
+      [earliest, latest]
     end
   
-    def self.calc_x_axis_tick_dates(items_date_range) # => [ Date, Date, ... ]
+    def self.calc_x_axis_tick_dates(earliest, latest) # => [ Date, Date, ... ]
       # try a date for each year in the items date range
-      from_year = items_date_range.first.year           # round down to Jan 1st of year
-      to_year = items_date_range.last.year + 1          # +1 to round up to Jan 1st of the following year
+      from_year = earliest.year                         # round down to Jan 1st of year
+      to_year = latest.year + 1                         # +1 to round up to Jan 1st of the following year
       return make_tick_dates(from_year, to_year, 1) if to_year - from_year <= 10
 
       # try a date every five years
@@ -75,6 +74,7 @@ module TChart
       (0..x_axis_length).step(x_interval).to_a
     end
       
+    # 1/2 x_axis_label_width for the left margin, and 1/2 x_axis_label_width for the right margin
     def self.calc_x_axis_length(settings) # => Numeric
       settings.chart_width - settings.y_axis_label_width - settings.x_axis_label_width
     end
