@@ -115,7 +115,7 @@ module TChart
     end
     it "sets an array of x coordinates" do
       layout, _ = LayoutBuilder.build(@settings, @items)
-      layout.x_axis_tick_x_coordinates.to_a.must_equal (0..100).step(10.0).to_a
+      layout.x_axis_tick_x_coordinates.must_equal (0..100).step(10.0).to_a
     end
   end
 
@@ -159,7 +159,7 @@ module TChart
     end
     it "returns the y coordinates of all items" do
       layout, _ = LayoutBuilder.build(@settings, @items)
-      layout.y_axis_tick_y_coordinates.to_a.must_equal [8, 4]
+      layout.y_axis_tick_y_coordinates.must_equal [8, 4]
     end
   end
 end

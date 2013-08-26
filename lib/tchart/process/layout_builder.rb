@@ -10,7 +10,7 @@ module TChart
   private
   
     # TODO: this is a bit ugly.
-    def self.check_layout(layout) # => [ String, ... ]
+    def self.check_layout(layout) # => [ String, String, ... ]
       errors = []
       errors << "plot area is too narrow (#{layout.x_axis_length}, min is 1); is chart_width too small, or x_axis_label_width or y_axis_label_width too large?" if layout.x_axis_length < 1
       errors
@@ -48,7 +48,6 @@ module TChart
       earliest..latest
     end
   
-    # TODO: why do some methods return ranges, others return arrays?
     def self.calc_x_axis_tick_dates(items_date_range) # => [ Date, Date, ... ]
       # try a date for each year in the items date range
       from_year = items_date_range.first.year           # round down to Jan 1st of year
@@ -70,10 +69,10 @@ module TChart
       (from_year..to_year).step(interval).map { |year| Date.new(year,1,1) }
     end
   
-    def self.calc_x_axis_tick_x_coordinates(x_axis_tick_dates, x_axis_length) # => Enumerator of Numeric
+    def self.calc_x_axis_tick_x_coordinates(x_axis_tick_dates, x_axis_length) # => [ Numeric, Numeric, ... ]
       num_coords = x_axis_tick_dates.size
       x_interval = x_axis_length / (num_coords - 1.0)
-      (0..x_axis_length).step(x_interval)
+      (0..x_axis_length).step(x_interval).to_a
     end
       
     def self.calc_x_axis_length(settings) # => Numeric
@@ -89,8 +88,8 @@ module TChart
       0 - ((settings.y_axis_label_width / 2.0) + (settings.x_axis_label_width / 2.0))
     end
     
-    def self.calc_y_axis_tick_y_coordinates(settings, items) # => Enumerator of Numeric
-      (settings.line_height * items.length).step(settings.line_height, -settings.line_height)
+    def self.calc_y_axis_tick_y_coordinates(settings, items) # => [ Numeric, Numeric, ... ]
+      (settings.line_height * items.length).step(settings.line_height, -settings.line_height).to_a
     end
     
   end
