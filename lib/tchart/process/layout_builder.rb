@@ -9,13 +9,6 @@ module TChart
 
   private
   
-    # TODO: this is a bit ugly.
-    def self.check_layout(layout) # => [ String, String, ... ]
-      errors = []
-      errors << "plot area is too narrow (#{layout.x_axis_length}, min is 1); is chart_width too small, or x_axis_label_width or y_axis_label_width too large?" if layout.x_axis_length < 1
-      errors
-    end
-  
     def self.build_layout(settings, items) # => Layout
       layout = Layout.new
       layout.x_axis_tick_dates = calc_x_axis_tick_dates( *calc_items_date_range(items) )
@@ -30,6 +23,13 @@ module TChart
       layout
     end
     
+    # TODO: this is a bit ugly.
+    def self.check_layout(layout) # => [ String, String, ... ]
+      errors = []
+      errors << "plot area is too narrow (#{layout.x_axis_length}, min is 1); is chart_width too small, or x_axis_label_width or y_axis_label_width too large?" if layout.x_axis_length < 1
+      errors
+    end
+  
     def self.calc_items_date_range(items) # [ Date, Date ]
       earliest, latest = nil, nil
       items.each do |item|

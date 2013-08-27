@@ -20,11 +20,10 @@ module TChart
   private
 
     # ratio is: x_coordinate / x_axis_length  =  ( date - date_range.begin ) / date_range_length
-    # TODO: could cache the date_range_length as it never changes, or make it an attribute
     def date_to_x_coordinate(date) # => Numeric
-      date_from, date_to = x_axis_tick_dates.first, x_axis_tick_dates.last
-      date_range_length = date_to.jd - date_from.jd      
-      ( x_axis_length * ( date.jd - date_from.jd ) * 1.0 ) / date_range_length 
+      date_range_begin, date_range_end = x_axis_tick_dates.first.jd, x_axis_tick_dates.last.jd
+      date_range_length = date_range_end - date_range_begin    
+      ( x_axis_length * ( date.jd - date_range_begin ) * 1.0 ) / date_range_length 
     end
 
   end
