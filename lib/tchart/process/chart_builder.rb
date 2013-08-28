@@ -5,6 +5,8 @@ module TChart
       ChartBuilder.new(layout, items).build
     end
     
+  # private
+    
     attr_reader :layout       # Dimensions of the label areas, the plot area, etc.
     attr_reader :items        # The items being plotted.
     attr_reader :elements     # Generated grid lines, labels, and bars that make up the chart.
