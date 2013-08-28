@@ -6,11 +6,9 @@ module TChart
   module Main
     
     def self.run(argv)
-      args = CommandLineParser.parse(argv)
-      settings, items, errors = DataReader.read(args.data_filename)
-      fail_if_errors(errors)
-      layout, errors = LayoutBuilder.build(settings, items)
-      fail_if_errors(errors)
+      args, errors = CommandLineParser.parse(argv)                  ; fail_if_errors(errors)
+      settings, items, errors = DataReader.read(args.data_filename) ; fail_if_errors(errors)
+      layout, errors = LayoutBuilder.build(settings, items)         ; fail_if_errors(errors)
       chart = ChartBuilder.build(layout, items)
       tex = chart.render
       TeXWriter.write(args.tex_filename, tex)
