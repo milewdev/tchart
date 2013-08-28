@@ -1,5 +1,5 @@
 #
-# SMELL: the attribute 'date_ranges'.  Use a message instead, such as #min_and_max_date.
+# TODO: the attribute 'date_ranges'.  Use a message instead, such as #min_and_max_date.
 #
 module TChart
   class Separator
