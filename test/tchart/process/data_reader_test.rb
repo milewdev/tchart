@@ -6,10 +6,8 @@ module TChart
     before do
       @filename = "_DataReader_read_test.txt"
       @settings, @items, @errors = stub, stub, stub
-      @old_stderr, $stderr = $stderr, StringIO.new
     end
     after do
-      $stderr = @old_stderr
       File.delete(@filename) if File.exists?(@filename)
     end
     it "returns settings, items, and errors" do
