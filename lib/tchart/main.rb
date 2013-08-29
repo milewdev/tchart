@@ -6,23 +6,22 @@ module TChart
   module Main
     
     def self.run(argv)
-      args, errors = CommandLineParser.parse(argv)                  ; fail_if_errors(errors)
-      settings, items, errors = DataReader.read(args.data_filename) ; fail_if_errors(errors)
-      layout, errors = LayoutBuilder.build(settings, items)         ; fail_if_errors(errors)
+      args, errors = CommandLineParser.parse(argv)                  ; exit_if_errors(errors)
+      settings, items, errors = DataReader.read(args.data_filename) ; exit_if_errors(errors)
+      layout, errors = LayoutBuilder.build(settings, items)         ; exit_if_errors(errors)
       chart = ChartBuilder.build(layout, items)
       tex = chart.render
       TeXWriter.write(args.tex_filename, tex)
-    rescue TChartError => e
-      $stderr.puts e.message
-    rescue Exception => e
-      $stderr.puts e.message
-      $stderr.puts e.backtrace.join("\n    ")
+    rescue SystemExit
+      # Need to eat SystemExit in order for minitest to work.
     end
     
   private
     
-    def self.fail_if_errors(errors)
-      raise TChartError, errors.join("\n") if not errors.empty?
+    def self.exit_if_errors(errors)
+      return if errors.empty?
+      $stderr.puts errors.join("\n")
+      exit
     end
     
   end
