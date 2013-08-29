@@ -433,8 +433,8 @@ chart_width = 60        # This is the winning value.
 <br>
 
 -   **chart_width** (default 164.99mm) specifies the overall width of the chart.  This includes
-    the y axis labels, the margins to the left and right of the plot area, and the length of
-    the x axis:
+    the y axis labels, the margins to the left and right of the x axis (the plot area), and the
+    length of the x axis:
 
     <!-- @tchart doc/README/chart-width-narrow.jpg -->
     ```
