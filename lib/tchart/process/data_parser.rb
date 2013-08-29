@@ -1,11 +1,11 @@
 module TChart
   class DataParser
     
-    # TODO: privatize, and refactor?
-    
     def self.parse(source_name, source_data) # => [ settings, items, errors ]
       DataParser.new.parse(source_name, source_data)
     end
+    
+  # private
   
     def initialize
       @source_name = nil
@@ -22,6 +22,8 @@ module TChart
       check_for_items
       [ @settings, @items, @errors ]
     end
+    
+  private
     
     def lines_of_interest_in(source_data) # => Enumerator of line
       Enumerator.new do |yielder|
