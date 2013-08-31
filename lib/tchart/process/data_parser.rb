@@ -7,12 +7,14 @@ module TChart
     
   # private
   
+    attr_reader :settings_parser
+  
     def initialize
       @source_name = nil
       @line_number = nil
-      @settings = Settings.new
       @items = []
       @errors = []
+      @settings_parser = SettingsParser.new
     end
     
     def parse(source_name, source_data) # => [ settings, items, errors ]
@@ -20,7 +22,7 @@ module TChart
       lines_of_interest_in(source_data).each { |line| parse_line(line) }
       # TODO: move somewhere else, maybe Main
       check_for_items
-      [ @settings, @items, @errors ]
+      [ settings_parser.settings, @items, @errors ]
     end
     
   private
@@ -40,10 +42,7 @@ module TChart
     end
     
     def parse_line(line)
-      case
-      when parse_setting(line)
-      when parse_item(line)
-      end
+      parse_item(line) unless settings_parser.parse(line)
     rescue TChartError => e
       save_error e.message
     end
@@ -59,43 +58,6 @@ module TChart
     
     
     #
-    # Settings
-    #
-    
-    def parse_setting(line) # => success or failed
-      return false if not match = match_setting(line)
-      name, value = match[1].strip, match[2].strip
-      raise_unknown_setting(name) if not @settings.has_setting?(name)
-      save_setting(name, value)
-      true
-    end
-    
-    def match_setting(line) # => MatchData
-      /^([^=]+)=(.+)$/.match(line)
-    end
-    
-    def save_setting(name, value)
-      if @settings.send(name).kind_of? Numeric
-        raise_not_a_float(value) if not float?(value)
-        value = value.to_f
-      end
-      @settings.send("#{name}=", value)
-    end
-    
-    def float?(value)
-      value =~ /^(\+|-)?\d+(\.\d*)?$/
-    end
-    
-    def raise_unknown_setting(name)
-      raise TChartError, "unknown setting \"#{name}\"; expecting one of: #{@settings.setting_names.join(', ')}"
-    end
-    
-    def raise_not_a_float(value)
-      raise TChartError, "\"#{value}\" is not a number; expecting e.g. 123 or 123.45"
-    end
-    
-    
-    #
     # Chart and separator items
     #
     
@@ -104,22 +66,20 @@ module TChart
       raise_description_missing if description.nil?
       raise_style_missing if style.nil? && date_range_strings.length > 0
       if description.start_with?("---")
-        parse_separator_item
+        parse_separator
       else
-        parse_chart_item(description, style, date_range_strings)
+        parse_y_item(description, style, date_range_strings)
       end
     end
     
-    def parse_chart_item(description, style, date_range_strings)
+    def parse_y_item(description, style, date_range_strings)
       date_ranges = parse_date_ranges(date_range_strings)
       check_for_overlaps(date_ranges)
       save_item YItem.new(description, style, date_ranges)
-      true
     end
     
-    def parse_separator_item
+    def parse_separator
       save_item Separator.new
-      true
     end
     
     def extract_fields(line) # => [ String, ... ]
@@ -180,16 +140,6 @@ module TChart
       @items << item
     end
     
-    # date to string
-    def d2s(date) # => String
-      date.strftime('%Y.%-m.%-d')
-    end
-    
-    # date range to string
-    def dr2s(date_range) # => String
-      "#{d2s(date_range.begin)}-#{d2s(date_range.end)}"
-    end
-    
     def raise_description_missing
       raise TChartError, "description is missing"
     end
@@ -213,6 +163,16 @@ module TChart
     
     def raise_date_ranges_overlap(range1, range2)
       raise TChartError, "date range #{dr2s(range1)} overlaps #{dr2s(range2)}"
+    end
+    
+    # date to string
+    def d2s(date) # => String
+      date.strftime('%Y.%-m.%-d')
+    end
+    
+    # date range to string
+    def dr2s(date_range) # => String
+      "#{d2s(date_range.begin)}-#{d2s(date_range.end)}"
     end
     
   end
