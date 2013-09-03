@@ -1,37 +1,9 @@
 require_relative '../../test_helper'
 
-# TODO: move this somewhere else, or figure out how to add methods to test_helper, or?
-module Kernel
-  
-  # '2000.3.14..2001.8.2' => 2000.3.14..2001.8.2 (i.e. Date..Date)
-  def dr(range_as_string)
-    from, to = range_as_string.split('-').map { |date_as_string| Date.parse(date_as_string) }
-    from..to
-  end
-  
-  # '2000.3.14..2001.8.2', ... => [ stub( :date_ranges => [2000.3.14..2001.8.2] ), ... ]
-  def make_items_with_ranges(*ranges_as_strings)
-    ranges_as_strings.map { |range_as_string| stub( :date_ranges => [dr(range_as_string)] ) }
-  end
-  
-  def make_settings
-    stub( 
-      chart_width: 130, 
-      x_axis_label_width: 10, 
-      y_axis_label_width: 20, 
-      line_height: 4, 
-      x_axis_label_y_coordinate: -3 )
-  end
-  
-  def make_tick_dates(from_year, to_year, interval)
-    (from_year..to_year).step(interval).map { |year| Date.new(year,1,1) }
-  end
-
-end
-
 module TChart
   
   describe LayoutBuilder, "build" do
+    include TestHelper
     before do
       @settings = make_settings
       @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2009.3.30')
@@ -57,6 +29,7 @@ module TChart
   end
   
   describe LayoutBuilder, "x_axis_tick_dates" do
+    include TestHelper
     before do
       @settings = make_settings
       @this_year = Date.today.year
@@ -109,6 +82,7 @@ module TChart
   end
 
   describe LayoutBuilder, "x_axis_tick_x_coordinates" do
+    include TestHelper
     before do
       @settings = make_settings
       @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2009.3.30')
@@ -120,6 +94,7 @@ module TChart
   end
 
   describe LayoutBuilder, "x_axis_length" do
+    include TestHelper
     before do
       @settings = make_settings
       @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2009.3.30')
@@ -131,6 +106,7 @@ module TChart
   end
 
   describe LayoutBuilder, "y_axis_length" do
+    include TestHelper
     before do
       @settings = make_settings
       @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2009.3.30')
@@ -142,6 +118,7 @@ module TChart
   end
 
   describe LayoutBuilder, "y_axis_label_x_coordinate" do
+    include TestHelper
     before do
       @settings = make_settings
       @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2009.3.30')
@@ -153,6 +130,7 @@ module TChart
   end
   
   describe Layout, "y_axis_tick_y_coordinates" do
+    include TestHelper
     before do
       @settings = make_settings
       @items = make_items_with_ranges('2000.11.1-2005.3.21', '2002.4.17-2009.3.30')
