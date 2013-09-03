@@ -16,6 +16,7 @@ module TChart
   module Requirements
     module DSL
       class Runner
+        
         Data_filename = "_test_.txt"
         Tex_filename = "_test_.tex"
         
@@ -25,7 +26,6 @@ module TChart
           files.each { |filename| load filename }
         end
         
-        # TODO: refactor - too big
         def self.run_requirement(description, &block)
           puts description
           # TODO: refactor - duplicate test
@@ -43,6 +43,8 @@ module TChart
         ensure
           delete_test_files
         end
+        
+      private
         
         def self.delete_test_files
           [ Data_filename, Tex_filename ].each { |filename| File.delete(filename) if File.exists?(filename) }
