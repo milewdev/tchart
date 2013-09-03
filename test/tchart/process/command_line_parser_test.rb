@@ -34,6 +34,8 @@ module TChart
       _, errors = CommandLineParser.parse( [ 'input_filename', 'arg2' ] )
       errors.must_include "Error: input data file \"input_filename\" is not a file."
     end
-    it "returns an error if the output data file exists and is not a file"
+    it "returns an error if the output data file exists and is not a file" do
+      skip
+    end
   end
 end
