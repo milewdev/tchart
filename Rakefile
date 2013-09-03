@@ -45,6 +45,7 @@ task :readme do
 end
 
 
+# Could refactor but it's just a script.
 def generate_charts(filename)
   contents = File.open(filename) { |f| f.read }
   contents.scan( /<!-- @tchart (.*?) -->.*?```.*?\n(.*?)```.*?<!-- @end -->/m ) do |fn, spec|
