@@ -18,7 +18,6 @@ module TChart
     
     def parse # => [ settings, items, errors ]
       source_lines_of_interest.each { |line| parse_line(line) }
-      # TODO: move somewhere else? maybe Main?
       check_for_items
       [ @settings_parser.settings, @items_parser.items, @errors ]
     end
@@ -42,12 +41,15 @@ module TChart
     def parse_line(line)
       @settings_parser.parse(line) || @items_parser.parse(line)
     rescue TChartError => e
-      @errors << "#{@source_name}, #{@line_number}: #{e.message}"
+      save_error "#{@source_name}, #{@line_number}: #{e.message}"
     end
 
-    # TODO: move somewhere else
     def check_for_items
-      @errors << "#{@source_name}: no items found" if @errors.length == 0 && @items_parser.items.length == 0
+      save_error "#{@source_name}: no items found" if @errors.length == 0 && @items_parser.items.length == 0
+    end
+    
+    def save_error(message)
+      @errors << message
     end
     
   end
