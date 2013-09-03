@@ -7,6 +7,9 @@ module TChart
       @settings = Settings.new
     end
     
+    # Returns true if the passed line is a recognizable settings line
+    # (which may nonetheless have errors, such as unknown setting, etc.), 
+    # false otherwise.
     def parse(line) # => true if a settings line, false otherwise.
       return false if ! match = /^([^=]+)=(.+)$/.match(line)
       name, value_as_string = match[1].strip, match[2].strip
