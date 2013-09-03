@@ -89,7 +89,7 @@ module TChart
     end
     it "raises an error if a date cannot be parsed" do
       error = ->{ @parser.parse("Description|Style|2000.-2001\n") }.must_raise TChartError
-      error.message.must_equal "bad date range \"2000.-2001\"; expecting 2000.4.17-2001.7.21, or 2000.4-2001, etc."
+      error.message.must_equal "bad date range \"2000.-2001\"; expecting 2000.4.17-2001.7.21 | 2002.4-2003, etc."
     end
     it "raises an error if start date in a range is invalid" do
       error = ->{ @parser.parse("Description|Style|2000.4.34-2001.2.22\n") }.must_raise TChartError
@@ -117,7 +117,7 @@ module TChart
     end
     it "raises an error if two sets of dates are not separated by a pipe" do
       error = ->{ @parser.parse("Description|Style|2001-2002 2003-2004\n") }.must_raise TChartError
-      error.message.must_equal "bad date range \"2001-2002 2003-2004\"; expecting 2000.4.17-2001.7.21, or 2000.4-2001, etc."
+      error.message.must_equal "bad date range \"2001-2002 2003-2004\"; expecting 2000.4.17-2001.7.21 | 2002.4-2003, etc."
     end
   end
 end

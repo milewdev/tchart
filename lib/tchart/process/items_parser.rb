@@ -102,8 +102,7 @@ module TChart
     end
     
     def raise_invalid_date_range(date_range_as_string)
-      # TODO: add 'did you include at least one tab between date ranges?'
-      raise TChartError, "bad date range \"#{date_range_as_string}\"; expecting 2000.4.17-2001.7.21, or 2000.4-2001, etc."
+      raise TChartError, "bad date range \"#{date_range_as_string}\"; expecting 2000.4.17-2001.7.21 | 2002.4-2003, etc."
     end
     
     def raise_date_range_reversed(date_begin, date_end)
