@@ -17,14 +17,18 @@ module TChart
     end
     
     def parse # => [ settings, items, errors ]
-      source_lines_of_interest.each { |line| parse_line(line) }
-      check_for_items
+      non_blank_source_lines.each { |line| parse_line(line) }
+      must_have_items if @errors.empty?
       [ @settings_parser.settings, @items_parser.items, @errors ]
     end
     
   private
     
-    def source_lines_of_interest # => Enumerator of line
+    #
+    # Returns source data lines that are not empty after
+    # comments have been removed.
+    #
+    def non_blank_source_lines # => Enumerator
       Enumerator.new do |yielder|
         @source_data.each_with_index do |line, index|
           @line_number = index + 1
@@ -34,6 +38,11 @@ module TChart
       end
     end
     
+    #
+    # "item  # A comment."  => "item | style | 2003  "
+    # "# A comment."        => ""
+    # "C\#  # A coment."    => "C\#  "
+    #
     def remove_comments(line) # => line
       line.sub(/(?<!\\)#.*$/, '')
     end
@@ -44,8 +53,8 @@ module TChart
       save_error "#{@source_name}, #{@line_number}: #{e.message}"
     end
 
-    def check_for_items
-      save_error "#{@source_name}: no items found" if @errors.length == 0 && @items_parser.items.length == 0
+    def must_have_items
+      save_error "#{@source_name}: no items found" if @items_parser.items.empty?
     end
     
     def save_error(message)
