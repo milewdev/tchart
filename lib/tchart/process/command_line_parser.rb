@@ -9,7 +9,7 @@ module TChart
     
   private
   
-    def self.validate_args(argv, data_filename, tex_filename)
+    def self.validate_args(argv, data_filename, tex_filename) # => errors
       errors = []
       if argv.length != 2
         errors << "Usage: tchart input-data-filename output-tikz-filename"
