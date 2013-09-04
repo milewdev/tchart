@@ -1,10 +1,9 @@
-#
-# TODO: the attribute 'date_ranges'.  Use a message instead, such as #min_and_max_date.
-#
 module TChart
   class Separator
     
-    attr_reader :date_ranges
+    # This is part of the charted item interface.  Separators
+    # have no date ranges so this array will always be empty.
+    attr_reader :date_ranges  
     
     def initialize
       @date_ranges = []
