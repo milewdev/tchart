@@ -28,15 +28,16 @@ module TChart
         
         def self.run_requirement(description, &block)
           puts description
-          # TODO: refactor - duplicate test
-          puts "skip".indent(2) if block.nil?
-          return if block.nil?
-          requirement = create_requirement(&block)
-          return unless requirement_valid?(requirement)
-          delete_test_files
-          actual_tex, actual_errors = run_tchart_run(requirement)
-          Checker.check_output('TeX', requirement.expected_tex, actual_tex)
-          Checker.check_output('errors', requirement.expected_errors, actual_errors)
+          if block.nil?
+            puts "skip".indent(2)
+          else
+            requirement = create_requirement(&block)
+            return unless requirement_valid?(requirement)
+            delete_test_files
+            actual_tex, actual_errors = run_tchart_run(requirement)
+            Checker.check_output('TeX', requirement.expected_tex, actual_tex)
+            Checker.check_output('errors', requirement.expected_errors, actual_errors)
+          end
         rescue => e
           $stderr.puts e.message.indent(2)
           $stderr.puts e.backtrace.join("\n    ")
