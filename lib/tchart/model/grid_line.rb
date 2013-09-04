@@ -10,7 +10,7 @@ module TChart
     end
     
     def render(tex)
-      tex.line from, to, "gridline"
+      tex.line @from, @to, "gridline"
     end
     
   end

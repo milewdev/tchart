@@ -31,7 +31,7 @@ module TChart
     end
     
     def save_item(item)
-      items << item
+      @items << item
     end
     
     def extract_fields(line) # => [ String, ... ]

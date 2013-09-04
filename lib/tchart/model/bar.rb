@@ -12,7 +12,7 @@ module TChart
     end
     
     def render(tex)
-      tex.bar from, to, style
+      tex.bar @from, @to, @style
     end
     
   end

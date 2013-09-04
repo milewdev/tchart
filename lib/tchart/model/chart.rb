@@ -7,10 +7,10 @@ module TChart
       @elements = elements
     end
     
-    def render
+    def render # => String
       tex = TeXBuilder.new
       tex.echo "\\tikzpicture\n"
-      elements.each { |element| element.render(tex) }
+      @elements.each { |element| element.render(tex) }
       tex.echo "\\endtikzpicture\n"
       tex.to_s
     end

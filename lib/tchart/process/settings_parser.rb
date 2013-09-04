@@ -22,7 +22,7 @@ module TChart
   private
   
     def known_setting?(name)
-      settings.has_setting?(name)
+      @settings.has_setting?(name)
     end
 
     def recognizable_value?(value_as_string)
@@ -30,11 +30,11 @@ module TChart
     end
 
     def save_setting(name, value_as_string)
-      settings.send("#{name}=", value_as_string.to_f)
+      @settings.send("#{name}=", value_as_string.to_f)
     end
     
     def raise_unknown_setting(name)
-      raise TChartError, "unknown setting \"#{name}\"; expecting one of: #{settings.setting_names.join(', ')}"
+      raise TChartError, "unknown setting \"#{name}\"; expecting one of: #{@settings.setting_names.join(', ')}"
     end
 
     def raise_not_a_recognizable_value(value_as_string)
