@@ -16,7 +16,7 @@ module TChart
     
     def parse # => [ settings, items, errors ]
       non_blank_source_lines.each { |line| parse_line(line) }
-      must_have_items if @errors.empty?
+      check_for_items if @errors.empty?
       [ @settings_parser.settings, @items_parser.items, @errors ]
     end
     
@@ -53,7 +53,7 @@ module TChart
       save_error "#{@source_name}, #{@line_number}: #{e.message}"
     end
 
-    def must_have_items
+    def check_for_items
       save_error "#{@source_name}: no items found" if @items_parser.items.empty?
     end
     
