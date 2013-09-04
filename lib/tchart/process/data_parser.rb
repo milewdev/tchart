@@ -5,8 +5,6 @@ module TChart
       DataParser.new(source_name, source_data).parse
     end
     
-  # private
-  
     def initialize(source_name, source_data)
       @source_name = source_name
       @source_data = source_data
@@ -48,7 +46,9 @@ module TChart
     end
     
     def parse_line(line)
-      @settings_parser.parse(line) || @items_parser.parse(line)
+      if ! @settings_parser.parse(line)
+        @items_parser.parse(line)
+      end
     rescue TChartError => e
       save_error "#{@source_name}, #{@line_number}: #{e.message}"
     end
