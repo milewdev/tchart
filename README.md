@@ -585,15 +585,6 @@ chart_width = 60        # This is the winning value.
 
 
 <br>
-### Version History
-
-0.0.1 (August 2013)
-
-- Initial construction.
-
-
-
-<br>
 ### Copyright Notices
 
 [TeX](http://www.tug.org) is a typesetting system invented by Donald Knuth.
