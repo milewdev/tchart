@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'tchart/main'
+require 'tchart'
 
-TChart::Main.run(ARGV)
+TChart.run(ARGV)

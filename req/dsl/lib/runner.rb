@@ -1,6 +1,6 @@
 require 'stringio'
 
-require_relative '../../../lib/tchart/main'
+require_relative '../../../lib/tchart'
 
 # 'require' all project files except ourselves.
 me = File.absolute_path(__FILE__)
@@ -72,7 +72,7 @@ module TChart
         
         def self.run_tchart_run(requirement) # => actual_tex, actual_errors
           prep_input_file(requirement)
-          actual_errors = capture_stderr_from { TChart::Main.run([Data_filename, Tex_filename]) }
+          actual_errors = capture_stderr_from { TChart.run([Data_filename, Tex_filename]) }
           actual_tex = retrieve_generated_tex
           [ actual_tex, actual_errors ]
         end
