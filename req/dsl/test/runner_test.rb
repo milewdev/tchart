@@ -22,8 +22,8 @@ module TChart
           $stderr = @old_stderr
           [ "_test_.txt", "_test_.tex" ].each { |filename| File.delete(filename) if File.exists?(filename) }
         end
-        it "passes two file name arguments to Resume::Main.run" do
-          TChart::Main.expects(:run).with(["_test_.txt", "_test_.tex"])
+        it "passes two file name arguments to TChart.run" do
+          TChart.expects(:run).with(["_test_.txt", "_test_.tex"])
           Runner.run_requirement "description" do
             the_expected_errors_are "some errors"
           end
@@ -66,13 +66,13 @@ module TChart
           Runner.run_requirement "description"
           $stdout.string.must_match "description"
         end
-        it "invokes Resume.run when a block is supplied" do
-          TChart::Main.expects(:run)
+        it "invokes TChart.run when a block is supplied" do
+          TChart.expects(:run)
           Runner.run_requirement "description" do
             the_expected_errors_are "some errors"
           end
         end
-        it "does not invoke Resume.run when no block is supplied" do
+        it "does not invoke TChart.run when no block is supplied" do
           TChart.expects(:run).never
           Runner.run_requirement "description"
         end
@@ -184,7 +184,7 @@ module TChart
           end
           $stderr.string.must_match "Error: either 'the_expected_tex_is' or 'the_expected_errors_are' must be given, but neither was found."
         end
-        it "does not invoke Resume.run if neither the_expected_tex_is or the_expected_errors_are are given" do
+        it "does not invoke TChart.run if neither the_expected_tex_is or the_expected_errors_are are given" do
           TChart.expects(:run).never
           Runner.run_requirement "description" do
             # empty
@@ -197,7 +197,7 @@ module TChart
           end
           $stderr.string.must_match "Error: only one of 'the_expected_tex_is' or 'the_expected_errors_are' must be given, but both were found."
         end
-        it "does not invoke Resume.run if both the_expected_tex_is and the_expected_errors_are are given" do
+        it "does not invoke TChart.run if both the_expected_tex_is and the_expected_errors_are are given" do
           TChart.expects(:run).never
           Runner.run_requirement "description" do
             the_expected_tex_is "some TeX"

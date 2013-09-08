@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version               = "#{TChart::Version}"
   s.author                = "Michael Lewandowski"
   s.email                 = "milewgit@gmail.com"
-  s.homepage              = "http://https://github.com/milewgit/tchart"
+  s.homepage              = "https://github.com/milewgit/tchart"
   s.platform              = Gem::Platform::RUBY
   s.required_ruby_version = ">=1.9"
   s.files                 = Dir[ "lib/**/**" ]
