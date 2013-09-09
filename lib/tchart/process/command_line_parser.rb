@@ -27,7 +27,7 @@ module TChart
       end
     end
     
-    def parse_args(argv)
+    def parse_args(argv) # => CommandLineArgs, errors
       parse_options(argv)
       raise_usage if argv.length != 2
       data_filename, tex_filename = argv
