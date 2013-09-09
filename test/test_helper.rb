@@ -55,7 +55,7 @@ module TestHelper
 
   #
   # Write make_items_with_ranges('2000.3.14..2001.8.2', ...) instead of
-  # [ stub( :date_ranges => [Date.new(2000,3,14)..Date.new(2001,8,2)] ), ... ].
+  # [ stub( :date_ranges => [ Date.new(2000,3,14)..Date.new(2001,8,2)] ), ... ].
   #
   def make_items_with_ranges(*ranges_as_strings)
     ranges_as_strings.map { |range_as_string| stub( :date_ranges => [dr(range_as_string)] ) }
