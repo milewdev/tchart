@@ -31,7 +31,7 @@ will result in the chart:
 
 
 <br>
-### Installation (OS X)
+### Installation
 
 *TODO: $ gem install tchart*
 
@@ -42,7 +42,7 @@ will result in the chart:
 <br>
 ### Quick Start
 
-1.  Create a text file, skills.txt, containing some date-based data:
+1.  Create an input file, skills.txt, containing some date-based data:
 
     <!-- @tchart doc/README/tutorial.jpg -->    
     ```
@@ -160,6 +160,7 @@ $ tchart skills.txt
 Usage: tchart [ --version | --help | input-data-filename output-tikz-filename ]
 
 $ tchart skills.txt skills.tikz
+$ 
 ```
 
 
@@ -174,7 +175,7 @@ line, a separator line, or a setting:
 ```
 # A comment.
 
-# Blanks lines above and below this line, and further down.
+# There are blanks lines above and below this line, and further down.
 
 # A data line.
 Objective-C  | lang | 2006.6 - 2013.8
@@ -201,7 +202,7 @@ A comment can appear either on a line by itself or at the end of a line.  The co
 # This is a comment.
 Objective-C  | lang | 2006.6 - 2013.7               # This is another comment.
 C++          | lang | 2002 - 2008
-# C            | lang | 2001 - 2002 | 2005 - 2007   # This line is commented out.
+# C            | lang | 2001 - 2002 | 2005 - 2007     # This line is commented out.
 ```
 <!-- @end -->
 
