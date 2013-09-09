@@ -129,8 +129,12 @@ will result in the chart:
 ### Usage
 
 ```
-$ tchart input-data-filename output-tikz-filename
+$ tchart [ --help | --version | input-data-filename output-tikz-filename ]
 ```
+
+--help prints a usage message and exits.  -h can also be used.
+
+--version prints the tchart version and exits.  -v can also be used.
 
 input-data-filename is the name of a file containing date-based data, and output-tikz-filename
 is the name of the a file where generated TikZ code should be written.  If output-tikz-filename
@@ -140,9 +144,21 @@ There are no restrictions on the file names other than those imposed by the oper
 Although the examples here use .txt and .tikz as the extensions of the input and output files,
 you can use any extensions you like (or none at all).
 
-Example:
+Examples:
 
 ```
+$ tchart --help
+Usage: tchart [ --version | --help | input-data-filename output-tikz-filename ]
+
+$ tchart -h
+Usage: tchart [ --version | --help | input-data-filename output-tikz-filename ]
+
+$ tchart --version
+1.0.0
+
+$ tchart skills.txt
+Usage: tchart [ --version | --help | input-data-filename output-tikz-filename ]
+
 $ tchart skills.txt skills.tikz
 ```
 
