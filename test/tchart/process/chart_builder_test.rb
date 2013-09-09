@@ -2,6 +2,7 @@ require_relative '../../test_helper'
 
 module TChart
   describe ChartBuilder, "build" do
+    
     before do
       @layout = stub( 'layout', 
         x_axis_tick_dates: [Date.new(2001,1,1), Date.new(2002,1,1)], 
@@ -14,6 +15,7 @@ module TChart
       item = stub ; item.stubs(:build).returns [ Label.build_ylabel(xy(-10, 10), 20, "label"), Bar.new(xy(0, 25), xy(50, 25), "style") ]
       @items = [ item ]
     end
+    
     it "builds a chart" do
       chart = ChartBuilder.build(@layout, @items)
       chart.elements.length.must_equal 8
@@ -26,5 +28,6 @@ module TChart
       chart.elements[6].must_equal Label.build_ylabel(xy(-10, 10), 20, "label") # item y-axis label
       chart.elements[7].must_equal Bar.new(xy(0, 25), xy(50, 25), "style")      # item bar
     end
+    
   end
 end
