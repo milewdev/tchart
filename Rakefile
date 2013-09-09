@@ -3,26 +3,17 @@ require "pathname"
 require_relative "lib/tchart/version"
 
 
-task :default => [ :test, :req, :todo ]
+task :default => [ :test ]
 task :install => [ :build ]
 
 
-desc "Run test, req, build, install, and readme tasks"
-task :all => [ :test, :req, :todo, :build, :install, :readme ]
+desc "Run test, build, install, and readme tasks"
+task :all => [ :test, :build, :install, :readme ]
 
 
 Rake::TestTask.new :test do |t|
   t.test_files = FileList["test/**/*_test.rb", "req/**/*_test.rb"]
   t.warning = true
-end
-
-
-desc "Run requirements tests"
-task :req do
-  test_files = FileList["req/**/*_req.rb"].map { |fn| "\"#{fn}\"" }.join(", ")
-  Rake::FileUtilsExt.verbose(false) do
-    ruby "-r ./req/dsl/lib/runner.rb -e 'TChart::Requirements::DSL::Runner.run([#{test_files}])'"
-  end
 end
 
 
@@ -42,12 +33,6 @@ end
 desc "Generate README.md chart images"
 task :readme do
   generate_charts("README.md")
-end
-
-
-desc "Scan source code for TODOs"
-task :todo do
-  puts "TODO: scan for TODOs"
 end
 
 
