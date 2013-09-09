@@ -1,5 +1,4 @@
 require 'minitest/autorun'
-require 'minitest/focus'
 require 'mocha/setup'         # must be after require 'minitest/autorun'
 
 me = File.absolute_path(__FILE__)
