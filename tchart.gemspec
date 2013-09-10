@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description                 = s.summary
   s.license                     = "MIT"
   s.requirements                = [ "none" ]
-  s.version                     = "#{TChart::Version}"
+  s.version                     = TChart::Version
   s.author                      = "Michael Lewandowski"
   s.email                       = "milewgit@gmail.com"
   s.homepage                    = "https://github.com/milewgit/tchart"
@@ -16,5 +16,7 @@ Gem::Specification.new do |s|
   s.executables                 = [ "tchart" ]
   s.test_files                  = Dir[ "test/*_test.rb" ]
   s.has_rdoc                    = false
-  s.add_development_dependency  "mocha", [ "~> 0.14.0" ]
+  s.add_development_dependency  "mocha", "~> 0.14.0"
+  s.add_development_dependency  "bundler", "~> 1.3"
+  s.add_development_dependency  "rake"
 end
