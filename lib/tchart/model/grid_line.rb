@@ -28,7 +28,7 @@ module TChart
     # Generate the TikZ code that renders the grid line.
     #
     def render(tex)
-      tex.line @from, @to, "gridline"
+      tex.gridline @from, @to, "gridline"
     end
     
   end

@@ -39,9 +39,7 @@ module TChart
     #
     # Adds TeX code to render a grid line.
     #
-    # TODO: rename to GridLine?
-    #
-    def line(from, to, style)
+    def gridline(from, to, style)
       @output << "\\draw [#{style}] (#{f from.x}mm, #{f from.y}mm) -- (#{f to.x}mm, #{f to.y}mm);\n"
     end
     

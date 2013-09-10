@@ -9,7 +9,7 @@ module TChart
     end
     
     it "generates TeX code to render the grid line" do
-      @tex.expects(:line).once
+      @tex.expects(:gridline).once
       @gridline.render(@tex)
     end
     

@@ -53,14 +53,14 @@ module TChart
   end
   
   
-  describe TeXBuilder, "line" do
+  describe TeXBuilder, "gridline" do
   
     before do
       @tex = TeXBuilder.new
     end
   
-    it "generates a TikZ code for a line" do
-      @tex.line xy(10,20), xy(30,40), "line_style"   # x1, y1, x2, y2, style
+    it "generates a TikZ code for a grid line" do
+      @tex.gridline xy(10,20), xy(30,40), "line_style"   # x1, y1, x2, y2, style
       @tex.to_s.must_equal "\\draw [line_style] (10.00mm, 20.00mm) -- (30.00mm, 40.00mm);\n"
     end
   
