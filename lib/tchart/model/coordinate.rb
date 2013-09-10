@@ -1,4 +1,9 @@
 module TChart
+  
+  #
+  # An (x,y) location on the chart.  x and y can be
+  # in any units, e.g. millimeters, pixels, etc.
+  #
   class Coordinate
     
     attr_reader :x
@@ -14,6 +19,10 @@ end
 
 
 module Kernel
+  
+  #
+  # Shorthand for TChart::Coordinate.new(x, t).
+  #
   def xy(x, y) # => Coordinate
     TChart::Coordinate.new(x, y)
   end

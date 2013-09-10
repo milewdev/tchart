@@ -1,6 +1,14 @@
 module TChart
+  
+  #
+  # Responsible for parsing command line options and arguments.
+  #
   class CommandLineParser
     
+    #
+    # Parse a list of command line options and arguments (e.g. ARGV)
+    # and return CommandLineArgs, or a list of errors.
+    #
     def self.parse(argv) # => CommandLineArgs, errors
       CommandLineParser.new.parse(argv)
     end

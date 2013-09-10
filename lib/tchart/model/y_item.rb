@@ -1,9 +1,30 @@
 module TChart
+  
+  #
+  # The input data file specifies settings, data lines, and separators.  A
+  # data line consists of a description, which becomes a y axis label, zero
+  # or more date ranges to be plotted on the chart as horizontal bars, and
+  # a TikZ style for the bars.  YItem is reponsible for capturing all of
+  # that information and for building the label and bar elements.
+  #
   class YItem
     
-    attr_reader :description      # Used for the content of the y-label.
-    attr_reader :bar_style        # TikZ style for the bars (must be defined in TeX document).
-    attr_reader :date_ranges      # Each item can have zero or more date ranges, which will appear as bars on the chart.
+    #
+    # Used for the content of the y-label.
+    #
+    attr_reader :description
+    
+    #
+    # TikZ style for the bars.  The style must be defined in the TeX document
+    # that embeds the chart.
+    #
+    attr_reader :bar_style
+    
+    #
+    # Each item can have zero or more date ranges, which will appear as bars 
+    # on the chart.
+    #
+    attr_reader :date_ranges
 
     def initialize(description, bar_style, date_ranges)
        @description = description
@@ -11,6 +32,10 @@ module TChart
        @date_ranges = date_ranges
     end
     
+    #
+    # Build the elements that represent the item on the chart 
+    # (i.e. builds a y axis label and zero or more bars).
+    #
     def build(layout, y) # => [ Label, Bar, Bar, ... ]
       [ new_y_label(layout, y) ].concat new_bars(layout, y)
     end

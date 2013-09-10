@@ -1,6 +1,11 @@
 require 'date'
 
 module TChart
+  
+  #
+  # Responsible for reading source data from an input file
+  # and parsing it.
+  #
   module DataReader
     
     def self.read(filename) # => [ settings, items, errors ]

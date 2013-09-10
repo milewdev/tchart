@@ -1,14 +1,27 @@
 module TChart
+  
+  #
+  # The plots of zero or more date ranges.  Includes bars representing the
+  # date ranges, x and y axes lines, gridlines, and labels.  Has overall
+  # responsibility for generating all of the TikZ code to render the chart.
+  #
   class Chart
     
-    attr_reader :elements     # Each must respond to #render.
+    #
+    # The collection of labels, gridlines, and bars that make up the chart.
+    #
+    attr_reader :elements
 
     def initialize(elements)
       @elements = elements
     end
     
+    #
+    # Generate and return the TikZ code for rendering the entire chart.
+    #
     def render # => String
       tex = TeXBuilder.new
+      # TODO: rename #echo to #write
       tex.echo "\\tikzpicture\n"
       @elements.each { |element| element.render(tex) }
       tex.echo "\\endtikzpicture\n"

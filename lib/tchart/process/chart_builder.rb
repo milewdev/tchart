@@ -1,6 +1,14 @@
 module TChart
+  
+  #
+  # Responsible for constructing a Chart from a Layout and a collection
+  # of items (Separators and YItems).
+  #
   class ChartBuilder
     
+    #
+    # Build and return a chart.
+    #
     def self.build(layout, items) # => Chart
       ChartBuilder.new(layout, items).build
     end

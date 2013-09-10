@@ -1,15 +1,30 @@
 module TChart
+  
+  #
+  # Responsible for parsing a line of source data that contains a
+  # setting.  Also responsible for accumulating parsed settings.
+  #
   class SettingsParser
-    
+   
+    #
+    # The accumulated settings.  All settings start with their default
+    # values and get updated as setting lines are parsed.  If a setting
+    # is specified more than once in the source data, the last value 
+    # found will be the one used.
+    #
     attr_reader :settings
     
     def initialize
       @settings = Settings.new
     end
     
-    # Returns true if the passed line is a recognizable settings line
+    #
+    # Parse a line of source data and extract a setting, and save to @settings.
+    #
+    # Return true if the passed line is a recognizable settings line
     # (which may nonetheless have errors, such as unknown setting, etc.), 
     # false otherwise.
+    #
     def parse(line) # => true if a settings line, false otherwise.
       return false if ! match = /^([^=]+)=(.+)$/.match(line)
       name, value_as_string = match[1].strip, match[2].strip

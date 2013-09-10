@@ -1,6 +1,18 @@
 module TChart
+  
+  #
+  # Responsible for parsing source data.  Not responsible for 
+  # aquiring the source data, e.g. not responsible for reading
+  # the source data from an input file.
+  #
   class DataParser
     
+    #
+    # Parse source data and return Settings and a list of items,
+    # or a list of errors.  source_name is used in error messages;
+    # for example, if the source data was read from a file, then
+    # source_name would be the name of that file.
+    #
     def self.parse(source_name, source_data) # => [ settings, items, errors ]
       DataParser.new(source_name, source_data).parse
     end
@@ -23,7 +35,7 @@ module TChart
   private
     
     #
-    # Returns source data lines that are not empty after
+    # Return source data lines that are not empty after
     # comments have been removed.
     #
     def non_blank_source_lines # => Enumerator

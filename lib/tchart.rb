@@ -3,7 +3,12 @@ me = File.absolute_path(__FILE__)
 Dir.glob(File.dirname(me) + '/**/*.rb') {|fn| require fn if fn != me }
 
 module TChart
-    
+
+  #
+  # Program entry point. Responsible for running the various steps
+  # required to generate TikZ code that renders a chart.  Also
+  # responsible for reporting encountered errors, if any.
+  #
   def self.run(argv)
     args, errors = CommandLineParser.parse(argv)                    ; quit_if_errors(errors)
     settings, items, errors = DataReader.read(args.data_filename)   ; quit_if_errors(errors)

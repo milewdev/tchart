@@ -1,4 +1,8 @@
 module TChart
+  
+  #
+  # Responsible for writing TeX code to a file.
+  #
   module TeXWriter
     
     def self.write(tex_filename, tex_content)

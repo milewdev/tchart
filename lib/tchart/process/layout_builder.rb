@@ -1,6 +1,17 @@
 module TChart
+  
+  #
+  # Responsible for calculating chart metrics and storing them
+  # in an instance of Layout.  Metrics depend on chart settings
+  # and the number and dates ranges of the items being plotted.
+  #
   class LayoutBuilder
-    
+   
+    #
+    # Build and return a Layout, or errors.  An example of an error
+    # would be a chart width that is too small to accomodate the 
+    # y axis label width.
+    #
     def self.build(settings, items) # => layout, errors
       layout = build_layout(settings, items)
       errors = check_layout(layout)
@@ -74,12 +85,16 @@ module TChart
       (0..x_axis_length).step(x_interval).to_a
     end
       
+    #
     # 1/2 x_axis_label_width for the left margin, and 1/2 x_axis_label_width for the right margin
+    #
     def self.calc_x_axis_length(settings) # => Numeric
       settings.chart_width - settings.y_axis_label_width - settings.x_axis_label_width
     end
     
+    #
     # +1 for top and bottom margins, each of which is half the line height
+    #
     def self.calc_y_axis_length(settings, items) # => Numeric
       (items.length + 1) * settings.line_height
     end

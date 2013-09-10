@@ -1,12 +1,27 @@
 module TChart
+  
+  #
+  # Responsible for parsing a line of source data that contains either
+  # a separator or a data item.  Also responsible for accumulating 
+  # parsed items.
+  #
   class ItemsParser
-    
+   
+    #
+    # The collection of parsed items, where an item is either an instance
+    # of YItem or of Separator.  Starts empty and fills up with each 
+    # successive call to #parse.
+    #
     attr_reader :items
     
     def initialize
       @items = []
     end
     
+    #
+    # Parse a line of source data and build either a YItem or a
+    # Separator, and add to @items.
+    #
     def parse(line)
       description, style, *date_range_strings = extract_fields(line)
       raise_description_missing if description.nil?
@@ -65,8 +80,10 @@ module TChart
       raise_invalid_date(year, month, day, e.message)
     end
     
+    #
     # Matches d, d-d, or d - d, where d can be: y, y.m, or y.m.d
     # Examples: 2000, 2000-2001, 2000-2001.8, 2000.4.17 - 2001
+    #
     def match_date_range(date_range_string) # => y1, m1, d1, y2, m2, d2
       m = /^(\d+)(\.(\d+)(\.(\d+))?)?(\s*-\s*(\d+)(\.(\d+)(\.(\d+))?)?)?$/.match(date_range_string)
       raise_invalid_date_range(date_range_string) if not m
@@ -113,12 +130,16 @@ module TChart
       raise TChartError, "date range #{dr2s(range1)} overlaps #{dr2s(range2)}"
     end
     
+    #
     # d2s = date to string
+    #
     def d2s(date) # => String
       date.strftime('%Y.%-m.%-d')
     end
     
+    #
     # dr2s = date range to string
+    #
     def dr2s(date_range) # => String
       "#{d2s(date_range.begin)}-#{d2s(date_range.end)}"
     end
