@@ -1,7 +1,7 @@
 module TChart
   
   #
-  # A x or y axis label on the chart.  X axis labels will be years, e.g. 
+  # An x or y axis label on the chart.  X axis labels will be years, e.g. 
   # "2014", "2015", etc., and y axis labels will be descriptions of the
   # items being plotted, e.g. "Ruby", "C", "C++", etc.  Responsible for
   # generating TikZ code to render the label.
