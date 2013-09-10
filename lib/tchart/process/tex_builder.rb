@@ -61,15 +61,6 @@ module TChart
     end
     
     #
-    # Adds a blank line to the accumulated code.
-    #
-    # TODO: retire this?
-    #
-    def newline
-      @output << "\n"
-    end
-    
-    #
     # Returns the generated and accumulated TeX code.
     #
     def to_s # => String

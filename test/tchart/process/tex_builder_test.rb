@@ -105,20 +105,6 @@ module TChart
   end
   
   
-  describe TeXBuilder, "newline" do
-  
-    before do
-      @tex = TeXBuilder.new
-    end
-  
-    it "generates a blank line" do
-      @tex.newline
-      @tex.to_s.must_equal "\n"
-    end
-  
-  end
-  
-  
   describe TeXBuilder, "to_s" do
   
     before do
