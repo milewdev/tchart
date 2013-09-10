@@ -21,10 +21,9 @@ module TChart
     #
     def render # => String
       tex = TeXBuilder.new
-      # TODO: rename #echo to #write
-      tex.echo "\\tikzpicture\n"
+      tex.begin_chart
       @elements.each { |element| element.render(tex) }
-      tex.echo "\\endtikzpicture\n"
+      tex.end_chart
       tex.to_s
     end
     

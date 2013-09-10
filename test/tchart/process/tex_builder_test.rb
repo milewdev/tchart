@@ -1,6 +1,34 @@
 require_relative '../../test_helper'
 
 module TChart
+  describe TeXBuilder, "begin_chart" do
+    
+    before do
+      @tex = TeXBuilder.new
+    end
+    
+    it "generates \\tikzpicture" do
+      @tex.begin_chart
+      @tex.to_s.must_equal "\\tikzpicture\n"
+    end
+    
+  end
+  
+  
+  describe TeXBuilder, "end_chart" do
+    
+    before do
+      @tex = TeXBuilder.new
+    end
+    
+    it "generates \\endtikzpicture" do
+      @tex.end_chart
+      @tex.to_s.must_equal "\\endtikzpicture\n"
+    end
+    
+  end
+  
+  
   describe TeXBuilder, "comment" do
     
     before do
@@ -91,20 +119,6 @@ module TChart
   end
   
   
-  describe TeXBuilder, "echo" do
-  
-    before do
-      @tex = TeXBuilder.new
-    end
-  
-    it "returns the passed argument" do
-      @tex.echo "some text"
-      @tex.to_s.must_equal "some text"
-    end
-  
-  end
-  
-  
   describe TeXBuilder, "to_s" do
   
     before do
@@ -113,8 +127,7 @@ module TChart
   
     it "returns the generated TeX code" do
       @tex.comment "a comment"
-      @tex.echo "some text\n"
-      @tex.to_s.must_equal "% a comment\nsome text\n"
+      @tex.to_s.must_equal "% a comment\n"
     end
   
   end

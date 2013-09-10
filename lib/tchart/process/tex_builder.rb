@@ -13,15 +13,19 @@ module TChart
     def initialize
       @output = StringIO.new
     end
-   
+    
     #
-    # Adds raw text to the accumulated code.
+    # Adds TikZ code to begin a chart definition.
     #
-    # TODO: should tex special chars be escaped?
-    # TODO: should this be replaced with start_picture and end_picture, or something similar?
+    def begin_chart
+      @output << "\\tikzpicture\n"
+    end
+    
     #
-    def echo(text)
-      @output << text
+    # Adds TikZ code to end a chart definition.
+    #
+    def end_chart
+      @output << "\\endtikzpicture\n"
     end
     
     #
