@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.summary                     = "Generate TikZ code to chart date-based data."
   s.description                 = <<-EOS
                                   tchart reads a text file containing date-based data,
-                                  for example, employment history, and generates TikZ
+                                  for example employment history, and generates TikZ
                                   code to render a chart of the data.  The generated 
                                   chart can then be embedded in a TeX or LaTeX document,
                                   such as a resume.
