@@ -35,11 +35,18 @@ will result in the chart:
 
 
 <br>
+### Requirements
+- [Ruby 2.0](https://www.ruby-lang.org)
+- a TeX installation (e.g. [MacTeX](http://tug.org/mactex)) to render generated charts
+
+
+
+<br>
 ### Installation
 
-*TODO: $ gem install tchart*
-
-*TODO: prerequisites: Ruby and (e.g.) MacTeX*
+```
+$ gem install tchart --pre
+```
 
 
 
