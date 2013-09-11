@@ -1,4 +1,7 @@
+<!-- build status and gem version badges -->
 [![Build Status](https://travis-ci.org/milewgit/tchart.png)](https://travis-ci.org/milewgit/tchart)
+<br>
+[![Gem Version](https://badge.fury.io/rb/tchart.png)](http://badge.fury.io/rb/tchart)
 
 
 
