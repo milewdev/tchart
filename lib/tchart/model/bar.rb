@@ -1,7 +1,7 @@
 module TChart
   
   #
-  # The plot of a date range on the chart.  Responsible
+  # A bar that represents a date range on the chart.  Responsible 
   # for generating TikZ code to render the bar.
   #
   class Bar

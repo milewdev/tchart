@@ -1,11 +1,11 @@
 module TChart
   
   #
-  # Stores various chart metrics such as the length of the axes, the width 
-  # of the axes labels, the coordinates of the axes labels, and so on.  All
-  # metrics are unitless, although they should all be in the same unit.
-  # Responsible for converting a date range to its equivalent start and end
-  # coordinates on the chart.
+  # Responsible for storing various chart metrics such as the length of the 
+  # axes, the width of the axes labels, the coordinates of the axes labels,
+  # and so on.  All metrics are unitless, although they should all be in
+  # the same unit.  Also responsible for converting a date range to its
+  # equivalent start and end coordinates on the chart.
   #
   class Layout
     
