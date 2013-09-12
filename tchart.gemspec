@@ -4,13 +4,13 @@ Gem::Specification.new do |s|
   s.name                        = "tchart"
   s.version                     = TChart::Version
   s.homepage                    = "https://github.com/milewgit/tchart"
-  s.summary                     = "Generate TikZ code to chart date-based data."
+  s.summary                     = "Generate TikZ code to plot date-based data."
   s.description                 = <<-EOS
                                   tchart reads a text file containing date-based data,
                                   for example employment history, and generates TikZ
                                   code to render a chart of the data.  The generated 
-                                  chart can then be embedded in a TeX or LaTeX document,
-                                  such as a resume.
+                                  TikZ chart can then be embedded in a TeX or LaTeX
+                                  document, such as a resume.
                                   EOS
   s.author                      = "Michael Lewandowski"
   s.email                       = "milewgit@gmail.com"
