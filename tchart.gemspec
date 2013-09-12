@@ -17,13 +17,13 @@ Gem::Specification.new do |s|
   s.license                     = "MIT"
   s.requirements                = [ "A TeX distribution (e.g. tug.org/mactex) to render the generated TikZ chart code" ]
   s.platform                    = Gem::Platform::RUBY
-  s.required_ruby_version       = "~> 2.0"
+  s.required_ruby_version       = "~> 2"
   s.files                       = Dir[ "lib/**/**", "LICENSE.txt", "README.md", "doc/README/*.jpg" ]
   s.require_paths               = [ "lib" ]
   s.bindir                      = "bin"
   s.executables                 = [ "tchart" ]
-  s.add_development_dependency  "mocha", "~> 0.14"
-  s.add_development_dependency  "bundler", "~> 1.3"
-  s.add_development_dependency  "rake", "~> 10.1"
+  s.add_development_dependency  "mocha", "~> 0"
+  s.add_development_dependency  "bundler", "~> 1"
+  s.add_development_dependency  "rake", "~> 10"
   s.test_files                  = Dir[ "test/*_test.rb" ]
 end
