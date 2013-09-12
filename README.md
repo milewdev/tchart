@@ -1,5 +1,5 @@
 <!-- build status and gem version badges -->
-[![Build Status](https://travis-ci.org/milewgit/tchart.png)](https://travis-ci.org/milewgit/tchart)
+[![Build Status](https://travis-ci.org/milewgit/tchart.png?branch=master)](https://travis-ci.org/milewgit/tchart)
 <br>
 [![Gem Version](https://badge.fury.io/rb/tchart.png)](http://badge.fury.io/rb/tchart)
 
@@ -47,8 +47,11 @@ will result in the chart:
 <br>
 ### Installation
 
-```
+```Shell
 $ gem install tchart --pre
+...
+$ tchart --version
+0.0.1.pre
 ```
 
 
@@ -68,7 +71,7 @@ $ gem install tchart --pre
 
 2.  Run tchart to read skills.txt and write generated TikZ code to skills.tikz:
 
-    ```
+    ```Shell
     $ tchart skills.txt skills.tikz
     ```
 
@@ -77,7 +80,7 @@ $ gem install tchart --pre
     and the chart grid lines ('gridline').  Create a TeX document, styles.tikz, that 
     defines these styles:
     
-    ```
+    ```TeX
     % Style for x axis labels.
     \tikzset{ xlabel/.style = {
       text width = 10.00mm,
@@ -116,7 +119,7 @@ $ gem install tchart --pre
 4.  Create a main TeX document, skills.tex, that includes ('\input's) the TikZ library, the 
     styles.tikz file, and the generated skills.tikz file:
     
-    ```
+    ```TeX
     \def\pgfsysdriver{pgfsys-pdftex.def}
     \input tikz.tex
     \usetikzlibrary{positioning, shapes.misc}
@@ -128,7 +131,7 @@ $ gem install tchart --pre
 
 5.  Generate a PDF file from skills.tex:
 
-    ```
+    ```Shell
     $ pdftex -interaction=batchmode skills.tex
     ```
     
@@ -142,7 +145,7 @@ $ gem install tchart --pre
 <br>
 ### Usage
 
-```
+```Shell
 $ tchart [ --help | --version | input-data-filename output-tikz-filename ]
 ```
 
@@ -160,7 +163,7 @@ you can use any extensions you like (or none at all).
 
 Examples:
 
-```
+```Shell
 $ tchart --help
 Usage: tchart [ --version | --help | input-data-filename output-tikz-filename ]
 
@@ -307,9 +310,9 @@ Linux        | os   | 2005 - 2010
 <!-- @end -->
 
 The TeX document that includes the chart code must define the 'lang' and 'os' TikZ styles, perhaps 
-by incuding a separate file, or inline, as shown here:
+by including a separate file, or inline, as shown here:
 
-```
+```TeX
 ...
 
 % Style for programming language chart bars.
