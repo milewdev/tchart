@@ -48,10 +48,10 @@ will result in the chart:
 ### Installation
 
 ```Shell
-$ gem install tchart --pre
+$ gem install tchart
 ...
 $ tchart --version
-0.0.1.pre
+0.0.1
 ```
 
 
