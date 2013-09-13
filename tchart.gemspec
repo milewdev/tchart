@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.requirements                = [ "Ruby 2", "A TeX distribution (e.g. tug.org/mactex) to render the generated TikZ chart code." ]
   s.platform                    = Gem::Platform::RUBY
   s.required_ruby_version       = "~> 2"
-  s.files                       = Dir[ "lib/**/**", "LICENSE.txt", "README.md", "doc/README/*.jpg" ]
+  s.files                       = Dir[ "lib/**/**", "LICENSE.txt" ]
   s.require_paths               = [ "lib" ]
   s.bindir                      = "bin"
   s.executables                 = [ "tchart" ]
