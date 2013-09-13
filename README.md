@@ -51,7 +51,7 @@ will result in the chart:
 $ gem install tchart
 ...
 $ tchart --version
-0.0.1
+0.0.2
 ```
 
 
