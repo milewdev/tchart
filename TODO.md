@@ -1,6 +1,13 @@
 ### TODO
+- [0.0.2] Add smoke test to text/tchart_test.rb.
+- [0.0.2] Create quick-start example files in doc/QuickStart.
 - [0.0.2] Put an upper limit on the overall x-axis date range OR handle unlimited date ranges.
 - [0.0.2] Does tchart present a well-behaved, canonical, least surprise, simple command line interface? ([research here](http://pragprog.com/book/dccar/build-awesome-command-line-applications-in-ruby))
+- [0.0.2] Decide on a better name for YItem.  Note that README uses 'subject' in some places.
+- [0.0.2] Rename Settings to ChartSettings?
+- [0.0.2] Use a better font in the chart images in README.
+- [?.?.?] Create a web site and move README user instruction details there.
+- [?.?.?] Create CODEMAP: overview of classes.
 
 
 <br>
