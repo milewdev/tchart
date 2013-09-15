@@ -1,3 +1,13 @@
+### 0.0.2
+- Add HOWTO.
+- Add missing test files to gem file.
+- Remove README from gem file (images were not being displayed on rubydoc.org).
+- Update CHECKLIST: check README Installation section version number.
+
+
+<br>
+
+
 ### 0.0.1
 - Add CHECKLIST, TODO.
 - Add language to code blocks in README.
