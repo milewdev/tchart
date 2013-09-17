@@ -1,3 +1,7 @@
+### Committing to git
+- Use a signed commit.
+- Does the commit need to be built by the CI server?  Use [ci skip] if not.
+
 ### Publishing a New Version
 - Is HISTORY.md up to date?
 - Is lib/tchart/version.rb correct?
