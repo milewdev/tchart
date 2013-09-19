@@ -8,4 +8,5 @@
 ### tchart: generate TikZ code to plot date-based data
 
 tchart is a command line utility that generates TikZ code to draw a chart of date-based data.
-User documentation is <a href="milewgit.github.io/tchart">here</a>.
+
+User documentation is <a href="http://milewgit.github.io/tchart/">here</a>.
