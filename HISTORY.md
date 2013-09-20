@@ -1,8 +1,8 @@
 ### 0.0.2
 - Add HOWTO.
 - Add missing test files to gem file.
-- Remove README from gem file (images were not being displayed on rubydoc.org).
-- Update CHECKLIST: check README Installation section version number.
+- Remove README from tchart.gemspec (images were not being displayed on rubydoc.org).
+- Create [project website](<a href="http://milewgit.github.io/tchart/">here</a>) and move the bulk of README.md there.
 
 
 <br>
