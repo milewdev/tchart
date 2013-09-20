@@ -6,6 +6,7 @@ $ git commit -S -m 'Description of the commit.'
 $ git log --show-signature
 ```
 
+
 <br>
 
 
@@ -19,7 +20,9 @@ $ git push origin x.y.z
 $ git tag
 ```
 
+
 <br>
+
 
 ### Publish to RubyGems.org
 ```Shell

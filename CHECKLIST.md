@@ -5,6 +5,8 @@
 ### Publishing a New Version
 - Is HISTORY.md up to date?
 - Is lib/tchart/version.rb correct?
+- Is the version number correct on the project web site (<title> and in the header)?
+- Is the copyright date correct on the project web site (in the footer)?
 - Does the version under Installation in README match what is in lib/tchart/version.rb?
 - Check git status.
 - Check travis-lint.
