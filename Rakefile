@@ -7,8 +7,8 @@ task :default => [ :test ]
 task :install => [ :build ]
 
 
-desc "Run test, build, install, and readme tasks"
-task :all => [ :test, :build, :install, :readme ]
+desc "Run test, build, and install tasks"
+task :all => [ :test, :build, :install ]
 
 
 Rake::TestTask.new :test do |t|
@@ -27,27 +27,4 @@ desc "Install gem locally (does an uninstall first)"
 task :install do
   system "gem uninstall -x tchart"
   system "gem install tchart-#{TChart::Version}.gem"
-end
-
-
-desc "Generate README.md chart images"
-task :readme do
-  generate_charts("README.md")
-end
-
-
-# Could refactor but it's just a script.
-def generate_charts(filename)
-  contents = File.open(filename) { |f| f.read }
-  contents.scan( /<!-- @tchart (.*?) -->.*?```.*?\n(.*?)```.*?<!-- @end -->/m ) do |fn, spec|
-    puts fn
-    Dir.chdir("doc/README/src") do
-      File.open("drawing.txt", "w") { |f| f.write(spec) }
-      system "tchart drawing.txt drawing.tikz"
-      system "pdftex -interaction=batchmode drawing.tex > /dev/null"
-      system "pdfcrop --margins '30 5 30 10' drawing.pdf cropped.pdf > /dev/null"
-      system "gs -q -dQUIET -dSAFER -dBATCH -dNOPAUSE -dNOPROMPT -dMaxBitmap=500000000 -dAlignToPixels=0 -dGridFitTT=2 -dTextAlphaBits=4 -dGraphicsAlphaBits=4 -r100 -sDEVICE=jpeg -dJPEGQ=100 -sOutputFile=../#{Pathname.new(fn).basename} cropped.pdf"
-      system "rm drawing.txt drawing.tikz drawing.pdf cropped.pdf drawing.log drawing.pgf"
-    end
-  end
 end
