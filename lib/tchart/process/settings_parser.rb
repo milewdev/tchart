@@ -24,10 +24,10 @@ module TChart
     # false otherwise.
     #
     def parse?(line)
-      return false if ! match = /^([^=]+)=(.+)$/.match(line)
+      return false if (match = /^([^=]+)=(.+)$/.match(line)).nil?
       name, value_as_string = match[1].strip, match[2].strip
-      raise_unknown_setting(name) if ! known_setting?(name)
-      raise_not_a_recognizable_value(value_as_string) if ! recognizable_value?(value_as_string)
+      raise_unknown_setting(name) unless known_setting?(name)
+      raise_not_a_recognizable_value(value_as_string) unless recognizable_value?(value_as_string)
       save_setting(name, value_as_string)
       true
     end

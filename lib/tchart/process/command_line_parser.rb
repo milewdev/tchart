@@ -33,10 +33,10 @@ module TChart
     
     def parse_args(argv) # => [ CommandLineArgs, [] ]
       parse_options(argv)
-      raise_usage if argv.length != 2
+      raise_usage unless argv.length == 2
       data_filename, tex_filename = argv
-      raise_data_filename_not_found(data_filename) if ! File.exists?(data_filename)
-      raise_data_filename_not_a_file(data_filename) if ! File.file?(data_filename)
+      raise_data_filename_not_found(data_filename) unless File.exists?(data_filename)
+      raise_data_filename_not_a_file(data_filename) unless File.file?(data_filename)
       raise_tex_filename_not_a_file(tex_filename) if File.exists?(tex_filename) && ! File.file?(tex_filename)
       raise_same_filename(data_filename, tex_filename) if same_file?(data_filename, tex_filename)
       [ CommandLineArgs.new(data_filename, tex_filename), [] ]
