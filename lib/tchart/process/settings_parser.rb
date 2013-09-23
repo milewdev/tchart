@@ -23,7 +23,7 @@ module TChart
     # (which may nonetheless have errors, such as unknown setting, etc.), 
     # false otherwise.
     #
-    def parse(line)
+    def parse?(line)
       return false if ! match = /^([^=]+)=(.+)$/.match(line)
       name, value_as_string = match[1].strip, match[2].strip
       raise_unknown_setting(name) if ! known_setting?(name)

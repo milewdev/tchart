@@ -57,7 +57,7 @@ module TChart
     end
     
     def parse_line(line)
-      if ! @settings_parser.parse(line)
+      if ! @settings_parser.parse?(line)
         @items_parser.parse(line)
       end
     rescue TChartError => e
