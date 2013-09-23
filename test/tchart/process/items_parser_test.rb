@@ -24,11 +24,14 @@ module TChart
       error.message.must_equal "style is missing"
     end
     
-    it "ignores escaped separator characters" do
+    it "allows escaped separator characters" do
       @parser.parse("Description1\\|\\|Description2|Style|2000\n")
       @parser.items[0].description.must_equal 'Description1||Description2'
-      @parser.items[0].bar_style.must_equal 'Style'
-      @parser.items[0].date_ranges.must_equal [ Date.new(2000,1,1)..Date.new(2000,12,31) ]
+    end
+    
+    it "allows escaped escape characters" do
+      @parser.parse("Description1\\\\Description2|Style|2000\n")
+      @parser.items[0].description.must_equal 'Description1\Description2'
     end
     
     it "allows separator lines" do

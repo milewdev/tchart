@@ -5,15 +5,11 @@ module TChart
   #
   class CommandLineParser
     
-    #
-    # Parse a list of command line options and arguments (e.g. ARGV)
-    # and return CommandLineArgs, or a list of errors.
-    #
-    def self.parse(argv) # => CommandLineArgs, errors
+    def self.parse(argv) # => [ CommandLineArgs, [] ] or [ nil, [ String, ... ] ]
       CommandLineParser.new.parse(argv)
     end
     
-    def parse(argv) # => CommandLineArgs, errors
+    def parse(argv) # => [ CommandLineArgs, [] ] or [ nil, [ String, ... ] ]
       parse_options(argv)
       parse_args(argv)
     rescue TChartError => e
@@ -35,7 +31,7 @@ module TChart
       end
     end
     
-    def parse_args(argv) # => CommandLineArgs, errors
+    def parse_args(argv) # => [ CommandLineArgs, [] ]
       parse_options(argv)
       raise_usage if argv.length != 2
       data_filename, tex_filename = argv

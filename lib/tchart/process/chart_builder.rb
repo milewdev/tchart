@@ -6,9 +6,6 @@ module TChart
   #
   class ChartBuilder
     
-    #
-    # Build and return a chart.
-    #
     def self.build(layout, items) # => Chart
       ChartBuilder.new(layout, items).build
     end

@@ -6,15 +6,8 @@ module TChart
   #
   class CommandLineArgs
     
-    #
-    # File containing chart settings and the items being plotted.
-    #
-    attr_reader :data_filename
-    
-    #
-    # File to write generated TeX to.
-    #
-    attr_reader :tex_filename
+    attr_reader :data_filename    # input file
+    attr_reader :tex_filename     # output file
     
     def initialize(data_filename, tex_filename)
       @data_filename = data_filename

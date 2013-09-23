@@ -54,20 +54,14 @@ module TChart
       @y_axis_label_width         = 24
     end
     
-    #
-    # Is the passed name a known setting name?
-    #
     def has_setting?(setting_name)
       setting_names.include?(setting_name)
     end
    
-    #
-    # Return a list of all setting names.
-    #
-    def setting_names # => [ String, ... ]
-      methods
-        .grep(/\w=$/)
-        .map {|name| name.to_s.chomp('=')}
+    def setting_names # => [ "chart_width", "line_height", ... ]
+      methods                                 # => [ "has_setting?", "chart_width", "chart_width=", ... ]
+        .grep(/\w=$/)                         # => [ "chart_width=", ... ]
+        .map {|name| name.to_s.chomp('=')}    # => [ "chart_width", ... ]
     end
     
   end

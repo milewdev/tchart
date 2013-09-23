@@ -9,14 +9,7 @@ module TChart
   #
   class GridLine
     
-    #
-    # Start coordinate of the line.
-    #
     attr_reader :from
-    
-    #
-    # End coordinate of the line.
-    #
     attr_reader :to
     
     def initialize(from, to)
@@ -24,9 +17,6 @@ module TChart
       @to = to
     end
     
-    #
-    # Generate the TikZ code that renders the grid line.
-    #
     def render(tex)
       tex.gridline @from, @to, "gridline"
     end

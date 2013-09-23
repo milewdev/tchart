@@ -8,10 +8,9 @@ module TChart
   class DataParser
     
     #
-    # Parse source data and return Settings and a list of items,
-    # or a list of errors.  source_name is used in error messages;
-    # for example, if the source data was read from a file, then
-    # source_name would be the name of that file.
+    # source_name is used in error messages; for example, if the
+    # source data was read from a file, then source_name would be
+    # the name of that file.
     #
     def self.parse(source_name, source_data) # => [ settings, items, errors ]
       DataParser.new(source_name, source_data).parse
@@ -49,7 +48,7 @@ module TChart
     end
     
     #
-    # "item  # A comment."  => "item | style | 2003  "
+    # "item  # A comment."  => "item  "
     # "# A comment."        => ""
     # "C\#  # A coment."    => "C\#  "
     #

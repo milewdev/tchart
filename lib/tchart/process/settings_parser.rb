@@ -19,13 +19,11 @@ module TChart
     end
     
     #
-    # Parse a line of source data and extract a setting, and save to @settings.
-    #
     # Return true if the passed line is a recognizable settings line
     # (which may nonetheless have errors, such as unknown setting, etc.), 
     # false otherwise.
     #
-    def parse(line) # => true if a settings line, false otherwise.
+    def parse(line)
       return false if ! match = /^([^=]+)=(.+)$/.match(line)
       name, value_as_string = match[1].strip, match[2].strip
       raise_unknown_setting(name) if ! known_setting?(name)
@@ -40,6 +38,11 @@ module TChart
       @settings.has_setting?(name)
     end
 
+    #
+    # "chart_width = 42"      => true
+    # "gobbledygook = junk"   => true
+    # "chart_width 42"        => false
+    #
     def recognizable_value?(value_as_string)
       value_as_string =~ /^(\+|-)?\d+(\.\d*)?$/
     end

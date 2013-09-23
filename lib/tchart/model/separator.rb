@@ -18,10 +18,6 @@ module TChart
       @date_ranges = []
     end
     
-    #
-    # Build the elements that represent the separator on the 
-    # chart (i.e. build a horizontal grid line).
-    #
     def build(layout, y) # => [ GridLine ]
       from = xy(0, y)
       to = xy(layout.x_axis_length, y)

@@ -7,18 +7,12 @@ module TChart
   #
   class Chart
     
-    #
-    # The collection of labels, gridlines, and bars that make up the chart.
-    #
-    attr_reader :elements
+    attr_reader :elements     # Labels, gridlines and bars that make up the chart.
 
     def initialize(elements)
       @elements = elements
     end
     
-    #
-    # Generate and return the TikZ code for rendering the entire chart.
-    #
     def render # => String
       tex = TeXBuilder.new
       tex.begin_chart

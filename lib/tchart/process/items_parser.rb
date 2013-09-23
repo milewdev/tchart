@@ -1,3 +1,5 @@
+require 'date'
+
 module TChart
   
   #
@@ -18,10 +20,6 @@ module TChart
       @items = []
     end
     
-    #
-    # Parse a line of source data and build either a YItem or a
-    # Separator, and add to @items.
-    #
     def parse(line)
       description, style, *date_range_strings = extract_fields(line)
       raise_description_missing if description.nil?
@@ -49,16 +47,22 @@ module TChart
       @items << item
     end
     
+    #
+    # 'a|b\|c|d | | e | \n' => [ 'a', 'b|c', 'd', nil, 'e' ]
+    #
     def extract_fields(line) # => [ String, ... ]
-      line                                              # 'a|b\|c|d | | e | \n'
-        .sub( /(\s|\|)+$/, '' )                         # 'a|b\|c|d | | e'
-        .split( /(?<!\\)\|/ )                           # [ 'a', 'b\|c', 'd ', ' ', ' e' ]
-        .map { |field| remove_escapes(field) }          # [ 'a', 'b|c', 'd', ' ', 'e' ]
-        .map { |field| field.strip }                    # [ 'a', 'b|c', 'd', '', 'e' ]
-        .map { |field| field.empty? ? nil : field }     # [ 'a', 'b|c', 'd', nil, 'e' ]
+      line                                              # => 'a|b\|c|d | | e | ' + "\n"
+        .sub( /(\s|\|)+$/, '' )                         # => 'a|b\|c|d | | e'
+        .split( /(?<!\\)\|/ )                           # => [ 'a', 'b\|c', 'd ', ' ', ' e' ]
+        .map { |field| remove_escapes(field) }          # => [ 'a', 'b|c', 'd', ' ', 'e' ]
+        .map { |field| field.strip }                    # => [ 'a', 'b|c', 'd', '', 'e' ]
+        .map { |field| field.empty? ? nil : field }     # => [ 'a', 'b|c', 'd', nil, 'e' ]
     end
     
-    def remove_escapes(line) # => line
+    #
+    # '\a\\b' => 'a\b'
+    #
+    def remove_escapes(line) # => String
       line.gsub(/\\(.)/, '\1')
     end
     
@@ -131,14 +135,18 @@ module TChart
     end
     
     #
-    # d2s = date to string
+    # 'd2s' means 'date to string'
+    #
+    # 2001.3.17 => "2001.3.17"
     #
     def d2s(date) # => String
       date.strftime('%Y.%-m.%-d')
     end
     
     #
-    # dr2s = date range to string
+    # 'dr2s' means 'date range to string'
+    #
+    # 2003.3.17..2007.11.2 => "2003.3.17-2007.11.2"
     #
     def dr2s(date_range) # => String
       "#{d2s(date_range.begin)}-#{d2s(date_range.end)}"

@@ -14,53 +14,31 @@ module TChart
       @output = StringIO.new
     end
     
-    #
-    # Adds TikZ code to begin a chart definition.
-    #
     def begin_chart
       @output << "\\tikzpicture\n"
     end
     
-    #
-    # Adds TikZ code to end a chart definition.
-    #
     def end_chart
       @output << "\\endtikzpicture\n"
     end
     
-    #
-    # Adds TeX code to render a comment.  Any TeX special characters are escaped.  The comment 
-    # appears on a line of its own.
-    #
     def comment(text)
       @output << "% #{escape_tex_special_chars text.to_s}\n"
     end
     
-    #
-    # Adds TeX code to render a grid line.
-    #
     def gridline(from, to, style)
       @output << "\\draw [#{style}] (#{f from.x}mm, #{f from.y}mm) -- (#{f to.x}mm, #{f to.y}mm);\n"
     end
     
-    #
-    # Adds TeX code to render a label.  Any TeX special characters are escaped.
-    #
     def label(coord, width, style, text)
       @output << "\\node [#{style}, text width = #{f width}mm] at (#{f coord.x}mm, #{f coord.y}mm) {#{escape_tex_special_chars text.to_s}};\n"
     end
     
-    #
-    # Adds TeX code to render a bar.
-    #
     def bar(from, to, style)
       x_mid, width = to_tikz_coords(from.x, to.x)
       @output << "\\node [#{style}] at (#{f x_mid}mm, #{f from.y}mm) [minimum width = #{f width}mm] {};\n"
     end
     
-    #
-    # Returns the generated and accumulated TeX code.
-    #
     def to_s # => String
       @output.string
     end

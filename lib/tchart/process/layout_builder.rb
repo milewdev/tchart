@@ -7,12 +7,7 @@ module TChart
   #
   class LayoutBuilder
    
-    #
-    # Build and return a Layout, or errors.  An example of an error
-    # would be a chart width that is too small to accomodate the 
-    # y axis label width.
-    #
-    def self.build(settings, items) # => layout, errors
+    def self.build(settings, items) # => [ layout, errors ]
       layout = build_layout(settings, items)
       errors = check_layout(layout)
       [ layout, errors ]
