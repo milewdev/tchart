@@ -11,7 +11,8 @@
 - Does the version under Installation in README match what is in lib/tchart/version.rb?
 - Check git status.
 - Check travis-lint.
-- Force a build on travis-ci.org; did the build pass?
+- git push
+- Force a build on travis-ci.org, if necessary; did the build pass?
 - git tag -s X.Y.Z -m 'description of release'
 - gem push tchart-X.Y.Z.gem
 - also tag and push the web site
