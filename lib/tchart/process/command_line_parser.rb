@@ -11,6 +11,9 @@ module TChart
     
     def parse(argv) # => [ CommandLineArgs, [] ] or [ nil, [ String, ... ] ]
       parse_options(argv)
+      # TODO: change the line below to:
+      #   args = parse_args(argv)
+      #   [ args, [] ]
       parse_args(argv)
     rescue TChartError => e
       [ nil, [ e.message ] ]
