@@ -21,7 +21,7 @@ User documentation is [here](http://milewgit.github.io/tchart/).
 ### Branches
 
 - **master** contains the application code.
-- **gh-pages** contains the project website.  It is hosted on [GitHub pages](http://pages.github.com).
+- **gh-pages** contains the user documentation.  It is hosted on [GitHub pages](http://pages.github.com).
 
 Releases are tagged and are of the form 0.0.1.pre, 0.0.1, etc.
 
@@ -29,9 +29,7 @@ Releases are tagged and are of the form 0.0.1.pre, 0.0.1, etc.
 
 ### Code
 
-- `bin/tchart` launches the application.
-- **TChart** is the main module.
-- **TChart::run** (`lib/tchart/tchart.rb`) is the program entry point.
+`bin/tchart` launches the application; it simply calls TChart::run (`lib/tchart/tchart.rb`), the program entry point.
 
 
 
