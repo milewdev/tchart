@@ -24,7 +24,7 @@ User documentation is [here](http://milewgit.github.io/tchart/).
 - **master** contains the application code.
 - **gh-pages** contains the user documentation.  It is hosted on [GitHub pages](http://pages.github.com).
 
-Releases from 1.0.0 have their own branches.  Older releases 0.0.1.pre, 0.0.1, and 1.0.0 are tagged.
+Releases from 1.0.0 have their own branches.  Older releases 0.0.1.pre and 0.0.1 are tagged.
 
 
 
