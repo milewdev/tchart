@@ -11,10 +11,7 @@ module TChart
     
     def parse(argv) # => [ CommandLineArgs, [] ] or [ nil, [ String, ... ] ]
       parse_options(argv)
-      # TODO: change the line below to:
-      #   args = parse_args(argv)
-      #   [ args, [] ]
-      parse_args(argv)
+      [ parse_args(argv), [] ]
     rescue TChartError => e
       [ nil, [ e.message ] ]
     end
@@ -34,7 +31,7 @@ module TChart
       end
     end
     
-    def parse_args(argv) # => [ CommandLineArgs, [] ]
+    def parse_args(argv) # => CommandLineArgs
       parse_options(argv)
       raise_usage unless argv.length == 2
       data_filename, tex_filename = argv
@@ -42,7 +39,7 @@ module TChart
       raise_data_filename_not_a_file(data_filename) unless File.file?(data_filename)
       raise_tex_filename_not_a_file(tex_filename) if File.exists?(tex_filename) && ! File.file?(tex_filename)
       raise_same_filename(data_filename, tex_filename) if same_file?(data_filename, tex_filename)
-      [ CommandLineArgs.new(data_filename, tex_filename), [] ]
+      CommandLineArgs.new(data_filename, tex_filename)
     end
 
     def same_file?(filename1, filename2)
