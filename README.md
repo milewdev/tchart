@@ -101,11 +101,10 @@ changes, vagrant up and then in a terminal window on the vm do something like:
 
 ### Thanks
 - [Apple](http://www.apple.com)
-- [CoffeeScript](http://coffeescript.org)
-- [GitHub](https://github.com) and [GitHub pages](http://pages.github.com)
-- [mocha](http://visionmedia.github.io/mocha) and [chai](http://chaijs.com)
-- [Node.js](http://nodejs.org)
-- [npm](https://www.npmjs.org)
-- [TextMate](http://macromates.com)
+- [GitHub](https://github.com), [GitHub pages](http://pages.github.com)
+- [Ruby](http://www.ruby-lang.org), [RubyGems](https://rubygems.org), [rake](http://rake.rubyforge.org)
+- [TeX](http://www.tug.org), [PGF/TikZ](http://sourceforge.net/projects/pgf), [MacTeX](http://tug.org/mactex)
+- [TextMate](http://macromates.com), [Brackets](http://brackets.io), [iDraw](http://www.indeeo.com/idraw)
+- [Travis CI](https://travis-ci.org), [Code Climate](https://codeclimate.com), [Coveralls](https://coveralls.io)
 - [Vagrant](https://www.vagrantup.com)
 - [VMware](http://www.vmware.com)
