@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/milewgit/tchart.png?branch=master)](https://travis-ci.org/milewgit/tchart)
 [![Code Climate](https://codeclimate.com/github/milewgit/tchart.png)](https://codeclimate.com/github/milewgit/tchart)
 [![Coverage Status](https://coveralls.io/repos/milewgit/tchart/badge.png?branch=master)](https://coveralls.io/r/milewgit/tchart?branch=master)
+[![Dependencies](https://gemnasium.com/milewgit/tchart.svg)](https://gemnasium.com/milewgit/tchart)
 
 
 ### What is tchart?
@@ -105,6 +106,6 @@ changes, vagrant up and then in a terminal window on the vm do something like:
 - [Ruby](http://www.ruby-lang.org), [RubyGems](https://rubygems.org), [rake](http://rake.rubyforge.org)
 - [TeX](http://www.tug.org), [PGF/TikZ](http://sourceforge.net/projects/pgf), [MacTeX](http://tug.org/mactex)
 - [TextMate](http://macromates.com), [Brackets](http://brackets.io), [iDraw](http://www.indeeo.com/idraw)
-- [Travis CI](https://travis-ci.org), [Code Climate](https://codeclimate.com), [Coveralls](https://coveralls.io)
+- [Travis CI](https://travis-ci.org), [Code Climate](https://codeclimate.com), [Coveralls](https://coveralls.io), [Gemnasium](https://gemnasium.com/)
 - [Vagrant](https://www.vagrantup.com)
 - [VMware](http://www.vmware.com)
