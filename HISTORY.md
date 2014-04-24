@@ -1,3 +1,16 @@
+### 1.0.1
+- Increment version to 1.0.1.
+- Add _build, _install, and _test scripts.
+- Delete tag 1.0.0, create branch v1.0.0
+- Minor change to improve code consistency.
+- List badges in README horizontally rather than vertically.
+- Add [codeclimate](https://codeclimate.com) badge to README.
+- Add [coveralls](https://coveralls.io) for test coverage; add badge to README.
+
+
+<br>
+
+
 ### 0.0.2
 - Add HOWTO.
 - Add missing test files to gem file.
