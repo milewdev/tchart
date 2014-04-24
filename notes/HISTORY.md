@@ -6,6 +6,7 @@
 - List badges in README horizontally rather than vertically.
 - Add [codeclimate](https://codeclimate.com) badge to README.
 - Add [coveralls](https://coveralls.io) for test coverage; add badge to README.
+- Rewrite README, particularly to include development environment setup notes.
 
 
 <br>
