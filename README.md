@@ -1,4 +1,3 @@
-<!-- build status and gem version badges -->
 [![Gem Version](https://badge.fury.io/rb/tchart.png)](http://badge.fury.io/rb/tchart)
 [![Build Status](https://travis-ci.org/milewgit/tchart.png?branch=master)](https://travis-ci.org/milewgit/tchart)
 [![Code Climate](https://codeclimate.com/github/milewgit/tchart.png)](https://codeclimate.com/github/milewgit/tchart)
@@ -24,7 +23,7 @@ User documentation is [here](http://milewgit.github.io/tchart/).
 - **master** contains the application code.
 - **gh-pages** contains the user documentation.  It is hosted on [GitHub pages](http://pages.github.com).
 
-Releases from 1.0.0 have their own branches.  Older releases 0.0.1.pre and 0.0.1 are tagged.
+Releases starting from 1.0.0 have their own branches.  Older releases 0.0.1.pre and 0.0.1 are tagged.
 
 
 
