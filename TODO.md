@@ -1,4 +1,5 @@
 ### TODO
+- Split documentation web site into its own github repository.
 - Put an upper limit on the overall x-axis date range OR handle unlimited date ranges.
 - Does tchart present a well-behaved, canonical, least surprise, simple command line interface? ([research here](http://pragprog.com/book/dccar/build-awesome-command-line-applications-in-ruby))
 - Decide on a better name for YItem.  Note that README uses 'subject' in some places.
