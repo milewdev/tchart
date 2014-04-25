@@ -16,7 +16,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     install_osx_command_line_tools                      # needed by git
     install_gpg                                         # needed in order to sign git commits
     install_git                                         # source is on github
-    install_bundler                                     # used to manage project depencencies
+    install_bundler                                     # used to manage project depencencies (NOTE: runs with sudo)
     install_editor
     install_project_source_code PROJECT_SOURCE_URL, PROJECT_VM_PATH
     install_project_dependencies PROJECT_VM_PATH
@@ -58,8 +58,13 @@ class VagrantHelper
     end
 
     def setup_synced_folder(synced_folder)
-      FileUtils.mkdir_p(synced_folder[:host]) unless File.exist?(synced_folder[:host])
+      create_if_missing(synced_folder[:host])
       @config.vm.synced_folder synced_folder[:host], synced_folder[:guest]
+    end
+    
+    def create_if_missing(folder)
+      folder = File.expand_path(folder)
+      FileUtils.mkdir_p(folder) unless File.exist?(folder)
     end
 
     def install_osx_command_line_tools
