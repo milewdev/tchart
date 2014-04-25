@@ -27,7 +27,7 @@ In a terminal window on the host machine:
 ```
 $ mkdir -p ~/work/tchart
 $ cd ~/work/tchart
-$ curl -fsSL https://raw.github.com/milewgit/tchart/master/Vagrantfile -o Vagrantfile
+$ curl -L https://raw.github.com/milewgit/tchart/master/Vagrantfile -o Vagrantfile
 $ vagrant up --provider=vmware_fusion
 ...
 ```
