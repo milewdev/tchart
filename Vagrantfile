@@ -61,7 +61,7 @@ class VagrantHelper
       create_if_missing(synced_folder[:host])
       @config.vm.synced_folder synced_folder[:host], synced_folder[:guest]
     end
-    
+
     def create_if_missing(folder)
       folder = File.expand_path(folder)
       FileUtils.mkdir_p(folder) unless File.exist?(folder)
@@ -101,7 +101,7 @@ class VagrantHelper
 
     def install_editor
       say "Installing editor (TextMate)"
-      run_script "curl -fsSL https://api.textmate.org/downloads/release | sudo tar -x -C /Applications -f -"
+      install_tar 'https://api.textmate.org/downloads/release'
     end
 
     def install_project_source_code(project_source_url, project_vm_path)
@@ -123,8 +123,14 @@ class VagrantHelper
 
     def install_dmg(url, path, pkg)
       cache_dir = derive_cache_dir(url)
-      download url, cache_dir
+      download url, cache_dir, "install.dmg"
       run_pkg_installer(cache_dir, path, pkg)
+    end
+
+    def install_tar(url)
+      cache_dir = derive_cache_dir(url)
+      download url, cache_dir, "install.tar"
+      run_tar_installer(cache_dir)
     end
 
     # The two cache paths point to the same physical directory, but one is used
@@ -139,8 +145,8 @@ class VagrantHelper
     # Test for file in the cache (via host_cache_dir) when this Vagrantfile runs,
     # but download the file (if not in the cache) to the cache (via guest_cache_dir)
     # when Vagrant runs the provisioning scripts on the vm.
-    def download(url, cache_dir)
-      run_script "curl --create-dirs -o #{cache_dir[:guest_path]}/install.dmg #{url}" unless File.exist?("#{cache_dir[:host_path]}/install.dmg")
+    def download(url, cache_dir, filename)
+      run_script "curl -L --create-dirs -o #{cache_dir[:guest_path]}/#{filename} #{url}" unless File.exist?("#{cache_dir[:host_path]}/#{filename}")
     end
 
     def run_pkg_installer(cache_dir, path, pkg)
@@ -153,8 +159,13 @@ class VagrantHelper
       EOF
     end
 
+    def run_tar_installer(cache_dir)
+      run_script "sudo tar -x -C /Applications -f #{cache_dir[:guest_path]}/install.tar"
+    end
+
+    # 'http://company.com/file2014.dmg' => 'http3A2F2Fcompany2Ecom2Ffile20142Edmg'
     def url2dir(url)
-      url.tr('^a-zA-Z0-9', '_')
+      url.gsub( /[^a-zA-Z0-9]/ ) { |s| sprintf('%2X', s.ord) }
     end
 
     def say(message)
@@ -165,8 +176,9 @@ class VagrantHelper
       @config.vm.provision :shell, privileged: false, inline: script
     end
 
+    # 'my product (v1)' => 'my\ product\ \(v1\)'
     def escape_shell_special_chars(string)
-      string.gsub(/([ ()])/, '\\\\\1')        # 'my product (v1)' => 'my\ product\ \(v1\)'
+      string.gsub(/([ ()])/, '\\\\\1')
     end
 
 end
