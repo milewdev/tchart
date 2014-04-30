@@ -32,7 +32,6 @@ module TChart
     end
     
     def parse_args(argv) # => CommandLineArgs
-      parse_options(argv)
       raise_usage unless argv.length == 2
       data_filename, tex_filename = argv
       raise_data_filename_not_found(data_filename) unless File.exists?(data_filename)
