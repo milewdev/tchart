@@ -10,7 +10,7 @@ A command line utility that generates TikZ code to draw a chart of date-based da
 
 
 ### Documentation
-[Here](http://milewgit.github.io/tchart/) (documentation source is [here](https://github.com/milewgit/tchart/tree/gh-pages)).
+[Here](http://milewgit.github.io/tchart.doc/) (documentation source is [here](https://github.com/milewgit/tchart.doc)).
 
 
 ### Development Setup
