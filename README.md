@@ -73,7 +73,7 @@ $ rm -r ~/work/tchart    # and possibly rm -r ~/work if it is now empty
 #####Development Notes:
 - branch **master** contains the latest version of the application code.  Older releases starting from 1.0.0 have their own branches; releases 0.0.1.pre and 0.0.1 have tags.
 
-- `bin/tchart` launches the application; it simply calls the program's main entry point, TChart::run (`lib/tchart/tchart.rb`).
+- `bin/tchart` launches the application; it simply calls the program's main entry point, TChart::run (`lib/tchart.rb`).
 
 - ./_test will run all business/unit tests.  Leave a terminal window open during development and
 run ./_test as you make changes to code.
