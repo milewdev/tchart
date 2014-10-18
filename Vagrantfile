@@ -1,5 +1,5 @@
 VAGRANTFILE_API_VERSION         = "2"
-PROJECT_SOURCE_URL              = "https://github.com/milewgit/tchart.git"
+PROJECT_SOURCE_URL              = "https://github.com/milewdev/tchart.git"
 PROJECT_VM_PATH                 = "/Users/vagrant/Documents/tchart"
 SYNCED_HOST_HOME_FOLDER         = { host: "~/", guest: "/.vagrant_host_home" }
 SYNCED_DOWNLOAD_CACHE_FOLDER    = { host: "cache", guest: "/.vagrant_download_cache" }
@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     setup_provider PROVIDER
     setup_synced_folder SYNCED_HOST_HOME_FOLDER         # easy way to copy gpg keys and git config from host to vm
     setup_synced_folder SYNCED_DOWNLOAD_CACHE_FOLDER    # guest needs access to downloaded files cached on the host
-    install_osx_command_line_tools                      # needed by git
+    # install_osx_command_line_tools                      # needed by git
     install_gpg                                         # needed in order to sign git commits
     install_git                                         # source is on github
     install_bundler                                     # used to manage project depencencies (NOTE: runs with sudo)
