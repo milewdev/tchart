@@ -28,3 +28,9 @@ task :install do
   system "gem uninstall -x tchart"
   system "gem install tchart-#{TChart::Version}.gem"
 end
+
+
+desc "Publish gem to rubygems.org"
+task :publish do
+  system "gem push tchart-#{TChart::Version}.gem"
+end

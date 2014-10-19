@@ -3,7 +3,7 @@ require "./lib/tchart/version"
 Gem::Specification.new do |s|
   s.name                        = "tchart"
   s.version                     = TChart::Version
-  s.homepage                    = "https://github.com/milewgit/tchart"
+  s.homepage                    = "https://github.com/milewdev/tchart"
   s.summary                     = "Generate TikZ code to plot date-based data."
   s.description                 = <<-EOS
                                   tchart reads a text file containing date-based data,
@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
                                   document, such as a resume.
                                   EOS
   s.author                      = "Michael Lewandowski"
-  s.email                       = "milewgit@gmail.com"
+  s.email                       = "milewdev@gmail.com"
   s.license                     = "MIT"
   s.requirements                = [ "Ruby 2", "A TeX distribution (e.g. tug.org/mactex) to render the generated TikZ chart code." ]
   s.platform                    = Gem::Platform::RUBY

@@ -1,8 +1,8 @@
 [![Gem Version](https://badge.fury.io/rb/tchart.svg)](http://badge.fury.io/rb/tchart)
-[![Build Status](https://travis-ci.org/milewgit/tchart.svg?branch=master)](https://travis-ci.org/milewgit/tchart)
-[![Code Climate](https://codeclimate.com/github/milewgit/tchart.png)](https://codeclimate.com/github/milewgit/tchart)
-[![Coverage Status](https://coveralls.io/repos/milewgit/tchart/badge.png?branch=master)](https://coveralls.io/r/milewgit/tchart?branch=master)
-[![Dependencies](https://gemnasium.com/milewgit/tchart.svg)](https://gemnasium.com/milewgit/tchart)
+[![Build Status](https://travis-ci.org/milewdev/tchart.svg?branch=master)](https://travis-ci.org/milewdev/tchart)
+[![Code Climate](https://codeclimate.com/github/milewdev/tchart.png)](https://codeclimate.com/github/milewdev/tchart)
+[![Coverage Status](https://coveralls.io/repos/milewdev/tchart/badge.png?branch=master)](https://coveralls.io/r/milewdev/tchart?branch=master)
+[![Dependencies](https://gemnasium.com/milewdev/tchart.svg)](https://gemnasium.com/milewdev/tchart)
 
 
 ### What is tchart?
@@ -10,7 +10,7 @@ A command line utility that generates TikZ code to draw a chart of date-based da
 
 
 ### Documentation
-[Here](http://milewgit.github.io/tchart.doc/) (documentation source is [here](https://github.com/milewgit/tchart.doc)).
+[Here](http://milewdev.github.io/tchart.doc/) (documentation source is [here](https://github.com/milewdev/tchart.doc)).
 
 
 ### Development Setup
@@ -27,7 +27,7 @@ In a terminal window on the host machine:
 ```
 $ mkdir -p ~/work/tchart
 $ cd ~/work/tchart
-$ curl -L https://raw.github.com/milewgit/tchart/master/Vagrantfile -o Vagrantfile
+$ curl -L https://raw.github.com/milewdev/tchart/master/Vagrantfile -o Vagrantfile
 $ vagrant up --provider=vmware_fusion
 ...
 ```
